@@ -494,6 +494,335 @@
             min-height: 8px;
         }
 
+        /* === RICH CRM MOCKUPS === */
+        .crm-app {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            line-height: 1.4;
+            min-height: 400px;
+        }
+
+        .crm-sidebar {
+            width: 52px;
+            background: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 0;
+            gap: 2px;
+            flex-shrink: 0;
+        }
+
+        .crm-sb-logo {
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 14px;
+            color: #fff;
+            margin-bottom: 12px;
+            flex-shrink: 0;
+        }
+
+        .crm-sb-item {
+            width: 36px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,.35);
+            font-size: 13px;
+            cursor: default;
+            transition: all .2s;
+        }
+
+        .crm-sb-item.active {
+            color: #fff;
+            border-radius: 6px;
+        }
+
+        .crm-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .crm-topbar {
+            height: 36px;
+            padding: 0 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid;
+            flex-shrink: 0;
+        }
+
+        .crm-topbar-title {
+            font-weight: 800;
+            font-size: 11px;
+            flex: 1;
+        }
+
+        .crm-topbar-search {
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 9px;
+            border: 1px solid;
+            width: 90px;
+        }
+
+        .crm-content {
+            flex: 1;
+            padding: 10px 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .crm-kpi-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+        }
+
+        .crm-kpi {
+            padding: 8px 10px;
+            border-radius: 7px;
+            border: 1px solid;
+        }
+
+        .crm-kpi-label {
+            font-size: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            opacity: .55;
+            margin-bottom: 2px;
+        }
+
+        .crm-kpi-val {
+            font-size: 16px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .crm-kpi-sub {
+            font-size: 8px;
+            margin-top: 1px;
+        }
+
+        .crm-table {
+            flex: 1;
+            border-radius: 7px;
+            border: 1px solid;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .crm-table-head {
+            display: grid;
+            padding: 6px 10px;
+            font-size: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            border-bottom: 1px solid;
+        }
+
+        .crm-table-row {
+            display: grid;
+            padding: 6px 10px;
+            font-size: 9.5px;
+            border-bottom: 1px solid;
+            align-items: center;
+        }
+
+        .crm-table-row:last-child { border-bottom: none; }
+
+        .crm-badge {
+            display: inline-flex;
+            padding: 1px 6px;
+            border-radius: 10px;
+            font-size: 8px;
+            font-weight: 700;
+            width: fit-content;
+        }
+
+        .crm-temp-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            margin-right: 3px;
+            vertical-align: middle;
+        }
+
+        /* Pipeline columns */
+        .crm-pipeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+            flex: 1;
+        }
+
+        .crm-pipe-col {
+            border-radius: 7px;
+            padding: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .crm-pipe-header {
+            font-size: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            padding-bottom: 4px;
+            border-bottom: 1px solid;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .crm-pipe-count {
+            padding: 1px 5px;
+            border-radius: 8px;
+            font-size: 8px;
+            font-weight: 800;
+        }
+
+        .crm-pipe-card {
+            padding: 6px 7px;
+            border-radius: 5px;
+            border: 1px solid;
+            font-size: 8.5px;
+        }
+
+        .crm-pipe-name {
+            font-weight: 700;
+            font-size: 9px;
+            margin-bottom: 2px;
+        }
+
+        .crm-pipe-detail {
+            opacity: .5;
+            font-size: 7.5px;
+        }
+
+        /* Mini chart for dashboard mockup */
+        .crm-minichart {
+            border-radius: 7px;
+            border: 1px solid;
+            padding: 8px 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .crm-minichart-title {
+            font-size: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            opacity: .55;
+            margin-bottom: 6px;
+        }
+
+        .crm-minichart-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 45px;
+        }
+
+        .crm-minibar {
+            flex: 1;
+            border-radius: 2px 2px 0 0;
+            min-height: 3px;
+        }
+
+        /* Dark theme CRM */
+        .crm-dark .crm-main { background: #111318; }
+        .crm-dark .crm-topbar { background: #1e2128; color: #e8eaf0; border-color: #2e3240; }
+        .crm-dark .crm-topbar-search { background: #111318; color: #9ba3b8; border-color: #2e3240; }
+        .crm-dark .crm-content { background: #111318; }
+        .crm-dark .crm-kpi { background: #1e2128; border-color: #2e3240; color: #e8eaf0; }
+        .crm-dark .crm-kpi-label { color: #9ba3b8; }
+        .crm-dark .crm-kpi-sub { color: #5a6278; }
+        .crm-dark .crm-table { background: #1e2128; border-color: #2e3240; }
+        .crm-dark .crm-table-head { color: #9ba3b8; border-color: #2e3240; background: #1a1d24; }
+        .crm-dark .crm-table-row { color: #e8eaf0; border-color: #252830; }
+        .crm-dark .crm-pipe-col { background: #1a1d24; }
+        .crm-dark .crm-pipe-header { color: #9ba3b8; border-color: #2e3240; }
+        .crm-dark .crm-pipe-card { background: #1e2128; border-color: #2e3240; color: #e8eaf0; }
+        .crm-dark .crm-minichart { background: #1e2128; border-color: #2e3240; }
+        .crm-dark .crm-minichart-title { color: #9ba3b8; }
+
+        /* Light theme CRM */
+        .crm-light .crm-main { background: #f5f5f3; }
+        .crm-light .crm-topbar { background: #fff; color: #1a1a1a; border-color: #e4e2de; }
+        .crm-light .crm-topbar-search { background: #f5f5f3; color: #6b6560; border-color: #e4e2de; }
+        .crm-light .crm-content { background: #f5f5f3; }
+        .crm-light .crm-kpi { background: #fff; border-color: #e4e2de; color: #1a1a1a; }
+        .crm-light .crm-kpi-label { color: #6b6560; }
+        .crm-light .crm-kpi-sub { color: #a09890; }
+        .crm-light .crm-table { background: #fff; border-color: #e4e2de; }
+        .crm-light .crm-table-head { color: #6b6560; border-color: #e4e2de; background: #fafaf9; }
+        .crm-light .crm-table-row { color: #1a1a1a; border-color: #f0efed; }
+        .crm-light .crm-pipe-col { background: #ebebea; }
+        .crm-light .crm-pipe-header { color: #6b6560; border-color: #d0cdc8; }
+        .crm-light .crm-pipe-card { background: #fff; border-color: #e4e2de; color: #1a1a1a; }
+        .crm-light .crm-minichart { background: #fff; border-color: #e4e2de; }
+        .crm-light .crm-minichart-title { color: #6b6560; }
+
+        /* Accent colors */
+        .accent-red { color: #c8191a; }
+        .accent-blue { color: #1e56b0; }
+        .accent-green { color: #277a48; }
+        .accent-orange { color: #c85c18; }
+        .bg-red { background: #c8191a; }
+        .bg-blue { background: #1e56b0; }
+        .bg-green-soft { background: #edf7f1; color: #277a48; }
+        .bg-orange-soft { background: #fef2e8; color: #c85c18; }
+        .bg-blue-soft { background: #eef3fd; color: #1e56b0; }
+        .bg-red-soft { background: #fdf2f2; color: #c8191a; }
+        .bg-purple-soft { background: #f3eefb; color: #6b3ea0; }
+        .bg-gold-soft { background: #fdf8ee; color: #c49a2e; }
+
+        /* Status live dot animation */
+        .crm-live-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #277a48;
+            animation: pulse 1.5s infinite;
+            display: inline-block;
+        }
+
+        /* Interactive view panels */
+        .crm-view-panel { display: none; }
+        .crm-view-panel.active { display: flex; }
+        .crm-sb-item[data-view] { cursor: pointer; transition: all .15s; }
+        .crm-sb-item[data-view]:hover { color: rgba(255,255,255,.8); background: rgba(255,255,255,.1); }
+
+        @media (max-width: 768px) {
+            .crm-app { min-height: 300px; font-size: 8px; }
+            .crm-sidebar { width: 38px; }
+            .crm-kpi-row { grid-template-columns: repeat(2, 1fr); }
+            .crm-pipeline { grid-template-columns: repeat(3, 1fr); }
+            .crm-kpi-val { font-size: 13px; }
+        }
+
         /* SERVICES */
         .services-grid {
             display: grid;
@@ -768,42 +1097,264 @@
                                 <li>Reportes PDF automáticos para el directorio</li>
                             </ul>
                         </div>
-                        <div class="project-visual">
-                            <div class="project-mockup">
-                                <div class="mockup-bar">
-                                    <div class="mockup-dot"></div>
-                                    <div class="mockup-dot"></div>
-                                    <div class="mockup-dot"></div>
+                        <div class="project-visual" style="padding:0;min-height:420px;">
+                            <!-- DASHBOARD AUTOMOTRIZ - MOCKUP INTERACTIVO -->
+                            <div class="crm-app crm-dark" id="crm-auto">
+                                <div class="crm-sidebar">
+                                    <div class="crm-sb-logo bg-blue" style="font-size:11px;">MG</div>
+                                    <div class="crm-sb-item active" data-view="auto-dash" data-crm="crm-auto" data-accent="#1e56b0" style="background:#1e56b0;">&#9632;</div>
+                                    <div class="crm-sb-item" data-view="auto-leads" data-crm="crm-auto" data-accent="#1e56b0">&#9776;</div>
+                                    <div class="crm-sb-item" data-view="auto-alerts" data-crm="crm-auto" data-accent="#1e56b0">&#128276;</div>
+                                    <div class="crm-sb-item" data-view="auto-report" data-crm="crm-auto" data-accent="#1e56b0">&#128202;</div>
                                 </div>
-                                <div class="mockup-body">
-                                    <div class="mockup-row">
-                                        <div class="mockup-card">
-                                            <div class="mockup-card-label">Gasto total</div>
-                                            <div class="mockup-card-value">$4.2M</div>
+                                <div class="crm-main">
+                                    <div class="crm-topbar">
+                                        <div class="crm-topbar-title" id="auto-topbar-title">Dashboard Marketing</div>
+                                        <span style="display:flex;align-items:center;gap:4px;font-size:9px;color:#277a48;background:#0d1f14;padding:2px 8px;border-radius:10px;border:1px solid #277a48;">
+                                            <span class="crm-live-dot"></span> Sync 14:32
+                                        </span>
+                                        <div class="crm-topbar-search" style="width:70px;">Buscar...</div>
+                                    </div>
+                                    <!-- VIEW 1: Dashboard -->
+                                    <div class="crm-content crm-view-panel active" id="auto-dash">
+                                        <div class="crm-kpi-row">
+                                            <div class="crm-kpi">
+                                                <div class="crm-kpi-label">Gasto total</div>
+                                                <div class="crm-kpi-val">$4.2M</div>
+                                                <div class="crm-kpi-sub" style="color:#277a48;">-12% vs mes ant.</div>
+                                            </div>
+                                            <div class="crm-kpi">
+                                                <div class="crm-kpi-label">Leads mes</div>
+                                                <div class="crm-kpi-val" style="color:#1e56b0;">347</div>
+                                                <div class="crm-kpi-sub" style="color:#277a48;">+23% vs mes ant.</div>
+                                            </div>
+                                            <div class="crm-kpi">
+                                                <div class="crm-kpi-label">CPL promedio</div>
+                                                <div class="crm-kpi-val" style="color:#277a48;">$12.1k</div>
+                                                <div class="crm-kpi-sub" style="color:#277a48;">Meta: $15k</div>
+                                            </div>
+                                            <div class="crm-kpi">
+                                                <div class="crm-kpi-label">Tasa conversión</div>
+                                                <div class="crm-kpi-val" style="color:#c85c18;">8.4%</div>
+                                                <div class="crm-kpi-sub" style="color:#c8191a;">-0.3% vs mes ant.</div>
+                                            </div>
                                         </div>
-                                        <div class="mockup-card">
-                                            <div class="mockup-card-label">Leads</div>
-                                            <div class="mockup-card-value accent">347</div>
+                                        <div style="display:grid;grid-template-columns:2fr 1fr;gap:6px;">
+                                            <div class="crm-minichart">
+                                                <div class="crm-minichart-title">Leads por semana</div>
+                                                <div class="crm-minichart-bars">
+                                                    <div class="crm-minibar" style="height:40%;background:#1877f2;"></div>
+                                                    <div class="crm-minibar" style="height:55%;background:#1877f2;"></div>
+                                                    <div class="crm-minibar" style="height:48%;background:#4285f4;"></div>
+                                                    <div class="crm-minibar" style="height:72%;background:#1877f2;"></div>
+                                                    <div class="crm-minibar" style="height:65%;background:#4285f4;"></div>
+                                                    <div class="crm-minibar" style="height:88%;background:#1877f2;"></div>
+                                                    <div class="crm-minibar" style="height:78%;background:#4285f4;"></div>
+                                                    <div class="crm-minibar" style="height:95%;background:#1877f2;"></div>
+                                                    <div class="crm-minibar" style="height:82%;background:#1877f2;"></div>
+                                                    <div class="crm-minibar" style="height:70%;background:#4285f4;"></div>
+                                                    <div class="crm-minibar" style="height:90%;background:#1877f2;"></div>
+                                                    <div class="crm-minibar" style="height:100%;background:#1877f2;"></div>
+                                                </div>
+                                            </div>
+                                            <div style="display:flex;flex-direction:column;gap:5px;">
+                                                <div style="background:#1e2128;border:1px solid #2e3240;border-radius:7px;padding:7px 9px;">
+                                                    <div style="font-size:8px;color:#c8191a;font-weight:700;margin-bottom:3px;">&#9888; ANOMALIA</div>
+                                                    <div style="font-size:8px;color:#e8eaf0;">Meta Ads: gasto +45% s/ clics</div>
+                                                    <div style="font-size:7px;color:#5a6278;margin-top:2px;">Hace 2 horas</div>
+                                                </div>
+                                                <div style="background:#1e2128;border:1px solid #2e3240;border-radius:7px;padding:7px 9px;">
+                                                    <div style="font-size:8px;color:#9ba3b8;font-weight:700;margin-bottom:3px;">Plataformas</div>
+                                                    <div style="display:flex;gap:4px;flex-wrap:wrap;">
+                                                        <span style="background:#0d1525;color:#1877f2;padding:1px 5px;border-radius:3px;font-size:7.5px;font-weight:700;">Meta $2.1M</span>
+                                                        <span style="background:#0d1525;color:#4285f4;padding:1px 5px;border-radius:3px;font-size:7.5px;font-weight:700;">Google $1.4M</span>
+                                                        <span style="background:#160e22;color:#6b3ea0;padding:1px 5px;border-radius:3px;font-size:7.5px;font-weight:700;">IG $680k</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="mockup-card">
-                                            <div class="mockup-card-label">CPL</div>
-                                            <div class="mockup-card-value green">$12.1k</div>
+                                        <div class="crm-table" style="flex:1;">
+                                            <div class="crm-table-head" style="grid-template-columns:2fr 1fr 1fr 1fr 1fr;">
+                                                <span>Campania</span><span>Plat.</span><span>Gasto</span><span>Leads</span><span>CPL</span>
+                                            </div>
+                                            <div class="crm-table-row" style="grid-template-columns:2fr 1fr 1fr 1fr 1fr;">
+                                                <span style="font-weight:600;">Hilux SR5 - Marzo</span>
+                                                <span><span style="color:#1877f2;font-weight:700;">Meta</span></span>
+                                                <span>$890k</span><span style="font-weight:700;">84</span>
+                                                <span style="color:#277a48;font-weight:700;">$10.6k</span>
+                                            </div>
+                                            <div class="crm-table-row" style="grid-template-columns:2fr 1fr 1fr 1fr 1fr;">
+                                                <span style="font-weight:600;">Corolla Cross CVT</span>
+                                                <span><span style="color:#4285f4;font-weight:700;">Google</span></span>
+                                                <span>$720k</span><span style="font-weight:700;">52</span>
+                                                <span style="color:#c85c18;font-weight:700;">$13.8k</span>
+                                            </div>
+                                            <div class="crm-table-row" style="grid-template-columns:2fr 1fr 1fr 1fr 1fr;">
+                                                <span style="font-weight:600;">Usados Premium</span>
+                                                <span><span style="color:#1877f2;font-weight:700;">Meta</span></span>
+                                                <span>$1.1M</span><span style="font-weight:700;">127</span>
+                                                <span style="color:#277a48;font-weight:700;">$8.7k</span>
+                                            </div>
+                                            <div class="crm-table-row" style="grid-template-columns:2fr 1fr 1fr 1fr 1fr;">
+                                                <span style="font-weight:600;">Plan Ahorro Yaris</span>
+                                                <span><span style="color:#4285f4;font-weight:700;">Google</span></span>
+                                                <span>$480k</span><span style="font-weight:700;">41</span>
+                                                <span style="color:#c85c18;font-weight:700;">$11.7k</span>
+                                            </div>
+                                            <div class="crm-table-row" style="grid-template-columns:2fr 1fr 1fr 1fr 1fr;">
+                                                <span style="font-weight:600;">Retarget Visitas</span>
+                                                <span><span style="color:#6b3ea0;font-weight:700;">IG</span></span>
+                                                <span>$340k</span><span style="font-weight:700;">43</span>
+                                                <span style="color:#277a48;font-weight:700;">$7.9k</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="mockup-chart">
-                                        <div class="chart-bars">
-                                            <div class="chart-bar" style="height:45%"></div>
-                                            <div class="chart-bar" style="height:62%"></div>
-                                            <div class="chart-bar" style="height:38%"></div>
-                                            <div class="chart-bar" style="height:80%"></div>
-                                            <div class="chart-bar" style="height:55%"></div>
-                                            <div class="chart-bar" style="height:72%"></div>
-                                            <div class="chart-bar" style="height:90%"></div>
-                                            <div class="chart-bar" style="height:65%"></div>
-                                            <div class="chart-bar" style="height:48%"></div>
-                                            <div class="chart-bar" style="height:85%"></div>
-                                            <div class="chart-bar" style="height:70%"></div>
-                                            <div class="chart-bar" style="height:58%"></div>
+                                    <!-- VIEW 2: Leads -->
+                                    <div class="crm-content crm-view-panel" id="auto-leads" data-title="Leads">
+                                        <div class="crm-kpi-row" style="grid-template-columns:repeat(3,1fr);">
+                                            <div class="crm-kpi">
+                                                <div class="crm-kpi-label">Total leads</div>
+                                                <div class="crm-kpi-val" style="color:#1e56b0;">347</div>
+                                            </div>
+                                            <div class="crm-kpi">
+                                                <div class="crm-kpi-label">Sin contactar</div>
+                                                <div class="crm-kpi-val" style="color:#c85c18;">23</div>
+                                            </div>
+                                            <div class="crm-kpi">
+                                                <div class="crm-kpi-label">Cerrados</div>
+                                                <div class="crm-kpi-val" style="color:#277a48;">29</div>
+                                            </div>
+                                        </div>
+                                        <div class="crm-table" style="flex:1;">
+                                            <div class="crm-table-head" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
+                                                <span>Nombre</span><span>Fuente</span><span>Modelo</span><span>Estado</span><span>Asesor</span>
+                                            </div>
+                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
+                                                <span style="font-weight:600;">Roberto Sánchez</span>
+                                                <span><span style="color:#1877f2;font-weight:700;">Meta</span></span>
+                                                <span>Hilux SR5</span>
+                                                <span><span class="crm-badge" style="background:#eef3fd;color:#1e56b0;">Nuevo</span></span>
+                                                <span>Marcos P.</span>
+                                            </div>
+                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
+                                                <span style="font-weight:600;">Ana María Flores</span>
+                                                <span><span style="color:#4285f4;font-weight:700;">Google</span></span>
+                                                <span>Corolla CVT</span>
+                                                <span><span class="crm-badge" style="background:#fef2e8;color:#c85c18;">Contactado</span></span>
+                                                <span>Lucía R.</span>
+                                            </div>
+                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
+                                                <span style="font-weight:600;">Pablo Giménez</span>
+                                                <span><span style="color:#1877f2;font-weight:700;">Meta</span></span>
+                                                <span>Yaris XLS</span>
+                                                <span><span class="crm-badge" style="background:#fdf8ee;color:#c49a2e;">Visita</span></span>
+                                                <span>Marcos P.</span>
+                                            </div>
+                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
+                                                <span style="font-weight:600;">Claudia Pereyra</span>
+                                                <span><span style="color:#6b3ea0;font-weight:700;">IG</span></span>
+                                                <span>SW4 SRX</span>
+                                                <span><span class="crm-badge" style="background:#edf7f1;color:#277a48;">Oferta</span></span>
+                                                <span>Diego M.</span>
+                                            </div>
+                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
+                                                <span style="font-weight:600;">Martín Acosta</span>
+                                                <span><span style="color:#4285f4;font-weight:700;">Google</span></span>
+                                                <span>Hilux DX</span>
+                                                <span><span class="crm-badge" style="background:#edf7f1;color:#277a48;">Cerrado</span></span>
+                                                <span>Lucía R.</span>
+                                            </div>
+                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
+                                                <span style="font-weight:600;">Elena Ríos</span>
+                                                <span><span style="color:#1877f2;font-weight:700;">Meta</span></span>
+                                                <span>Etios AT</span>
+                                                <span><span class="crm-badge" style="background:#eef3fd;color:#1e56b0;">Nuevo</span></span>
+                                                <span>Diego M.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- VIEW 3: Alertas -->
+                                    <div class="crm-content crm-view-panel" id="auto-alerts" data-title="Alertas">
+                                        <div style="display:flex;flex-direction:column;gap:6px;">
+                                            <div style="background:#2a1215;border:1px solid #4a1e22;border-radius:7px;padding:9px 11px;border-left:3px solid #c8191a;">
+                                                <div style="display:flex;justify-content:space-between;align-items:center;">
+                                                    <span style="font-size:9px;color:#c8191a;font-weight:800;">&#9888; CRITICA</span>
+                                                    <span style="font-size:7px;color:#5a6278;">Hoy 12:45</span>
+                                                </div>
+                                                <div style="font-size:9px;color:#e8eaf0;margin-top:4px;font-weight:600;">Meta Ads: gasto +45% sin aumento de clics</div>
+                                                <div style="font-size:8px;color:#9ba3b8;margin-top:2px;">Campania "Hilux SR5" — $890k gastados, CTR bajó 0.8%</div>
+                                            </div>
+                                            <div style="background:#1f1a0a;border:1px solid #3a3020;border-radius:7px;padding:9px 11px;border-left:3px solid #c49a2e;">
+                                                <div style="display:flex;justify-content:space-between;align-items:center;">
+                                                    <span style="font-size:9px;color:#c49a2e;font-weight:800;">&#9888; MEDIA</span>
+                                                    <span style="font-size:7px;color:#5a6278;">Ayer 18:20</span>
+                                                </div>
+                                                <div style="font-size:9px;color:#e8eaf0;margin-top:4px;font-weight:600;">Google Ads: CPL subió 22% en "Plan Ahorro"</div>
+                                                <div style="font-size:8px;color:#9ba3b8;margin-top:2px;">CPL actual $11.7k vs objetivo $9.5k</div>
+                                            </div>
+                                            <div style="background:#0d1f14;border:1px solid #1a3a24;border-radius:7px;padding:9px 11px;border-left:3px solid #277a48;">
+                                                <div style="display:flex;justify-content:space-between;align-items:center;">
+                                                    <span style="font-size:9px;color:#277a48;font-weight:800;">&#10003; RESUELTA</span>
+                                                    <span style="font-size:7px;color:#5a6278;">22/03 09:10</span>
+                                                </div>
+                                                <div style="font-size:9px;color:#e8eaf0;margin-top:4px;font-weight:600;">Instagram: engagement normalizado</div>
+                                                <div style="font-size:8px;color:#9ba3b8;margin-top:2px;">Reels campania "Usados Premium" recuperó alcance</div>
+                                            </div>
+                                            <div style="background:#0d1f14;border:1px solid #1a3a24;border-radius:7px;padding:9px 11px;border-left:3px solid #277a48;">
+                                                <div style="display:flex;justify-content:space-between;align-items:center;">
+                                                    <span style="font-size:9px;color:#277a48;font-weight:800;">&#10003; RESUELTA</span>
+                                                    <span style="font-size:7px;color:#5a6278;">20/03 15:30</span>
+                                                </div>
+                                                <div style="font-size:9px;color:#e8eaf0;margin-top:4px;font-weight:600;">Meta: pixel desconectado en landing Corolla</div>
+                                                <div style="font-size:8px;color:#9ba3b8;margin-top:2px;">Reconectado — leads perdidos estimados: 12</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- VIEW 4: Reportes -->
+                                    <div class="crm-content crm-view-panel" id="auto-report" data-title="Reportes">
+                                        <div class="crm-kpi-row" style="grid-template-columns:repeat(2,1fr);">
+                                            <div class="crm-minichart" style="flex:1;">
+                                                <div class="crm-minichart-title">Gasto por plataforma</div>
+                                                <div class="crm-minichart-bars">
+                                                    <div class="crm-minibar" style="height:100%;background:#1877f2;"></div>
+                                                    <div class="crm-minibar" style="height:67%;background:#4285f4;"></div>
+                                                    <div class="crm-minibar" style="height:32%;background:#6b3ea0;"></div>
+                                                </div>
+                                                <div style="display:flex;gap:8px;margin-top:6px;">
+                                                    <span style="font-size:7px;color:#1877f2;font-weight:700;">Meta 50%</span>
+                                                    <span style="font-size:7px;color:#4285f4;font-weight:700;">Google 33%</span>
+                                                    <span style="font-size:7px;color:#6b3ea0;font-weight:700;">IG 17%</span>
+                                                </div>
+                                            </div>
+                                            <div class="crm-minichart" style="flex:1;">
+                                                <div class="crm-minichart-title">Conversión mensual</div>
+                                                <div class="crm-minichart-bars">
+                                                    <div class="crm-minibar" style="height:55%;background:#277a48;"></div>
+                                                    <div class="crm-minibar" style="height:62%;background:#277a48;"></div>
+                                                    <div class="crm-minibar" style="height:58%;background:#277a48;"></div>
+                                                    <div class="crm-minibar" style="height:70%;background:#277a48;"></div>
+                                                    <div class="crm-minibar" style="height:82%;background:#277a48;"></div>
+                                                    <div class="crm-minibar" style="height:84%;background:#277a48;"></div>
+                                                </div>
+                                                <div style="font-size:7px;color:#277a48;font-weight:700;margin-top:6px;">Oct — Mar 2026</div>
+                                            </div>
+                                        </div>
+                                        <div class="crm-table" style="flex:1;">
+                                            <div class="crm-table-head" style="grid-template-columns:1.5fr 1fr 1fr 1fr;">
+                                                <span>Reporte</span><span>Fecha</span><span>Tipo</span><span>Estado</span>
+                                            </div>
+                                            <div class="crm-table-row" style="grid-template-columns:1.5fr 1fr 1fr 1fr;">
+                                                <span style="font-weight:600;">Mensual Marzo</span><span>25/03</span><span>PDF</span>
+                                                <span><span class="crm-badge" style="background:#edf7f1;color:#277a48;">Generado</span></span>
+                                            </div>
+                                            <div class="crm-table-row" style="grid-template-columns:1.5fr 1fr 1fr 1fr;">
+                                                <span style="font-weight:600;">Semanal S12</span><span>21/03</span><span>PDF</span>
+                                                <span><span class="crm-badge" style="background:#edf7f1;color:#277a48;">Enviado</span></span>
+                                            </div>
+                                            <div class="crm-table-row" style="grid-template-columns:1.5fr 1fr 1fr 1fr;">
+                                                <span style="font-weight:600;">Anomalías Feb</span><span>01/03</span><span>PDF</span>
+                                                <span><span class="crm-badge" style="background:#edf7f1;color:#277a48;">Enviado</span></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -815,48 +1366,228 @@
                 <!-- CRM INMOBILIARIO -->
                 <div class="project-card fade-in">
                     <div class="project-content">
-                        <div class="project-visual">
-                            <div class="project-mockup">
-                                <div class="mockup-bar">
-                                    <div class="mockup-dot"></div>
-                                    <div class="mockup-dot"></div>
-                                    <div class="mockup-dot"></div>
+                        <div class="project-visual" style="padding:0;min-height:420px;">
+                            <!-- CRM INMOBILIARIO - MOCKUP INTERACTIVO -->
+                            <div class="crm-app crm-light" id="crm-inmo">
+                                <div class="crm-sidebar">
+                                    <div class="crm-sb-logo bg-red" style="font-size:16px;font-family:'Montserrat',sans-serif;">Z</div>
+                                    <div class="crm-sb-item active" data-view="inmo-pipeline" data-crm="crm-inmo" data-accent="#c8191a" style="background:#c8191a;">&#9632;</div>
+                                    <div class="crm-sb-item" data-view="inmo-leads" data-crm="crm-inmo" data-accent="#c8191a">&#128100;</div>
+                                    <div class="crm-sb-item" data-view="inmo-agenda" data-crm="crm-inmo" data-accent="#c8191a">&#128197;</div>
+                                    <div class="crm-sb-item" data-view="inmo-stats" data-crm="crm-inmo" data-accent="#c8191a">&#128200;</div>
                                 </div>
-                                <div class="mockup-body">
-                                    <div class="mockup-row">
-                                        <div class="mockup-card">
-                                            <div class="mockup-card-label">Leads activos</div>
-                                            <div class="mockup-card-value accent">89</div>
+                                <div class="crm-main">
+                                    <div class="crm-topbar">
+                                        <div class="crm-topbar-title" id="inmo-topbar-title" style="color:#1a1a1a;">Pipeline de Leads</div>
+                                        <span style="display:flex;align-items:center;gap:4px;font-size:9px;color:#277a48;background:#edf7f1;padding:2px 8px;border-radius:10px;border:1px solid #277a48;">
+                                            <span class="crm-live-dot"></span> 6 conectados
+                                        </span>
+                                        <div class="crm-topbar-search">Buscar lead...</div>
+                                    </div>
+                                    <!-- VIEW 1: Pipeline -->
+                                    <div class="crm-content crm-view-panel active" id="inmo-pipeline">
+                                        <div class="crm-kpi-row">
+                                            <div class="crm-kpi">
+                                                <div class="crm-kpi-label">Leads activos</div>
+                                                <div class="crm-kpi-val" style="color:#c8191a;">89</div>
+                                                <div class="crm-kpi-sub" style="color:#277a48;">+12 esta semana</div>
+                                            </div>
+                                            <div class="crm-kpi">
+                                                <div class="crm-kpi-label">Visitas hoy</div>
+                                                <div class="crm-kpi-val" style="color:#1a1a1a;">12</div>
+                                                <div class="crm-kpi-sub">3 pendientes</div>
+                                            </div>
+                                            <div class="crm-kpi">
+                                                <div class="crm-kpi-label">Cerrados mes</div>
+                                                <div class="crm-kpi-val" style="color:#277a48;">7</div>
+                                                <div class="crm-kpi-sub" style="color:#277a48;">USD 840k</div>
+                                            </div>
+                                            <div class="crm-kpi">
+                                                <div class="crm-kpi-label">Tasa conversión</div>
+                                                <div class="crm-kpi-val" style="color:#c85c18;">11.2%</div>
+                                                <div class="crm-kpi-sub" style="color:#277a48;">+2.1%</div>
+                                            </div>
                                         </div>
-                                        <div class="mockup-card">
-                                            <div class="mockup-card-label">Visitas hoy</div>
-                                            <div class="mockup-card-value">12</div>
+                                        <div class="crm-pipeline">
+                                            <div class="crm-pipe-col">
+                                                <div class="crm-pipe-header">Nuevos <span class="crm-pipe-count" style="background:#eef3fd;color:#1e56b0;">14</span></div>
+                                                <div class="crm-pipe-card"><div class="crm-pipe-name">Martín Suárez</div><div class="crm-pipe-detail">Compra &middot; Centro</div><div style="margin-top:3px;"><span class="crm-temp-dot" style="background:#c94a1a;"></span><span style="font-size:7.5px;color:#c94a1a;font-weight:700;">Caliente</span></div></div>
+                                                <div class="crm-pipe-card"><div class="crm-pipe-name">Lucía Fernández</div><div class="crm-pipe-detail">Alquiler &middot; Güemes</div><div style="margin-top:3px;"><span class="crm-temp-dot" style="background:#c49a2e;"></span><span style="font-size:7.5px;color:#c49a2e;font-weight:700;">Tibio</span></div></div>
+                                                <div class="crm-pipe-card"><div class="crm-pipe-name">Carlos Méndez</div><div class="crm-pipe-detail">Inversión &middot; La Perla</div><div style="margin-top:3px;"><span class="crm-temp-dot" style="background:#c94a1a;"></span><span style="font-size:7.5px;color:#c94a1a;font-weight:700;">Caliente</span></div></div>
+                                            </div>
+                                            <div class="crm-pipe-col">
+                                                <div class="crm-pipe-header">Contactados <span class="crm-pipe-count" style="background:#fef2e8;color:#c85c18;">11</span></div>
+                                                <div class="crm-pipe-card"><div class="crm-pipe-name">Valentina Castro</div><div class="crm-pipe-detail">Alq. temp &middot; Playa Grande</div><div style="margin-top:3px;"><span class="crm-temp-dot" style="background:#c94a1a;"></span><span style="font-size:7.5px;color:#c94a1a;font-weight:700;">Caliente</span></div></div>
+                                                <div class="crm-pipe-card"><div class="crm-pipe-name">Santiago Ruiz</div><div class="crm-pipe-detail">Compra &middot; Constitución</div><div style="margin-top:3px;"><span class="crm-temp-dot" style="background:#5a7a9a;"></span><span style="font-size:7.5px;color:#5a7a9a;font-weight:700;">Frío</span></div></div>
+                                            </div>
+                                            <div class="crm-pipe-col">
+                                                <div class="crm-pipe-header">Visita <span class="crm-pipe-count" style="background:#fdf8ee;color:#c49a2e;">8</span></div>
+                                                <div class="crm-pipe-card"><div class="crm-pipe-name">Federico López</div><div class="crm-pipe-detail">Compra &middot; Los Troncos</div><div style="margin-top:3px;"><span class="crm-temp-dot" style="background:#c94a1a;"></span><span style="font-size:7.5px;color:#c94a1a;font-weight:700;">Caliente</span></div></div>
+                                                <div class="crm-pipe-card"><div class="crm-pipe-name">Camila Torres</div><div class="crm-pipe-detail">Alquiler &middot; Centro</div><div style="margin-top:3px;"><span class="crm-temp-dot" style="background:#c49a2e;"></span><span style="font-size:7.5px;color:#c49a2e;font-weight:700;">Tibio</span></div></div>
+                                            </div>
+                                            <div class="crm-pipe-col">
+                                                <div class="crm-pipe-header">Negociación <span class="crm-pipe-count" style="background:#edf7f1;color:#277a48;">5</span></div>
+                                                <div class="crm-pipe-card" style="border-left:2px solid #277a48;"><div class="crm-pipe-name">Nicolás Herrera</div><div class="crm-pipe-detail">USD 155k &middot; Colinas</div><div style="margin-top:3px;"><span class="crm-temp-dot" style="background:#c94a1a;"></span><span style="font-size:7.5px;color:#c94a1a;font-weight:700;">Caliente</span></div></div>
+                                                <div class="crm-pipe-card" style="border-left:2px solid #277a48;"><div class="crm-pipe-name">Florencia Díaz</div><div class="crm-pipe-detail">USD 210k &middot; San Carlos</div><div style="margin-top:3px;"><span class="crm-temp-dot" style="background:#c94a1a;"></span><span style="font-size:7.5px;color:#c94a1a;font-weight:700;">Caliente</span></div></div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="mockup-row">
-                                        <div class="mockup-card">
-                                            <div class="mockup-card-label">Contenido IA</div>
-                                            <div class="mockup-card-value green">Activo</div>
+                                    <!-- VIEW 2: Leads Table -->
+                                    <div class="crm-content crm-view-panel" id="inmo-leads" data-title="Leads">
+                                        <div style="display:flex;gap:5px;margin-bottom:4px;flex-wrap:wrap;">
+                                            <span style="padding:2px 8px;border-radius:10px;font-size:8px;font-weight:700;background:#c8191a;color:#fff;cursor:default;">Todos (89)</span>
+                                            <span style="padding:2px 8px;border-radius:10px;font-size:8px;font-weight:700;background:#ebebea;color:#6b6560;cursor:default;">Nuevos (14)</span>
+                                            <span style="padding:2px 8px;border-radius:10px;font-size:8px;font-weight:700;background:#ebebea;color:#6b6560;cursor:default;">Calientes (32)</span>
                                         </div>
-                                        <div class="mockup-card">
-                                            <div class="mockup-card-label">Canales</div>
-                                            <div class="mockup-card-value">IG + FB + WA</div>
+                                        <div class="crm-table" style="flex:1;">
+                                            <div class="crm-table-head" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
+                                                <span>Nombre</span><span>Fuente</span><span>Tipo</span><span>Temp.</span><span>Asesor</span>
+                                            </div>
+                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
+                                                <span style="font-weight:600;">Martín Suárez</span>
+                                                <span><span style="color:#25d366;font-weight:700;">WhatsApp</span></span>
+                                                <span>Compra</span>
+                                                <span><span class="crm-temp-dot" style="background:#c94a1a;"></span><span style="font-size:8px;color:#c94a1a;font-weight:700;">Cal.</span></span>
+                                                <span>Nacho P.</span>
+                                            </div>
+                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
+                                                <span style="font-weight:600;">Lucía Fernández</span>
+                                                <span><span style="color:#1877f2;font-weight:700;">Instagram</span></span>
+                                                <span>Alquiler</span>
+                                                <span><span class="crm-temp-dot" style="background:#c49a2e;"></span><span style="font-size:8px;color:#c49a2e;font-weight:700;">Tib.</span></span>
+                                                <span>Juan R.</span>
+                                            </div>
+                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
+                                                <span style="font-weight:600;">Carlos Méndez</span>
+                                                <span><span style="color:#c85c18;font-weight:700;">Tokko</span></span>
+                                                <span>Inversión</span>
+                                                <span><span class="crm-temp-dot" style="background:#c94a1a;"></span><span style="font-size:8px;color:#c94a1a;font-weight:700;">Cal.</span></span>
+                                                <span>Franca D.</span>
+                                            </div>
+                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
+                                                <span style="font-weight:600;">Valentina Castro</span>
+                                                <span><span style="color:#1877f2;font-weight:700;">Facebook</span></span>
+                                                <span>Alq. temp</span>
+                                                <span><span class="crm-temp-dot" style="background:#c94a1a;"></span><span style="font-size:8px;color:#c94a1a;font-weight:700;">Cal.</span></span>
+                                                <span>Nacho P.</span>
+                                            </div>
+                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
+                                                <span style="font-weight:600;">Santiago Ruiz</span>
+                                                <span><span style="color:#4285f4;font-weight:700;">Google</span></span>
+                                                <span>Compra</span>
+                                                <span><span class="crm-temp-dot" style="background:#5a7a9a;"></span><span style="font-size:8px;color:#5a7a9a;font-weight:700;">Frío</span></span>
+                                                <span>Ramiro G.</span>
+                                            </div>
+                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
+                                                <span style="font-weight:600;">Federico López</span>
+                                                <span><span style="color:#277a48;font-weight:700;">Referido</span></span>
+                                                <span>Compra</span>
+                                                <span><span class="crm-temp-dot" style="background:#c94a1a;"></span><span style="font-size:8px;color:#c94a1a;font-weight:700;">Cal.</span></span>
+                                                <span>Manuel T.</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="mockup-chart">
-                                        <div class="chart-bars">
-                                            <div class="chart-bar" style="height:30%"></div>
-                                            <div class="chart-bar" style="height:50%"></div>
-                                            <div class="chart-bar" style="height:45%"></div>
-                                            <div class="chart-bar" style="height:70%"></div>
-                                            <div class="chart-bar" style="height:85%"></div>
-                                            <div class="chart-bar" style="height:60%"></div>
-                                            <div class="chart-bar" style="height:92%"></div>
-                                            <div class="chart-bar" style="height:78%"></div>
-                                            <div class="chart-bar" style="height:95%"></div>
-                                            <div class="chart-bar" style="height:88%"></div>
-                                            <div class="chart-bar" style="height:82%"></div>
-                                            <div class="chart-bar" style="height:100%"></div>
+                                    <!-- VIEW 3: Agenda -->
+                                    <div class="crm-content crm-view-panel" id="inmo-agenda" data-title="Agenda">
+                                        <div style="font-size:9px;font-weight:800;color:#1a1a1a;margin-bottom:6px;">Hoy — Martes 25 de Marzo</div>
+                                        <div style="display:flex;flex-direction:column;gap:5px;">
+                                            <div style="background:#fff;border:1px solid #e4e2de;border-radius:7px;padding:8px 10px;border-left:3px solid #c8191a;display:flex;gap:10px;align-items:center;">
+                                                <div style="font-size:11px;font-weight:800;color:#c8191a;width:40px;">09:30</div>
+                                                <div style="flex:1;">
+                                                    <div style="font-size:9px;font-weight:700;color:#1a1a1a;">Visita — Martín Suárez</div>
+                                                    <div style="font-size:8px;color:#6b6560;">Depto 3 amb. Av. Colón 2450, Centro</div>
+                                                </div>
+                                                <span class="crm-badge" style="background:#fef2e8;color:#c85c18;">Pendiente</span>
+                                            </div>
+                                            <div style="background:#fff;border:1px solid #e4e2de;border-radius:7px;padding:8px 10px;border-left:3px solid #c49a2e;display:flex;gap:10px;align-items:center;">
+                                                <div style="font-size:11px;font-weight:800;color:#c49a2e;width:40px;">11:00</div>
+                                                <div style="flex:1;">
+                                                    <div style="font-size:9px;font-weight:700;color:#1a1a1a;">Llamada — Valentina Castro</div>
+                                                    <div style="font-size:8px;color:#6b6560;">Confirmar presupuesto alq. temporal</div>
+                                                </div>
+                                                <span class="crm-badge" style="background:#fef2e8;color:#c85c18;">Pendiente</span>
+                                            </div>
+                                            <div style="background:#fff;border:1px solid #e4e2de;border-radius:7px;padding:8px 10px;border-left:3px solid #277a48;display:flex;gap:10px;align-items:center;">
+                                                <div style="font-size:11px;font-weight:800;color:#277a48;width:40px;">14:00</div>
+                                                <div style="flex:1;">
+                                                    <div style="font-size:9px;font-weight:700;color:#1a1a1a;">Visita — Federico López</div>
+                                                    <div style="font-size:8px;color:#6b6560;">Casa 4 amb. Los Troncos</div>
+                                                </div>
+                                                <span class="crm-badge" style="background:#edf7f1;color:#277a48;">Confirmada</span>
+                                            </div>
+                                            <div style="background:#fff;border:1px solid #e4e2de;border-radius:7px;padding:8px 10px;border-left:3px solid #1e56b0;display:flex;gap:10px;align-items:center;opacity:.5;">
+                                                <div style="font-size:11px;font-weight:800;color:#1e56b0;width:40px;">16:30</div>
+                                                <div style="flex:1;">
+                                                    <div style="font-size:9px;font-weight:700;color:#1a1a1a;text-decoration:line-through;">Seguimiento — Santiago Ruiz</div>
+                                                    <div style="font-size:8px;color:#6b6560;">Enviar fotos por WhatsApp</div>
+                                                </div>
+                                                <span class="crm-badge" style="background:#edf7f1;color:#277a48;">Hecho</span>
+                                            </div>
+                                            <div style="background:#fff;border:1px solid #e4e2de;border-radius:7px;padding:8px 10px;border-left:3px solid #c8191a;display:flex;gap:10px;align-items:center;">
+                                                <div style="font-size:11px;font-weight:800;color:#c8191a;width:40px;">18:00</div>
+                                                <div style="flex:1;">
+                                                    <div style="font-size:9px;font-weight:700;color:#1a1a1a;">Tasación — Florencia Díaz</div>
+                                                    <div style="font-size:8px;color:#6b6560;">PH en San Carlos, 2 plantas</div>
+                                                </div>
+                                                <span class="crm-badge" style="background:#fef2e8;color:#c85c18;">Pendiente</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- VIEW 4: Estadísticas -->
+                                    <div class="crm-content crm-view-panel" id="inmo-stats" data-title="Estadísticas">
+                                        <div class="crm-kpi-row">
+                                            <div class="crm-kpi">
+                                                <div class="crm-kpi-label">Ventas mes</div>
+                                                <div class="crm-kpi-val" style="color:#277a48;">USD 840k</div>
+                                            </div>
+                                            <div class="crm-kpi">
+                                                <div class="crm-kpi-label">Comisiones</div>
+                                                <div class="crm-kpi-val" style="color:#c8191a;">USD 33.6k</div>
+                                            </div>
+                                            <div class="crm-kpi">
+                                                <div class="crm-kpi-label">Leads/asesor</div>
+                                                <div class="crm-kpi-val" style="color:#1a1a1a;">14.8</div>
+                                            </div>
+                                            <div class="crm-kpi">
+                                                <div class="crm-kpi-label">Tiempo cierre</div>
+                                                <div class="crm-kpi-val" style="color:#c85c18;">18 días</div>
+                                            </div>
+                                        </div>
+                                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+                                            <div class="crm-minichart">
+                                                <div class="crm-minichart-title">Leads por fuente</div>
+                                                <div class="crm-minichart-bars">
+                                                    <div class="crm-minibar" style="height:100%;background:#1877f2;" title="Instagram"></div>
+                                                    <div class="crm-minibar" style="height:72%;background:#25d366;" title="WhatsApp"></div>
+                                                    <div class="crm-minibar" style="height:55%;background:#1877f2;opacity:.6;" title="Facebook"></div>
+                                                    <div class="crm-minibar" style="height:40%;background:#4285f4;" title="Google"></div>
+                                                    <div class="crm-minibar" style="height:30%;background:#c85c18;" title="Tokko"></div>
+                                                    <div class="crm-minibar" style="height:22%;background:#277a48;" title="Referido"></div>
+                                                </div>
+                                                <div style="display:flex;gap:6px;margin-top:5px;flex-wrap:wrap;">
+                                                    <span style="font-size:6.5px;color:#1877f2;font-weight:700;">IG 34%</span>
+                                                    <span style="font-size:6.5px;color:#25d366;font-weight:700;">WA 24%</span>
+                                                    <span style="font-size:6.5px;color:#4285f4;font-weight:700;">Goo 15%</span>
+                                                    <span style="font-size:6.5px;color:#c85c18;font-weight:700;">Tokko 12%</span>
+                                                </div>
+                                            </div>
+                                            <div class="crm-minichart">
+                                                <div class="crm-minichart-title">Cierres por asesor</div>
+                                                <div class="crm-minichart-bars">
+                                                    <div class="crm-minibar" style="height:100%;background:#c8191a;"></div>
+                                                    <div class="crm-minibar" style="height:80%;background:#c8191a;"></div>
+                                                    <div class="crm-minibar" style="height:60%;background:#c8191a;"></div>
+                                                    <div class="crm-minibar" style="height:40%;background:#c8191a;opacity:.7;"></div>
+                                                    <div class="crm-minibar" style="height:40%;background:#c8191a;opacity:.7;"></div>
+                                                    <div class="crm-minibar" style="height:20%;background:#c8191a;opacity:.5;"></div>
+                                                </div>
+                                                <div style="display:flex;gap:4px;margin-top:5px;flex-wrap:wrap;">
+                                                    <span style="font-size:6.5px;color:#c8191a;font-weight:700;">Nacho 3</span>
+                                                    <span style="font-size:6.5px;color:#c8191a;font-weight:700;">Juan 2</span>
+                                                    <span style="font-size:6.5px;color:#c8191a;font-weight:700;">Franca 1</span>
+                                                    <span style="font-size:6.5px;color:#c8191a;font-weight:700;">Ramiro 1</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1000,6 +1731,45 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Interactive CRM mockup navigation
+        const titles = {
+            'auto-dash': 'Dashboard Marketing',
+            'auto-leads': 'Leads',
+            'auto-alerts': 'Alertas',
+            'auto-report': 'Reportes',
+            'inmo-pipeline': 'Pipeline de Leads',
+            'inmo-leads': 'Leads',
+            'inmo-agenda': 'Agenda',
+            'inmo-stats': 'Estadísticas'
+        };
+
+        document.querySelectorAll('.crm-sb-item[data-view]').forEach(item => {
+            item.addEventListener('click', () => {
+                const viewId = item.dataset.view;
+                const crmId = item.dataset.crm;
+                const accent = item.dataset.accent;
+                const crm = document.getElementById(crmId);
+
+                // Switch active sidebar item
+                crm.querySelectorAll('.crm-sb-item[data-view]').forEach(si => {
+                    si.classList.remove('active');
+                    si.style.background = '';
+                });
+                item.classList.add('active');
+                item.style.background = accent;
+
+                // Switch view panel
+                crm.querySelectorAll('.crm-view-panel').forEach(p => p.classList.remove('active'));
+                document.getElementById(viewId).classList.add('active');
+
+                // Update topbar title
+                const titleEl = crmId === 'crm-auto'
+                    ? document.getElementById('auto-topbar-title')
+                    : document.getElementById('inmo-topbar-title');
+                titleEl.textContent = titles[viewId] || '';
+            });
+        });
     </script>
 </body>
 </html>
