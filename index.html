@@ -169,16 +169,32 @@ section{padding:4rem 2rem;position:relative;z-index:2}
 /* BENTO SERVICES */
 .bento{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
 .bento-wide{grid-column:span 2}
-.service-card{padding:2rem;position:relative;background:rgba(26,26,26,.6);border:1px solid var(--border);border-radius:16px;transition:all .4s;cursor:default;overflow:hidden}
+.service-card{padding:2.5rem;position:relative;background:rgba(26,26,26,.6);border:1px solid var(--border);border-radius:16px;transition:all .4s;cursor:pointer;overflow:hidden}
 .service-card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(255,107,0,.06),transparent 40%);opacity:0;transition:opacity .4s}
 .service-card:hover::before{opacity:1}
 .service-card::after{content:'';position:absolute;inset:-1px;border-radius:inherit;background:radial-gradient(400px circle at var(--mx,50%) var(--my,50%),rgba(255,107,0,.25),transparent 40%);z-index:-1;opacity:0;transition:opacity .4s}
 .service-card:hover::after{opacity:1}
 .service-card:hover{border-color:rgba(255,107,0,.15);transform:translateY(-4px)}
+.service-card.active{border-color:rgba(255,107,0,.2)}
 .bento-wide .service-icon{width:56px;height:56px;border-radius:14px}
 .service-icon{width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:rgba(255,107,0,.08);border-radius:12px;margin-bottom:1.25rem;color:var(--accent)}
-.service-card h3{font-size:1.15rem;font-weight:700;color:var(--text);margin-bottom:.6rem}
-.service-card p{font-size:.9rem;color:var(--muted);line-height:1.6}
+.service-card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+.service-card-header .service-icon{flex-shrink:0}
+.service-card .svc-toggle{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--muted);display:flex;align-items:center;justify-content:center;transition:all .3s;flex-shrink:0;margin-top:.5rem;font-size:1.1rem}
+.service-card:hover .svc-toggle{border-color:var(--accent);color:var(--accent)}
+.service-card.active .svc-toggle{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(45deg)}
+.service-card h3{font-size:1.25rem;font-weight:700;color:var(--text);margin-bottom:.5rem}
+.service-card .svc-desc{font-size:.95rem;color:var(--muted);line-height:1.7}
+.service-card .svc-examples{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .4s;opacity:0}
+.service-card.active .svc-examples{max-height:400px;opacity:1}
+.svc-examples-inner{padding-top:1.5rem;border-top:1px solid var(--border);margin-top:1.5rem}
+.svc-examples-inner h4{font-size:.8rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem;font-family:var(--mono)}
+.svc-example-item{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.85rem}
+.svc-example-item:last-child{margin-bottom:0}
+.svc-example-bullet{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:.5rem}
+.svc-example-item span{font-size:.9rem;color:var(--text);line-height:1.5}
+.svc-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
+.svc-tag{font-size:.7rem;font-family:var(--mono);padding:.3rem .7rem;border-radius:6px;background:rgba(255,107,0,.06);color:var(--accent2);border:1px solid rgba(255,107,0,.1);letter-spacing:.02em}
 
 /* TIMELINE */
 .timeline-wrapper{position:relative;min-height:80vh}
@@ -262,6 +278,12 @@ section{padding:4rem 2rem;position:relative;z-index:2}
   .mock,.project-card:nth-child(2) .mock{transform:none!important}
   .project-info{padding:1.5rem}
   .bento{grid-template-columns:1fr}.bento-wide{grid-column:span 1}
+  .service-card{padding:1.75rem}
+  .service-card h3{font-size:1.1rem}
+  .service-card .svc-examples{max-height:none;opacity:1}
+  .svc-examples-inner{padding-top:1rem;margin-top:1rem}
+  .service-card .svc-toggle{display:none}
+  .svc-tags{margin-top:1rem}
   .pipeline{grid-template-columns:repeat(2,1fr)}
   .timeline-wrapper{min-height:auto}
   .timeline-sticky{position:relative;top:auto}
@@ -479,41 +501,128 @@ section{padding:4rem 2rem;position:relative;z-index:2}
     <h2 class="section-title reveal">Lo que hacemos</h2>
     <p class="section-desc reveal">No hacemos de todo — hacemos bien lo que sabemos. Sistemas que resuelven problemas operativos reales.</p>
     <div class="bento">
+
       <div class="service-card bento-wide reveal">
-        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
+        <div class="service-card-header">
+          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
+          <button class="svc-toggle" aria-label="Ver ejemplos">+</button>
+        </div>
         <h3>CRMs a medida</h3>
-        <p>Diseñamos tu sistema de gestion de clientes adaptado a como trabaja tu equipo, no al reves. Cada campo, cada flujo y cada automatizacion pensados para tu operacion.</p>
+        <p class="svc-desc">Diseñamos tu sistema de gestion de clientes adaptado a como trabaja tu equipo. Cada campo, flujo y automatizacion pensados para tu operacion.</p>
+        <div class="svc-examples">
+          <div class="svc-examples-inner">
+            <h4>// Ejemplos reales</h4>
+            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Pipeline de ventas para inmobiliaria con 6 vendedores y seguimiento automatico de leads</span></div>
+            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Sistema de turnos y fichas para clinica odontologica con historial de pacientes</span></div>
+            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Gestion de proveedores y ordenes de compra para distribuidora mayorista</span></div>
+          </div>
+        </div>
+        <div class="svc-tags"><span class="svc-tag">React</span><span class="svc-tag">Node.js</span><span class="svc-tag">PostgreSQL</span><span class="svc-tag">REST API</span></div>
       </div>
+
       <div class="service-card reveal reveal-delay-1">
-        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg></div>
+        <div class="service-card-header">
+          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg></div>
+          <button class="svc-toggle" aria-label="Ver ejemplos">+</button>
+        </div>
         <h3>Dashboards analiticos</h3>
-        <p>Paneles que unifican todas tus fuentes de datos con alertas y reportes automaticos.</p>
+        <p class="svc-desc">Paneles que unifican todas tus fuentes de datos con metricas en tiempo real, alertas y reportes automaticos.</p>
+        <div class="svc-examples">
+          <div class="svc-examples-inner">
+            <h4>// Ejemplos reales</h4>
+            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Panel de rendimiento de campañas Meta + Google Ads unificado para agencia de marketing</span></div>
+            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Dashboard de ventas diarias con alertas por bajo stock para e-commerce</span></div>
+          </div>
+        </div>
+        <div class="svc-tags"><span class="svc-tag">Chart.js</span><span class="svc-tag">APIs</span><span class="svc-tag">Real-time</span></div>
       </div>
+
       <div class="service-card reveal reveal-delay-1">
-        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        <div class="service-card-header">
+          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <button class="svc-toggle" aria-label="Ver ejemplos">+</button>
+        </div>
         <h3>Integraciones</h3>
-        <p>Conectamos Meta, Google, WhatsApp, CRMs externos y cualquier API que necesites.</p>
+        <p class="svc-desc">Conectamos Meta, Google, WhatsApp, CRMs externos y cualquier API que tu operacion necesite.</p>
+        <div class="svc-examples">
+          <div class="svc-examples-inner">
+            <h4>// Ejemplos reales</h4>
+            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Sync automatico entre MercadoLibre, Tiendanube y sistema interno de stock</span></div>
+            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Conexion WhatsApp Business API con CRM para respuesta automatica a leads</span></div>
+          </div>
+        </div>
+        <div class="svc-tags"><span class="svc-tag">WhatsApp API</span><span class="svc-tag">Meta</span><span class="svc-tag">Webhooks</span></div>
       </div>
+
       <div class="service-card bento-wide reveal reveal-delay-2">
-        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6"/><path d="M1 12h6m6 0h6"/></svg></div>
+        <div class="service-card-header">
+          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6"/><path d="M1 12h6m6 0h6"/></svg></div>
+          <button class="svc-toggle" aria-label="Ver ejemplos">+</button>
+        </div>
         <h3>Automatizaciones</h3>
-        <p>Procesos que antes eran manuales, ahora corren solos. Sync de datos, alertas inteligentes, reportes programados y asignaciones automaticas que eliminan el trabajo repetitivo.</p>
+        <p class="svc-desc">Procesos que antes eran manuales, ahora corren solos. Sync de datos, alertas, reportes y asignaciones que eliminan el trabajo repetitivo.</p>
+        <div class="svc-examples">
+          <div class="svc-examples-inner">
+            <h4>// Ejemplos reales</h4>
+            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Facturacion automatica post-venta con envio de comprobante por email y WhatsApp</span></div>
+            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Asignacion automatica de tickets de soporte segun tipo y prioridad</span></div>
+            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Reporte semanal automatico de KPIs enviado al equipo directivo cada lunes</span></div>
+          </div>
+        </div>
+        <div class="svc-tags"><span class="svc-tag">n8n</span><span class="svc-tag">Cron jobs</span><span class="svc-tag">Event-driven</span><span class="svc-tag">Queues</span></div>
       </div>
+
       <div class="service-card reveal reveal-delay-2">
-        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div class="service-card-header">
+          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <button class="svc-toggle" aria-label="Ver ejemplos">+</button>
+        </div>
         <h3>IA aplicada</h3>
-        <p>Inteligencia artificial donde tiene sentido: contenido, analisis, chatbots y asistentes virtuales para tu negocio.</p>
+        <p class="svc-desc">Inteligencia artificial donde tiene sentido: analisis de datos, chatbots, generacion de contenido y asistentes para tu negocio.</p>
+        <div class="svc-examples">
+          <div class="svc-examples-inner">
+            <h4>// Ejemplos reales</h4>
+            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Chatbot de atencion al cliente que responde FAQs y deriva a humano cuando es necesario</span></div>
+            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Clasificacion automatica de reseñas y sentimiento para cadena de restaurantes</span></div>
+          </div>
+        </div>
+        <div class="svc-tags"><span class="svc-tag">OpenAI</span><span class="svc-tag">LangChain</span><span class="svc-tag">NLP</span></div>
       </div>
+
       <div class="service-card reveal reveal-delay-2">
-        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <div class="service-card-header">
+          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <button class="svc-toggle" aria-label="Ver ejemplos">+</button>
+        </div>
         <h3>Desarrollo completo</h3>
-        <p>Backend, frontend, base de datos, deploy. Entregamos funcionando, no un prototipo.</p>
+        <p class="svc-desc">Backend, frontend, base de datos, deploy. Entregamos funcionando en produccion, no un prototipo.</p>
+        <div class="svc-examples">
+          <div class="svc-examples-inner">
+            <h4>// Ejemplos reales</h4>
+            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Plataforma web completa para gestion de alquileres temporarios con pagos online</span></div>
+            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>App interna para logistica con tracking de envios y notificaciones push</span></div>
+          </div>
+        </div>
+        <div class="svc-tags"><span class="svc-tag">Next.js</span><span class="svc-tag">TypeScript</span><span class="svc-tag">Docker</span><span class="svc-tag">AWS</span></div>
       </div>
+
       <div class="service-card reveal reveal-delay-3">
-        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="service-card-header">
+          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <button class="svc-toggle" aria-label="Ver ejemplos">+</button>
+        </div>
         <h3>Soporte continuo</h3>
-        <p>No desaparecemos despues de entregar. Mantenimiento, mejoras y soporte incluido.</p>
+        <p class="svc-desc">No desaparecemos despues de entregar. Mantenimiento, mejoras y soporte tecnico incluido post-entrega.</p>
+        <div class="svc-examples">
+          <div class="svc-examples-inner">
+            <h4>// Ejemplos reales</h4>
+            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Soporte mensual con SLA de 24hs para sistema critico de operaciones</span></div>
+            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Iteraciones mensuales de mejora basadas en feedback de usuarios finales</span></div>
+          </div>
+        </div>
+        <div class="svc-tags"><span class="svc-tag">SLA</span><span class="svc-tag">Monitoring</span><span class="svc-tag">CI/CD</span></div>
       </div>
+
     </div>
   </div>
 </section>
@@ -759,13 +868,18 @@ window.addEventListener('load',()=>{
   counters.forEach(c=>obs.observe(c));
 })();
 
-/* ── SERVICE CARD GLOW ── */
+/* ── SERVICE CARD GLOW + EXPAND ── */
 (()=>{
   document.querySelectorAll('.service-card').forEach(card=>{
     card.addEventListener('mousemove',e=>{
       const r=card.getBoundingClientRect();
       card.style.setProperty('--mx',(e.clientX-r.left)+'px');
       card.style.setProperty('--my',(e.clientY-r.top)+'px');
+    });
+    card.addEventListener('click',()=>{
+      const wasActive=card.classList.contains('active');
+      document.querySelectorAll('.service-card.active').forEach(c=>c.classList.remove('active'));
+      if(!wasActive)card.classList.add('active');
     });
   });
 })();
