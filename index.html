@@ -243,10 +243,7 @@ section{padding:5rem 2rem;position:relative;z-index:2}
 .section-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,107,0,.15) 50%,transparent);position:relative;z-index:2}
 
 /* REVEAL */
-@keyframes reveal-in{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(30px)}
-.reveal.visible{animation:reveal-in .7s cubic-bezier(.4,0,.2,1) forwards}
-.reveal-delay-1.visible{animation-delay:.1s}.reveal-delay-2.visible{animation-delay:.2s}.reveal-delay-3.visible{animation-delay:.3s}
+/* reveal: handled entirely by JS */
 
 /* RESPONSIVE */
 @media(max-width:1024px){.bento{grid-template-columns:repeat(2,1fr)}.bento-wide{grid-column:span 2}}
@@ -704,10 +701,20 @@ window.addEventListener('load',()=>{
   menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{toggle.classList.remove('active');menu.classList.remove('open')}));
 })();
 
-/* ── SCROLL REVEAL ── */
+/* ── SCROLL REVEAL (pure JS, no CSS) ── */
 (()=>{
-  const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -20px 0px'});
-  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  const els=document.querySelectorAll('.reveal');
+  els.forEach(el=>{el.style.opacity='0';el.style.transform='translateY(30px)';el.style.transition='none'});
+  const delays={'reveal-delay-1':100,'reveal-delay-2':200,'reveal-delay-3':300};
+  const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target;
+    let d=0;
+    for(const[cls,ms] of Object.entries(delays)){if(el.classList.contains(cls))d=ms}
+    setTimeout(()=>{el.style.transition='opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)';el.style.opacity='1';el.style.transform='translateY(0)'},d);
+    obs.unobserve(el);
+  })},{threshold:.08,rootMargin:'0px 0px -20px 0px'});
+  requestAnimationFrame(()=>els.forEach(el=>obs.observe(el)));
 })();
 
 /* ── COUNTER ANIMATION ── */
