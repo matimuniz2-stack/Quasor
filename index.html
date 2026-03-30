@@ -708,9 +708,7 @@ window.addEventListener('load',()=>{
   const isMobile=()=>innerWidth<=768;
   function updateTimeline(){
     const rect=wrapper.getBoundingClientRect(),wH=innerHeight;
-    const start=rect.top+wH*.3,end=rect.bottom-wH*.3;
-    const scrollPos=wH*.5;
-    let progress=Math.max(0,Math.min(1,(scrollPos-start)/(end-start)));
+    let progress=Math.max(0,Math.min(1,(wH*.6-rect.top)/rect.height));
     if(isMobile()){bar.style.height=(progress*100)+'%';bar.style.width='2px'}
     else{bar.style.width=(progress*100)+'%';bar.style.height='2px'}
     steps.forEach((s,i)=>{s.classList.toggle('active',progress>=(i/(steps.length-1))-.05)});
