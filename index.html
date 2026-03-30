@@ -181,7 +181,8 @@ section{padding:4rem 2rem;position:relative;z-index:2}
 .service-card p{font-size:.9rem;color:var(--muted);line-height:1.6}
 
 /* TIMELINE */
-.timeline-wrapper{position:relative}
+.timeline-wrapper{position:relative;min-height:80vh}
+.timeline-sticky{position:sticky;top:30vh}
 .timeline{display:flex;justify-content:space-between;gap:2rem;position:relative}
 .timeline::before{content:'';position:absolute;top:24px;left:24px;right:24px;height:2px;background:rgba(255,255,255,.06)}
 .timeline-progress{position:absolute;top:24px;left:24px;height:2px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));box-shadow:0 0 10px rgba(255,107,0,.3);transition:width .15s linear}
@@ -507,12 +508,14 @@ section{padding:4rem 2rem;position:relative;z-index:2}
     <h2 class="section-title reveal">Como trabajamos</h2>
     <p class="section-desc reveal">Simple, directo, sin vueltas.</p>
     <div class="timeline-wrapper reveal">
-      <div class="timeline">
-        <div class="timeline-progress"></div>
-        <div class="tl-step"><div class="tl-node">01</div><div><h3>Escuchamos</h3><p>Entendemos como opera tu negocio hoy, que funciona y que no.</p></div></div>
-        <div class="tl-step"><div class="tl-node">02</div><div><h3>Diseñamos</h3><p>Definimos la solucion exacta. Que se construye, que se integra.</p></div></div>
-        <div class="tl-step"><div class="tl-node">03</div><div><h3>Construimos</h3><p>Entregas parciales para que veas avances reales cada semana.</p></div></div>
-        <div class="tl-step"><div class="tl-node">04</div><div><h3>Acompañamos</h3><p>No desaparecemos. Soporte, ajustes y evolucion incluidos.</p></div></div>
+      <div class="timeline-sticky">
+        <div class="timeline">
+          <div class="timeline-progress"></div>
+          <div class="tl-step"><div class="tl-node">01</div><div><h3>Escuchamos</h3><p>Entendemos como opera tu negocio hoy, que funciona y que no.</p></div></div>
+          <div class="tl-step"><div class="tl-node">02</div><div><h3>Diseñamos</h3><p>Definimos la solucion exacta. Que se construye, que se integra.</p></div></div>
+          <div class="tl-step"><div class="tl-node">03</div><div><h3>Construimos</h3><p>Entregas parciales para que veas avances reales cada semana.</p></div></div>
+          <div class="tl-step"><div class="tl-node">04</div><div><h3>Acompañamos</h3><p>No desaparecemos. Soporte, ajustes y evolucion incluidos.</p></div></div>
+        </div>
       </div>
     </div>
   </div>
