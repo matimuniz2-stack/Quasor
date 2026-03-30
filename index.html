@@ -702,7 +702,7 @@ window.addEventListener('load',()=>{
 
 /* ── SCROLL REVEAL ── */
 (()=>{
-  const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+  const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -20px 0px'});
   document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 })();
 
@@ -793,13 +793,18 @@ document.querySelectorAll('.btn-primary').forEach(btn=>{
   },3000);
 })();
 
-/* ── PARALLAX HERO ── */
+/* ── PARALLAX HERO (inner elements only) ── */
 (()=>{
   const hero=document.querySelector('.hero');if(!hero)return;
+  const children=hero.querySelectorAll('.hero-badge,h1,p,.hero-buttons');
   let ticking=false;
   window.addEventListener('scroll',()=>{
     if(!ticking){requestAnimationFrame(()=>{
-      const y=scrollY;if(y<innerHeight)hero.style.transform='translateY('+y*.2+'px)';
+      const y=scrollY;
+      if(y<innerHeight){
+        const o=Math.max(0,1-y/(innerHeight*.7));
+        children.forEach(c=>{c.style.transform='translateY('+y*.12+'px)';c.style.opacity=o});
+      }
       ticking=false;
     });ticking=true}
   });
