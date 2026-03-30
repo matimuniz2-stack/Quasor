@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quasor — Sistemas a medida para empresas</title>
+<meta name="description" content="Estudio de desarrollo que construye CRMs, dashboards, automatizaciones e integraciones a medida para empresas. Mar del Plata, Argentina.">
+<meta property="og:title" content="Quasor — Sistemas a medida para empresas">
+<meta property="og:description" content="CRMs, dashboards y automatizaciones diseñados para tu operacion. Tu equipo deja de cargar datos a mano.">
+<meta property="og:image" content="https://quasor.io/Logo%20Quasor.png">
+<meta property="og:url" content="https://quasor.io">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="Logo Quasor.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,7 +56,7 @@ nav.scrolled{padding:.65rem 2rem;background:rgba(10,10,10,.88);backdrop-filter:b
 .nav-logo-text{font-size:1.15rem;font-weight:800;letter-spacing:.1em;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:500;transition:color .3s}
-.nav-links a:hover{color:var(--accent)}
+.nav-links a:hover,.nav-links a.active{color:var(--accent)}
 .nav-cta{background:var(--accent)!important;color:var(--deep)!important;padding:.45rem 1.2rem;border-radius:8px;font-weight:600!important;transition:all .3s!important}
 .nav-cta:hover{background:var(--accent2)!important;box-shadow:0 0 20px rgba(255,107,0,.3)!important}
 .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
@@ -222,6 +229,18 @@ section{padding:5rem 2rem;position:relative;z-index:2}
 .footer-social a{color:var(--dim);text-decoration:none;transition:color .3s}
 .footer-social a:hover{color:var(--accent)}
 
+/* TYPED CURSOR */
+.typed-cursor{display:inline-block;width:3px;height:1em;background:var(--accent);margin-left:4px;vertical-align:text-bottom;animation:blink-cursor .7s step-end infinite}
+@keyframes blink-cursor{0%,100%{opacity:1}50%{opacity:0}}
+
+/* SCROLL TO TOP */
+.scroll-top{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;border-radius:50%;background:var(--accent);color:var(--deep);border:none;font-size:1.2rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:998;opacity:0;visibility:hidden;transform:translateY(10px);transition:all .3s;box-shadow:0 4px 20px rgba(255,107,0,.3)}
+.scroll-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
+.scroll-top:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 6px 30px rgba(255,107,0,.4)}
+
+/* SECTION DIVIDER */
+.section-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,107,0,.15) 50%,transparent);position:relative;z-index:2}
+
 /* REVEAL */
 .reveal{opacity:0;transform:translateY(40px);transition:all .7s cubic-bezier(.4,0,.2,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
@@ -291,7 +310,7 @@ section{padding:5rem 2rem;position:relative;z-index:2}
 <!-- HERO -->
 <section class="hero">
   <div class="hero-badge reveal">Disponible para nuevos proyectos</div>
-  <h1 class="reveal reveal-delay-1">Tu empresa funciona<br>con Excel y WhatsApp.<br><span class="hero-gradient">Nosotros lo resolvemos.</span></h1>
+  <h1 class="reveal reveal-delay-1">Tu empresa funciona<br>con Excel y WhatsApp.<br><span class="hero-gradient" id="typed-target"></span><span class="typed-cursor" id="typed-cursor"></span></h1>
   <p class="reveal reveal-delay-2">Sistemas de gestion, dashboards y automatizaciones diseñados para tu operacion. Tu equipo deja de cargar datos a mano y vos controlás todo desde un solo lugar.</p>
   <div class="hero-buttons reveal reveal-delay-3">
     <a href="#contacto" class="btn-primary">Agendar una demo</a>
@@ -334,6 +353,8 @@ section{padding:5rem 2rem;position:relative;z-index:2}
     <div class="reveal reveal-delay-3"><div class="stat-number"><span class="counter" data-target="100">0</span><span>%</span></div><div class="stat-label">Soluciones a medida</div></div>
   </div>
 </div>
+
+<div class="section-divider"></div>
 
 <!-- PROYECTOS -->
 <section id="proyectos">
@@ -428,6 +449,8 @@ section{padding:5rem 2rem;position:relative;z-index:2}
   </div>
 </section>
 
+<div class="section-divider"></div>
+
 <!-- SERVICIOS BENTO -->
 <section id="servicios">
   <div class="container">
@@ -458,16 +481,23 @@ section{padding:5rem 2rem;position:relative;z-index:2}
       <div class="service-card reveal reveal-delay-2">
         <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
         <h3>IA aplicada</h3>
-        <p>Inteligencia artificial donde tiene sentido: contenido, analisis, chatbots.</p>
+        <p>Inteligencia artificial donde tiene sentido: contenido, analisis, chatbots y asistentes virtuales para tu negocio.</p>
       </div>
-      <div class="service-card reveal reveal-delay-3">
+      <div class="service-card reveal reveal-delay-2">
         <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
         <h3>Desarrollo completo</h3>
         <p>Backend, frontend, base de datos, deploy. Entregamos funcionando, no un prototipo.</p>
       </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Soporte continuo</h3>
+        <p>No desaparecemos despues de entregar. Mantenimiento, mejoras y soporte incluido.</p>
+      </div>
     </div>
   </div>
 </section>
+
+<div class="section-divider"></div>
 
 <!-- PROCESO -->
 <section id="proceso">
@@ -486,6 +516,8 @@ section{padding:5rem 2rem;position:relative;z-index:2}
     </div>
   </div>
 </section>
+
+<div class="section-divider"></div>
 
 <!-- TESTIMONIALS -->
 <section>
@@ -513,6 +545,8 @@ section{padding:5rem 2rem;position:relative;z-index:2}
     </div>
   </div>
 </section>
+
+<div class="section-divider"></div>
 
 <!-- CONTACTO -->
 <section id="contacto" class="cta-section">
@@ -544,6 +578,9 @@ section{padding:5rem 2rem;position:relative;z-index:2}
     </div>
   </div>
 </section>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scroll-top" aria-label="Volver arriba"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
 
 <!-- FOOTER -->
 <footer class="site-footer">
@@ -778,7 +815,68 @@ document.querySelectorAll('.btn-primary').forEach(btn=>{
     window.open('https://wa.me/5492236892809?text='+text,'_blank');
     form.reset();
   });
-})()
+})();
+
+/* ── TYPED EFFECT ── */
+(()=>{
+  const el=document.getElementById('typed-target'),cur=document.getElementById('typed-cursor');
+  if(!el)return;
+  const phrases=['Nosotros lo resolvemos.','Automatizamos tu operacion.','Centralizamos tus datos.','Potenciamos tu equipo.'];
+  let pi=0,ci=0,deleting=false;
+  function tick(){
+    const phrase=phrases[pi];
+    if(!deleting){
+      el.textContent=phrase.substring(0,ci+1);ci++;
+      if(ci===phrase.length){setTimeout(()=>{deleting=true;tick()},2200);return}
+      setTimeout(tick,55);
+    }else{
+      el.textContent=phrase.substring(0,ci-1);ci--;
+      if(ci===0){deleting=false;pi=(pi+1)%phrases.length;setTimeout(tick,400);return}
+      setTimeout(tick,30);
+    }
+  }
+  setTimeout(tick,1200);
+})();
+
+/* ── SCROLL TO TOP ── */
+(()=>{
+  const btn=document.getElementById('scroll-top');if(!btn)return;
+  let ticking=false;
+  window.addEventListener('scroll',()=>{
+    if(!ticking){requestAnimationFrame(()=>{btn.classList.toggle('visible',scrollY>600);ticking=false});ticking=true}
+  });
+  btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+})();
+
+/* ── ACTIVE NAV LINK ── */
+(()=>{
+  const sections=document.querySelectorAll('section[id]');
+  const navLinks=document.querySelectorAll('.nav-links a:not(.nav-cta)');
+  let ticking=false;
+  window.addEventListener('scroll',()=>{
+    if(!ticking){requestAnimationFrame(()=>{
+      let current='';
+      sections.forEach(s=>{
+        const top=s.getBoundingClientRect().top;
+        if(top<innerHeight*.4)current=s.id;
+      });
+      navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+current)});
+      ticking=false;
+    });ticking=true}
+  });
+})();
+
+/* ── SMOOTH SCROLL OFFSET ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href');if(id==='#')return;
+    const target=document.querySelector(id);if(!target)return;
+    e.preventDefault();
+    const offset=70;
+    const y=target.getBoundingClientRect().top+scrollY-offset;
+    window.scrollTo({top:y,behavior:'smooth'});
+  });
+})
 </script>
 </body>
 </html>
