@@ -3,1044 +3,949 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quasor — Sistemas a medida para empresas</title>
-<meta name="description" content="Estudio de desarrollo que construye CRMs, dashboards, automatizaciones e integraciones a medida para empresas. Mar del Plata, Argentina.">
-<meta property="og:title" content="Quasor — Sistemas a medida para empresas">
-<meta property="og:description" content="CRMs, dashboards y automatizaciones diseñados para tu operacion. Tu equipo deja de cargar datos a mano.">
-<meta property="og:image" content="https://quasor.io/Logo%20Quasor.png">
-<meta property="og:url" content="https://quasor.io">
+<title>Quasor — Software a medida para empresas que quieren dejar Excel</title>
+<meta name="description" content="Sistemas de gestión, dashboards y automatizaciones diseñados para tu operación. Tu equipo deja de cargar datos a mano y vos controlás todo desde un solo lugar.">
+<meta name="keywords" content="software a medida, CRM, dashboard, automatización, sistemas de gestión, desarrollo web, Argentina">
+<meta name="author" content="Quasor">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://quasor.io/">
+
+<!-- Open Graph -->
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://quasor.io/">
+<meta property="og:title" content="Quasor — Software a medida para empresas">
+<meta property="og:description" content="Sistemas de gestión, dashboards y automatizaciones diseñados para tu operación. Dejá de depender de Excel y WhatsApp.">
+<meta property="og:image" content="https://quasor.io/og-image.png">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Quasor">
+
+<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" href="Logo Quasor.png">
+<meta name="twitter:title" content="Quasor — Software a medida para empresas">
+<meta name="twitter:description" content="Sistemas de gestión, dashboards y automatizaciones diseñados para tu operación.">
+<meta name="twitter:image" content="https://quasor.io/og-image.png">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Quasor",
+  "url": "https://quasor.io",
+  "logo": "https://quasor.io/logo-quasor.png",
+  "email": "ventas@quasor.com",
+  "telephone": "+5492236892809",
+  "description": "Desarrollo de software a medida: sistemas de gestión, CRMs, dashboards y automatizaciones para empresas.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Mar del Plata",
+    "addressRegion": "Buenos Aires",
+    "addressCountry": "AR"
+  },
+  "sameAs": [
+    "https://www.instagram.com/quasortech/"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+5492236892809",
+    "contactType": "sales",
+    "email": "ventas@quasor.com",
+    "availableLanguage": "Spanish"
+  }
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --deep:#0a0a0a;--surface:#111111;--card:#1a1a1a;
-  --text:#F5F5F5;--muted:#999999;--dim:#666666;
-  --accent:#FF6B00;--accent2:#FF8C33;--accent-glow:rgba(255,107,0,.15);
-  --border:rgba(255,255,255,.08);
-  --font:'Plus Jakarta Sans',sans-serif;
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#08090c;
+  --bg2:#0e1015;
+  --bg3:#141820;
+  --surface:#1a1f2b;
+  --surface2:#232a38;
+  --border:#1e2433;
+  --border2:#2a3345;
+  --text:#e8eaf0;
+  --text2:#9ba3b5;
+  --text3:#5d6577;
+  --accent:#ff6b2b;
+  --accent2:#e85d1e;
+  --accent-dim:rgba(255,107,43,.08);
+  --accent-glow:rgba(255,107,43,.15);
+  --accent-bright:#ff8f5a;
+  --blue:#3b82f6;
+  --purple:#8b5cf6;
+  --font:'Outfit',system-ui,sans-serif;
   --mono:'JetBrains Mono',monospace;
 }
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--deep);color:var(--muted);line-height:1.6;overflow-x:hidden;
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* === GRID BACKGROUND === */
+.grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;
   background-image:
-    radial-gradient(circle at center,rgba(255,255,255,.03) 1px,transparent 1px),
-    radial-gradient(ellipse at 50% 0%,rgba(255,107,0,.05) 0%,transparent 60%);
-  background-size:32px 32px,100% 100%;background-attachment:fixed}
-@media(hover:hover)and(pointer:fine){body{cursor:none}a,button,input,textarea{cursor:none}}
-
-/* LOADER */
-.loader{position:fixed;inset:0;z-index:100000;background:var(--deep);display:flex;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s}
-.loader.done{opacity:0;visibility:hidden;pointer-events:none}
-.loader img{width:60px;height:60px;animation:loader-glow 1.5s ease-in-out infinite}
-@keyframes loader-glow{0%,100%{filter:drop-shadow(0 0 10px rgba(255,107,0,.2));opacity:.5}50%{filter:drop-shadow(0 0 30px rgba(255,107,0,.6));opacity:1}}
-
-/* CUSTOM CURSOR */
-.cur-dot,.cur-ring{position:fixed;border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);z-index:99998;display:none}
-.cur-dot{width:6px;height:6px;background:var(--accent)}
-.cur-ring{width:36px;height:36px;border:1.5px solid rgba(255,107,0,.4);z-index:99997;transition:width .3s,height .3s,border-color .3s}
-.cur-ring.hover{width:54px;height:54px;border-color:var(--accent)}
-@media(hover:hover)and(pointer:fine){.cur-dot,.cur-ring{display:block}}
-
-/* NOISE & CANVAS & ORB */
-.noise{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.03;background-size:200px 200px}
-#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
-#orb{position:fixed;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,0,.1) 0%,rgba(255,140,51,.04) 40%,transparent 70%);pointer-events:none;z-index:1;transform:translate(-50%,-50%);will-change:left,top;display:none}
-
-/* NAV */
-nav{position:fixed;top:0;width:100%;z-index:1000;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;transition:all .4s cubic-bezier(.4,0,.2,1);border-bottom:1px solid transparent}
-nav.scrolled{padding:.65rem 2rem;background:rgba(10,10,10,.88);backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);border-bottom:1px solid var(--border)}
-.nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
-.nav-logo img{height:30px;width:auto}
-.nav-logo-text{font-size:1.15rem;font-weight:800;letter-spacing:.1em;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:500;transition:color .3s}
-.nav-links a:hover,.nav-links a.active{color:var(--accent)}
-.nav-cta{background:var(--accent)!important;color:var(--deep)!important;padding:.45rem 1.2rem;border-radius:8px;font-weight:600!important;transition:all .3s!important}
-.nav-cta:hover{background:var(--accent2)!important;box-shadow:0 0 20px rgba(255,107,0,.3)!important}
-.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
-.nav-toggle span{width:22px;height:2px;background:var(--muted);transition:all .3s;display:block}
-.nav-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-.nav-toggle.active span:nth-child(2){opacity:0}
-.nav-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-.mobile-menu{display:none;position:fixed;top:55px;left:0;right:0;background:rgba(10,10,10,.95);backdrop-filter:blur(24px);padding:2rem;flex-direction:column;gap:1.5rem;border-bottom:1px solid var(--border);z-index:999;transform:translateY(-10px);opacity:0;transition:all .3s}
-.mobile-menu.open{display:flex;transform:translateY(0);opacity:1}
-.mobile-menu a{color:var(--muted);text-decoration:none;font-size:1.1rem;font-weight:500}
-
-/* HERO */
-.hero{min-height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:7rem 2rem 3rem;position:relative;z-index:2}
-.hero::before{content:'';position:absolute;top:20%;left:50%;transform:translate(-50%,-50%);width:800px;height:600px;background:radial-gradient(ellipse,rgba(255,107,0,.06) 0%,rgba(255,140,51,.02) 40%,transparent 70%);pointer-events:none}
-.hero-badge{display:inline-flex;align-items:center;gap:.6rem;padding:.4rem 1.1rem;border:1px solid rgba(255,107,0,.25);border-radius:100px;font-size:.8rem;font-weight:500;color:var(--accent);margin-bottom:2rem;background:rgba(255,107,0,.05)}
-.hero-badge::before{content:'';width:7px;height:7px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;box-shadow:0 0 8px var(--accent)}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.12;color:var(--text);margin-bottom:1.5rem;letter-spacing:-.02em}
-.hero-gradient{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradient-shift 6s ease infinite,glitch 6s infinite}
-@keyframes gradient-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-@keyframes glitch{0%,90%,100%{transform:translate(0) skew(0)}91%{transform:translate(-2px,1px) skew(-.5deg)}92%{transform:translate(2px,-1px) skew(.5deg)}93%{transform:translate(-1px) skew(-.3deg)}94%{transform:translate(0) skew(0)}}
-.hero-inner{display:flex;flex-direction:column;align-items:center;will-change:transform,opacity}
-.hero p{font-size:1.05rem;color:var(--muted);max-width:560px;margin-bottom:2.5rem}
-.hero-buttons{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
-
-/* BUTTONS */
-.btn-primary{padding:.8rem 2rem;background:var(--accent);color:var(--deep);border:none;border-radius:10px;font-family:var(--font);font-size:.95rem;font-weight:700;cursor:pointer;position:relative;overflow:hidden;transition:all .3s cubic-bezier(.4,0,.2,1);text-decoration:none;display:inline-block}
-.btn-primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 0 30px rgba(255,107,0,.35),0 10px 40px rgba(255,107,0,.15)}
-.btn-secondary{padding:.8rem 2rem;background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.15);border-radius:10px;font-family:var(--font);font-size:.95rem;font-weight:600;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-block}
-.btn-secondary:hover{border-color:var(--accent);color:var(--accent);box-shadow:0 0 20px rgba(255,107,0,.1)}
-.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.3);transform:scale(0);animation:ripple-anim .6s linear;pointer-events:none}
-@keyframes ripple-anim{to{transform:scale(4);opacity:0}}
-
-/* MARQUEE */
-.marquee{overflow:hidden;padding:1.5rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;z-index:2;background:rgba(17,17,17,.3)}
-.marquee-track{display:flex;gap:3rem;animation:marquee 30s linear infinite;width:max-content}
-.marquee-item{font-family:var(--mono);font-size:.8rem;color:var(--dim);white-space:nowrap;display:flex;align-items:center;gap:.5rem;letter-spacing:.02em}
-.marquee-dot{width:4px;height:4px;border-radius:50%;background:var(--accent);opacity:.4}
-@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-
-/* STATS */
-.stats{padding:3rem 2rem;position:relative;z-index:2}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1100px;margin:0 auto;text-align:center}
-.stat-number{font-size:2.5rem;font-weight:800;color:var(--accent);line-height:1;margin-bottom:.5rem}
-.stat-number span{color:var(--accent)}
-.stat-label{font-size:.85rem;color:var(--dim)}
-
-/* SECTIONS */
-section{padding:4rem 2rem;position:relative;z-index:2}
-.container{max-width:1100px;margin:0 auto}
-.section-label{font-family:var(--mono);font-size:.75rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:.75rem}
-.section-label::before{content:'';width:30px;height:1px;background:var(--accent)}
-.section-title{font-size:clamp(1.75rem,3.5vw,2.5rem);font-weight:800;color:var(--text);margin-bottom:1rem;letter-spacing:-.02em;line-height:1.15}
-.section-desc{font-size:1rem;color:var(--muted);max-width:600px;margin-bottom:3rem}
-
-/* PROJECTS */
-.projects-grid{display:flex;flex-direction:column;gap:3rem}
-.project-card{background:linear-gradient(135deg,rgba(26,26,26,.7),rgba(17,17,17,.9));border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all .5s}
-.project-card:hover{border-color:rgba(255,107,0,.2);box-shadow:0 30px 80px rgba(0,0,0,.4),0 0 60px rgba(255,107,0,.04)}
-.project-content{display:grid;grid-template-columns:2fr 3fr;gap:0}
-.project-card:nth-child(2) .project-content{grid-template-columns:3fr 2fr}
-.project-card:nth-child(2) .project-visual{order:-1}
-.project-info{padding:2.5rem;display:flex;flex-direction:column;justify-content:center}
-.project-tag{font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}
-.project-name{font-size:1.35rem;font-weight:700;color:var(--text);margin-bottom:.75rem}
-.project-desc{color:var(--muted);margin-bottom:.75rem;line-height:1.7;font-size:.9rem}
-.project-desc strong{color:var(--text)}
-.project-features{list-style:none;display:flex;flex-direction:column;gap:.4rem}
-.project-features li{display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--muted)}
-.project-features li::before{content:'';width:4px;height:4px;background:var(--accent);border-radius:50%;box-shadow:0 0 6px var(--accent);flex-shrink:0}
-.project-visual{background:var(--surface);display:flex;align-items:center;justify-content:center;position:relative;min-height:420px;padding:2rem;overflow:hidden;perspective:1200px}
-
-/* MOCKUP */
-.mock{width:100%;border-radius:12px;border:1px solid rgba(255,107,0,.1);background:rgba(17,17,17,.95);overflow:hidden;box-shadow:0 0 60px rgba(255,107,0,.04),0 20px 60px rgba(0,0,0,.3);animation:float 6s ease-in-out infinite;transition:all .5s;transform:perspective(1200px) rotateY(-3deg) rotateX(1deg)}
-.project-card:nth-child(2) .mock{transform:perspective(1200px) rotateY(3deg) rotateX(1deg)}
-.mock:hover{transform:perspective(1200px) rotateY(0) rotateX(0)!important;box-shadow:0 0 100px rgba(255,107,0,.08),0 20px 80px rgba(0,0,0,.4)}
-.mock::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.02) 0%,transparent 50%);pointer-events:none;border-radius:inherit}
-@keyframes float{0%,100%{transform:perspective(1200px) rotateY(-3deg) rotateX(1deg) translateY(0)}50%{transform:perspective(1200px) rotateY(-3deg) rotateX(1deg) translateY(-6px)}}
-.mock-chrome{display:flex;align-items:center;gap:6px;padding:10px 14px;background:rgba(26,26,26,.95);border-bottom:1px solid var(--border)}
-.mock-dot{width:10px;height:10px;border-radius:50%}
-.mock-title{flex:1;text-align:center;font-size:11px;color:var(--dim);font-weight:600}
-.mock-body{padding:14px;display:flex;flex-direction:column;gap:10px;font-size:11px;line-height:1.4;position:relative}
-.mock-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.mock-kpi{padding:10px;border-radius:8px;background:rgba(26,26,26,.7);border:1px solid var(--border)}
-.mock-kpi-label{font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
-.mock-kpi-val{font-size:18px;font-weight:800;color:var(--text);line-height:1.2}
-.mock-chart{display:flex;align-items:flex-end;gap:4px;height:60px;padding:10px;border-radius:8px;background:rgba(26,26,26,.7);border:1px solid var(--border)}
-.mock-bar-el{flex:1;border-radius:3px 3px 0 0;min-height:4px;transition:height 1.2s cubic-bezier(.4,0,.2,1)}
-.mock-table{border-radius:8px;background:rgba(26,26,26,.7);border:1px solid var(--border);overflow:hidden}
-.mock-table-row{display:flex;justify-content:space-between;padding:6px 10px;font-size:10px;border-bottom:1px solid var(--border)}
-.mock-table-row:last-child{border-bottom:none}
-.mock-alert{padding:10px;border-radius:8px;background:rgba(255,80,80,.06);border:1px solid rgba(255,80,80,.15);border-left:3px solid #ff5050}
-.mock-live{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;animation:pulse 1.5s infinite;box-shadow:0 0 6px var(--accent)}
-
-/* PIPELINE */
-.pipeline{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-.pipe-col{border-radius:8px;padding:8px;background:rgba(26,26,26,.5);display:flex;flex-direction:column;gap:5px}
-.pipe-header{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--dim);padding-bottom:5px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.pipe-count{padding:1px 6px;border-radius:8px;font-size:8px;font-weight:800}
-.pipe-card{padding:7px 8px;border-radius:6px;background:rgba(26,26,26,.8);border:1px solid var(--border);transition:border-color .3s}
-.pipe-card:hover{border-color:rgba(255,107,0,.2)}
-.pipe-name{font-weight:700;font-size:9.5px;color:var(--text);margin-bottom:2px}
-.pipe-detail{font-size:8px;color:var(--dim)}
-.pipe-temp{margin-top:3px;font-size:8px;font-weight:700;display:flex;align-items:center;gap:3px}
-.pipe-temp::before{content:'';width:6px;height:6px;border-radius:50%}
-.pipe-temp.hot{color:#ff6b4a}.pipe-temp.hot::before{background:#ff6b4a}
-.pipe-temp.warm{color:#f0a030}.pipe-temp.warm::before{background:#f0a030}
-.pipe-temp.cold{color:#5090c0}.pipe-temp.cold::before{background:#5090c0}
-
-/* BENTO SERVICES */
-.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-.bento-wide{grid-column:span 2}
-.service-card{padding:2.5rem;position:relative;background:rgba(26,26,26,.6);border:1px solid var(--border);border-radius:16px;transition:all .4s;cursor:pointer;overflow:hidden}
-.service-card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(255,107,0,.06),transparent 40%);opacity:0;transition:opacity .4s}
-.service-card:hover::before{opacity:1}
-.service-card::after{content:'';position:absolute;inset:-1px;border-radius:inherit;background:radial-gradient(400px circle at var(--mx,50%) var(--my,50%),rgba(255,107,0,.25),transparent 40%);z-index:-1;opacity:0;transition:opacity .4s}
-.service-card:hover::after{opacity:1}
-.service-card:hover{border-color:rgba(255,107,0,.15);transform:translateY(-4px)}
-.service-card.active{border-color:rgba(255,107,0,.2)}
-.bento-wide .service-icon{width:56px;height:56px;border-radius:14px}
-.service-icon{width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:rgba(255,107,0,.08);border-radius:12px;margin-bottom:1.25rem;color:var(--accent)}
-.service-card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
-.service-card-header .service-icon{flex-shrink:0}
-.service-card .svc-toggle{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--muted);display:flex;align-items:center;justify-content:center;transition:all .3s;flex-shrink:0;margin-top:.5rem;font-size:1.1rem}
-.service-card:hover .svc-toggle{border-color:var(--accent);color:var(--accent)}
-.service-card.active .svc-toggle{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(45deg)}
-.service-card h3{font-size:1.25rem;font-weight:700;color:var(--text);margin-bottom:.5rem}
-.service-card .svc-desc{font-size:.95rem;color:var(--muted);line-height:1.7}
-.service-card .svc-examples{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .4s;opacity:0}
-.service-card.active .svc-examples{max-height:400px;opacity:1}
-.svc-examples-inner{padding-top:1.5rem;border-top:1px solid var(--border);margin-top:1.5rem}
-.svc-examples-inner h4{font-size:.8rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem;font-family:var(--mono)}
-.svc-example-item{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.85rem}
-.svc-example-item:last-child{margin-bottom:0}
-.svc-example-bullet{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:.5rem}
-.svc-example-item span{font-size:.9rem;color:var(--text);line-height:1.5}
-.svc-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
-.svc-tag{font-size:.7rem;font-family:var(--mono);padding:.3rem .7rem;border-radius:6px;background:rgba(255,107,0,.06);color:var(--accent2);border:1px solid rgba(255,107,0,.1);letter-spacing:.02em}
-
-/* TIMELINE */
-.timeline-wrapper{position:relative;min-height:80vh}
-.timeline-sticky{position:sticky;top:30vh}
-.timeline{display:flex;justify-content:space-between;gap:2rem;position:relative}
-.timeline::before{content:'';position:absolute;top:24px;left:24px;right:24px;height:2px;background:rgba(255,255,255,.06)}
-.timeline-progress{position:absolute;top:24px;left:24px;height:2px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));box-shadow:0 0 10px rgba(255,107,0,.3);transition:width .15s linear}
-.tl-step{flex:1;text-align:center;position:relative;z-index:1}
-.tl-node{width:48px;height:48px;border-radius:50%;background:var(--deep);border:2px solid #333;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-family:var(--mono);font-weight:600;font-size:1rem;color:var(--dim);transition:all .5s}
-.tl-step.active .tl-node{border-color:var(--accent);color:var(--accent);box-shadow:0 0 25px rgba(255,107,0,.25)}
-.tl-step h3{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.5rem;opacity:.4;transition:opacity .5s}
-.tl-step p{font-size:.85rem;color:var(--muted);opacity:.4;transition:opacity .5s;max-width:200px;margin:0 auto}
-.tl-step.active h3,.tl-step.active p{opacity:1}
-
-/* TESTIMONIALS */
-.testimonials-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
-.testimonial-card{padding:2.5rem;background:rgba(26,26,26,.6);border:1px solid var(--border);border-radius:20px;position:relative;transition:border-color .4s}
-.testimonial-card:hover{border-color:rgba(255,107,0,.15)}
-.testimonial-quote{font-size:4rem;color:var(--accent);opacity:.15;font-family:Georgia,serif;line-height:1;margin-bottom:.5rem}
-.testimonial-text{font-size:1rem;color:var(--muted);line-height:1.8;margin-bottom:1.5rem}
-.testimonial-author{display:flex;align-items:center;gap:1rem}
-.testimonial-avatar{width:44px;height:44px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--deep);font-size:1.1rem;flex-shrink:0}
-.testimonial-name{font-weight:700;color:var(--text);font-size:.9rem}
-.testimonial-role{font-size:.8rem;color:var(--dim)}
-
-/* CTA / CONTACT */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
-.contact-info .section-desc{margin-bottom:2rem}
-.contact-detail{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem}
-.contact-detail-icon{width:40px;height:40px;border-radius:10px;background:rgba(255,107,0,.08);display:flex;align-items:center;justify-content:center;color:var(--accent);flex-shrink:0}
-.contact-detail-label{font-size:.75rem;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:2px}
-.contact-detail a{color:var(--text);text-decoration:none;font-weight:500;font-size:.95rem;transition:color .3s}
-.contact-detail a:hover{color:var(--accent)}
-.contact-form{display:flex;flex-direction:column;gap:1rem}
-.contact-form input,.contact-form textarea{padding:1rem 1.25rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;color:var(--text);font-family:var(--font);font-size:.95rem;transition:border-color .3s;outline:none;resize:vertical}
-.contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--dim)}
-.contact-form input:focus,.contact-form textarea:focus{border-color:var(--accent)}
-.contact-form .btn-primary{width:100%;text-align:center;padding:1rem;font-size:1rem;border-radius:12px}
-
-/* FOOTER */
-.site-footer{border-top:1px solid var(--border);padding:4rem 2rem 2rem;position:relative;z-index:2}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;max-width:1100px;margin:0 auto}
-.footer-brand img{height:28px;width:auto;opacity:.6;margin-bottom:1rem}
-.footer-brand p{font-size:.85rem;color:var(--dim);max-width:280px;line-height:1.6}
-.footer-col-title{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text);margin-bottom:1rem}
-.footer-col a{display:block;color:var(--dim);text-decoration:none;font-size:.85rem;margin-bottom:.6rem;transition:color .3s}
-.footer-col a:hover{color:var(--accent)}
-.footer-bottom{max-width:1100px;margin:3rem auto 0;padding-top:2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--dim)}
-.footer-social{display:flex;gap:1.5rem}
-.footer-social a{color:var(--dim);text-decoration:none;transition:color .3s}
-.footer-social a:hover{color:var(--accent)}
-
-/* TYPED CURSOR */
-.typed-cursor{display:inline-block;width:3px;height:1em;background:var(--accent);margin-left:4px;vertical-align:text-bottom;animation:blink-cursor .7s step-end infinite}
-@keyframes blink-cursor{0%,100%{opacity:1}50%{opacity:0}}
-
-/* SCROLL TO TOP */
-.scroll-top{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;border-radius:50%;background:var(--accent);color:var(--deep);border:none;font-size:1.2rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:998;opacity:0;visibility:hidden;transform:translateY(10px);transition:all .3s;box-shadow:0 4px 20px rgba(255,107,0,.3)}
-.scroll-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
-.scroll-top:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 6px 30px rgba(255,107,0,.4)}
-
-/* AMBIENT GLOW ORBS */
-.ambient-orb{position:absolute;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px);opacity:.35}
-#servicios{position:relative;overflow:hidden}
-#servicios::after{content:'';position:absolute;top:-10%;right:-15%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,0,.07),transparent 70%);pointer-events:none;z-index:0;filter:blur(60px)}
-#proceso{position:relative;overflow:hidden}
-#proceso::after{content:'';position:absolute;bottom:-10%;left:-10%;width:450px;height:450px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,0,.05),transparent 70%);pointer-events:none;z-index:0;filter:blur(60px)}
-#contacto{position:relative;overflow:hidden}
-#contacto::before{content:'';position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:600px;height:400px;border-radius:50%;background:radial-gradient(ellipse,rgba(255,107,0,.06),transparent 70%);pointer-events:none;z-index:0;filter:blur(60px)}
-
-/* SECTION DIVIDER */
-.section-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,107,0,.15) 50%,transparent);position:relative;z-index:2}
-
-/* REVEAL */
-/* reveal: handled entirely by JS */
-
-/* RESPONSIVE */
-@media(max-width:1024px){.bento{grid-template-columns:repeat(2,1fr)}.bento-wide{grid-column:span 2}}
-@media(max-width:768px){
-  .nav-links{display:none}.nav-toggle{display:flex}
-  .hero{min-height:80vh;padding:5rem 1.5rem 2rem}
-  .hero h1{font-size:clamp(1.6rem,6vw,2rem)}
-  .hero p{font-size:.95rem}
-  .section-title{font-size:clamp(1.5rem,4vw,1.75rem)}
-  .stats-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem}
-  .stat-number{font-size:2rem}
-  .project-content,.project-card:nth-child(2) .project-content{grid-template-columns:1fr}
-  .project-card:nth-child(2) .project-visual{order:0}
-  .project-visual{min-height:250px;padding:1rem;perspective:none}
-  .mock,.project-card:nth-child(2) .mock{transform:none!important}
-  .project-info{padding:1.5rem}
-  .bento{grid-template-columns:1fr}.bento-wide{grid-column:span 1}
-  .service-card{padding:1.75rem}
-  .service-card h3{font-size:1.1rem}
-  .service-card .svc-examples{max-height:none;opacity:1}
-  .svc-examples-inner{padding-top:1rem;margin-top:1rem}
-  .service-card .svc-toggle{display:none}
-  .svc-tags{margin-top:1rem}
-  .pipeline{grid-template-columns:repeat(2,1fr)}
-  .timeline-wrapper{min-height:auto}
-  .timeline-sticky{position:relative;top:auto}
-  .timeline{flex-direction:column;gap:1.5rem}
-  .timeline::before{top:0;bottom:0;left:24px;right:auto;width:2px;height:auto}
-  .timeline-progress{top:0;left:24px;width:2px!important;height:0;transition:height .15s linear}
-  .tl-step{text-align:left;display:flex;align-items:flex-start;gap:1.5rem}
-  .tl-node{margin:0;flex-shrink:0;width:40px;height:40px;font-size:.9rem}
-  .tl-step h3{font-size:.95rem}
-  .tl-step p{max-width:none;font-size:.8rem}
-  .testimonials-grid{grid-template-columns:1fr}
-  .testimonial-card{padding:1.5rem}
-  .testimonial-text{font-size:.9rem}
-  .contact-grid{grid-template-columns:1fr;gap:2rem}
-  .contact-form input,.contact-form textarea{padding:.85rem 1rem;font-size:.9rem}
-  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
-  .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
-  .hero-buttons{flex-direction:column;width:100%;max-width:320px}
-  .hero-buttons .btn-primary,.hero-buttons .btn-secondary{text-align:center}
-  .cta-section .hero-buttons{align-items:center}
-  .mock-kpis{grid-template-columns:1fr}
-  .mock-body{padding:10px;font-size:10px}
-  .scroll-top{bottom:1.2rem;right:1.2rem;width:38px;height:38px}
-  section{padding:3rem 1.5rem}
-  .section-desc{font-size:.9rem}
+    linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:80px 80px;
 }
-@media(max-width:480px){
-  .hero h1{font-size:clamp(1.4rem,5.5vw,1.7rem)}
-  .stat-number{font-size:1.6rem}
-  .stats-grid{gap:1rem}
-  .pipeline{grid-template-columns:1fr 1fr}
-  .footer-grid{grid-template-columns:1fr}
-  .project-visual{min-height:200px}
+.grid-bg::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(255,107,43,.05),transparent 70%);
+}
+
+/* === NAV === */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1rem 2rem;
+  background:rgba(8,9,12,.8);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  transition:padding .3s;
+}
+nav.scrolled{padding:.6rem 2rem}
+.nav-logo{display:flex;align-items:center;gap:.6rem;font-weight:700;font-size:1.2rem;letter-spacing:-.03em}
+.nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px rgba(255,107,43,.5)}
+.nav-links{display:flex;gap:2rem;font-size:.85rem;color:var(--text2)}
+.nav-links a{transition:color .2s;position:relative}
+.nav-links a:hover{color:var(--text)}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width .3s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{font-size:.78rem;padding:.5rem 1.25rem;border:1px solid var(--accent);color:var(--accent);border-radius:6px;transition:all .25s;font-family:var(--mono)}
+.nav-cta:hover{background:var(--accent);color:var(--bg);box-shadow:0 0 20px rgba(255,107,43,.3)}
+
+/* === HERO === */
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;padding:8rem 2rem 4rem}
+.hero-inner{max-width:1100px;margin:0 auto;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-family:var(--mono);color:var(--accent);
+  padding:.4rem 1rem;border:1px solid rgba(255,107,43,.25);border-radius:100px;margin-bottom:2rem;
+  background:var(--accent-dim);opacity:0;transform:translateY(20px);animation:heroIn .8s .2s forwards}
+.hero-badge .pulse{width:6px;height:6px;border-radius:50%;background:var(--accent);
+  animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(255,107,43,.4)}50%{opacity:.7;box-shadow:0 0 0 8px rgba(255,107,43,0)}}
+@keyframes heroIn{to{opacity:1;transform:translateY(0)}}
+.hero h1{font-size:clamp(2.5rem,5.5vw,4.2rem);font-weight:800;letter-spacing:-.04em;line-height:1.08;margin-bottom:1.5rem;max-width:820px;
+  opacity:0;transform:translateY(30px);animation:heroIn .8s .35s forwards}
+.hero h1 .highlight{
+  background:linear-gradient(135deg,#ff6b2b,#ff9a5c);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{font-size:1.15rem;color:var(--text2);max-width:560px;line-height:1.7;margin-bottom:2.5rem;
+  opacity:0;transform:translateY(30px);animation:heroIn .8s .5s forwards}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:4rem;
+  opacity:0;transform:translateY(20px);animation:heroIn .8s .65s forwards}
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;
+  padding:.9rem 2.2rem;background:var(--accent);color:#fff;font-weight:600;font-size:.9rem;
+  border-radius:8px;border:none;cursor:pointer;transition:all .25s;font-family:var(--font);position:relative;overflow:hidden}
+.btn-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(255,255,255,.15));opacity:0;transition:opacity .3s}
+.btn-primary:hover::before{opacity:1}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,107,43,.35)}
+.btn-primary svg{width:16px;height:16px}
+.btn-secondary{display:inline-flex;align-items:center;gap:.5rem;
+  padding:.9rem 2.2rem;background:transparent;color:var(--text);font-weight:500;font-size:.9rem;
+  border-radius:8px;border:1px solid var(--border2);cursor:pointer;transition:all .25s;font-family:var(--font)}
+.btn-secondary:hover{border-color:var(--text3);background:var(--surface)}
+
+/* Tech stack */
+.tech-stack{display:flex;align-items:center;gap:2rem;padding-top:1.25rem;border-top:1px solid var(--border);
+  opacity:0;animation:heroIn .8s .8s forwards}
+.tech-stack-label{font-size:.68rem;font-family:var(--mono);color:var(--text3);text-transform:uppercase;letter-spacing:.12em;white-space:nowrap}
+.tech-icons{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
+.tech-icons span{font-size:.8rem;color:var(--text3);font-family:var(--mono);transition:color .2s}
+.tech-icons span:hover{color:var(--accent)}
+
+/* === SCROLL ANIMATIONS === */
+.reveal{opacity:0;transform:translateY(50px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-60px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(60px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.reveal-scale{opacity:0;transform:scale(.85);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+
+/* Stagger children */
+.stagger-children .reveal:nth-child(1){transition-delay:.05s}
+.stagger-children .reveal:nth-child(2){transition-delay:.12s}
+.stagger-children .reveal:nth-child(3){transition-delay:.19s}
+.stagger-children .reveal:nth-child(4){transition-delay:.26s}
+
+/* === SECTIONS === */
+section{position:relative;z-index:1;padding:7rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-label{font-size:.68rem;font-family:var(--mono);color:var(--accent);text-transform:uppercase;letter-spacing:.15em;margin-bottom:.75rem}
+.section-title{font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.035em;line-height:1.1;margin-bottom:1rem}
+.section-desc{font-size:1.05rem;color:var(--text2);max-width:520px;line-height:1.7;margin-bottom:2rem}
+
+/* === DASHBOARD EXPLODER (Apple-style) === */
+.exploder{position:relative;min-height:180vh}
+.exploder-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:visible}
+.exploder-screen{width:min(90vw,900px);position:relative}
+
+/* Industry tabs */
+.industry-tabs{display:flex;gap:.5rem;justify-content:center;margin-bottom:2rem}
+.industry-tab{font-size:.8rem;font-family:var(--mono);padding:.5rem 1.25rem;border-radius:6px;border:1px solid var(--border);
+  background:transparent;color:var(--text3);cursor:pointer;transition:all .25s}
+.industry-tab:hover{border-color:var(--border2);color:var(--text2)}
+.industry-tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.industry-tabs-sticky{position:sticky;top:70px;z-index:50;display:flex;justify-content:center;padding:.75rem 0;
+  background:rgba(8,9,12,.85);backdrop-filter:blur(12px);margin:0 -2rem;padding-left:2rem;padding-right:2rem}
+
+/* Dashboard shell */
+.dash-shell{background:var(--bg3);border:1px solid var(--border);border-radius:16px;overflow:hidden;
+  transform-origin:center center;transition:transform .1s linear,opacity .1s linear,border-radius .1s linear}
+.dash-topbar{display:flex;align-items:center;gap:.5rem;padding:.75rem 1rem;border-bottom:1px solid var(--border)}
+.dash-dot{width:8px;height:8px;border-radius:50%}
+.dash-tab{font-size:.6rem;font-family:var(--mono);color:var(--text3);padding:.2rem .5rem;border-radius:4px;background:var(--surface)}
+.dash-tab.active{color:var(--accent);background:var(--accent-dim)}
+
+/* Dashboard content layers */
+.dash-layer{transition:transform .1s linear,opacity .1s linear}
+.dash-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;padding:1rem}
+.dash-metric{background:var(--surface);border-radius:8px;padding:.75rem;border:1px solid var(--border);
+  transition:transform .3s,opacity .3s}
+.dash-metric .label{font-size:.58rem;font-family:var(--mono);color:var(--text3);text-transform:uppercase;letter-spacing:.05em}
+.dash-metric .value{font-size:1.15rem;font-weight:700;margin-top:.2rem}
+.dash-metric .change{font-size:.58rem;font-family:var(--mono);margin-top:.1rem}
+.dash-metric .change.up{color:#22c55e}
+.dash-metric .change.down{color:#ef4444}
+
+/* Chart area */
+.dash-chart{padding:0 1rem 1rem;position:relative;height:120px}
+.chart-bar-group{display:flex;align-items:flex-end;gap:4px;height:100%;padding-top:10px}
+.chart-bar{flex:1;border-radius:3px 3px 0 0;background:var(--accent);transition:height 1.2s cubic-bezier(.16,1,.3,1);height:0}
+.chart-bar.animate{height:var(--h)}
+.chart-bar:nth-child(odd){opacity:.4}
+.chart-bar:nth-child(even){opacity:.65}
+.chart-bar:last-child{opacity:1}
+
+/* Table area */
+.dash-table{padding:0 1rem 1rem}
+.dash-table-row{display:grid;grid-template-columns:1.5fr 1fr 1fr .8fr;gap:.5rem;padding:.45rem .5rem;font-size:.65rem;
+  border-bottom:1px solid var(--border);color:var(--text2);transition:transform .3s,opacity .3s}
+.dash-table-row:first-child{color:var(--text3);font-family:var(--mono);text-transform:uppercase;font-size:.55rem;letter-spacing:.05em}
+.dash-table-row .status{display:inline-block;padding:1px 6px;border-radius:3px;font-size:.55rem}
+.status-new{background:rgba(59,130,246,.15);color:var(--blue)}
+.status-hot{background:rgba(255,107,43,.15);color:var(--accent)}
+.status-closed{background:rgba(34,197,94,.15);color:#22c55e}
+
+/* Exploder text callouts */
+.exploder-text{position:absolute;max-width:260px;transition:opacity .3s,transform .3s;pointer-events:none;z-index:10}
+.exploder-text h3{font-size:1.1rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.35rem}
+.exploder-text p{font-size:.8rem;color:var(--text2);line-height:1.55}
+.exploder-text .tag{display:inline-block;font-size:.6rem;font-family:var(--mono);color:var(--accent);
+  padding:.2rem .5rem;border:1px solid rgba(255,107,43,.2);border-radius:4px;background:var(--accent-dim);margin-bottom:.5rem}
+
+/* Annotation lines */
+.annotation-line{position:absolute;pointer-events:none;transition:opacity .3s}
+.annotation-line line{stroke:var(--accent);stroke-width:1;stroke-dasharray:4 3;opacity:.4}
+
+/* === CASES (after exploder) === */
+.case-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:2rem;
+  transition:border-color .3s}
+.case-card:hover{border-color:var(--border2)}
+.case-header{padding:2rem 2rem 1.5rem}
+.case-industry{font-size:.68rem;font-family:var(--mono);color:var(--accent);text-transform:uppercase;letter-spacing:.1em;
+  padding:.3rem .75rem;border:1px solid rgba(255,107,43,.2);border-radius:4px;background:var(--accent-dim)}
+.case-title{font-size:1.35rem;font-weight:700;letter-spacing:-.02em;margin-top:.75rem}
+.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;padding:0 2rem}
+.case-problem,.case-solution{padding:1.25rem;border-radius:10px}
+.case-problem{background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.1)}
+.case-solution{background:var(--accent-dim);border:1px solid rgba(255,107,43,.12)}
+.case-problem h4,.case-solution h4{font-size:.68rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem}
+.case-problem h4{color:#ef4444}
+.case-solution h4{color:var(--accent)}
+.case-problem p,.case-solution p{font-size:.85rem;color:var(--text2);line-height:1.6}
+.case-features{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;padding:1.5rem 2rem 2rem}
+.case-feature{display:flex;align-items:flex-start;gap:.5rem;font-size:.8rem;color:var(--text2);line-height:1.5}
+.case-feature::before{content:'›';color:var(--accent);font-weight:700;font-size:1rem;line-height:1.2;flex-shrink:0}
+
+/* === SERVICES === */
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border-radius:16px;overflow:hidden}
+.service-card{background:var(--bg2);padding:2.5rem;transition:background .3s}
+.service-card:hover{background:var(--bg3)}
+.service-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.25rem;font-family:var(--mono);font-size:.8rem;font-weight:500}
+.service-card:nth-child(1) .service-icon{background:rgba(255,107,43,.1);color:var(--accent)}
+.service-card:nth-child(2) .service-icon{background:rgba(59,130,246,.1);color:var(--blue)}
+.service-card:nth-child(3) .service-icon{background:rgba(139,92,246,.1);color:var(--purple)}
+.service-card:nth-child(4) .service-icon{background:rgba(251,191,36,.1);color:#fbbf24}
+.service-card h3{font-size:1.05rem;font-weight:700;margin-bottom:.5rem;letter-spacing:-.01em}
+.service-card p{font-size:.85rem;color:var(--text2);line-height:1.65}
+
+/* === PROCESS === */
+.process-track{position:relative;padding:3rem 0}
+.process-line-v{position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--border);transform:translateX(-50%)}
+.process-line-fill{position:absolute;left:50%;top:0;width:1px;height:0;background:linear-gradient(180deg,var(--accent),rgba(255,107,43,.2));
+  transform:translateX(-50%);transition:height .1s linear}
+.process-step{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding:3rem 0;position:relative}
+.process-step:nth-child(even) .step-content{order:2;text-align:left}
+.process-step:nth-child(even) .step-visual{order:1}
+.step-dot{position:absolute;left:50%;top:50%;width:14px;height:14px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--border);transform:translate(-50%,-50%);z-index:2;
+  transition:border-color .5s,box-shadow .5s}
+.step-dot.active{border-color:var(--accent);box-shadow:0 0 16px rgba(255,107,43,.3)}
+.step-num{font-size:.62rem;font-family:var(--mono);color:var(--accent);margin-bottom:.5rem}
+.step-content h3{font-size:1.3rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.5rem}
+.step-content p{font-size:.88rem;color:var(--text2);line-height:1.65}
+.step-visual{display:flex;align-items:center;justify-content:center}
+.step-terminal{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:1rem;
+  font-family:var(--mono);font-size:.7rem;color:var(--text3);width:100%;max-width:340px;line-height:1.8}
+.step-terminal .prompt{color:var(--accent)}
+.step-terminal .comment{color:var(--text3);opacity:.5}
+.step-terminal .output{color:var(--text2)}
+
+/* === TESTIMONIALS === */
+.testimonials{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2.5rem}
+.testimonial-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.75rem;
+  transition:border-color .3s,transform .3s}
+.testimonial-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.testimonial-quote{font-size:.95rem;color:var(--text2);line-height:1.75;margin-bottom:1.25rem}
+.testimonial-quote::before{content:'\201C';color:var(--accent);font-size:2rem;font-weight:800;line-height:0;vertical-align:-.35em;margin-right:4px}
+.testimonial-author{display:flex;align-items:center;gap:.75rem}
+.testimonial-avatar{width:38px;height:38px;border-radius:50%;background:var(--accent-dim);border:1px solid rgba(255,107,43,.2);
+  display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:600;color:var(--accent);font-family:var(--mono)}
+.testimonial-name{font-size:.82rem;font-weight:600}
+.testimonial-role{font-size:.7rem;color:var(--text3)}
+
+/* === CTA / CONTACT === */
+.cta-section{text-align:center;padding:7rem 2rem;position:relative}
+.cta-section::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:700px;height:350px;background:radial-gradient(ellipse,rgba(255,107,43,.06),transparent 70%);pointer-events:none}
+.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem}
+.cta-contact-info{display:flex;gap:2rem;justify-content:center;margin-top:1.5rem;font-size:.8rem;color:var(--text3);font-family:var(--mono)}
+.cta-contact-info a{color:var(--text2);transition:color .2s}
+.cta-contact-info a:hover{color:var(--accent)}
+
+/* Cal.com embed */
+.cal-embed{max-width:650px;margin:3rem auto 0;border:1px solid var(--border);border-radius:14px;overflow:hidden;
+  background:var(--bg2);min-height:400px;display:flex;align-items:center;justify-content:center}
+.cal-embed iframe{width:100%;min-height:400px;border:none}
+.cal-placeholder{text-align:center;padding:3rem;color:var(--text3);font-size:.85rem}
+.cal-placeholder .mono{font-family:var(--mono);font-size:.7rem;color:var(--accent);
+  background:var(--accent-dim);padding:.5rem 1rem;border-radius:6px;display:inline-block;margin-top:1rem}
+
+/* === FOOTER === */
+footer{border-top:1px solid var(--border);padding:2.5rem 2rem;display:flex;justify-content:space-between;align-items:center;
+  position:relative;z-index:1;font-size:.75rem;color:var(--text3)}
+footer a{color:var(--text2);margin-left:1.5rem;transition:color .2s}
+footer a:hover{color:var(--accent)}
+
+/* === WHATSAPP FLOAT === */
+.wa-float{position:fixed;bottom:1.5rem;right:1.5rem;z-index:99;
+  width:52px;height:52px;border-radius:50%;background:#25d366;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.3);transition:transform .2s;cursor:pointer}
+.wa-float:hover{transform:scale(1.1)}
+.wa-float svg{width:26px;height:26px;fill:#fff}
+
+/* === COUNTER ANIMATION === */
+.counter{display:inline-block}
+
+/* === RESPONSIVE === */
+@media(max-width:1200px){
+  .exploder-text{display:none}
+  .exploder-sticky{overflow:hidden}
+}
+@media(max-width:768px){
+  .exploder-text{display:block}
+  .nav-links{display:none}
+  .hero h1{font-size:2.2rem}
+  .case-grid,.testimonials{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr}
+  .process-step{grid-template-columns:1fr;gap:1.5rem;text-align:center}
+  .process-step:nth-child(even) .step-content{order:1}
+  .process-step:nth-child(even) .step-visual{order:2}
+  .process-line-v,.process-line-fill,.step-dot{display:none}
+  .dash-metrics{grid-template-columns:1fr 1fr}
+  .case-features{grid-template-columns:1fr}
+  .tech-stack{flex-direction:column;align-items:flex-start;gap:.75rem}
+  .exploder{min-height:auto}
+  .exploder-sticky{position:relative;height:auto;min-height:auto;padding:2rem 0}
+  .exploder-text{position:relative!important;opacity:1!important;transform:none!important;max-width:100%;
+    text-align:center;margin-top:2rem;pointer-events:auto}
 }
 </style>
 </head>
 <body>
 
-<!-- LOADER -->
-<div class="loader" id="loader"><img src="Logo Quasor.png" alt="Quasor"></div>
-
-<!-- CUSTOM CURSOR -->
-<div class="cur-dot" id="cur-dot"></div>
-<div class="cur-ring" id="cur-ring"></div>
-
-<canvas id="particles"></canvas>
-<div id="orb"></div>
-<div class="noise"></div>
+<div class="grid-bg"></div>
 
 <!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo"><img src="Logo Quasor.png" alt="Quasor"><span class="nav-logo-text">QUASOR</span></a>
-  <ul class="nav-links">
-    <li><a href="#proyectos">Proyectos</a></li>
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#proceso">Proceso</a></li>
-    <li><a href="#contacto" class="nav-cta">Contacto</a></li>
-  </ul>
-  <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+<nav id="nav">
+  <a href="#" class="nav-logo"><span class="dot"></span> quasor</a>
+  <div class="nav-links">
+    <a href="#proyectos">Proyectos</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#proceso">Proceso</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <a href="#contacto" class="nav-cta">Agendar demo →</a>
 </nav>
-<div class="mobile-menu">
-  <a href="#proyectos">Proyectos</a><a href="#servicios">Servicios</a><a href="#proceso">Proceso</a><a href="#contacto">Contacto</a>
-</div>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-inner" id="hero-inner">
-    <div class="hero-badge reveal">Disponible para nuevos proyectos</div>
-    <h1 class="reveal reveal-delay-1">Tu empresa funciona<br>con Excel y WhatsApp.<br><span class="hero-gradient" id="typed-target"></span><span class="typed-cursor" id="typed-cursor"></span></h1>
-    <p class="reveal reveal-delay-2">Sistemas de gestion, dashboards y automatizaciones diseñados para tu operacion. Tu equipo deja de cargar datos a mano y vos controlás todo desde un solo lugar.</p>
-    <div class="hero-buttons reveal reveal-delay-3">
-      <a href="#contacto" class="btn-primary">Agendar una demo</a>
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="pulse"></span> Disponible para nuevos proyectos</div>
+    <h1>Tu empresa funciona con Excel y WhatsApp.<br><span class="highlight">Nosotros lo resolvemos.</span></h1>
+    <p class="hero-sub">Sistemas de gestión, dashboards y automatizaciones diseñados para tu operación. Tu equipo deja de cargar datos a mano y vos controlás todo desde un solo lugar.</p>
+    <div class="hero-actions">
+      <a href="#contacto" class="btn-primary">Agendar una demo <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
       <a href="#proyectos" class="btn-secondary">Ver nuestros sistemas</a>
     </div>
-  </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee">
-  <div class="marquee-track">
-    <span class="marquee-item"><span class="marquee-dot"></span>React</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Next.js</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Node.js</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>PostgreSQL</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Python</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>TypeScript</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Meta API</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Google Ads API</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>WhatsApp Business API</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Vercel</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>React</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Next.js</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Node.js</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>PostgreSQL</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Python</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>TypeScript</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Meta API</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Google Ads API</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>WhatsApp Business API</span>
-    <span class="marquee-item"><span class="marquee-dot"></span>Vercel</span>
-  </div>
-</div>
-
-<!-- STATS -->
-<div class="stats">
-  <div class="stats-grid">
-    <div class="reveal"><div class="stat-number">+<span class="counter" data-target="4500">0</span></div><div class="stat-label">Leads gestionados</div></div>
-    <div class="reveal reveal-delay-1"><div class="stat-number">$<span class="counter" data-target="12">0</span>M<span>+</span></div><div class="stat-label">En campañas optimizadas</div></div>
-    <div class="reveal reveal-delay-2"><div class="stat-number">+<span class="counter" data-target="40">0</span><span>%</span></div><div class="stat-label">Mejora en conversion</div></div>
-    <div class="reveal reveal-delay-3"><div class="stat-number"><span class="counter" data-target="100">0</span><span>%</span></div><div class="stat-label">Soluciones a medida</div></div>
-  </div>
-</div>
-
-<div class="section-divider"></div>
-
-<!-- PROYECTOS -->
-<section id="proyectos">
-  <div class="container">
-    <div class="section-label reveal">Casos de exito</div>
-    <h2 class="section-title reveal">Problemas reales, soluciones reales</h2>
-    <p class="section-desc reveal">Cada sistema que construimos nacio de un problema concreto que una empresa no podia resolver con herramientas genericas.</p>
-    <div class="projects-grid">
-      <div class="project-card reveal">
-        <div class="project-content">
-          <div class="project-info">
-            <div class="project-tag">Concesionaria automotriz</div>
-            <h3 class="project-name">Control de Marketing & Pipeline de Ventas</h3>
-            <p class="project-desc"><strong>El problema:</strong> El equipo entraba a 4 plataformas distintas para ver campañas. Se perdia plata en ads sin que nadie lo detectara a tiempo.</p>
-            <p class="project-desc"><strong>La solucion:</strong> Un dashboard que unifica Meta, Google e Instagram en tiempo real, detecta anomalias de gasto y centraliza cada lead.</p>
-            <ul class="project-features">
-              <li>Trazabilidad total: cada lead desde el clic hasta la venta</li>
-              <li>Deteccion de anomalias con alertas automaticas</li>
-              <li>Metricas de conversion por vendedor y campaña</li>
-              <li>Reportes PDF automaticos para el directorio</li>
-            </ul>
-          </div>
-          <div class="project-visual">
-            <div class="mock">
-              <div class="mock-chrome">
-                <div class="mock-dot" style="background:#ff5f57"></div><div class="mock-dot" style="background:#febc2e"></div><div class="mock-dot" style="background:#28c840"></div>
-                <span class="mock-title">Dashboard Marketing &nbsp;<span class="mock-live"></span> En vivo</span>
-              </div>
-              <div class="mock-body">
-                <div class="mock-kpis">
-                  <div class="mock-kpi"><div class="mock-kpi-label">Gasto total</div><div class="mock-kpi-val" style="color:var(--text)">$4.2M</div></div>
-                  <div class="mock-kpi"><div class="mock-kpi-label">Leads mes</div><div class="mock-kpi-val" style="color:var(--accent)">347</div></div>
-                  <div class="mock-kpi"><div class="mock-kpi-label">CPL promedio</div><div class="mock-kpi-val" style="color:var(--accent2)">$12.1k</div></div>
-                </div>
-                <div class="mock-chart" id="chart-auto"></div>
-                <div style="display:flex;gap:8px">
-                  <div class="mock-table" style="flex:2">
-                    <div class="mock-table-row" style="font-size:9px;color:var(--dim);font-weight:700;text-transform:uppercase;letter-spacing:.05em"><span>Campaña</span><span>CPL</span></div>
-                    <div class="mock-table-row"><span style="color:var(--text)">Hilux SR5 — Meta</span><span style="color:var(--accent)">$10.6k</span></div>
-                    <div class="mock-table-row"><span style="color:var(--text)">Corolla Cross — Google</span><span style="color:var(--accent2)">$13.8k</span></div>
-                    <div class="mock-table-row"><span style="color:var(--text)">Usados Premium — Meta</span><span style="color:var(--accent)">$8.7k</span></div>
-                  </div>
-                  <div class="mock-alert" style="flex:1">
-                    <div style="font-size:9px;color:#ff5050;font-weight:700;margin-bottom:4px">&#9650; ANOMALIA</div>
-                    <div style="font-size:9px;color:var(--text)">Meta Ads: gasto +45% sin clics</div>
-                    <div style="font-size:8px;color:var(--dim);margin-top:3px">Hace 2 horas</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-content">
-          <div class="project-info">
-            <div class="project-tag">Inmobiliaria</div>
-            <h3 class="project-name">CRM Comercial + Seguimiento Inteligente</h3>
-            <p class="project-desc"><strong>El problema:</strong> Los leads caian en chats personales de 6 vendedores. Se perdian consultas y no habia forma de medir conversion.</p>
-            <p class="project-desc"><strong>La solucion:</strong> Un CRM que captura cada consulta, la asigna al vendedor correcto y da visibilidad total del pipeline.</p>
-            <ul class="project-features">
-              <li>Historial de cada cliente desde la consulta hasta el cierre</li>
-              <li>Asignacion automatica por zona y disponibilidad</li>
-              <li>Metricas de conversion por vendedor en tiempo real</li>
-              <li>Agenda de visitas y seguimientos automaticos</li>
-            </ul>
-          </div>
-          <div class="project-visual">
-            <div class="mock" style="animation-delay:-3s">
-              <div class="mock-chrome">
-                <div class="mock-dot" style="background:#ff5f57"></div><div class="mock-dot" style="background:#febc2e"></div><div class="mock-dot" style="background:#28c840"></div>
-                <span class="mock-title">CRM Inmobiliario &nbsp;<span class="mock-live"></span> 6 conectados</span>
-              </div>
-              <div class="mock-body">
-                <div class="mock-kpis">
-                  <div class="mock-kpi"><div class="mock-kpi-label">Leads activos</div><div class="mock-kpi-val" style="color:var(--accent)">89</div></div>
-                  <div class="mock-kpi"><div class="mock-kpi-label">Cerrados mes</div><div class="mock-kpi-val" style="color:var(--text)">USD 840k</div></div>
-                  <div class="mock-kpi"><div class="mock-kpi-label">Conversion</div><div class="mock-kpi-val" style="color:var(--accent2)">11.2%</div></div>
-                </div>
-                <div class="pipeline">
-                  <div class="pipe-col"><div class="pipe-header">Nuevos <span class="pipe-count" style="background:rgba(255,107,0,.1);color:var(--accent)">14</span></div><div class="pipe-card"><div class="pipe-name">Martin Suárez</div><div class="pipe-detail">Compra · Centro</div><div class="pipe-temp hot">Caliente</div></div><div class="pipe-card"><div class="pipe-name">Lucía Fernández</div><div class="pipe-detail">Alquiler · Güemes</div><div class="pipe-temp warm">Tibio</div></div><div class="pipe-card"><div class="pipe-name">Carlos Méndez</div><div class="pipe-detail">Inversion · La Perla</div><div class="pipe-temp hot">Caliente</div></div></div>
-                  <div class="pipe-col"><div class="pipe-header">Contactados <span class="pipe-count" style="background:rgba(255,140,51,.1);color:var(--accent2)">11</span></div><div class="pipe-card"><div class="pipe-name">Valentina Castro</div><div class="pipe-detail">Alq. temp · Playa Grande</div><div class="pipe-temp hot">Caliente</div></div><div class="pipe-card"><div class="pipe-name">Santiago Ruiz</div><div class="pipe-detail">Compra · Constitucion</div><div class="pipe-temp cold">Frio</div></div></div>
-                  <div class="pipe-col"><div class="pipe-header">Visita <span class="pipe-count" style="background:rgba(255,107,0,.1);color:var(--accent)">8</span></div><div class="pipe-card"><div class="pipe-name">Federico López</div><div class="pipe-detail">Compra · Los Troncos</div><div class="pipe-temp hot">Caliente</div></div><div class="pipe-card"><div class="pipe-name">Camila Torres</div><div class="pipe-detail">Alquiler · Centro</div><div class="pipe-temp warm">Tibio</div></div></div>
-                  <div class="pipe-col"><div class="pipe-header">Cierre <span class="pipe-count" style="background:rgba(255,107,0,.1);color:var(--accent)">5</span></div><div class="pipe-card" style="border-left:2px solid var(--accent)"><div class="pipe-name">Nicolás Herrera</div><div class="pipe-detail">USD 155k · Colinas</div><div class="pipe-temp hot">Caliente</div></div><div class="pipe-card" style="border-left:2px solid var(--accent)"><div class="pipe-name">Florencia Diaz</div><div class="pipe-detail">USD 210k · San Carlos</div><div class="pipe-temp hot">Caliente</div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="tech-stack">
+      <span class="tech-stack-label">Stack</span>
+      <div class="tech-icons">
+        <span>React</span><span>Node.js</span><span>PostgreSQL</span><span>Python</span><span>AWS</span><span>OpenAI</span>
       </div>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
+<!-- DASHBOARD EXPLODER — Apple-style scroll experience -->
+<section id="proyectos" style="padding-top:2rem;padding-bottom:1rem">
+  <div class="container">
+    <div class="section-label reveal">Casos de éxito</div>
+    <h2 class="section-title reveal">Mirá el sistema<br>por dentro</h2>
+    <p class="section-desc reveal" id="exploder-desc">Esto no es un mockup. Es un dashboard real que controla $4.2M en inversión publicitaria para una concesionaria automotriz.</p>
+  </div>
 
-<!-- SERVICIOS BENTO -->
-<section id="servicios">
+  <div class="industry-tabs-sticky">
+    <div class="industry-tabs">
+      <button class="industry-tab active" data-industry="automotriz">Concesionaria</button>
+      <button class="industry-tab" data-industry="inmobiliaria">Inmobiliaria</button>
+    </div>
+  </div>
+
+  <div class="exploder" id="exploder">
+    <div class="exploder-sticky">
+      <div class="exploder-screen" id="exploder-screen">
+
+        <!-- Callout texts (positioned by JS) -->
+        <div class="exploder-text" id="callout-metrics" style="opacity:0;left:-280px;top:20px">
+          <span class="tag">Tiempo real</span>
+          <h3>Todo en un vistazo</h3>
+          <p>Gasto, leads, CPL y conversión. Sin entrar a cada plataforma por separado.</p>
+        </div>
+        <div class="exploder-text" id="callout-chart" style="opacity:0;right:-280px;top:30%">
+          <span class="tag">Anomalías</span>
+          <h3>Detecta problemas antes</h3>
+          <p>Si el gasto sube sin clicks, el sistema alerta automáticamente.</p>
+        </div>
+        <div class="exploder-text" id="callout-table" style="opacity:0;left:-280px;bottom:10%">
+          <span class="tag">Pipeline</span>
+          <h3>Cada lead, rastreado</h3>
+          <p>Desde el click hasta el cierre. Sabés qué vendedor convierte y cuál no.</p>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="dash-shell" id="dash-shell">
+          <div class="dash-topbar">
+            <span class="dash-dot" style="background:#ef4444"></span>
+            <span class="dash-dot" style="background:#fbbf24"></span>
+            <span class="dash-dot" style="background:#22c55e"></span>
+            <span style="flex:1"></span>
+            <span class="dash-tab active">Dashboard</span>
+            <span class="dash-tab">Leads</span>
+            <span class="dash-tab">Alertas</span>
+            <span class="dash-tab">Reportes</span>
+          </div>
+
+          <div class="dash-layer" id="layer-metrics">
+            <div class="dash-metrics">
+              <div class="dash-metric"><div class="label">Gasto total</div><div class="value">$<span class="counter" data-target="4.2" data-decimals="1">0</span>M</div><div class="change down">-12% vs mes ant.</div></div>
+              <div class="dash-metric"><div class="label">Leads mes</div><div class="value" style="color:var(--accent)"><span class="counter" data-target="347" data-decimals="0">0</span></div><div class="change up">+23% vs mes ant.</div></div>
+              <div class="dash-metric"><div class="label">CPL promedio</div><div class="value">$<span class="counter" data-target="12.1" data-decimals="1">0</span>k</div><div class="change">Meta: $15k</div></div>
+              <div class="dash-metric"><div class="label">Conversión</div><div class="value"><span class="counter" data-target="8.4" data-decimals="1">0</span>%</div><div class="change down">-0.3% vs mes ant.</div></div>
+            </div>
+          </div>
+
+          <div class="dash-layer" id="layer-chart">
+            <div class="dash-chart">
+              <div class="chart-bar-group">
+                <div class="chart-bar" style="--h:35%"></div>
+                <div class="chart-bar" style="--h:50%"></div>
+                <div class="chart-bar" style="--h:42%"></div>
+                <div class="chart-bar" style="--h:65%"></div>
+                <div class="chart-bar" style="--h:55%"></div>
+                <div class="chart-bar" style="--h:48%"></div>
+                <div class="chart-bar" style="--h:72%"></div>
+                <div class="chart-bar" style="--h:60%"></div>
+                <div class="chart-bar" style="--h:68%"></div>
+                <div class="chart-bar" style="--h:82%"></div>
+                <div class="chart-bar" style="--h:78%"></div>
+                <div class="chart-bar" style="--h:95%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-layer" id="layer-table">
+            <div class="dash-table">
+              <div class="dash-table-row"><span>Campaña</span><span>Plataforma</span><span>Gasto</span><span>Estado</span></div>
+              <div class="dash-table-row"><span>Hilux SR5 - Marzo</span><span>Meta Ads</span><span>$890k</span><span class="status status-hot">84 leads</span></div>
+              <div class="dash-table-row"><span>Corolla Cross CVT</span><span>Google</span><span>$720k</span><span class="status status-new">52 leads</span></div>
+              <div class="dash-table-row"><span>Usados Premium</span><span>Meta Ads</span><span>$1.1M</span><span class="status status-closed">127 leads</span></div>
+              <div class="dash-table-row"><span>Plan Ahorro Yaris</span><span>Google</span><span>$480k</span><span class="status status-new">41 leads</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE 2 — CRM -->
+<section style="padding-top:3rem">
+  <div class="container">
+    <div class="case-card reveal">
+      <div class="case-header">
+        <span class="case-industry">Inmobiliaria</span>
+        <h3 class="case-title">CRM Comercial + Seguimiento Inteligente</h3>
+      </div>
+      <div class="case-grid">
+        <div class="case-problem">
+          <h4>El problema</h4>
+          <p>Los leads caían en chats personales de 6 vendedores. Se perdían consultas, nadie sabía quién atendía a quién, y no había forma de medir la conversión real.</p>
+        </div>
+        <div class="case-solution">
+          <h4>La solución</h4>
+          <p>Un CRM que captura cada consulta automáticamente, la asigna al vendedor correcto y le da al dueño visibilidad total sobre el pipeline.</p>
+        </div>
+      </div>
+      <div class="case-features">
+        <span class="case-feature">Historial de cada cliente desde la consulta hasta el cierre</span>
+        <span class="case-feature">Asignación automática por zona, tipo y disponibilidad</span>
+        <span class="case-feature">Métricas de conversión por vendedor en tiempo real</span>
+        <span class="case-feature">Agenda de visitas y seguimientos que no se pierden</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="servicios" style="border-top:1px solid var(--border)">
   <div class="container">
     <div class="section-label reveal">Servicios</div>
     <h2 class="section-title reveal">Lo que hacemos</h2>
-    <p class="section-desc reveal">No hacemos de todo — hacemos bien lo que sabemos. Sistemas que resuelven problemas operativos reales.</p>
-    <div class="bento">
+    <p class="section-desc reveal">No hacemos de todo — hacemos bien lo que sabemos.</p>
 
-      <div class="service-card bento-wide reveal">
-        <div class="service-card-header">
-          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
-          <button class="svc-toggle" aria-label="Ver ejemplos">+</button>
-        </div>
-        <h3>CRMs a medida</h3>
-        <p class="svc-desc">Diseñamos tu sistema de gestion de clientes adaptado a como trabaja tu equipo. Cada campo, flujo y automatizacion pensados para tu operacion.</p>
-        <div class="svc-examples">
-          <div class="svc-examples-inner">
-            <h4>// Ejemplos reales</h4>
-            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Pipeline de ventas para inmobiliaria con 6 vendedores y seguimiento automatico de leads</span></div>
-            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Sistema de turnos y fichas para clinica odontologica con historial de pacientes</span></div>
-            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Gestion de proveedores y ordenes de compra para distribuidora mayorista</span></div>
-          </div>
-        </div>
-        <div class="svc-tags"><span class="svc-tag">React</span><span class="svc-tag">Node.js</span><span class="svc-tag">PostgreSQL</span><span class="svc-tag">REST API</span></div>
+    <div class="services-grid stagger-children">
+      <div class="service-card reveal">
+        <div class="service-icon">CRM</div>
+        <h3>CRMs & gestión a medida</h3>
+        <p>Tu sistema de clientes adaptado a cómo trabaja tu equipo, no al revés. Cada campo, vista y flujo pensado para tu operación.</p>
       </div>
-
-      <div class="service-card reveal reveal-delay-1">
-        <div class="service-card-header">
-          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg></div>
-          <button class="svc-toggle" aria-label="Ver ejemplos">+</button>
-        </div>
-        <h3>Dashboards analiticos</h3>
-        <p class="svc-desc">Paneles que unifican todas tus fuentes de datos con metricas en tiempo real, alertas y reportes automaticos.</p>
-        <div class="svc-examples">
-          <div class="svc-examples-inner">
-            <h4>// Ejemplos reales</h4>
-            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Panel de rendimiento de campañas Meta + Google Ads unificado para agencia de marketing</span></div>
-            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Dashboard de ventas diarias con alertas por bajo stock para e-commerce</span></div>
-          </div>
-        </div>
-        <div class="svc-tags"><span class="svc-tag">Chart.js</span><span class="svc-tag">APIs</span><span class="svc-tag">Real-time</span></div>
+      <div class="service-card reveal">
+        <div class="service-icon">▦</div>
+        <h3>Dashboards analíticos</h3>
+        <p>Paneles que unifican todas tus fuentes de datos en un solo lugar, con alertas inteligentes y reportes automáticos.</p>
       </div>
-
-      <div class="service-card reveal reveal-delay-1">
-        <div class="service-card-header">
-          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
-          <button class="svc-toggle" aria-label="Ver ejemplos">+</button>
-        </div>
-        <h3>Integraciones</h3>
-        <p class="svc-desc">Conectamos Meta, Google, WhatsApp, CRMs externos y cualquier API que tu operacion necesite.</p>
-        <div class="svc-examples">
-          <div class="svc-examples-inner">
-            <h4>// Ejemplos reales</h4>
-            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Sync automatico entre MercadoLibre, Tiendanube y sistema interno de stock</span></div>
-            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Conexion WhatsApp Business API con CRM para respuesta automatica a leads</span></div>
-          </div>
-        </div>
-        <div class="svc-tags"><span class="svc-tag">WhatsApp API</span><span class="svc-tag">Meta</span><span class="svc-tag">Webhooks</span></div>
+      <div class="service-card reveal">
+        <div class="service-icon">⟷</div>
+        <h3>Integraciones & APIs</h3>
+        <p>Conectamos Meta, Google, WhatsApp, CRMs externos y cualquier API que tu negocio necesite. Todo sincronizado.</p>
       </div>
-
-      <div class="service-card bento-wide reveal reveal-delay-2">
-        <div class="service-card-header">
-          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6"/><path d="M1 12h6m6 0h6"/></svg></div>
-          <button class="svc-toggle" aria-label="Ver ejemplos">+</button>
-        </div>
-        <h3>Automatizaciones</h3>
-        <p class="svc-desc">Procesos que antes eran manuales, ahora corren solos. Sync de datos, alertas, reportes y asignaciones que eliminan el trabajo repetitivo.</p>
-        <div class="svc-examples">
-          <div class="svc-examples-inner">
-            <h4>// Ejemplos reales</h4>
-            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Facturacion automatica post-venta con envio de comprobante por email y WhatsApp</span></div>
-            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Asignacion automatica de tickets de soporte segun tipo y prioridad</span></div>
-            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Reporte semanal automatico de KPIs enviado al equipo directivo cada lunes</span></div>
-          </div>
-        </div>
-        <div class="svc-tags"><span class="svc-tag">n8n</span><span class="svc-tag">Cron jobs</span><span class="svc-tag">Event-driven</span><span class="svc-tag">Queues</span></div>
+      <div class="service-card reveal">
+        <div class="service-icon">⚡</div>
+        <h3>Automatizaciones + IA</h3>
+        <p>Procesos que antes eran manuales ahora corren solos. Sync de datos, alertas, reportes, asignaciones e IA donde suma.</p>
       </div>
-
-      <div class="service-card reveal reveal-delay-2">
-        <div class="service-card-header">
-          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-          <button class="svc-toggle" aria-label="Ver ejemplos">+</button>
-        </div>
-        <h3>IA aplicada</h3>
-        <p class="svc-desc">Inteligencia artificial donde tiene sentido: analisis de datos, chatbots, generacion de contenido y asistentes para tu negocio.</p>
-        <div class="svc-examples">
-          <div class="svc-examples-inner">
-            <h4>// Ejemplos reales</h4>
-            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Chatbot de atencion al cliente que responde FAQs y deriva a humano cuando es necesario</span></div>
-            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Clasificacion automatica de reseñas y sentimiento para cadena de restaurantes</span></div>
-          </div>
-        </div>
-        <div class="svc-tags"><span class="svc-tag">OpenAI</span><span class="svc-tag">LangChain</span><span class="svc-tag">NLP</span></div>
-      </div>
-
-      <div class="service-card reveal reveal-delay-2">
-        <div class="service-card-header">
-          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-          <button class="svc-toggle" aria-label="Ver ejemplos">+</button>
-        </div>
-        <h3>Desarrollo completo</h3>
-        <p class="svc-desc">Backend, frontend, base de datos, deploy. Entregamos funcionando en produccion, no un prototipo.</p>
-        <div class="svc-examples">
-          <div class="svc-examples-inner">
-            <h4>// Ejemplos reales</h4>
-            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Plataforma web completa para gestion de alquileres temporarios con pagos online</span></div>
-            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>App interna para logistica con tracking de envios y notificaciones push</span></div>
-          </div>
-        </div>
-        <div class="svc-tags"><span class="svc-tag">Next.js</span><span class="svc-tag">TypeScript</span><span class="svc-tag">Docker</span><span class="svc-tag">AWS</span></div>
-      </div>
-
-      <div class="service-card reveal reveal-delay-3">
-        <div class="service-card-header">
-          <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-          <button class="svc-toggle" aria-label="Ver ejemplos">+</button>
-        </div>
-        <h3>Soporte continuo</h3>
-        <p class="svc-desc">No desaparecemos despues de entregar. Mantenimiento, mejoras y soporte tecnico incluido post-entrega.</p>
-        <div class="svc-examples">
-          <div class="svc-examples-inner">
-            <h4>// Ejemplos reales</h4>
-            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Soporte mensual con SLA de 24hs para sistema critico de operaciones</span></div>
-            <div class="svc-example-item"><div class="svc-example-bullet"></div><span>Iteraciones mensuales de mejora basadas en feedback de usuarios finales</span></div>
-          </div>
-        </div>
-        <div class="svc-tags"><span class="svc-tag">SLA</span><span class="svc-tag">Monitoring</span><span class="svc-tag">CI/CD</span></div>
-      </div>
-
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
-
-<!-- PROCESO -->
-<section id="proceso">
+<!-- PROCESS -->
+<section id="proceso" style="border-top:1px solid var(--border)">
   <div class="container">
-    <div class="section-label reveal">Proceso</div>
-    <h2 class="section-title reveal">Como trabajamos</h2>
-    <p class="section-desc reveal">Simple, directo, sin vueltas.</p>
-    <div class="timeline-wrapper reveal">
-      <div class="timeline-sticky">
-        <div class="timeline">
-          <div class="timeline-progress"></div>
-          <div class="tl-step"><div class="tl-node">01</div><div><h3>Escuchamos</h3><p>Entendemos como opera tu negocio hoy, que funciona y que no.</p></div></div>
-          <div class="tl-step"><div class="tl-node">02</div><div><h3>Diseñamos</h3><p>Definimos la solucion exacta. Que se construye, que se integra.</p></div></div>
-          <div class="tl-step"><div class="tl-node">03</div><div><h3>Construimos</h3><p>Entregas parciales para que veas avances reales cada semana.</p></div></div>
-          <div class="tl-step"><div class="tl-node">04</div><div><h3>Acompañamos</h3><p>No desaparecemos. Soporte, ajustes y evolucion incluidos.</p></div></div>
+    <div class="section-label reveal" style="text-align:center">Proceso</div>
+    <h2 class="section-title reveal" style="text-align:center">Cómo trabajamos</h2>
+    <p class="section-desc reveal" style="text-align:center;margin-left:auto;margin-right:auto">Simple, directo, sin vueltas.</p>
+
+    <div class="process-track" id="process-track">
+      <div class="process-line-v"></div>
+      <div class="process-line-fill" id="process-fill"></div>
+
+      <div class="process-step reveal">
+        <div class="step-dot" data-step="0"></div>
+        <div class="step-content" style="text-align:right">
+          <div class="step-num">01 — ESCUCHAMOS</div>
+          <h3>Entendemos tu operación</h3>
+          <p>Cómo trabaja tu equipo hoy, qué funciona, qué no. Sin jerga técnica, sin humo.</p>
+        </div>
+        <div class="step-visual">
+          <div class="step-terminal">
+            <div class="comment"># discovery call</div>
+            <div><span class="prompt">→</span> ¿Cómo entra un lead hoy?</div>
+            <div><span class="prompt">→</span> ¿Quién lo sigue?</div>
+            <div><span class="prompt">→</span> ¿Dónde se pierde?</div>
+            <div class="output" style="margin-top:.5rem;color:var(--accent)">// mapeado ✓</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step reveal">
+        <div class="step-dot" data-step="1"></div>
+        <div class="step-content">
+          <div class="step-num">02 — DISEÑAMOS</div>
+          <h3>Definimos la solución exacta</h3>
+          <p>Qué se construye, qué se integra, qué se automatiza. Wireframes y scope cerrado antes de escribir código.</p>
+        </div>
+        <div class="step-visual">
+          <div class="step-terminal">
+            <div class="comment"># scope.md</div>
+            <div><span class="prompt">├</span> dashboard/</div>
+            <div><span class="prompt">├</span> crm/</div>
+            <div><span class="prompt">├</span> integrations/</div>
+            <div><span class="prompt">└</span> automations/</div>
+            <div class="output" style="margin-top:.5rem">4 módulos · 6 semanas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step reveal">
+        <div class="step-dot" data-step="2"></div>
+        <div class="step-content" style="text-align:right">
+          <div class="step-num">03 — CONSTRUIMOS</div>
+          <h3>Entregas semanales reales</h3>
+          <p>Deploy a staging cada viernes. Repo privado en GitHub desde el día 1. Ves avances, no promesas.</p>
+        </div>
+        <div class="step-visual">
+          <div class="step-terminal">
+            <div class="comment"># deploy log</div>
+            <div><span class="prompt">$</span> git push origin main</div>
+            <div class="output">→ Building...</div>
+            <div class="output">→ Deployed to staging ✓</div>
+            <div class="output" style="color:var(--accent)">→ https://staging.cliente.com</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step reveal">
+        <div class="step-dot" data-step="3"></div>
+        <div class="step-content">
+          <div class="step-num">04 — ACOMPAÑAMOS</div>
+          <h3>No desaparecemos</h3>
+          <p>Soporte post-deploy, ajustes, nuevas features. El sistema crece con tu negocio. Documentación técnica incluida.</p>
+        </div>
+        <div class="step-visual">
+          <div class="step-terminal">
+            <div class="comment"># support</div>
+            <div><span class="prompt">→</span> Monitoreo 24/7</div>
+            <div><span class="prompt">→</span> Hotfixes &lt; 4hs</div>
+            <div><span class="prompt">→</span> Updates mensuales</div>
+            <div class="output" style="margin-top:.5rem;color:var(--accent)">// siempre online ✓</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<div class="section-divider"></div>
 
 <!-- TESTIMONIALS -->
-<section>
+<section style="border-top:1px solid var(--border)">
   <div class="container">
-    <div class="section-label reveal">Testimonios</div>
-    <h2 class="section-title reveal">Lo que dicen nuestros clientes</h2>
-    <p class="section-desc reveal">Resultados concretos, no promesas.</p>
-    <div class="testimonials-grid">
+    <div class="section-label reveal" style="text-align:center">Clientes</div>
+    <h2 class="section-title reveal" style="text-align:center">Lo que dicen quienes<br>trabajan con nosotros</h2>
+
+    <div class="testimonials stagger-children">
       <div class="testimonial-card reveal">
-        <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">Antes tardabamos 2 horas por dia cruzando datos de 4 plataformas. Ahora todo esta en un solo dashboard y las anomalias se detectan solas. El primer mes ya nos ahorro mas de lo que costo el proyecto.</p>
+        <p class="testimonial-quote">Dejamos de perder leads y ahora sabemos exactamente cuánto convierte cada vendedor. El sistema se pagó solo el primer mes.</p>
         <div class="testimonial-author">
-          <div class="testimonial-avatar">M</div>
-          <div><div class="testimonial-name">Marcos P.</div><div class="testimonial-role">Director de Marketing Digital</div></div>
+          <div class="testimonial-avatar">MG</div>
+          <div>
+            <div class="testimonial-name">— Gerente Comercial</div>
+            <div class="testimonial-role">Concesionaria automotriz · Mar del Plata</div>
+          </div>
         </div>
       </div>
-      <div class="testimonial-card reveal reveal-delay-1">
-        <div class="testimonial-quote">"</div>
-        <p class="testimonial-text">Teniamos leads cayendo en 6 WhatsApps distintos sin que nadie supiera quien atendia a quien. Quasor nos armo un CRM que ordeno todo y la conversion subio un 40% en dos meses.</p>
+      <div class="testimonial-card reveal">
+        <p class="testimonial-quote">Antes cada vendedor manejaba sus leads por WhatsApp personal. Ahora tengo visibilidad total del pipeline sin preguntar nada.</p>
         <div class="testimonial-author">
-          <div class="testimonial-avatar">N</div>
-          <div><div class="testimonial-name">Nacho P.</div><div class="testimonial-role">Gerente Comercial</div></div>
+          <div class="testimonial-avatar">RD</div>
+          <div>
+            <div class="testimonial-name">— Director</div>
+            <div class="testimonial-role">Inmobiliaria · Mar del Plata</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
-
-<!-- CONTACTO -->
-<section id="contacto" class="cta-section">
+<!-- CTA / CONTACT -->
+<section id="contacto" class="cta-section" style="border-top:1px solid var(--border)">
   <div class="container">
-    <div class="contact-grid">
-      <div class="contact-info">
-        <div class="section-label reveal">Contacto</div>
-        <h2 class="section-title reveal">Hablemos de tu proyecto</h2>
-        <p class="section-desc reveal">Contanos que problema tenes y te mostramos como podemos resolverlo. Sin compromiso.</p>
-        <div class="contact-detail reveal">
-          <div class="contact-detail-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-          <div><div class="contact-detail-label">WhatsApp</div><a href="https://wa.me/5492236892809" target="_blank">+54 9 223 689 2809</a></div>
-        </div>
-        <div class="contact-detail reveal reveal-delay-1">
-          <div class="contact-detail-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-          <div><div class="contact-detail-label">Email</div><a href="mailto:quasortech@gmail.com">quasortech@gmail.com</a></div>
-        </div>
-        <div class="contact-detail reveal reveal-delay-2">
-          <div class="contact-detail-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
-          <div><div class="contact-detail-label">Instagram</div><a href="https://www.instagram.com/quasortech/" target="_blank">@quasortech</a></div>
-        </div>
-      </div>
-      <form class="contact-form reveal" id="contact-form">
-        <input type="text" name="name" placeholder="Tu nombre" required>
-        <input type="email" name="email" placeholder="Tu email" required>
-        <textarea name="message" placeholder="Contanos sobre tu proyecto..." rows="5" required></textarea>
-        <button type="submit" class="btn-primary">Enviar mensaje</button>
-      </form>
+    <div class="section-label reveal">Contacto</div>
+    <h2 class="section-title reveal" style="margin-left:auto;margin-right:auto">¿Tu empresa necesita un<br>sistema que funcione?</h2>
+    <p class="section-desc reveal" style="text-align:center;margin-left:auto;margin-right:auto">Si tu operación depende de Excel, WhatsApp y buena voluntad, hablemos.</p>
+    <div class="cta-actions reveal">
+      <a href="https://wa.me/5492236892809" class="btn-primary" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.612.638l4.682-1.23A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.24 0-4.326-.733-6.016-1.971a.5.5 0 00-.416-.07l-3.406.896.72-3.14a.5.5 0 00-.064-.404A9.946 9.946 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+        Escribinos por WhatsApp
+      </a>
+      <a href="mailto:ventas@quasor.com" class="btn-secondary">ventas@quasor.com</a>
+    </div>
+
+    <div class="cta-contact-info reveal">
+      <a href="mailto:ventas@quasor.com">ventas@quasor.com</a>
+      <a href="https://wa.me/5492236892809">+54 9 223 689 2809</a>
     </div>
   </div>
 </section>
-
-<!-- SCROLL TO TOP -->
-<button class="scroll-top" id="scroll-top" aria-label="Volver arriba"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
 
 <!-- FOOTER -->
-<footer class="site-footer">
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <img src="Logo Quasor.png" alt="Quasor">
-      <p>Estudio de desarrollo que construye sistemas a medida para empresas. CRMs, dashboards, automatizaciones e integraciones.</p>
-    </div>
-    <div class="footer-col">
-      <div class="footer-col-title">Servicios</div>
-      <a href="#servicios">CRMs a medida</a><a href="#servicios">Dashboards</a><a href="#servicios">Integraciones</a><a href="#servicios">Automatizaciones</a><a href="#servicios">IA aplicada</a><a href="#servicios">Soporte continuo</a>
-    </div>
-    <div class="footer-col">
-      <div class="footer-col-title">Empresa</div>
-      <a href="#proyectos">Proyectos</a><a href="#proceso">Proceso</a><a href="#contacto">Contacto</a>
-    </div>
-    <div class="footer-col">
-      <div class="footer-col-title">Contacto</div>
-      <a href="https://wa.me/5492236892809" target="_blank">WhatsApp</a>
-      <a href="mailto:quasortech@gmail.com">quasortech@gmail.com</a>
-      <a href="https://www.instagram.com/quasortech/" target="_blank">Instagram</a>
-      <a>Mar del Plata, Argentina</a>
-    </div>
+<footer>
+  <div>
+    <span style="font-weight:700;color:var(--text2)">quasor</span>
+    <span style="margin-left:.5rem">© 2026 · Software a medida para empresas</span>
   </div>
-  <div class="footer-bottom">
-    <span>&copy; 2026 Quasor. Todos los derechos reservados.</span>
-    <div class="footer-social">
-      <a href="https://www.instagram.com/quasortech/" target="_blank">Instagram</a>
-      <a href="https://wa.me/5492236892809" target="_blank">WhatsApp</a>
-      <a href="mailto:quasortech@gmail.com">Email</a>
-    </div>
+  <div>
+    <a href="https://www.instagram.com/quasortech/" target="_blank">Instagram</a>
+    <a href="https://wa.me/5492236892809" target="_blank">WhatsApp</a>
   </div>
 </footer>
 
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/5492236892809" target="_blank" class="wa-float" title="Escribinos por WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.612.638l4.682-1.23A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.24 0-4.326-.733-6.016-1.971a.5.5 0 00-.416-.07l-3.406.896.72-3.14a.5.5 0 00-.064-.404A9.946 9.946 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+</a>
+
 <script>
-/* ── LOADER ── */
-window.addEventListener('load',()=>{
-  setTimeout(()=>document.getElementById('loader').classList.add('done'),800);
+// === NAV SHRINK ===
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 80);
 });
 
-/* ── CUSTOM CURSOR ── */
-(()=>{
-  const dot=document.getElementById('cur-dot'),ring=document.getElementById('cur-ring');
-  if(!dot||!ring||!matchMedia('(hover:hover) and (pointer:fine)').matches) return;
-  let mx=0,my=0,dx=0,dy=0;
-  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
-  (function movRing(){dx+=(mx-dx)*.15;dy+=(my-dy)*.15;ring.style.left=dx+'px';ring.style.top=dy+'px';requestAnimationFrame(movRing)})();
-  document.querySelectorAll('a,button,.service-card,.project-card,.btn-primary,.btn-secondary,.nav-toggle').forEach(el=>{
-    el.addEventListener('mouseenter',()=>ring.classList.add('hover'));
-    el.addEventListener('mouseleave',()=>ring.classList.remove('hover'));
-  });
-})();
+// === REVEAL ON SCROLL ===
+const revealObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}});
+},{threshold:.12});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(el=>revealObs.observe(el));
 
-/* ── NOISE TEXTURE ── */
-(()=>{
-  const c=document.createElement('canvas'),x=c.getContext('2d');c.width=200;c.height=200;
-  const d=x.createImageData(200,200);
-  for(let i=0;i<d.data.length;i+=4){const v=Math.random()*255;d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=255}
-  x.putImageData(d,0,0);
-  const n=document.querySelector('.noise');if(n)n.style.backgroundImage='url('+c.toDataURL()+')';
-})();
-
-/* ── ORB ── */
-(()=>{
-  const orb=document.getElementById('orb');if(!orb||!matchMedia('(hover:hover)').matches)return;
-  orb.style.display='block';let ox=-500,oy=-500,tx=0,ty=0;
-  document.addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY});
-  (function mv(){ox+=(tx-ox)*.04;oy+=(ty-oy)*.04;orb.style.left=ox+'px';orb.style.top=oy+'px';requestAnimationFrame(mv)})();
-})();
-
-/* ── PARTICLES ── */
-(()=>{
-  const cv=document.getElementById('particles');if(!cv)return;
-  const ctx=cv.getContext('2d');let W,H,pts=[],mouse={x:-9999,y:-9999};
-  function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight}
-  resize();window.addEventListener('resize',resize);
-  document.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY});
-  const N=Math.min(80,Math.floor(innerWidth/18));
-  for(let i=0;i<N;i++)pts.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.5+.5});
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    for(let i=0;i<pts.length;i++){
-      const p=pts[i];
-      p.x+=p.vx;p.y+=p.vy;
-      if(p.x<0||p.x>W)p.vx*=-1;
-      if(p.y<0||p.y>H)p.vy*=-1;
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle='rgba(255,107,0,.35)';ctx.fill();
-      /* connect nearby */
-      for(let j=i+1;j<pts.length;j++){
-        const q=pts[j],dx=p.x-q.x,dy=p.y-q.y,dist=Math.sqrt(dx*dx+dy*dy);
-        if(dist<140){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle='rgba(255,107,0,'+((.12)*(1-dist/140))+')';ctx.stroke()}
-      }
-      /* mouse interaction */
-      const mdx=p.x-mouse.x,mdy=p.y-mouse.y,md=Math.sqrt(mdx*mdx+mdy*mdy);
-      if(md<180){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(mouse.x,mouse.y);ctx.strokeStyle='rgba(255,107,0,'+((.2)*(1-md/180))+')';ctx.stroke()}
-    }
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
-
-/* ── NAV SCROLL ── */
-(()=>{
-  const nav=document.querySelector('nav');
-  let ticking=false;
-  window.addEventListener('scroll',()=>{
-    if(!ticking){requestAnimationFrame(()=>{nav.classList.toggle('scrolled',scrollY>40);ticking=false});ticking=true}
-  });
-})();
-
-/* ── MOBILE MENU ── */
-(()=>{
-  const toggle=document.querySelector('.nav-toggle'),menu=document.querySelector('.mobile-menu');
-  if(!toggle||!menu)return;
-  toggle.addEventListener('click',()=>{toggle.classList.toggle('active');menu.classList.toggle('open')});
-  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{toggle.classList.remove('active');menu.classList.remove('open')}));
-})();
-
-/* ── SCROLL REVEAL (pure JS, no CSS) ── */
-(()=>{
-  const els=document.querySelectorAll('.reveal');
-  els.forEach(el=>{el.style.opacity='0';el.style.transform='translateY(30px)';el.style.transition='none'});
-  const delays={'reveal-delay-1':100,'reveal-delay-2':200,'reveal-delay-3':300};
-  const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{
-    if(!e.isIntersecting)return;
-    const el=e.target;
-    let d=0;
-    for(const[cls,ms] of Object.entries(delays)){if(el.classList.contains(cls))d=ms}
-    setTimeout(()=>{el.style.transition='opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)';el.style.opacity='1';el.style.transform='translateY(0)'},d);
-    obs.unobserve(el);
-  })},{threshold:.08,rootMargin:'0px 0px -20px 0px'});
-  requestAnimationFrame(()=>els.forEach(el=>obs.observe(el)));
-})();
-
-/* ── COUNTER ANIMATION ── */
-(()=>{
-  const counters=document.querySelectorAll('.counter');
-  const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{
-    if(!e.isIntersecting)return;
-    const el=e.target,target=+el.dataset.target;
-    let current=0;const dur=2000,step=Math.max(1,Math.floor(target/100)),start=performance.now();
+// === COUNTER ANIMATION ===
+const counterObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const el=e.target, target=parseFloat(el.dataset.target), dec=parseInt(el.dataset.decimals||0);
+    let start=0;const dur=1200,t0=performance.now();
     function tick(now){
-      const progress=Math.min((now-start)/dur,1);
-      const eased=1-Math.pow(1-progress,3);
-      current=Math.round(eased*target);
-      el.textContent=current>=1000?current.toLocaleString('es-AR'):current;
-      if(progress<1)requestAnimationFrame(tick);else el.textContent=target>=1000?target.toLocaleString('es-AR'):target;
+      const p=Math.min((now-t0)/dur,1);
+      const ease=1-Math.pow(1-p,3);
+      el.textContent=(target*ease).toFixed(dec);
+      if(p<1)requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
-    obs.unobserve(el);
-  })},{threshold:.5});
-  counters.forEach(c=>obs.observe(c));
-})();
-
-/* ── SERVICE CARD GLOW + EXPAND ── */
-(()=>{
-  document.querySelectorAll('.service-card').forEach(card=>{
-    card.addEventListener('mousemove',e=>{
-      const r=card.getBoundingClientRect();
-      card.style.setProperty('--mx',(e.clientX-r.left)+'px');
-      card.style.setProperty('--my',(e.clientY-r.top)+'px');
-    });
-    card.addEventListener('click',()=>{
-      const wasActive=card.classList.contains('active');
-      document.querySelectorAll('.service-card.active').forEach(c=>c.classList.remove('active'));
-      if(!wasActive)card.classList.add('active');
-    });
+    counterObs.unobserve(el);
   });
-})();
+},{threshold:.5});
+document.querySelectorAll('.counter').forEach(el=>counterObs.observe(el));
 
-/* ── TIMELINE SCROLL PROGRESS ── */
-(()=>{
-  const wrapper=document.querySelector('.timeline-wrapper');
-  if(!wrapper)return;
-  const bar=wrapper.querySelector('.timeline-progress'),steps=wrapper.querySelectorAll('.tl-step');
-  const isMobile=()=>innerWidth<=768;
-  function updateTimeline(){
-    const rect=wrapper.getBoundingClientRect(),wH=innerHeight;
-    let progress=Math.max(0,Math.min(1,(wH*.6-rect.top)/rect.height));
-    if(isMobile()){bar.style.height=(progress*100)+'%';bar.style.width='2px'}
-    else{bar.style.width=(progress*100)+'%';bar.style.height='2px'}
-    steps.forEach((s,i)=>{s.classList.toggle('active',progress>=(i/(steps.length-1))-.05)});
-  }
-  let ticking=false;
-  window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(()=>{updateTimeline();ticking=false});ticking=true}});
-  window.addEventListener('resize',updateTimeline);
-  updateTimeline();
-})();
-
-/* ── BUTTON RIPPLE ── */
-document.querySelectorAll('.btn-primary').forEach(btn=>{
-  btn.addEventListener('click',function(e){
-    const r=this.getBoundingClientRect(),rip=document.createElement('span');
-    rip.className='ripple';rip.style.left=(e.clientX-r.left)+'px';rip.style.top=(e.clientY-r.top)+'px';
-    this.appendChild(rip);setTimeout(()=>rip.remove(),600);
-  });
-});
-
-/* ── CHART BARS ── */
-(()=>{
-  const chart=document.getElementById('chart-auto');if(!chart)return;
-  const vals=[35,55,40,70,50,85,65,45,75,60,90,55];
-  vals.forEach((v,i)=>{
-    const bar=document.createElement('div');bar.className='mock-bar-el';
-    bar.style.height='4px';
-    const hue=i%2===0?'var(--accent)':'var(--accent2)';
-    bar.style.background=`linear-gradient(to top,${hue},rgba(255,140,51,.6))`;
-    chart.appendChild(bar);
-  });
-  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{
-    if(!e.isIntersecting)return;
-    chart.querySelectorAll('.mock-bar-el').forEach((bar,i)=>{
-      setTimeout(()=>{bar.style.height=vals[i]+'%'},i*80);
+// === CHART BAR ANIMATION ===
+const chartObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    e.target.querySelectorAll('.chart-bar').forEach((bar,i)=>{
+      setTimeout(()=>bar.classList.add('animate'),i*60);
     });
-    obs.unobserve(chart);
-  })},{threshold:.3});
-  obs.observe(chart);
-  /* periodic fluctuation */
-  setInterval(()=>{
-    chart.querySelectorAll('.mock-bar-el').forEach((bar,i)=>{
-      const fluct=vals[i]+Math.round((Math.random()-.5)*12);
-      bar.style.height=Math.max(8,Math.min(95,fluct))+'%';
-    });
-  },3000);
-})();
+    chartObs.unobserve(e.target);
+  });
+},{threshold:.3});
+document.querySelectorAll('.chart-bar-group').forEach(el=>chartObs.observe(el));
 
-/* ── PARALLAX HERO ── */
-(()=>{
-  const el=document.getElementById('hero-inner');if(!el)return;
-  let ticking=false;
+// === PROCESS LINE FILL ===
+const processTrack=document.getElementById('process-track');
+const processFill=document.getElementById('process-fill');
+const stepDots=document.querySelectorAll('.step-dot');
+if(processTrack && processFill){
   window.addEventListener('scroll',()=>{
-    if(!ticking){requestAnimationFrame(()=>{
-      const y=scrollY;
-      if(y<innerHeight){
-        const o=Math.max(0,1-y/(innerHeight*.7));
-        el.style.transform='translateY('+y*.15+'px)';
-        el.style.opacity=o;
-      }
-      ticking=false;
-    });ticking=true}
+    const rect=processTrack.getBoundingClientRect();
+    const trackH=rect.height;
+    const scrolled=Math.max(0,Math.min(1,(-rect.top+window.innerHeight*.5)/trackH));
+    processFill.style.height=(scrolled*100)+'%';
+    stepDots.forEach(dot=>{
+      const stepRect=dot.getBoundingClientRect();
+      dot.classList.toggle('active',stepRect.top<window.innerHeight*.55);
+    });
   });
-})();
+}
 
-/* ── CONTACT FORM → WHATSAPP ── */
-(()=>{
-  const form=document.getElementById('contact-form');if(!form)return;
-  form.addEventListener('submit',e=>{
-    e.preventDefault();
-    const name=form.name.value.trim(),email=form.email.value.trim(),msg=form.message.value.trim();
-    const text=encodeURIComponent('Hola! Soy '+name+' ('+email+'). '+msg);
-    window.open('https://wa.me/5492236892809?text='+text,'_blank');
-    form.reset();
+// === APPLE-STYLE DASHBOARD EXPLODER ===
+const exploder=document.getElementById('exploder');
+const dashShell=document.getElementById('dash-shell');
+const layerMetrics=document.getElementById('layer-metrics');
+const layerChart=document.getElementById('layer-chart');
+const layerTable=document.getElementById('layer-table');
+const calloutMetrics=document.getElementById('callout-metrics');
+const calloutChart=document.getElementById('callout-chart');
+const calloutTable=document.getElementById('callout-table');
+
+if(exploder && dashShell && window.innerWidth>768){
+  window.addEventListener('scroll',()=>{
+    const rect=exploder.getBoundingClientRect();
+    const totalH=rect.height-window.innerHeight;
+    const raw=-rect.top/totalH;
+    const progress=Math.max(0,Math.min(1,raw));
+
+    // Phase 0-0.15: Dashboard scales up and assembles
+    // Phase 0.15-0.4: Metrics layer highlights + callout
+    // Phase 0.4-0.65: Chart layer highlights + callout
+    // Phase 0.65-0.9: Table layer highlights + callout
+    // Phase 0.9-1: Everything comes back together
+
+    const scale=progress<.05?(.92+progress/.05*.08):1;
+    dashShell.style.transform=`scale(${scale})`;
+    dashShell.style.opacity=1;
+
+    // Explode layers apart
+    let metricsY=0,chartY=0,tableY=0;
+    let metricsOp=1,chartOp=1,tableOp=1;
+
+    if(progress>.12 && progress<.9){
+      const explodeAmount=Math.min(1,(progress-.12)/.12);
+      metricsY=-20*explodeAmount;
+      chartY=0;
+      tableY=20*explodeAmount;
+    }
+
+    // Highlight phases
+    if(progress>=.15 && progress<.4){
+      const p=(progress-.15)/.25;
+      metricsOp=1;chartOp=.25;tableOp=.25;
+      calloutMetrics.style.opacity=p<.2?p/.2:(p>.8?(1-(p-.8)/.2):1);
+      calloutMetrics.style.transform=`translateX(${(1-Math.min(1,p/.3))*30}px)`;
+    } else {
+      calloutMetrics.style.opacity=0;
+    }
+
+    if(progress>=.4 && progress<.65){
+      const p=(progress-.4)/.25;
+      metricsOp=.25;chartOp=1;tableOp=.25;
+      calloutChart.style.opacity=p<.2?p/.2:(p>.8?(1-(p-.8)/.2):1);
+      calloutChart.style.transform=`translateX(${-(1-Math.min(1,p/.3))*30}px)`;
+    } else {
+      calloutChart.style.opacity=progress>=.15&&progress<.4?calloutChart.style.opacity:0;
+    }
+
+    if(progress>=.65 && progress<.9){
+      const p=(progress-.65)/.25;
+      metricsOp=.25;chartOp=.25;tableOp=1;
+      calloutTable.style.opacity=p<.2?p/.2:(p>.8?(1-(p-.8)/.2):1);
+      calloutTable.style.transform=`translateX(${(1-Math.min(1,p/.3))*30}px)`;
+    } else if(progress<.65){
+      calloutTable.style.opacity=0;
+    }
+
+    if(progress>=.9){
+      metricsOp=1;chartOp=1;tableOp=1;
+      metricsY=0;chartY=0;tableY=0;
+      calloutMetrics.style.opacity=0;
+      calloutChart.style.opacity=0;
+      calloutTable.style.opacity=0;
+    }
+
+    layerMetrics.style.transform=`translateY(${metricsY}px)`;
+    layerMetrics.style.opacity=metricsOp;
+    layerChart.style.transform=`translateY(${chartY}px)`;
+    layerChart.style.opacity=chartOp;
+    layerTable.style.transform=`translateY(${tableY}px)`;
+    layerTable.style.opacity=tableOp;
   });
-})();
+}
 
-/* ── TYPED EFFECT ── */
-(()=>{
-  const el=document.getElementById('typed-target'),cur=document.getElementById('typed-cursor');
-  if(!el)return;
-  const phrases=['Nosotros lo resolvemos.','Automatizamos tu operacion.','Centralizamos tus datos.','Potenciamos tu equipo.'];
-  let pi=0,ci=0,deleting=false;
-  function tick(){
-    const phrase=phrases[pi];
-    if(!deleting){
-      el.textContent=phrase.substring(0,ci+1);ci++;
-      if(ci===phrase.length){setTimeout(()=>{deleting=true;tick()},2200);return}
-      setTimeout(tick,55);
-    }else{
-      el.textContent=phrase.substring(0,ci-1);ci--;
-      if(ci===0){deleting=false;pi=(pi+1)%phrases.length;setTimeout(tick,400);return}
-      setTimeout(tick,30);
+// === INDUSTRY TAB SWITCHER ===
+const industryData={
+  automotriz:{
+    desc:'Esto no es un mockup. Es un dashboard real que controla $4.2M en inversión publicitaria para una concesionaria automotriz.',
+    metrics:[
+      {label:'Gasto total',value:'$4.2M',change:'-12% vs mes ant.',changeClass:'down'},
+      {label:'Leads mes',value:'347',change:'+23% vs mes ant.',changeClass:'up',accent:true},
+      {label:'CPL promedio',value:'$12.1k',change:'Meta: $15k',changeClass:''},
+      {label:'Conversión',value:'8.4%',change:'-0.3% vs mes ant.',changeClass:'down'}
+    ],
+    rows:[
+      ['Hilux SR5 - Marzo','Meta Ads','$890k','84 leads','hot'],
+      ['Corolla Cross CVT','Google','$720k','52 leads','new'],
+      ['Usados Premium','Meta Ads','$1.1M','127 leads','closed'],
+      ['Plan Ahorro Yaris','Google','$480k','41 leads','new']
+    ],
+    callouts:{
+      metrics:{tag:'Tiempo real',title:'Todo en un vistazo',text:'Gasto, leads, CPL y conversión. Sin entrar a cada plataforma por separado.'},
+      chart:{tag:'Anomalías',title:'Detecta problemas antes',text:'Si el gasto sube sin clicks, el sistema alerta automáticamente.'},
+      table:{tag:'Pipeline',title:'Cada lead, rastreado',text:'Desde el click hasta el cierre. Sabés qué vendedor convierte y cuál no.'}
+    }
+  },
+  inmobiliaria:{
+    desc:'Dashboard real de una inmobiliaria con 6 vendedores. Controla cada consulta desde el portal hasta el cierre de operación.',
+    metrics:[
+      {label:'Consultas mes',value:'284',change:'+18% vs mes ant.',changeClass:'up',accent:true},
+      {label:'Visitas agendadas',value:'91',change:'+12% vs mes ant.',changeClass:'up'},
+      {label:'Tasa de cierre',value:'6.2%',change:'Meta: 8%',changeClass:''},
+      {label:'Ticket promedio',value:'$85M',change:'+5% vs trimestre',changeClass:'up'}
+    ],
+    rows:[
+      ['Depto 2amb Güemes','ZonaProp','$45k','12 consultas','hot'],
+      ['Casa Playa Grande','Instagram','$32k','8 consultas','new'],
+      ['Local Comercial Centro','Google','$28k','18 consultas','closed'],
+      ['Cocheras Colón','ZonaProp','$15k','6 consultas','new']
+    ],
+    callouts:{
+      metrics:{tag:'Tiempo real',title:'Pipeline completo',text:'Consultas, visitas, ofertas y cierres. Todo el funnel de cada propiedad.'},
+      chart:{tag:'Tendencias',title:'Demanda por zona',text:'Visualizá qué zonas tienen más consultas y ajustá tu inversión.'},
+      table:{tag:'Seguimiento',title:'Cada consulta asignada',text:'Quién atendió, cuándo siguió y en qué estado está. Sin perder ninguna.'}
     }
   }
-  setTimeout(tick,1200);
-})();
+};
 
-/* ── SCROLL TO TOP ── */
-(()=>{
-  const btn=document.getElementById('scroll-top');if(!btn)return;
-  let ticking=false;
-  window.addEventListener('scroll',()=>{
-    if(!ticking){requestAnimationFrame(()=>{btn.classList.toggle('visible',scrollY>600);ticking=false});ticking=true}
-  });
-  btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-})();
+document.querySelectorAll('.industry-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.industry-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    const key=tab.dataset.industry;
+    const d=industryData[key];
 
-/* ── ACTIVE NAV LINK ── */
-(()=>{
-  const sections=document.querySelectorAll('section[id]');
-  const navLinks=document.querySelectorAll('.nav-links a:not(.nav-cta)');
-  let ticking=false;
-  window.addEventListener('scroll',()=>{
-    if(!ticking){requestAnimationFrame(()=>{
-      let current='';
-      sections.forEach(s=>{
-        const top=s.getBoundingClientRect().top;
-        if(top<innerHeight*.4)current=s.id;
-      });
-      navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+current)});
-      ticking=false;
-    });ticking=true}
-  });
-})();
+    // Update description
+    const descEl=document.getElementById('exploder-desc');
+    if(descEl) descEl.textContent=d.desc;
 
-/* ── SMOOTH SCROLL OFFSET ── */
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const id=a.getAttribute('href');if(id==='#')return;
-    const target=document.querySelector(id);if(!target)return;
-    e.preventDefault();
-    const offset=70;
-    const y=target.getBoundingClientRect().top+scrollY-offset;
-    window.scrollTo({top:y,behavior:'smooth'});
+    // Update metrics
+    const metricsContainer=document.querySelector('.dash-metrics');
+    if(metricsContainer){
+      metricsContainer.innerHTML=d.metrics.map(m=>
+        `<div class="dash-metric"><div class="label">${m.label}</div><div class="value"${m.accent?' style="color:var(--accent)"':''}>${m.value}</div><div class="change ${m.changeClass}">${m.change}</div></div>`
+      ).join('');
+    }
+
+    // Update table
+    const tableContainer=document.querySelector('.dash-table');
+    if(tableContainer){
+      tableContainer.innerHTML=
+        `<div class="dash-table-row"><span>Campaña</span><span>Plataforma</span><span>Gasto</span><span>Estado</span></div>`+
+        d.rows.map(r=>
+          `<div class="dash-table-row"><span>${r[0]}</span><span>${r[1]}</span><span>${r[2]}</span><span class="status status-${r[4]}">${r[3]}</span></div>`
+        ).join('');
+    }
+
+    // Update callouts
+    if(calloutMetrics){
+      calloutMetrics.querySelector('.tag').textContent=d.callouts.metrics.tag;
+      calloutMetrics.querySelector('h3').textContent=d.callouts.metrics.title;
+      calloutMetrics.querySelector('p').textContent=d.callouts.metrics.text;
+    }
+    if(calloutChart){
+      calloutChart.querySelector('.tag').textContent=d.callouts.chart.tag;
+      calloutChart.querySelector('h3').textContent=d.callouts.chart.title;
+      calloutChart.querySelector('p').textContent=d.callouts.chart.text;
+    }
+    if(calloutTable){
+      calloutTable.querySelector('.tag').textContent=d.callouts.table.tag;
+      calloutTable.querySelector('h3').textContent=d.callouts.table.title;
+      calloutTable.querySelector('p').textContent=d.callouts.table.text;
+    }
   });
-})
+});
 </script>
+
 </body>
 </html>
