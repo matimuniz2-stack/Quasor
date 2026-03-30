@@ -1,1775 +1,1173 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quasor — Sistemas a medida para empresas</title>
-    <link rel="icon" type="image/png" href="Logo Quasor.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --zinc-50: #fafafa;
-            --zinc-100: #f4f4f5;
-            --zinc-200: #e4e4e7;
-            --zinc-300: #d4d4d8;
-            --zinc-400: #a1a1ab;
-            --zinc-500: #71717a;
-            --zinc-600: #52525b;
-            --zinc-700: #3f3f46;
-            --zinc-800: #27272a;
-            --zinc-900: #18181b;
-            --zinc-950: #09090b;
-            --amber-400: #e8a849;
-            --amber-500: #d4842a;
-            --amber-600: #c27022;
-            --amber-700: #a35a1a;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--zinc-950);
-            color: var(--zinc-300);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* NAV */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(9, 9, 11, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(161, 161, 171, 0.08);
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            text-decoration: none;
-        }
-
-        .nav-logo img {
-            height: 32px;
-            width: auto;
-        }
-
-        .nav-logo-text {
-            font-size: 1.15rem;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            background: linear-gradient(135deg, var(--amber-400), var(--zinc-500));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--zinc-400);
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--amber-400);
-        }
-
-        .nav-cta {
-            background: var(--amber-600);
-            color: var(--zinc-50) !important;
-            padding: 0.5rem 1.25rem;
-            border-radius: 6px;
-            transition: background 0.3s !important;
-        }
-
-        .nav-cta:hover {
-            background: var(--amber-500) !important;
-        }
-
-        /* HERO */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 8rem 2rem 4rem;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(212, 132, 42, 0.07) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .hero-logo {
-            width: 80px;
-            height: auto;
-            margin-bottom: 2rem;
-            filter: drop-shadow(0 0 40px rgba(212, 132, 42, 0.2));
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.4rem 1rem;
-            border: 1px solid rgba(212, 132, 42, 0.25);
-            border-radius: 100px;
-            font-size: 0.8rem;
-            color: var(--amber-400);
-            margin-bottom: 2rem;
-            background: rgba(212, 132, 42, 0.05);
-        }
-
-        .hero-badge::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: var(--amber-500);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 7vw, 5.5rem);
-            font-weight: 900;
-            line-height: 1.05;
-            color: var(--zinc-50);
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.03em;
-        }
-
-        .hero h1 .gradient {
-            background: linear-gradient(135deg, var(--amber-400), var(--amber-700));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--zinc-400);
-            max-width: 560px;
-            margin-bottom: 3rem;
-            font-weight: 400;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .btn-primary {
-            padding: 0.85rem 2rem;
-            background: var(--amber-600);
-            color: var(--zinc-50);
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .btn-primary:hover {
-            background: var(--amber-500);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(212, 132, 42, 0.25);
-        }
-
-        .btn-secondary {
-            padding: 0.85rem 2rem;
-            background: transparent;
-            color: var(--zinc-300);
-            border: 1px solid var(--zinc-700);
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--zinc-500);
-            color: var(--zinc-50);
-        }
-
-        /* SECTIONS */
-        section {
-            padding: 7rem 2rem;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--amber-500);
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            color: var(--zinc-50);
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-
-        .section-desc {
-            font-size: 1.1rem;
-            color: var(--zinc-400);
-            max-width: 600px;
-            margin-bottom: 4rem;
-        }
-
-        /* STATS */
-        .stats {
-            border-top: 1px solid rgba(161, 161, 171, 0.08);
-            border-bottom: 1px solid rgba(161, 161, 171, 0.08);
-            padding: 4rem 2rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            max-width: 1100px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--zinc-50);
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-number span {
-            color: var(--amber-500);
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--zinc-500);
-        }
-
-        /* PROJECTS / CRM SHOWCASE */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 3rem;
-        }
-
-        .project-card {
-            background: linear-gradient(135deg, rgba(39, 39, 42, 0.5), rgba(24, 24, 27, 0.8));
-            border: 1px solid rgba(161, 161, 171, 0.1);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.4s;
-        }
-
-        .project-card:hover {
-            border-color: rgba(212, 132, 42, 0.3);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-        }
-
-        .project-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-        }
-
-        .project-info {
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .project-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--amber-400);
-            margin-bottom: 1rem;
-        }
-
-        .project-name {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--zinc-50);
-            margin-bottom: 1rem;
-        }
-
-        .project-desc {
-            color: var(--zinc-400);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
-        .project-features {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
-
-        .project-features li {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-size: 0.9rem;
-            color: var(--zinc-300);
-        }
-
-        .project-features li::before {
-            content: '';
-            width: 5px;
-            height: 5px;
-            background: var(--amber-500);
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        .project-visual {
-            background: var(--zinc-900);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            min-height: 360px;
-            overflow: hidden;
-        }
-
-        .project-visual img.screenshot {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .project-mockup {
-            width: 90%;
-            border-radius: 8px;
-            background: var(--zinc-800);
-            border: 1px solid var(--zinc-700);
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .mockup-bar {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 10px 14px;
-            background: var(--zinc-700);
-        }
-
-        .mockup-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--zinc-600);
-        }
-
-        .mockup-dot:first-child { background: #ef4444; }
-        .mockup-dot:nth-child(2) { background: #eab308; }
-        .mockup-dot:nth-child(3) { background: #22c55e; }
-
-        .mockup-body {
-            padding: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .mockup-row {
-            display: flex;
-            gap: 0.75rem;
-        }
-
-        .mockup-card {
-            flex: 1;
-            padding: 1rem;
-            background: var(--zinc-900);
-            border-radius: 8px;
-            border: 1px solid var(--zinc-700);
-        }
-
-        .mockup-card-label {
-            font-size: 0.65rem;
-            color: var(--zinc-500);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.4rem;
-        }
-
-        .mockup-card-value {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--zinc-50);
-        }
-
-        .mockup-card-value.accent { color: var(--amber-400); }
-        .mockup-card-value.green { color: #22c55e; }
-
-        .mockup-chart {
-            height: 100px;
-            background: var(--zinc-900);
-            border-radius: 8px;
-            border: 1px solid var(--zinc-700);
-            position: relative;
-            overflow: hidden;
-            padding: 1rem;
-        }
-
-        .chart-bars {
-            display: flex;
-            align-items: flex-end;
-            gap: 4px;
-            height: 100%;
-        }
-
-        .chart-bar {
-            flex: 1;
-            background: linear-gradient(to top, var(--amber-700), var(--amber-400));
-            border-radius: 3px 3px 0 0;
-            min-height: 8px;
-        }
-
-        /* === RICH CRM MOCKUPS === */
-        .crm-app {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            font-family: 'Inter', sans-serif;
-            font-size: 10px;
-            line-height: 1.4;
-            min-height: 400px;
-        }
-
-        .crm-sidebar {
-            width: 52px;
-            background: #1a1a1a;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px 0;
-            gap: 2px;
-            flex-shrink: 0;
-        }
-
-        .crm-sb-logo {
-            width: 30px;
-            height: 30px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 14px;
-            color: #fff;
-            margin-bottom: 12px;
-            flex-shrink: 0;
-        }
-
-        .crm-sb-item {
-            width: 36px;
-            height: 32px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255,255,255,.35);
-            font-size: 13px;
-            cursor: default;
-            transition: all .2s;
-        }
-
-        .crm-sb-item.active {
-            color: #fff;
-            border-radius: 6px;
-        }
-
-        .crm-main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .crm-topbar {
-            height: 36px;
-            padding: 0 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 1px solid;
-            flex-shrink: 0;
-        }
-
-        .crm-topbar-title {
-            font-weight: 800;
-            font-size: 11px;
-            flex: 1;
-        }
-
-        .crm-topbar-search {
-            padding: 3px 8px;
-            border-radius: 5px;
-            font-size: 9px;
-            border: 1px solid;
-            width: 90px;
-        }
-
-        .crm-content {
-            flex: 1;
-            padding: 10px 14px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .crm-kpi-row {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
-        }
-
-        .crm-kpi {
-            padding: 8px 10px;
-            border-radius: 7px;
-            border: 1px solid;
-        }
-
-        .crm-kpi-label {
-            font-size: 8px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: .06em;
-            opacity: .55;
-            margin-bottom: 2px;
-        }
-
-        .crm-kpi-val {
-            font-size: 16px;
-            font-weight: 800;
-            line-height: 1.2;
-        }
-
-        .crm-kpi-sub {
-            font-size: 8px;
-            margin-top: 1px;
-        }
-
-        .crm-table {
-            flex: 1;
-            border-radius: 7px;
-            border: 1px solid;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .crm-table-head {
-            display: grid;
-            padding: 6px 10px;
-            font-size: 8px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .06em;
-            border-bottom: 1px solid;
-        }
-
-        .crm-table-row {
-            display: grid;
-            padding: 6px 10px;
-            font-size: 9.5px;
-            border-bottom: 1px solid;
-            align-items: center;
-        }
-
-        .crm-table-row:last-child { border-bottom: none; }
-
-        .crm-badge {
-            display: inline-flex;
-            padding: 1px 6px;
-            border-radius: 10px;
-            font-size: 8px;
-            font-weight: 700;
-            width: fit-content;
-        }
-
-        .crm-temp-dot {
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            margin-right: 3px;
-            vertical-align: middle;
-        }
-
-        /* Pipeline columns */
-        .crm-pipeline {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
-            flex: 1;
-        }
-
-        .crm-pipe-col {
-            border-radius: 7px;
-            padding: 6px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .crm-pipe-header {
-            font-size: 8px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .05em;
-            padding-bottom: 4px;
-            border-bottom: 1px solid;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .crm-pipe-count {
-            padding: 1px 5px;
-            border-radius: 8px;
-            font-size: 8px;
-            font-weight: 800;
-        }
-
-        .crm-pipe-card {
-            padding: 6px 7px;
-            border-radius: 5px;
-            border: 1px solid;
-            font-size: 8.5px;
-        }
-
-        .crm-pipe-name {
-            font-weight: 700;
-            font-size: 9px;
-            margin-bottom: 2px;
-        }
-
-        .crm-pipe-detail {
-            opacity: .5;
-            font-size: 7.5px;
-        }
-
-        /* Mini chart for dashboard mockup */
-        .crm-minichart {
-            border-radius: 7px;
-            border: 1px solid;
-            padding: 8px 10px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .crm-minichart-title {
-            font-size: 8px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .05em;
-            opacity: .55;
-            margin-bottom: 6px;
-        }
-
-        .crm-minichart-bars {
-            display: flex;
-            align-items: flex-end;
-            gap: 3px;
-            height: 45px;
-        }
-
-        .crm-minibar {
-            flex: 1;
-            border-radius: 2px 2px 0 0;
-            min-height: 3px;
-        }
-
-        /* Dark theme CRM */
-        .crm-dark .crm-main { background: #111318; }
-        .crm-dark .crm-topbar { background: #1e2128; color: #e8eaf0; border-color: #2e3240; }
-        .crm-dark .crm-topbar-search { background: #111318; color: #9ba3b8; border-color: #2e3240; }
-        .crm-dark .crm-content { background: #111318; }
-        .crm-dark .crm-kpi { background: #1e2128; border-color: #2e3240; color: #e8eaf0; }
-        .crm-dark .crm-kpi-label { color: #9ba3b8; }
-        .crm-dark .crm-kpi-sub { color: #5a6278; }
-        .crm-dark .crm-table { background: #1e2128; border-color: #2e3240; }
-        .crm-dark .crm-table-head { color: #9ba3b8; border-color: #2e3240; background: #1a1d24; }
-        .crm-dark .crm-table-row { color: #e8eaf0; border-color: #252830; }
-        .crm-dark .crm-pipe-col { background: #1a1d24; }
-        .crm-dark .crm-pipe-header { color: #9ba3b8; border-color: #2e3240; }
-        .crm-dark .crm-pipe-card { background: #1e2128; border-color: #2e3240; color: #e8eaf0; }
-        .crm-dark .crm-minichart { background: #1e2128; border-color: #2e3240; }
-        .crm-dark .crm-minichart-title { color: #9ba3b8; }
-
-        /* Light theme CRM */
-        .crm-light .crm-main { background: #f5f5f3; }
-        .crm-light .crm-topbar { background: #fff; color: #1a1a1a; border-color: #e4e2de; }
-        .crm-light .crm-topbar-search { background: #f5f5f3; color: #6b6560; border-color: #e4e2de; }
-        .crm-light .crm-content { background: #f5f5f3; }
-        .crm-light .crm-kpi { background: #fff; border-color: #e4e2de; color: #1a1a1a; }
-        .crm-light .crm-kpi-label { color: #6b6560; }
-        .crm-light .crm-kpi-sub { color: #a09890; }
-        .crm-light .crm-table { background: #fff; border-color: #e4e2de; }
-        .crm-light .crm-table-head { color: #6b6560; border-color: #e4e2de; background: #fafaf9; }
-        .crm-light .crm-table-row { color: #1a1a1a; border-color: #f0efed; }
-        .crm-light .crm-pipe-col { background: #ebebea; }
-        .crm-light .crm-pipe-header { color: #6b6560; border-color: #d0cdc8; }
-        .crm-light .crm-pipe-card { background: #fff; border-color: #e4e2de; color: #1a1a1a; }
-        .crm-light .crm-minichart { background: #fff; border-color: #e4e2de; }
-        .crm-light .crm-minichart-title { color: #6b6560; }
-
-        /* Accent colors */
-        .accent-red { color: #c8191a; }
-        .accent-blue { color: #1e56b0; }
-        .accent-green { color: #277a48; }
-        .accent-orange { color: #c85c18; }
-        .bg-red { background: #c8191a; }
-        .bg-blue { background: #1e56b0; }
-        .bg-green-soft { background: #edf7f1; color: #277a48; }
-        .bg-orange-soft { background: #fef2e8; color: #c85c18; }
-        .bg-blue-soft { background: #eef3fd; color: #1e56b0; }
-        .bg-red-soft { background: #fdf2f2; color: #c8191a; }
-        .bg-purple-soft { background: #f3eefb; color: #6b3ea0; }
-        .bg-gold-soft { background: #fdf8ee; color: #c49a2e; }
-
-        /* Status live dot animation */
-        .crm-live-dot {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: #277a48;
-            animation: pulse 1.5s infinite;
-            display: inline-block;
-        }
-
-        /* Interactive view panels */
-        .crm-view-panel { display: none; }
-        .crm-view-panel.active { display: flex; }
-        .crm-sb-item[data-view] { cursor: pointer; transition: all .15s; }
-        .crm-sb-item[data-view]:hover { color: rgba(255,255,255,.8); background: rgba(255,255,255,.1); }
-
-        @media (max-width: 768px) {
-            .crm-app { min-height: 300px; font-size: 8px; }
-            .crm-sidebar { width: 38px; }
-            .crm-kpi-row { grid-template-columns: repeat(2, 1fr); }
-            .crm-pipeline { grid-template-columns: repeat(3, 1fr); }
-            .crm-kpi-val { font-size: 13px; }
-        }
-
-        /* SERVICES */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .service-card {
-            padding: 2rem;
-            background: rgba(39, 39, 42, 0.3);
-            border: 1px solid rgba(161, 161, 171, 0.08);
-            border-radius: 12px;
-            transition: all 0.3s;
-        }
-
-        .service-card:hover {
-            border-color: rgba(212, 132, 42, 0.2);
-            background: rgba(39, 39, 42, 0.5);
-        }
-
-        .service-icon {
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(212, 132, 42, 0.1);
-            border-radius: 10px;
-            margin-bottom: 1.25rem;
-            color: var(--amber-400);
-            font-size: 1.2rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--zinc-50);
-            margin-bottom: 0.6rem;
-        }
-
-        .service-card p {
-            font-size: 0.9rem;
-            color: var(--zinc-500);
-            line-height: 1.6;
-        }
-
-        /* PROCESS */
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            counter-reset: step;
-        }
-
-        .step {
-            position: relative;
-        }
-
-        .step::before {
-            counter-increment: step;
-            content: counter(step, decimal-leading-zero);
-            font-size: 3rem;
-            font-weight: 900;
-            color: var(--zinc-800);
-            line-height: 1;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .step h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--zinc-50);
-            margin-bottom: 0.5rem;
-        }
-
-        .step p {
-            font-size: 0.9rem;
-            color: var(--zinc-500);
-        }
-
-        /* CTA */
-        .cta {
-            text-align: center;
-            position: relative;
-        }
-
-        .cta::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(212, 132, 42, 0.05) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .cta .section-desc {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* FOOTER */
-        footer {
-            border-top: 1px solid rgba(161, 161, 171, 0.08);
-            padding: 3rem 2rem;
-        }
-
-        .footer-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-left {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.85rem;
-            color: var(--zinc-600);
-        }
-
-        .footer-left img {
-            height: 20px;
-            width: auto;
-            opacity: 0.5;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .footer-links a {
-            color: var(--zinc-500);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--amber-400);
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-
-            .project-content {
-                grid-template-columns: 1fr;
-            }
-
-            .project-visual {
-                min-height: 250px;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .process-steps {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                width: 100%;
-                max-width: 320px;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 1.5rem;
-                text-align: center;
-            }
-
-            .hero-logo {
-                width: 60px;
-            }
-        }
-
-        /* ANIMATIONS */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.7s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quasor — Sistemas a medida para empresas</title>
+<link rel="icon" type="image/png" href="Logo Quasor.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep: #050a15;
+  --surface: #0a1128;
+  --card: #0f172a;
+  --text: #e2e8f0;
+  --muted: #8892a8;
+  --dim: #4a5568;
+  --green: #00f0a0;
+  --green2: #00c880;
+  --cyan: #00d4ff;
+  --violet: #a855f7;
+  --border: rgba(136,146,168,.07);
+  --glow: rgba(0,240,160,.08);
+  --display: 'Syne', sans-serif;
+  --body: 'Space Grotesk', sans-serif;
+}
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:var(--body);
+  background:var(--deep);
+  color:var(--muted);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* NOISE */
+.noise {
+  position:fixed; inset:0; z-index:9999;
+  pointer-events:none; opacity:.03;
+  background-size:200px 200px;
+}
+
+/* CANVAS */
+#particles { position:fixed; inset:0; z-index:0; pointer-events:none; }
+
+/* MOUSE ORB */
+#orb {
+  position:fixed; width:500px; height:500px; border-radius:50%;
+  background:radial-gradient(circle, rgba(0,240,160,.07) 0%, rgba(0,212,255,.03) 40%, transparent 70%);
+  pointer-events:none; z-index:1; transform:translate(-50%,-50%);
+  will-change:left,top; display:none;
+}
+
+/* ===== NAV ===== */
+nav {
+  position:fixed; top:0; width:100%; z-index:1000;
+  padding:1.2rem 2rem;
+  display:flex; justify-content:space-between; align-items:center;
+  transition:all .4s cubic-bezier(.4,0,.2,1);
+  border-bottom:1px solid transparent;
+}
+nav.scrolled {
+  padding:.7rem 2rem;
+  background:rgba(5,10,21,.75);
+  backdrop-filter:blur(24px) saturate(180%);
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo {
+  display:flex; align-items:center; gap:.6rem;
+  text-decoration:none;
+}
+.nav-logo img { height:32px; width:auto; }
+.nav-logo-text {
+  font-family:var(--display); font-size:1.2rem; font-weight:800;
+  letter-spacing:.1em;
+  background:linear-gradient(135deg, var(--green), var(--cyan));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.nav-links {
+  display:flex; gap:2rem; list-style:none; align-items:center;
+}
+.nav-links a {
+  color:var(--muted); text-decoration:none;
+  font-size:.875rem; font-weight:500;
+  transition:color .3s;
+}
+.nav-links a:hover { color:var(--green); }
+.nav-cta {
+  background:var(--green) !important;
+  color:var(--deep) !important;
+  padding:.5rem 1.25rem; border-radius:8px;
+  font-weight:600 !important;
+  transition:all .3s !important;
+}
+.nav-cta:hover {
+  box-shadow:0 0 20px rgba(0,240,160,.3) !important;
+  transform:translateY(-1px);
+}
+.nav-toggle {
+  display:none; flex-direction:column; gap:5px;
+  background:none; border:none; cursor:pointer; padding:4px;
+}
+.nav-toggle span {
+  width:24px; height:2px; background:var(--muted);
+  transition:all .3s; display:block;
+}
+.nav-toggle.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+.nav-toggle.active span:nth-child(2) { opacity:0; }
+.nav-toggle.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+.mobile-menu {
+  display:none; position:fixed; top:60px; left:0; right:0;
+  background:rgba(5,10,21,.95); backdrop-filter:blur(24px);
+  padding:2rem; flex-direction:column; gap:1.5rem;
+  border-bottom:1px solid var(--border);
+  transform:translateY(-10px); opacity:0;
+  transition:all .3s;
+}
+.mobile-menu.open { display:flex; transform:translateY(0); opacity:1; }
+.mobile-menu a {
+  color:var(--muted); text-decoration:none;
+  font-size:1.1rem; font-weight:500;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height:100vh; display:flex; flex-direction:column;
+  justify-content:center; align-items:center; text-align:center;
+  padding:8rem 2rem 4rem; position:relative; z-index:2;
+}
+.hero::before {
+  content:''; position:absolute; top:20%; left:50%;
+  transform:translate(-50%,-50%);
+  width:900px; height:700px;
+  background:radial-gradient(ellipse, rgba(0,240,160,.04) 0%, rgba(0,212,255,.02) 40%, transparent 70%);
+  pointer-events:none;
+}
+.hero-badge {
+  display:inline-flex; align-items:center; gap:.6rem;
+  padding:.45rem 1.2rem;
+  border:1px solid rgba(0,240,160,.2);
+  border-radius:100px;
+  font-size:.8rem; font-weight:500;
+  color:var(--green);
+  margin-bottom:2.5rem;
+  background:rgba(0,240,160,.04);
+}
+.hero-badge::before {
+  content:''; width:7px; height:7px;
+  background:var(--green); border-radius:50%;
+  animation:pulse 2s infinite;
+  box-shadow:0 0 8px var(--green);
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+.hero h1 {
+  font-family:var(--display);
+  font-size:clamp(2.8rem,7vw,5.5rem);
+  font-weight:800; line-height:1.08;
+  color:var(--text);
+  margin-bottom:1.8rem;
+  letter-spacing:-.03em;
+}
+.hero-gradient {
+  display:inline-block;
+  background:linear-gradient(135deg, var(--green), var(--cyan), var(--violet), var(--green));
+  background-size:300% 300%;
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:gradient-shift 8s ease infinite, glitch 6s infinite;
+}
+@keyframes gradient-shift {
+  0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%}
+}
+@keyframes glitch {
+  0%,90%,100%{transform:translate(0) skew(0)}
+  91%{transform:translate(-2px,1px) skew(-.5deg)}
+  92%{transform:translate(2px,-1px) skew(.5deg)}
+  93%{transform:translate(-1px) skew(-.3deg)}
+  94%{transform:translate(0) skew(0)}
+}
+.hero p {
+  font-size:1.2rem; color:var(--muted);
+  max-width:580px; margin-bottom:3rem; font-weight:400;
+}
+.hero-buttons { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; }
+
+/* BUTTONS */
+.btn-primary {
+  padding:.85rem 2.2rem;
+  background:var(--green); color:var(--deep);
+  border:none; border-radius:10px;
+  font-family:var(--body); font-size:1rem; font-weight:600;
+  cursor:pointer; position:relative; overflow:hidden;
+  transition:all .3s cubic-bezier(.4,0,.2,1);
+  text-decoration:none; display:inline-block;
+}
+.btn-primary:hover {
+  transform:translateY(-2px);
+  box-shadow:0 0 30px rgba(0,240,160,.35), 0 10px 40px rgba(0,240,160,.15);
+}
+.btn-secondary {
+  padding:.85rem 2.2rem;
+  background:transparent; color:var(--text);
+  border:1px solid rgba(136,146,168,.2);
+  border-radius:10px;
+  font-family:var(--body); font-size:1rem; font-weight:600;
+  cursor:pointer; transition:all .3s;
+  text-decoration:none; display:inline-block;
+}
+.btn-secondary:hover {
+  border-color:var(--green);
+  color:var(--green);
+  box-shadow:0 0 20px rgba(0,240,160,.1);
+}
+.ripple {
+  position:absolute; border-radius:50%;
+  background:rgba(255,255,255,.3);
+  transform:scale(0); animation:ripple-anim .6s linear;
+  pointer-events:none;
+}
+@keyframes ripple-anim { to{transform:scale(4);opacity:0} }
+
+/* ===== STATS ===== */
+.stats {
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:4rem 2rem; position:relative; z-index:2;
+  background:rgba(10,17,40,.5);
+}
+.stats-grid {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:2rem; max-width:1100px; margin:0 auto; text-align:center;
+}
+.stat-number {
+  font-family:var(--display); font-size:3.2rem;
+  font-weight:800; color:var(--text); line-height:1;
+  margin-bottom:.5rem;
+}
+.stat-number span { color:var(--green); }
+.stat-label { font-size:.9rem; color:var(--dim); }
+
+/* ===== SECTIONS COMMON ===== */
+section { padding:7rem 2rem; position:relative; z-index:2; }
+.container { max-width:1100px; margin:0 auto; }
+.section-label {
+  font-size:.8rem; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--green); margin-bottom:1rem;
+  display:flex; align-items:center; gap:.75rem;
+}
+.section-label::before {
+  content:''; width:30px; height:1px;
+  background:var(--green);
+}
+.section-title {
+  font-family:var(--display);
+  font-size:clamp(2.2rem,4.5vw,3.5rem);
+  font-weight:800; color:var(--text);
+  margin-bottom:1.25rem; letter-spacing:-.02em;
+  line-height:1.15;
+}
+.section-desc {
+  font-size:1.1rem; color:var(--muted);
+  max-width:600px; margin-bottom:4rem;
+}
+
+/* ===== PROJECTS ===== */
+.projects-grid { display:flex; flex-direction:column; gap:4rem; }
+.project-card {
+  background:linear-gradient(135deg, rgba(15,23,42,.6), rgba(10,17,40,.8));
+  border:1px solid var(--border);
+  border-radius:20px; overflow:hidden;
+  transition:all .5s;
+}
+.project-card:hover {
+  border-color:rgba(0,240,160,.15);
+  box-shadow:0 30px 80px rgba(0,0,0,.4), 0 0 60px rgba(0,240,160,.03);
+}
+.project-content {
+  display:grid; grid-template-columns:1fr 1fr; gap:0;
+}
+.project-card:nth-child(2) .project-visual { order:-1; }
+.project-info {
+  padding:3rem; display:flex; flex-direction:column; justify-content:center;
+}
+.project-tag {
+  font-size:.75rem; font-weight:600;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--cyan); margin-bottom:1rem;
+}
+.project-name {
+  font-family:var(--display); font-size:1.6rem;
+  font-weight:700; color:var(--text); margin-bottom:1rem;
+}
+.project-desc {
+  color:var(--muted); margin-bottom:1rem; line-height:1.7; font-size:.95rem;
+}
+.project-desc strong { color:var(--text); }
+.project-features {
+  list-style:none; display:flex; flex-direction:column; gap:.5rem;
+}
+.project-features li {
+  display:flex; align-items:center; gap:.6rem;
+  font-size:.9rem; color:var(--muted);
+}
+.project-features li::before {
+  content:''; width:5px; height:5px;
+  background:var(--green); border-radius:50%;
+  box-shadow:0 0 6px var(--green); flex-shrink:0;
+}
+.project-visual {
+  background:var(--surface); display:flex;
+  align-items:center; justify-content:center;
+  position:relative; min-height:400px; padding:2rem;
+  overflow:hidden;
+}
+
+/* ===== MOCKUP ===== */
+.mock {
+  width:100%; border-radius:12px;
+  border:1px solid rgba(0,240,160,.12);
+  background:rgba(10,17,40,.95);
+  overflow:hidden;
+  box-shadow:0 0 60px rgba(0,240,160,.04), 0 20px 60px rgba(0,0,0,.3);
+  animation:float 6s ease-in-out infinite;
+  transition:box-shadow .4s;
+}
+.mock:hover {
+  box-shadow:0 0 100px rgba(0,240,160,.08), 0 20px 80px rgba(0,0,0,.4);
+}
+@keyframes float {
+  0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)}
+}
+.mock-chrome {
+  display:flex; align-items:center; gap:6px;
+  padding:10px 14px;
+  background:rgba(15,23,42,.95);
+  border-bottom:1px solid var(--border);
+}
+.mock-dot { width:10px; height:10px; border-radius:50%; }
+.mock-title {
+  flex:1; text-align:center;
+  font-size:11px; color:var(--dim); font-weight:600;
+}
+.mock-body {
+  padding:14px; display:flex; flex-direction:column; gap:10px;
+  font-size:11px; line-height:1.4;
+}
+.mock-kpis { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.mock-kpi {
+  padding:10px; border-radius:8px;
+  background:rgba(15,23,42,.7); border:1px solid var(--border);
+}
+.mock-kpi-label {
+  font-size:9px; color:var(--dim); text-transform:uppercase;
+  letter-spacing:.08em; margin-bottom:3px;
+}
+.mock-kpi-val {
+  font-size:18px; font-weight:800; color:var(--text); line-height:1.2;
+}
+.mock-chart {
+  display:flex; align-items:flex-end; gap:4px; height:60px;
+  padding:10px; border-radius:8px;
+  background:rgba(15,23,42,.7); border:1px solid var(--border);
+}
+.mock-bar-el {
+  flex:1; border-radius:3px 3px 0 0; min-height:4px;
+  transition:height 1.2s cubic-bezier(.4,0,.2,1);
+}
+.mock-table {
+  border-radius:8px; background:rgba(15,23,42,.7);
+  border:1px solid var(--border); overflow:hidden;
+}
+.mock-table-row {
+  display:flex; justify-content:space-between;
+  padding:6px 10px; font-size:10px;
+  border-bottom:1px solid var(--border);
+}
+.mock-table-row:last-child { border-bottom:none; }
+.mock-alert {
+  padding:10px; border-radius:8px;
+  background:rgba(255,80,80,.06); border:1px solid rgba(255,80,80,.15);
+  border-left:3px solid #ff5050;
+}
+.mock-live {
+  width:6px; height:6px; border-radius:50%;
+  background:var(--green); display:inline-block;
+  animation:pulse 1.5s infinite;
+  box-shadow:0 0 6px var(--green);
+}
+
+/* PIPELINE MOCKUP */
+.pipeline {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:6px;
+}
+.pipe-col {
+  border-radius:8px; padding:8px;
+  background:rgba(15,23,42,.5);
+  display:flex; flex-direction:column; gap:5px;
+}
+.pipe-header {
+  font-size:9px; font-weight:700; text-transform:uppercase;
+  letter-spacing:.05em; color:var(--dim);
+  padding-bottom:5px; border-bottom:1px solid var(--border);
+  display:flex; justify-content:space-between; align-items:center;
+}
+.pipe-count {
+  padding:1px 6px; border-radius:8px;
+  font-size:8px; font-weight:800;
+}
+.pipe-card {
+  padding:7px 8px; border-radius:6px;
+  background:rgba(15,23,42,.8); border:1px solid var(--border);
+  transition:border-color .3s;
+}
+.pipe-card:hover { border-color:rgba(0,240,160,.2); }
+.pipe-name { font-weight:700; font-size:9.5px; color:var(--text); margin-bottom:2px; }
+.pipe-detail { font-size:8px; color:var(--dim); }
+.pipe-temp {
+  margin-top:3px; font-size:8px; font-weight:700;
+  display:flex; align-items:center; gap:3px;
+}
+.pipe-temp::before {
+  content:''; width:6px; height:6px; border-radius:50%;
+}
+.pipe-temp.hot { color:#ff6b4a; }
+.pipe-temp.hot::before { background:#ff6b4a; }
+.pipe-temp.warm { color:#f0a030; }
+.pipe-temp.warm::before { background:#f0a030; }
+.pipe-temp.cold { color:#5090c0; }
+.pipe-temp.cold::before { background:#5090c0; }
+
+/* ===== SERVICES ===== */
+.services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+.service-card {
+  padding:2rem; position:relative;
+  background:rgba(15,23,42,.4);
+  border:1px solid var(--border);
+  border-radius:16px;
+  transition:all .4s; cursor:default;
+  overflow:hidden;
+}
+.service-card::before {
+  content:''; position:absolute; inset:0; border-radius:inherit;
+  background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),
+    rgba(0,240,160,.06), transparent 40%);
+  opacity:0; transition:opacity .4s;
+}
+.service-card:hover::before { opacity:1; }
+.service-card::after {
+  content:''; position:absolute; inset:-1px; border-radius:inherit;
+  background:radial-gradient(400px circle at var(--mx,50%) var(--my,50%),
+    rgba(0,240,160,.25), transparent 40%);
+  z-index:-1; opacity:0; transition:opacity .4s;
+}
+.service-card:hover::after { opacity:1; }
+.service-card:hover {
+  border-color:rgba(0,240,160,.1);
+  transform:translateY(-4px);
+}
+.service-icon {
+  width:48px; height:48px; display:flex;
+  align-items:center; justify-content:center;
+  background:rgba(0,240,160,.08); border-radius:12px;
+  margin-bottom:1.25rem; color:var(--green);
+}
+.service-card h3 {
+  font-family:var(--display);
+  font-size:1.15rem; font-weight:700;
+  color:var(--text); margin-bottom:.6rem;
+}
+.service-card p { font-size:.9rem; color:var(--dim); line-height:1.6; }
+
+/* ===== PROCESS TIMELINE ===== */
+.timeline-wrapper { position:relative; }
+.timeline {
+  display:flex; justify-content:space-between; gap:2rem;
+  position:relative;
+}
+.timeline::before {
+  content:''; position:absolute; top:24px; left:24px; right:24px;
+  height:2px; background:rgba(136,146,168,.1);
+}
+.timeline-progress {
+  position:absolute; top:24px; left:24px;
+  height:2px; width:0;
+  background:linear-gradient(90deg, var(--green), var(--cyan));
+  box-shadow:0 0 10px rgba(0,240,160,.3);
+  transition:width .15s linear;
+}
+.tl-step {
+  flex:1; text-align:center; position:relative; z-index:1;
+}
+.tl-node {
+  width:48px; height:48px; border-radius:50%;
+  background:var(--deep); border:2px solid rgba(136,146,168,.15);
+  display:flex; align-items:center; justify-content:center;
+  margin:0 auto 1.5rem;
+  font-family:var(--display); font-weight:800; font-size:1.1rem;
+  color:var(--dim); transition:all .5s;
+}
+.tl-step.active .tl-node {
+  border-color:var(--green); color:var(--green);
+  box-shadow:0 0 25px rgba(0,240,160,.25);
+}
+.tl-step h3 {
+  font-family:var(--display);
+  font-size:1.1rem; font-weight:700;
+  color:var(--text); margin-bottom:.5rem;
+  opacity:.4; transition:opacity .5s;
+}
+.tl-step p {
+  font-size:.9rem; color:var(--dim);
+  opacity:.4; transition:opacity .5s;
+  max-width:220px; margin:0 auto;
+}
+.tl-step.active h3, .tl-step.active p { opacity:1; }
+
+/* ===== CTA ===== */
+.cta {
+  text-align:center; position:relative;
+}
+.cta::before {
+  content:''; position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:600px; height:600px;
+  background:radial-gradient(circle, rgba(0,240,160,.04) 0%, rgba(0,212,255,.02) 30%, transparent 70%);
+  pointer-events:none;
+}
+.cta .section-label { justify-content:center; }
+.cta .section-desc { margin-left:auto; margin-right:auto; }
+
+/* ===== FOOTER ===== */
+footer {
+  border-top:1px solid var(--border);
+  padding:3rem 2rem; position:relative; z-index:2;
+}
+.footer-content {
+  max-width:1100px; margin:0 auto;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.footer-left {
+  display:flex; align-items:center; gap:.75rem;
+  font-size:.85rem; color:var(--dim);
+}
+.footer-left img { height:20px; width:auto; opacity:.4; }
+.footer-links { display:flex; gap:1.5rem; }
+.footer-links a {
+  color:var(--dim); text-decoration:none;
+  font-size:.85rem; transition:color .3s;
+}
+.footer-links a:hover { color:var(--green); }
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+  opacity:0; transform:translateY(40px);
+  transition:all .7s cubic-bezier(.4,0,.2,1);
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+.reveal-delay-1 { transition-delay:.1s; }
+.reveal-delay-2 { transition-delay:.2s; }
+.reveal-delay-3 { transition-delay:.3s; }
+.reveal-delay-4 { transition-delay:.4s; }
+.reveal-delay-5 { transition-delay:.5s; }
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px) {
+  .services-grid { grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:768px) {
+  .nav-links { display:none; }
+  .nav-toggle { display:flex; }
+  .stats-grid { grid-template-columns:repeat(2,1fr); gap:1.5rem; }
+  .project-content { grid-template-columns:1fr; }
+  .project-card:nth-child(2) .project-visual { order:0; }
+  .project-visual { min-height:300px; padding:1.25rem; }
+  .project-info { padding:2rem; }
+  .services-grid { grid-template-columns:1fr; }
+  .pipeline { grid-template-columns:repeat(2,1fr); }
+  .timeline { flex-direction:column; gap:1.5rem; }
+  .timeline::before {
+    top:0; bottom:0; left:24px; right:auto;
+    width:2px; height:auto;
+  }
+  .timeline-progress {
+    top:0; left:24px; width:2px !important;
+    height:0; transition:height .15s linear;
+  }
+  .tl-step {
+    text-align:left; display:flex; align-items:flex-start; gap:1.5rem;
+  }
+  .tl-node { margin:0; flex-shrink:0; }
+  .tl-step p { max-width:none; }
+  .hero-buttons { flex-direction:column; width:100%; max-width:320px; }
+  .hero-buttons .btn-primary, .hero-buttons .btn-secondary {
+    text-align:center;
+  }
+  .footer-content {
+    flex-direction:column; gap:1.5rem; text-align:center;
+  }
+  .cta .hero-buttons { align-items:center; }
+  .mock-kpis { grid-template-columns:1fr; }
+}
+@media(max-width:480px) {
+  .stat-number { font-size:2.4rem; }
+  .pipeline { grid-template-columns:1fr 1fr; }
+}
+</style>
 </head>
 <body>
-    <!-- NAV -->
-    <nav>
-        <a href="#" class="nav-logo">
-            <img src="Logo Quasor.png" alt="Quasor">
-            <span class="nav-logo-text">quasor</span>
-        </a>
-        <ul class="nav-links">
-            <li><a href="#proyectos">Proyectos</a></li>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#proceso">Proceso</a></li>
-            <li><a href="#contacto" class="nav-cta">Contacto</a></li>
-        </ul>
-    </nav>
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-badge">Disponible para nuevos proyectos</div>
-        <h1>Tu empresa funciona<br>con Excel y WhatsApp.<br><span class="gradient">Nosotros lo resolvemos.</span></h1>
-        <p>Sistemas de gestión, dashboards y automatizaciones diseñados para tu operación. Tu equipo deja de cargar datos a mano y vos controlás todo desde un solo lugar.</p>
-        <div class="hero-buttons">
-            <a href="#contacto" class="btn-primary">Agendar una demo</a>
-            <a href="#proyectos" class="btn-secondary">Ver nuestros sistemas</a>
-        </div>
-    </section>
+<canvas id="particles"></canvas>
+<div id="orb"></div>
+<div class="noise"></div>
 
-    <!-- STATS -->
-    <div class="stats">
-        <div class="stats-grid">
-            <div class="fade-in">
-                <div class="stat-number">2<span>+</span></div>
-                <div class="stat-label">Sistemas en producción</div>
-            </div>
-            <div class="fade-in">
-                <div class="stat-number">5<span>+</span></div>
-                <div class="stat-label">Integraciones activas</div>
-            </div>
-            <div class="fade-in">
-                <div class="stat-number">24<span>/7</span></div>
-                <div class="stat-label">Monitoreo automatizado</div>
-            </div>
-            <div class="fade-in">
-                <div class="stat-number">100<span>%</span></div>
-                <div class="stat-label">A medida</div>
-            </div>
-        </div>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="Logo Quasor.png" alt="Quasor">
+    <span class="nav-logo-text">QUASOR</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu">
+  <a href="#proyectos">Proyectos</a>
+  <a href="#servicios">Servicios</a>
+  <a href="#proceso">Proceso</a>
+  <a href="#contacto">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge reveal">Disponible para nuevos proyectos</div>
+  <h1 class="reveal reveal-delay-1">Tu empresa funciona<br>con Excel y WhatsApp.<br><span class="hero-gradient" data-text="Nosotros lo resolvemos.">Nosotros lo resolvemos.</span></h1>
+  <p class="reveal reveal-delay-2">Sistemas de gestion, dashboards y automatizaciones diseñados para tu operacion. Tu equipo deja de cargar datos a mano y vos controlás todo desde un solo lugar.</p>
+  <div class="hero-buttons reveal reveal-delay-3">
+    <a href="#contacto" class="btn-primary">Agendar una demo</a>
+    <a href="#proyectos" class="btn-secondary">Ver nuestros sistemas</a>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-grid">
+    <div class="reveal">
+      <div class="stat-number"><span class="counter" data-target="2">0</span><span>+</span></div>
+      <div class="stat-label">Sistemas en produccion</div>
     </div>
+    <div class="reveal reveal-delay-1">
+      <div class="stat-number"><span class="counter" data-target="5">0</span><span>+</span></div>
+      <div class="stat-label">Integraciones activas</div>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div class="stat-number"><span class="counter" data-target="24">0</span><span>/7</span></div>
+      <div class="stat-label">Monitoreo automatizado</div>
+    </div>
+    <div class="reveal reveal-delay-3">
+      <div class="stat-number"><span class="counter" data-target="100">0</span><span>%</span></div>
+      <div class="stat-label">A medida</div>
+    </div>
+  </div>
+</div>
 
-    <!-- PROYECTOS -->
-    <section id="proyectos">
-        <div class="container">
-            <div class="section-label">Casos de éxito</div>
-            <h2 class="section-title">Problemas reales, soluciones reales</h2>
-            <p class="section-desc">Cada sistema que construimos nació de un problema concreto que una empresa no podía resolver con herramientas genéricas.</p>
+<!-- PROYECTOS -->
+<section id="proyectos">
+  <div class="container">
+    <div class="section-label reveal">Casos de exito</div>
+    <h2 class="section-title reveal">Problemas reales, soluciones reales</h2>
+    <p class="section-desc reveal">Cada sistema que construimos nacio de un problema concreto que una empresa no podia resolver con herramientas genericas.</p>
 
-            <div class="projects-grid">
-                <!-- CRM AUTOMOTRIZ -->
-                <div class="project-card fade-in">
-                    <div class="project-content">
-                        <div class="project-info">
-                            <div class="project-tag">Concesionaria automotriz</div>
-                            <h3 class="project-name">Control de Marketing & Pipeline de Ventas</h3>
-                            <p class="project-desc"><strong style="color:var(--zinc-200)">El problema:</strong> El equipo entraba a 4 plataformas distintas para ver campañas. Se perdía plata en ads sin que nadie lo detectara a tiempo, y los leads caían sin seguimiento.</p>
-                            <p class="project-desc" style="margin-bottom:1.5rem"><strong style="color:var(--zinc-200)">La solución:</strong> Un dashboard que unifica Meta, Google e Instagram en tiempo real, detecta anomalías de gasto automáticamente y centraliza cada lead con su historial completo.</p>
-                            <ul class="project-features">
-                                <li>Trazabilidad total: cada lead desde el clic hasta la venta</li>
-                                <li>Detección de anomalías: alertas antes de perder presupuesto</li>
-                                <li>Métricas claras: conversión por vendedor y campania al instante</li>
-                                <li>Reportes PDF automáticos para el directorio</li>
-                            </ul>
-                        </div>
-                        <div class="project-visual" style="padding:0;min-height:420px;">
-                            <!-- DASHBOARD AUTOMOTRIZ - MOCKUP INTERACTIVO -->
-                            <div class="crm-app crm-dark" id="crm-auto">
-                                <div class="crm-sidebar">
-                                    <div class="crm-sb-logo bg-blue" style="font-size:11px;">MG</div>
-                                    <div class="crm-sb-item active" data-view="auto-dash" data-crm="crm-auto" data-accent="#1e56b0" style="background:#1e56b0;">&#9632;</div>
-                                    <div class="crm-sb-item" data-view="auto-leads" data-crm="crm-auto" data-accent="#1e56b0">&#9776;</div>
-                                    <div class="crm-sb-item" data-view="auto-alerts" data-crm="crm-auto" data-accent="#1e56b0">&#128276;</div>
-                                    <div class="crm-sb-item" data-view="auto-report" data-crm="crm-auto" data-accent="#1e56b0">&#128202;</div>
-                                </div>
-                                <div class="crm-main">
-                                    <div class="crm-topbar">
-                                        <div class="crm-topbar-title" id="auto-topbar-title">Dashboard Marketing</div>
-                                        <span style="display:flex;align-items:center;gap:4px;font-size:9px;color:#277a48;background:#0d1f14;padding:2px 8px;border-radius:10px;border:1px solid #277a48;">
-                                            <span class="crm-live-dot"></span> Sync 14:32
-                                        </span>
-                                        <div class="crm-topbar-search" style="width:70px;">Buscar...</div>
-                                    </div>
-                                    <!-- VIEW 1: Dashboard -->
-                                    <div class="crm-content crm-view-panel active" id="auto-dash">
-                                        <div class="crm-kpi-row">
-                                            <div class="crm-kpi">
-                                                <div class="crm-kpi-label">Gasto total</div>
-                                                <div class="crm-kpi-val">$4.2M</div>
-                                                <div class="crm-kpi-sub" style="color:#277a48;">-12% vs mes ant.</div>
-                                            </div>
-                                            <div class="crm-kpi">
-                                                <div class="crm-kpi-label">Leads mes</div>
-                                                <div class="crm-kpi-val" style="color:#1e56b0;">347</div>
-                                                <div class="crm-kpi-sub" style="color:#277a48;">+23% vs mes ant.</div>
-                                            </div>
-                                            <div class="crm-kpi">
-                                                <div class="crm-kpi-label">CPL promedio</div>
-                                                <div class="crm-kpi-val" style="color:#277a48;">$12.1k</div>
-                                                <div class="crm-kpi-sub" style="color:#277a48;">Meta: $15k</div>
-                                            </div>
-                                            <div class="crm-kpi">
-                                                <div class="crm-kpi-label">Tasa conversión</div>
-                                                <div class="crm-kpi-val" style="color:#c85c18;">8.4%</div>
-                                                <div class="crm-kpi-sub" style="color:#c8191a;">-0.3% vs mes ant.</div>
-                                            </div>
-                                        </div>
-                                        <div style="display:grid;grid-template-columns:2fr 1fr;gap:6px;">
-                                            <div class="crm-minichart">
-                                                <div class="crm-minichart-title">Leads por semana</div>
-                                                <div class="crm-minichart-bars">
-                                                    <div class="crm-minibar" style="height:40%;background:#1877f2;"></div>
-                                                    <div class="crm-minibar" style="height:55%;background:#1877f2;"></div>
-                                                    <div class="crm-minibar" style="height:48%;background:#4285f4;"></div>
-                                                    <div class="crm-minibar" style="height:72%;background:#1877f2;"></div>
-                                                    <div class="crm-minibar" style="height:65%;background:#4285f4;"></div>
-                                                    <div class="crm-minibar" style="height:88%;background:#1877f2;"></div>
-                                                    <div class="crm-minibar" style="height:78%;background:#4285f4;"></div>
-                                                    <div class="crm-minibar" style="height:95%;background:#1877f2;"></div>
-                                                    <div class="crm-minibar" style="height:82%;background:#1877f2;"></div>
-                                                    <div class="crm-minibar" style="height:70%;background:#4285f4;"></div>
-                                                    <div class="crm-minibar" style="height:90%;background:#1877f2;"></div>
-                                                    <div class="crm-minibar" style="height:100%;background:#1877f2;"></div>
-                                                </div>
-                                            </div>
-                                            <div style="display:flex;flex-direction:column;gap:5px;">
-                                                <div style="background:#1e2128;border:1px solid #2e3240;border-radius:7px;padding:7px 9px;">
-                                                    <div style="font-size:8px;color:#c8191a;font-weight:700;margin-bottom:3px;">&#9888; ANOMALIA</div>
-                                                    <div style="font-size:8px;color:#e8eaf0;">Meta Ads: gasto +45% s/ clics</div>
-                                                    <div style="font-size:7px;color:#5a6278;margin-top:2px;">Hace 2 horas</div>
-                                                </div>
-                                                <div style="background:#1e2128;border:1px solid #2e3240;border-radius:7px;padding:7px 9px;">
-                                                    <div style="font-size:8px;color:#9ba3b8;font-weight:700;margin-bottom:3px;">Plataformas</div>
-                                                    <div style="display:flex;gap:4px;flex-wrap:wrap;">
-                                                        <span style="background:#0d1525;color:#1877f2;padding:1px 5px;border-radius:3px;font-size:7.5px;font-weight:700;">Meta $2.1M</span>
-                                                        <span style="background:#0d1525;color:#4285f4;padding:1px 5px;border-radius:3px;font-size:7.5px;font-weight:700;">Google $1.4M</span>
-                                                        <span style="background:#160e22;color:#6b3ea0;padding:1px 5px;border-radius:3px;font-size:7.5px;font-weight:700;">IG $680k</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="crm-table" style="flex:1;">
-                                            <div class="crm-table-head" style="grid-template-columns:2fr 1fr 1fr 1fr 1fr;">
-                                                <span>Campania</span><span>Plat.</span><span>Gasto</span><span>Leads</span><span>CPL</span>
-                                            </div>
-                                            <div class="crm-table-row" style="grid-template-columns:2fr 1fr 1fr 1fr 1fr;">
-                                                <span style="font-weight:600;">Hilux SR5 - Marzo</span>
-                                                <span><span style="color:#1877f2;font-weight:700;">Meta</span></span>
-                                                <span>$890k</span><span style="font-weight:700;">84</span>
-                                                <span style="color:#277a48;font-weight:700;">$10.6k</span>
-                                            </div>
-                                            <div class="crm-table-row" style="grid-template-columns:2fr 1fr 1fr 1fr 1fr;">
-                                                <span style="font-weight:600;">Corolla Cross CVT</span>
-                                                <span><span style="color:#4285f4;font-weight:700;">Google</span></span>
-                                                <span>$720k</span><span style="font-weight:700;">52</span>
-                                                <span style="color:#c85c18;font-weight:700;">$13.8k</span>
-                                            </div>
-                                            <div class="crm-table-row" style="grid-template-columns:2fr 1fr 1fr 1fr 1fr;">
-                                                <span style="font-weight:600;">Usados Premium</span>
-                                                <span><span style="color:#1877f2;font-weight:700;">Meta</span></span>
-                                                <span>$1.1M</span><span style="font-weight:700;">127</span>
-                                                <span style="color:#277a48;font-weight:700;">$8.7k</span>
-                                            </div>
-                                            <div class="crm-table-row" style="grid-template-columns:2fr 1fr 1fr 1fr 1fr;">
-                                                <span style="font-weight:600;">Plan Ahorro Yaris</span>
-                                                <span><span style="color:#4285f4;font-weight:700;">Google</span></span>
-                                                <span>$480k</span><span style="font-weight:700;">41</span>
-                                                <span style="color:#c85c18;font-weight:700;">$11.7k</span>
-                                            </div>
-                                            <div class="crm-table-row" style="grid-template-columns:2fr 1fr 1fr 1fr 1fr;">
-                                                <span style="font-weight:600;">Retarget Visitas</span>
-                                                <span><span style="color:#6b3ea0;font-weight:700;">IG</span></span>
-                                                <span>$340k</span><span style="font-weight:700;">43</span>
-                                                <span style="color:#277a48;font-weight:700;">$7.9k</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- VIEW 2: Leads -->
-                                    <div class="crm-content crm-view-panel" id="auto-leads" data-title="Leads">
-                                        <div class="crm-kpi-row" style="grid-template-columns:repeat(3,1fr);">
-                                            <div class="crm-kpi">
-                                                <div class="crm-kpi-label">Total leads</div>
-                                                <div class="crm-kpi-val" style="color:#1e56b0;">347</div>
-                                            </div>
-                                            <div class="crm-kpi">
-                                                <div class="crm-kpi-label">Sin contactar</div>
-                                                <div class="crm-kpi-val" style="color:#c85c18;">23</div>
-                                            </div>
-                                            <div class="crm-kpi">
-                                                <div class="crm-kpi-label">Cerrados</div>
-                                                <div class="crm-kpi-val" style="color:#277a48;">29</div>
-                                            </div>
-                                        </div>
-                                        <div class="crm-table" style="flex:1;">
-                                            <div class="crm-table-head" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
-                                                <span>Nombre</span><span>Fuente</span><span>Modelo</span><span>Estado</span><span>Asesor</span>
-                                            </div>
-                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
-                                                <span style="font-weight:600;">Roberto Sánchez</span>
-                                                <span><span style="color:#1877f2;font-weight:700;">Meta</span></span>
-                                                <span>Hilux SR5</span>
-                                                <span><span class="crm-badge" style="background:#eef3fd;color:#1e56b0;">Nuevo</span></span>
-                                                <span>Marcos P.</span>
-                                            </div>
-                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
-                                                <span style="font-weight:600;">Ana María Flores</span>
-                                                <span><span style="color:#4285f4;font-weight:700;">Google</span></span>
-                                                <span>Corolla CVT</span>
-                                                <span><span class="crm-badge" style="background:#fef2e8;color:#c85c18;">Contactado</span></span>
-                                                <span>Lucía R.</span>
-                                            </div>
-                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
-                                                <span style="font-weight:600;">Pablo Giménez</span>
-                                                <span><span style="color:#1877f2;font-weight:700;">Meta</span></span>
-                                                <span>Yaris XLS</span>
-                                                <span><span class="crm-badge" style="background:#fdf8ee;color:#c49a2e;">Visita</span></span>
-                                                <span>Marcos P.</span>
-                                            </div>
-                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
-                                                <span style="font-weight:600;">Claudia Pereyra</span>
-                                                <span><span style="color:#6b3ea0;font-weight:700;">IG</span></span>
-                                                <span>SW4 SRX</span>
-                                                <span><span class="crm-badge" style="background:#edf7f1;color:#277a48;">Oferta</span></span>
-                                                <span>Diego M.</span>
-                                            </div>
-                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
-                                                <span style="font-weight:600;">Martín Acosta</span>
-                                                <span><span style="color:#4285f4;font-weight:700;">Google</span></span>
-                                                <span>Hilux DX</span>
-                                                <span><span class="crm-badge" style="background:#edf7f1;color:#277a48;">Cerrado</span></span>
-                                                <span>Lucía R.</span>
-                                            </div>
-                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
-                                                <span style="font-weight:600;">Elena Ríos</span>
-                                                <span><span style="color:#1877f2;font-weight:700;">Meta</span></span>
-                                                <span>Etios AT</span>
-                                                <span><span class="crm-badge" style="background:#eef3fd;color:#1e56b0;">Nuevo</span></span>
-                                                <span>Diego M.</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- VIEW 3: Alertas -->
-                                    <div class="crm-content crm-view-panel" id="auto-alerts" data-title="Alertas">
-                                        <div style="display:flex;flex-direction:column;gap:6px;">
-                                            <div style="background:#2a1215;border:1px solid #4a1e22;border-radius:7px;padding:9px 11px;border-left:3px solid #c8191a;">
-                                                <div style="display:flex;justify-content:space-between;align-items:center;">
-                                                    <span style="font-size:9px;color:#c8191a;font-weight:800;">&#9888; CRITICA</span>
-                                                    <span style="font-size:7px;color:#5a6278;">Hoy 12:45</span>
-                                                </div>
-                                                <div style="font-size:9px;color:#e8eaf0;margin-top:4px;font-weight:600;">Meta Ads: gasto +45% sin aumento de clics</div>
-                                                <div style="font-size:8px;color:#9ba3b8;margin-top:2px;">Campania "Hilux SR5" — $890k gastados, CTR bajó 0.8%</div>
-                                            </div>
-                                            <div style="background:#1f1a0a;border:1px solid #3a3020;border-radius:7px;padding:9px 11px;border-left:3px solid #c49a2e;">
-                                                <div style="display:flex;justify-content:space-between;align-items:center;">
-                                                    <span style="font-size:9px;color:#c49a2e;font-weight:800;">&#9888; MEDIA</span>
-                                                    <span style="font-size:7px;color:#5a6278;">Ayer 18:20</span>
-                                                </div>
-                                                <div style="font-size:9px;color:#e8eaf0;margin-top:4px;font-weight:600;">Google Ads: CPL subió 22% en "Plan Ahorro"</div>
-                                                <div style="font-size:8px;color:#9ba3b8;margin-top:2px;">CPL actual $11.7k vs objetivo $9.5k</div>
-                                            </div>
-                                            <div style="background:#0d1f14;border:1px solid #1a3a24;border-radius:7px;padding:9px 11px;border-left:3px solid #277a48;">
-                                                <div style="display:flex;justify-content:space-between;align-items:center;">
-                                                    <span style="font-size:9px;color:#277a48;font-weight:800;">&#10003; RESUELTA</span>
-                                                    <span style="font-size:7px;color:#5a6278;">22/03 09:10</span>
-                                                </div>
-                                                <div style="font-size:9px;color:#e8eaf0;margin-top:4px;font-weight:600;">Instagram: engagement normalizado</div>
-                                                <div style="font-size:8px;color:#9ba3b8;margin-top:2px;">Reels campania "Usados Premium" recuperó alcance</div>
-                                            </div>
-                                            <div style="background:#0d1f14;border:1px solid #1a3a24;border-radius:7px;padding:9px 11px;border-left:3px solid #277a48;">
-                                                <div style="display:flex;justify-content:space-between;align-items:center;">
-                                                    <span style="font-size:9px;color:#277a48;font-weight:800;">&#10003; RESUELTA</span>
-                                                    <span style="font-size:7px;color:#5a6278;">20/03 15:30</span>
-                                                </div>
-                                                <div style="font-size:9px;color:#e8eaf0;margin-top:4px;font-weight:600;">Meta: pixel desconectado en landing Corolla</div>
-                                                <div style="font-size:8px;color:#9ba3b8;margin-top:2px;">Reconectado — leads perdidos estimados: 12</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- VIEW 4: Reportes -->
-                                    <div class="crm-content crm-view-panel" id="auto-report" data-title="Reportes">
-                                        <div class="crm-kpi-row" style="grid-template-columns:repeat(2,1fr);">
-                                            <div class="crm-minichart" style="flex:1;">
-                                                <div class="crm-minichart-title">Gasto por plataforma</div>
-                                                <div class="crm-minichart-bars">
-                                                    <div class="crm-minibar" style="height:100%;background:#1877f2;"></div>
-                                                    <div class="crm-minibar" style="height:67%;background:#4285f4;"></div>
-                                                    <div class="crm-minibar" style="height:32%;background:#6b3ea0;"></div>
-                                                </div>
-                                                <div style="display:flex;gap:8px;margin-top:6px;">
-                                                    <span style="font-size:7px;color:#1877f2;font-weight:700;">Meta 50%</span>
-                                                    <span style="font-size:7px;color:#4285f4;font-weight:700;">Google 33%</span>
-                                                    <span style="font-size:7px;color:#6b3ea0;font-weight:700;">IG 17%</span>
-                                                </div>
-                                            </div>
-                                            <div class="crm-minichart" style="flex:1;">
-                                                <div class="crm-minichart-title">Conversión mensual</div>
-                                                <div class="crm-minichart-bars">
-                                                    <div class="crm-minibar" style="height:55%;background:#277a48;"></div>
-                                                    <div class="crm-minibar" style="height:62%;background:#277a48;"></div>
-                                                    <div class="crm-minibar" style="height:58%;background:#277a48;"></div>
-                                                    <div class="crm-minibar" style="height:70%;background:#277a48;"></div>
-                                                    <div class="crm-minibar" style="height:82%;background:#277a48;"></div>
-                                                    <div class="crm-minibar" style="height:84%;background:#277a48;"></div>
-                                                </div>
-                                                <div style="font-size:7px;color:#277a48;font-weight:700;margin-top:6px;">Oct — Mar 2026</div>
-                                            </div>
-                                        </div>
-                                        <div class="crm-table" style="flex:1;">
-                                            <div class="crm-table-head" style="grid-template-columns:1.5fr 1fr 1fr 1fr;">
-                                                <span>Reporte</span><span>Fecha</span><span>Tipo</span><span>Estado</span>
-                                            </div>
-                                            <div class="crm-table-row" style="grid-template-columns:1.5fr 1fr 1fr 1fr;">
-                                                <span style="font-weight:600;">Mensual Marzo</span><span>25/03</span><span>PDF</span>
-                                                <span><span class="crm-badge" style="background:#edf7f1;color:#277a48;">Generado</span></span>
-                                            </div>
-                                            <div class="crm-table-row" style="grid-template-columns:1.5fr 1fr 1fr 1fr;">
-                                                <span style="font-weight:600;">Semanal S12</span><span>21/03</span><span>PDF</span>
-                                                <span><span class="crm-badge" style="background:#edf7f1;color:#277a48;">Enviado</span></span>
-                                            </div>
-                                            <div class="crm-table-row" style="grid-template-columns:1.5fr 1fr 1fr 1fr;">
-                                                <span style="font-weight:600;">Anomalías Feb</span><span>01/03</span><span>PDF</span>
-                                                <span><span class="crm-badge" style="background:#edf7f1;color:#277a48;">Enviado</span></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <div class="projects-grid">
+      <!-- AUTO -->
+      <div class="project-card reveal">
+        <div class="project-content">
+          <div class="project-info">
+            <div class="project-tag">Concesionaria automotriz</div>
+            <h3 class="project-name">Control de Marketing & Pipeline de Ventas</h3>
+            <p class="project-desc"><strong>El problema:</strong> El equipo entraba a 4 plataformas distintas para ver campañas. Se perdia plata en ads sin que nadie lo detectara a tiempo, y los leads caian sin seguimiento.</p>
+            <p class="project-desc"><strong>La solucion:</strong> Un dashboard que unifica Meta, Google e Instagram en tiempo real, detecta anomalias de gasto automaticamente y centraliza cada lead con su historial completo.</p>
+            <ul class="project-features">
+              <li>Trazabilidad total: cada lead desde el clic hasta la venta</li>
+              <li>Deteccion de anomalias: alertas antes de perder presupuesto</li>
+              <li>Metricas claras: conversion por vendedor y campania al instante</li>
+              <li>Reportes PDF automaticos para el directorio</li>
+            </ul>
+          </div>
+          <div class="project-visual">
+            <div class="mock">
+              <div class="mock-chrome">
+                <div class="mock-dot" style="background:#ff5f57"></div>
+                <div class="mock-dot" style="background:#febc2e"></div>
+                <div class="mock-dot" style="background:#28c840"></div>
+                <span class="mock-title">Dashboard Marketing &nbsp;<span class="mock-live"></span> En vivo</span>
+              </div>
+              <div class="mock-body">
+                <div class="mock-kpis">
+                  <div class="mock-kpi">
+                    <div class="mock-kpi-label">Gasto total</div>
+                    <div class="mock-kpi-val" style="color:var(--cyan)">$4.2M</div>
+                  </div>
+                  <div class="mock-kpi">
+                    <div class="mock-kpi-label">Leads mes</div>
+                    <div class="mock-kpi-val" style="color:var(--green)">347</div>
+                  </div>
+                  <div class="mock-kpi">
+                    <div class="mock-kpi-label">CPL promedio</div>
+                    <div class="mock-kpi-val" style="color:var(--violet)">$12.1k</div>
+                  </div>
                 </div>
-
-                <!-- CRM INMOBILIARIO -->
-                <div class="project-card fade-in">
-                    <div class="project-content">
-                        <div class="project-visual" style="padding:0;min-height:420px;">
-                            <!-- CRM INMOBILIARIO - MOCKUP INTERACTIVO -->
-                            <div class="crm-app crm-light" id="crm-inmo">
-                                <div class="crm-sidebar">
-                                    <div class="crm-sb-logo bg-red" style="font-size:16px;font-family:'Montserrat',sans-serif;">Z</div>
-                                    <div class="crm-sb-item active" data-view="inmo-pipeline" data-crm="crm-inmo" data-accent="#c8191a" style="background:#c8191a;">&#9632;</div>
-                                    <div class="crm-sb-item" data-view="inmo-leads" data-crm="crm-inmo" data-accent="#c8191a">&#128100;</div>
-                                    <div class="crm-sb-item" data-view="inmo-agenda" data-crm="crm-inmo" data-accent="#c8191a">&#128197;</div>
-                                    <div class="crm-sb-item" data-view="inmo-stats" data-crm="crm-inmo" data-accent="#c8191a">&#128200;</div>
-                                </div>
-                                <div class="crm-main">
-                                    <div class="crm-topbar">
-                                        <div class="crm-topbar-title" id="inmo-topbar-title" style="color:#1a1a1a;">Pipeline de Leads</div>
-                                        <span style="display:flex;align-items:center;gap:4px;font-size:9px;color:#277a48;background:#edf7f1;padding:2px 8px;border-radius:10px;border:1px solid #277a48;">
-                                            <span class="crm-live-dot"></span> 6 conectados
-                                        </span>
-                                        <div class="crm-topbar-search">Buscar lead...</div>
-                                    </div>
-                                    <!-- VIEW 1: Pipeline -->
-                                    <div class="crm-content crm-view-panel active" id="inmo-pipeline">
-                                        <div class="crm-kpi-row">
-                                            <div class="crm-kpi">
-                                                <div class="crm-kpi-label">Leads activos</div>
-                                                <div class="crm-kpi-val" style="color:#c8191a;">89</div>
-                                                <div class="crm-kpi-sub" style="color:#277a48;">+12 esta semana</div>
-                                            </div>
-                                            <div class="crm-kpi">
-                                                <div class="crm-kpi-label">Visitas hoy</div>
-                                                <div class="crm-kpi-val" style="color:#1a1a1a;">12</div>
-                                                <div class="crm-kpi-sub">3 pendientes</div>
-                                            </div>
-                                            <div class="crm-kpi">
-                                                <div class="crm-kpi-label">Cerrados mes</div>
-                                                <div class="crm-kpi-val" style="color:#277a48;">7</div>
-                                                <div class="crm-kpi-sub" style="color:#277a48;">USD 840k</div>
-                                            </div>
-                                            <div class="crm-kpi">
-                                                <div class="crm-kpi-label">Tasa conversión</div>
-                                                <div class="crm-kpi-val" style="color:#c85c18;">11.2%</div>
-                                                <div class="crm-kpi-sub" style="color:#277a48;">+2.1%</div>
-                                            </div>
-                                        </div>
-                                        <div class="crm-pipeline">
-                                            <div class="crm-pipe-col">
-                                                <div class="crm-pipe-header">Nuevos <span class="crm-pipe-count" style="background:#eef3fd;color:#1e56b0;">14</span></div>
-                                                <div class="crm-pipe-card"><div class="crm-pipe-name">Martín Suárez</div><div class="crm-pipe-detail">Compra &middot; Centro</div><div style="margin-top:3px;"><span class="crm-temp-dot" style="background:#c94a1a;"></span><span style="font-size:7.5px;color:#c94a1a;font-weight:700;">Caliente</span></div></div>
-                                                <div class="crm-pipe-card"><div class="crm-pipe-name">Lucía Fernández</div><div class="crm-pipe-detail">Alquiler &middot; Güemes</div><div style="margin-top:3px;"><span class="crm-temp-dot" style="background:#c49a2e;"></span><span style="font-size:7.5px;color:#c49a2e;font-weight:700;">Tibio</span></div></div>
-                                                <div class="crm-pipe-card"><div class="crm-pipe-name">Carlos Méndez</div><div class="crm-pipe-detail">Inversión &middot; La Perla</div><div style="margin-top:3px;"><span class="crm-temp-dot" style="background:#c94a1a;"></span><span style="font-size:7.5px;color:#c94a1a;font-weight:700;">Caliente</span></div></div>
-                                            </div>
-                                            <div class="crm-pipe-col">
-                                                <div class="crm-pipe-header">Contactados <span class="crm-pipe-count" style="background:#fef2e8;color:#c85c18;">11</span></div>
-                                                <div class="crm-pipe-card"><div class="crm-pipe-name">Valentina Castro</div><div class="crm-pipe-detail">Alq. temp &middot; Playa Grande</div><div style="margin-top:3px;"><span class="crm-temp-dot" style="background:#c94a1a;"></span><span style="font-size:7.5px;color:#c94a1a;font-weight:700;">Caliente</span></div></div>
-                                                <div class="crm-pipe-card"><div class="crm-pipe-name">Santiago Ruiz</div><div class="crm-pipe-detail">Compra &middot; Constitución</div><div style="margin-top:3px;"><span class="crm-temp-dot" style="background:#5a7a9a;"></span><span style="font-size:7.5px;color:#5a7a9a;font-weight:700;">Frío</span></div></div>
-                                            </div>
-                                            <div class="crm-pipe-col">
-                                                <div class="crm-pipe-header">Visita <span class="crm-pipe-count" style="background:#fdf8ee;color:#c49a2e;">8</span></div>
-                                                <div class="crm-pipe-card"><div class="crm-pipe-name">Federico López</div><div class="crm-pipe-detail">Compra &middot; Los Troncos</div><div style="margin-top:3px;"><span class="crm-temp-dot" style="background:#c94a1a;"></span><span style="font-size:7.5px;color:#c94a1a;font-weight:700;">Caliente</span></div></div>
-                                                <div class="crm-pipe-card"><div class="crm-pipe-name">Camila Torres</div><div class="crm-pipe-detail">Alquiler &middot; Centro</div><div style="margin-top:3px;"><span class="crm-temp-dot" style="background:#c49a2e;"></span><span style="font-size:7.5px;color:#c49a2e;font-weight:700;">Tibio</span></div></div>
-                                            </div>
-                                            <div class="crm-pipe-col">
-                                                <div class="crm-pipe-header">Negociación <span class="crm-pipe-count" style="background:#edf7f1;color:#277a48;">5</span></div>
-                                                <div class="crm-pipe-card" style="border-left:2px solid #277a48;"><div class="crm-pipe-name">Nicolás Herrera</div><div class="crm-pipe-detail">USD 155k &middot; Colinas</div><div style="margin-top:3px;"><span class="crm-temp-dot" style="background:#c94a1a;"></span><span style="font-size:7.5px;color:#c94a1a;font-weight:700;">Caliente</span></div></div>
-                                                <div class="crm-pipe-card" style="border-left:2px solid #277a48;"><div class="crm-pipe-name">Florencia Díaz</div><div class="crm-pipe-detail">USD 210k &middot; San Carlos</div><div style="margin-top:3px;"><span class="crm-temp-dot" style="background:#c94a1a;"></span><span style="font-size:7.5px;color:#c94a1a;font-weight:700;">Caliente</span></div></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- VIEW 2: Leads Table -->
-                                    <div class="crm-content crm-view-panel" id="inmo-leads" data-title="Leads">
-                                        <div style="display:flex;gap:5px;margin-bottom:4px;flex-wrap:wrap;">
-                                            <span style="padding:2px 8px;border-radius:10px;font-size:8px;font-weight:700;background:#c8191a;color:#fff;cursor:default;">Todos (89)</span>
-                                            <span style="padding:2px 8px;border-radius:10px;font-size:8px;font-weight:700;background:#ebebea;color:#6b6560;cursor:default;">Nuevos (14)</span>
-                                            <span style="padding:2px 8px;border-radius:10px;font-size:8px;font-weight:700;background:#ebebea;color:#6b6560;cursor:default;">Calientes (32)</span>
-                                        </div>
-                                        <div class="crm-table" style="flex:1;">
-                                            <div class="crm-table-head" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
-                                                <span>Nombre</span><span>Fuente</span><span>Tipo</span><span>Temp.</span><span>Asesor</span>
-                                            </div>
-                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
-                                                <span style="font-weight:600;">Martín Suárez</span>
-                                                <span><span style="color:#25d366;font-weight:700;">WhatsApp</span></span>
-                                                <span>Compra</span>
-                                                <span><span class="crm-temp-dot" style="background:#c94a1a;"></span><span style="font-size:8px;color:#c94a1a;font-weight:700;">Cal.</span></span>
-                                                <span>Nacho P.</span>
-                                            </div>
-                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
-                                                <span style="font-weight:600;">Lucía Fernández</span>
-                                                <span><span style="color:#1877f2;font-weight:700;">Instagram</span></span>
-                                                <span>Alquiler</span>
-                                                <span><span class="crm-temp-dot" style="background:#c49a2e;"></span><span style="font-size:8px;color:#c49a2e;font-weight:700;">Tib.</span></span>
-                                                <span>Juan R.</span>
-                                            </div>
-                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
-                                                <span style="font-weight:600;">Carlos Méndez</span>
-                                                <span><span style="color:#c85c18;font-weight:700;">Tokko</span></span>
-                                                <span>Inversión</span>
-                                                <span><span class="crm-temp-dot" style="background:#c94a1a;"></span><span style="font-size:8px;color:#c94a1a;font-weight:700;">Cal.</span></span>
-                                                <span>Franca D.</span>
-                                            </div>
-                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
-                                                <span style="font-weight:600;">Valentina Castro</span>
-                                                <span><span style="color:#1877f2;font-weight:700;">Facebook</span></span>
-                                                <span>Alq. temp</span>
-                                                <span><span class="crm-temp-dot" style="background:#c94a1a;"></span><span style="font-size:8px;color:#c94a1a;font-weight:700;">Cal.</span></span>
-                                                <span>Nacho P.</span>
-                                            </div>
-                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
-                                                <span style="font-weight:600;">Santiago Ruiz</span>
-                                                <span><span style="color:#4285f4;font-weight:700;">Google</span></span>
-                                                <span>Compra</span>
-                                                <span><span class="crm-temp-dot" style="background:#5a7a9a;"></span><span style="font-size:8px;color:#5a7a9a;font-weight:700;">Frío</span></span>
-                                                <span>Ramiro G.</span>
-                                            </div>
-                                            <div class="crm-table-row" style="grid-template-columns:2fr 1.2fr 1fr 1fr 1fr;">
-                                                <span style="font-weight:600;">Federico López</span>
-                                                <span><span style="color:#277a48;font-weight:700;">Referido</span></span>
-                                                <span>Compra</span>
-                                                <span><span class="crm-temp-dot" style="background:#c94a1a;"></span><span style="font-size:8px;color:#c94a1a;font-weight:700;">Cal.</span></span>
-                                                <span>Manuel T.</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- VIEW 3: Agenda -->
-                                    <div class="crm-content crm-view-panel" id="inmo-agenda" data-title="Agenda">
-                                        <div style="font-size:9px;font-weight:800;color:#1a1a1a;margin-bottom:6px;">Hoy — Martes 25 de Marzo</div>
-                                        <div style="display:flex;flex-direction:column;gap:5px;">
-                                            <div style="background:#fff;border:1px solid #e4e2de;border-radius:7px;padding:8px 10px;border-left:3px solid #c8191a;display:flex;gap:10px;align-items:center;">
-                                                <div style="font-size:11px;font-weight:800;color:#c8191a;width:40px;">09:30</div>
-                                                <div style="flex:1;">
-                                                    <div style="font-size:9px;font-weight:700;color:#1a1a1a;">Visita — Martín Suárez</div>
-                                                    <div style="font-size:8px;color:#6b6560;">Depto 3 amb. Av. Colón 2450, Centro</div>
-                                                </div>
-                                                <span class="crm-badge" style="background:#fef2e8;color:#c85c18;">Pendiente</span>
-                                            </div>
-                                            <div style="background:#fff;border:1px solid #e4e2de;border-radius:7px;padding:8px 10px;border-left:3px solid #c49a2e;display:flex;gap:10px;align-items:center;">
-                                                <div style="font-size:11px;font-weight:800;color:#c49a2e;width:40px;">11:00</div>
-                                                <div style="flex:1;">
-                                                    <div style="font-size:9px;font-weight:700;color:#1a1a1a;">Llamada — Valentina Castro</div>
-                                                    <div style="font-size:8px;color:#6b6560;">Confirmar presupuesto alq. temporal</div>
-                                                </div>
-                                                <span class="crm-badge" style="background:#fef2e8;color:#c85c18;">Pendiente</span>
-                                            </div>
-                                            <div style="background:#fff;border:1px solid #e4e2de;border-radius:7px;padding:8px 10px;border-left:3px solid #277a48;display:flex;gap:10px;align-items:center;">
-                                                <div style="font-size:11px;font-weight:800;color:#277a48;width:40px;">14:00</div>
-                                                <div style="flex:1;">
-                                                    <div style="font-size:9px;font-weight:700;color:#1a1a1a;">Visita — Federico López</div>
-                                                    <div style="font-size:8px;color:#6b6560;">Casa 4 amb. Los Troncos</div>
-                                                </div>
-                                                <span class="crm-badge" style="background:#edf7f1;color:#277a48;">Confirmada</span>
-                                            </div>
-                                            <div style="background:#fff;border:1px solid #e4e2de;border-radius:7px;padding:8px 10px;border-left:3px solid #1e56b0;display:flex;gap:10px;align-items:center;opacity:.5;">
-                                                <div style="font-size:11px;font-weight:800;color:#1e56b0;width:40px;">16:30</div>
-                                                <div style="flex:1;">
-                                                    <div style="font-size:9px;font-weight:700;color:#1a1a1a;text-decoration:line-through;">Seguimiento — Santiago Ruiz</div>
-                                                    <div style="font-size:8px;color:#6b6560;">Enviar fotos por WhatsApp</div>
-                                                </div>
-                                                <span class="crm-badge" style="background:#edf7f1;color:#277a48;">Hecho</span>
-                                            </div>
-                                            <div style="background:#fff;border:1px solid #e4e2de;border-radius:7px;padding:8px 10px;border-left:3px solid #c8191a;display:flex;gap:10px;align-items:center;">
-                                                <div style="font-size:11px;font-weight:800;color:#c8191a;width:40px;">18:00</div>
-                                                <div style="flex:1;">
-                                                    <div style="font-size:9px;font-weight:700;color:#1a1a1a;">Tasación — Florencia Díaz</div>
-                                                    <div style="font-size:8px;color:#6b6560;">PH en San Carlos, 2 plantas</div>
-                                                </div>
-                                                <span class="crm-badge" style="background:#fef2e8;color:#c85c18;">Pendiente</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- VIEW 4: Estadísticas -->
-                                    <div class="crm-content crm-view-panel" id="inmo-stats" data-title="Estadísticas">
-                                        <div class="crm-kpi-row">
-                                            <div class="crm-kpi">
-                                                <div class="crm-kpi-label">Ventas mes</div>
-                                                <div class="crm-kpi-val" style="color:#277a48;">USD 840k</div>
-                                            </div>
-                                            <div class="crm-kpi">
-                                                <div class="crm-kpi-label">Comisiones</div>
-                                                <div class="crm-kpi-val" style="color:#c8191a;">USD 33.6k</div>
-                                            </div>
-                                            <div class="crm-kpi">
-                                                <div class="crm-kpi-label">Leads/asesor</div>
-                                                <div class="crm-kpi-val" style="color:#1a1a1a;">14.8</div>
-                                            </div>
-                                            <div class="crm-kpi">
-                                                <div class="crm-kpi-label">Tiempo cierre</div>
-                                                <div class="crm-kpi-val" style="color:#c85c18;">18 días</div>
-                                            </div>
-                                        </div>
-                                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-                                            <div class="crm-minichart">
-                                                <div class="crm-minichart-title">Leads por fuente</div>
-                                                <div class="crm-minichart-bars">
-                                                    <div class="crm-minibar" style="height:100%;background:#1877f2;" title="Instagram"></div>
-                                                    <div class="crm-minibar" style="height:72%;background:#25d366;" title="WhatsApp"></div>
-                                                    <div class="crm-minibar" style="height:55%;background:#1877f2;opacity:.6;" title="Facebook"></div>
-                                                    <div class="crm-minibar" style="height:40%;background:#4285f4;" title="Google"></div>
-                                                    <div class="crm-minibar" style="height:30%;background:#c85c18;" title="Tokko"></div>
-                                                    <div class="crm-minibar" style="height:22%;background:#277a48;" title="Referido"></div>
-                                                </div>
-                                                <div style="display:flex;gap:6px;margin-top:5px;flex-wrap:wrap;">
-                                                    <span style="font-size:6.5px;color:#1877f2;font-weight:700;">IG 34%</span>
-                                                    <span style="font-size:6.5px;color:#25d366;font-weight:700;">WA 24%</span>
-                                                    <span style="font-size:6.5px;color:#4285f4;font-weight:700;">Goo 15%</span>
-                                                    <span style="font-size:6.5px;color:#c85c18;font-weight:700;">Tokko 12%</span>
-                                                </div>
-                                            </div>
-                                            <div class="crm-minichart">
-                                                <div class="crm-minichart-title">Cierres por asesor</div>
-                                                <div class="crm-minichart-bars">
-                                                    <div class="crm-minibar" style="height:100%;background:#c8191a;"></div>
-                                                    <div class="crm-minibar" style="height:80%;background:#c8191a;"></div>
-                                                    <div class="crm-minibar" style="height:60%;background:#c8191a;"></div>
-                                                    <div class="crm-minibar" style="height:40%;background:#c8191a;opacity:.7;"></div>
-                                                    <div class="crm-minibar" style="height:40%;background:#c8191a;opacity:.7;"></div>
-                                                    <div class="crm-minibar" style="height:20%;background:#c8191a;opacity:.5;"></div>
-                                                </div>
-                                                <div style="display:flex;gap:4px;margin-top:5px;flex-wrap:wrap;">
-                                                    <span style="font-size:6.5px;color:#c8191a;font-weight:700;">Nacho 3</span>
-                                                    <span style="font-size:6.5px;color:#c8191a;font-weight:700;">Juan 2</span>
-                                                    <span style="font-size:6.5px;color:#c8191a;font-weight:700;">Franca 1</span>
-                                                    <span style="font-size:6.5px;color:#c8191a;font-weight:700;">Ramiro 1</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <div class="project-tag">Inmobiliaria</div>
-                            <h3 class="project-name">CRM Comercial + Seguimiento Inteligente</h3>
-                            <p class="project-desc"><strong style="color:var(--zinc-200)">El problema:</strong> Los leads caían en chats personales de 6 vendedores. Se perdían consultas, nadie sabía quién atendía a quién, y no había forma de medir la conversión real del equipo.</p>
-                            <p class="project-desc" style="margin-bottom:1.5rem"><strong style="color:var(--zinc-200)">La solución:</strong> Un CRM que captura cada consulta automáticamente, la asigna al vendedor correcto y le da al dueño visibilidad total sobre el pipeline sin preguntar por WhatsApp.</p>
-                            <ul class="project-features">
-                                <li>Trazabilidad total: historial de cada cliente desde la consulta hasta el cierre</li>
-                                <li>Asignación automática por zona, tipo y disponibilidad</li>
-                                <li>Métricas de conversión por vendedor en tiempo real</li>
-                                <li>Agenda de visitas y seguimientos que no se pierden</li>
-                            </ul>
-                        </div>
+                <div class="mock-chart" id="chart-auto"></div>
+                <div style="display:flex;gap:8px">
+                  <div class="mock-table" style="flex:2">
+                    <div class="mock-table-row" style="font-size:9px;color:var(--dim);font-weight:700;text-transform:uppercase;letter-spacing:.05em">
+                      <span>Campaña</span><span>CPL</span>
                     </div>
+                    <div class="mock-table-row"><span style="color:var(--text)">Hilux SR5 — Meta</span><span style="color:var(--green)">$10.6k</span></div>
+                    <div class="mock-table-row"><span style="color:var(--text)">Corolla Cross — Google</span><span style="color:var(--cyan)">$13.8k</span></div>
+                    <div class="mock-table-row"><span style="color:var(--text)">Usados Premium — Meta</span><span style="color:var(--green)">$8.7k</span></div>
+                    <div class="mock-table-row"><span style="color:var(--text)">Plan Ahorro Yaris</span><span style="color:var(--violet)">$11.7k</span></div>
+                  </div>
+                  <div class="mock-alert" style="flex:1">
+                    <div style="font-size:9px;color:#ff5050;font-weight:700;margin-bottom:4px">&#9650; ANOMALIA</div>
+                    <div style="font-size:9px;color:var(--text)">Meta Ads: gasto +45% sin clics</div>
+                    <div style="font-size:8px;color:var(--dim);margin-top:3px">Hace 2 horas</div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- SERVICIOS -->
-    <section id="servicios">
-        <div class="container">
-            <div class="section-label">Servicios</div>
-            <h2 class="section-title">Lo que hacemos</h2>
-            <p class="section-desc">No hacemos de todo — hacemos bien lo que sabemos. Sistemas que resuelven problemas operativos reales.</p>
-
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-                    </div>
-                    <h3>CRMs a medida</h3>
-                    <p>Diseñamos tu sistema de gestión de clientes adaptado a cómo trabaja tu equipo, no al revés.</p>
+      <!-- INMO -->
+      <div class="project-card reveal">
+        <div class="project-content">
+          <div class="project-info">
+            <div class="project-tag">Inmobiliaria</div>
+            <h3 class="project-name">CRM Comercial + Seguimiento Inteligente</h3>
+            <p class="project-desc"><strong>El problema:</strong> Los leads caian en chats personales de 6 vendedores. Se perdian consultas, nadie sabia quién atendia a quién, y no habia forma de medir la conversion real del equipo.</p>
+            <p class="project-desc"><strong>La solucion:</strong> Un CRM que captura cada consulta automaticamente, la asigna al vendedor correcto y le da al dueño visibilidad total sobre el pipeline sin preguntar por WhatsApp.</p>
+            <ul class="project-features">
+              <li>Trazabilidad total: historial de cada cliente desde la consulta hasta el cierre</li>
+              <li>Asignacion automatica por zona, tipo y disponibilidad</li>
+              <li>Metricas de conversion por vendedor en tiempo real</li>
+              <li>Agenda de visitas y seguimientos que no se pierden</li>
+            </ul>
+          </div>
+          <div class="project-visual">
+            <div class="mock" style="animation-delay:-3s">
+              <div class="mock-chrome">
+                <div class="mock-dot" style="background:#ff5f57"></div>
+                <div class="mock-dot" style="background:#febc2e"></div>
+                <div class="mock-dot" style="background:#28c840"></div>
+                <span class="mock-title">CRM Inmobiliario &nbsp;<span class="mock-live"></span> 6 conectados</span>
+              </div>
+              <div class="mock-body">
+                <div class="mock-kpis">
+                  <div class="mock-kpi">
+                    <div class="mock-kpi-label">Leads activos</div>
+                    <div class="mock-kpi-val" style="color:var(--green)">89</div>
+                  </div>
+                  <div class="mock-kpi">
+                    <div class="mock-kpi-label">Cerrados mes</div>
+                    <div class="mock-kpi-val" style="color:var(--cyan)">USD 840k</div>
+                  </div>
+                  <div class="mock-kpi">
+                    <div class="mock-kpi-label">Conversion</div>
+                    <div class="mock-kpi-val" style="color:var(--violet)">11.2%</div>
+                  </div>
                 </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
-                    </div>
-                    <h3>Dashboards analíticos</h3>
-                    <p>Paneles que unifican todas tus fuentes de datos en un solo lugar, con alertas y reportes automáticos.</p>
+                <div class="pipeline">
+                  <div class="pipe-col">
+                    <div class="pipe-header">Nuevos <span class="pipe-count" style="background:rgba(0,212,255,.12);color:var(--cyan)">14</span></div>
+                    <div class="pipe-card"><div class="pipe-name">Martin Suárez</div><div class="pipe-detail">Compra · Centro</div><div class="pipe-temp hot">Caliente</div></div>
+                    <div class="pipe-card"><div class="pipe-name">Lucía Fernández</div><div class="pipe-detail">Alquiler · Güemes</div><div class="pipe-temp warm">Tibio</div></div>
+                    <div class="pipe-card"><div class="pipe-name">Carlos Méndez</div><div class="pipe-detail">Inversion · La Perla</div><div class="pipe-temp hot">Caliente</div></div>
+                  </div>
+                  <div class="pipe-col">
+                    <div class="pipe-header">Contactados <span class="pipe-count" style="background:rgba(168,85,247,.12);color:var(--violet)">11</span></div>
+                    <div class="pipe-card"><div class="pipe-name">Valentina Castro</div><div class="pipe-detail">Alq. temp · Playa Grande</div><div class="pipe-temp hot">Caliente</div></div>
+                    <div class="pipe-card"><div class="pipe-name">Santiago Ruiz</div><div class="pipe-detail">Compra · Constitucion</div><div class="pipe-temp cold">Frio</div></div>
+                  </div>
+                  <div class="pipe-col">
+                    <div class="pipe-header">Visita <span class="pipe-count" style="background:rgba(0,240,160,.12);color:var(--green)">8</span></div>
+                    <div class="pipe-card"><div class="pipe-name">Federico López</div><div class="pipe-detail">Compra · Los Troncos</div><div class="pipe-temp hot">Caliente</div></div>
+                    <div class="pipe-card"><div class="pipe-name">Camila Torres</div><div class="pipe-detail">Alquiler · Centro</div><div class="pipe-temp warm">Tibio</div></div>
+                  </div>
+                  <div class="pipe-col">
+                    <div class="pipe-header">Cierre <span class="pipe-count" style="background:rgba(0,240,160,.12);color:var(--green)">5</span></div>
+                    <div class="pipe-card" style="border-left:2px solid var(--green)"><div class="pipe-name">Nicolás Herrera</div><div class="pipe-detail">USD 155k · Colinas</div><div class="pipe-temp hot">Caliente</div></div>
+                    <div class="pipe-card" style="border-left:2px solid var(--green)"><div class="pipe-name">Florencia Diaz</div><div class="pipe-detail">USD 210k · San Carlos</div><div class="pipe-temp hot">Caliente</div></div>
+                  </div>
                 </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-                    </div>
-                    <h3>Integraciones</h3>
-                    <p>Conectamos Meta, Google, WhatsApp, CRMs externos y cualquier API que tu negocio necesite.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m-7-7h6m6 0h6"/><path d="M18.36 5.64l-4.24 4.24m-4.24 4.24L5.64 18.36"/><path d="M18.36 18.36l-4.24-4.24m-4.24-4.24L5.64 5.64"/></svg>
-                    </div>
-                    <h3>Automatizaciones</h3>
-                    <p>Procesos que antes eran manuales, ahora corren solos. Sync de datos, alertas, reportes, asignaciones.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                    </div>
-                    <h3>IA aplicada</h3>
-                    <p>Integramos inteligencia artificial donde tiene sentido: generación de contenido, análisis de datos, chatbots.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-                    </div>
-                    <h3>Desarrollo completo</h3>
-                    <p>Backend, frontend, base de datos, deploy. Entregamos el sistema funcionando, no un prototipo.</p>
-                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- PROCESO -->
-    <section id="proceso">
-        <div class="container">
-            <div class="section-label">Proceso</div>
-            <h2 class="section-title">Cómo trabajamos</h2>
-            <p class="section-desc">Simple, directo, sin vueltas.</p>
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="container">
+    <div class="section-label reveal">Servicios</div>
+    <h2 class="section-title reveal">Lo que hacemos</h2>
+    <p class="section-desc reveal">No hacemos de todo — hacemos bien lo que sabemos. Sistemas que resuelven problemas operativos reales.</p>
 
-            <div class="process-steps">
-                <div class="step fade-in">
-                    <h3>Escuchamos</h3>
-                    <p>Entendemos cómo opera tu negocio hoy, qué funciona y qué no. Sin jerga técnica.</p>
-                </div>
-                <div class="step fade-in">
-                    <h3>Diseñamos</h3>
-                    <p>Definimos la solución exacta. Qué se construye, qué se integra, qué se automatiza.</p>
-                </div>
-                <div class="step fade-in">
-                    <h3>Construimos</h3>
-                    <p>Desarrollamos el sistema con entregas parciales para que veas avances reales cada semana.</p>
-                </div>
-                <div class="step fade-in">
-                    <h3>Acompañamos</h3>
-                    <p>No desaparecemos después del deploy. Soporte, ajustes y evolución del sistema incluidos.</p>
-                </div>
-            </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
         </div>
-    </section>
-
-    <!-- CTA -->
-    <section id="contacto" class="cta">
-        <div class="container">
-            <div class="section-label">Contacto</div>
-            <h2 class="section-title">¿Tu empresa necesita<br>un sistema que funcione?</h2>
-            <p class="section-desc" style="margin-left:auto;margin-right:auto;">Si tu operación depende de Excel, WhatsApp y buena voluntad, hablemos. Podemos construir algo mejor.</p>
-            <div class="hero-buttons" style="justify-content:center;">
-                <a href="https://wa.me/5492236892809" class="btn-primary" target="_blank">Escribinos por WhatsApp</a>
-                <a href="mailto:quasortech@gmail.com" class="btn-secondary">Enviar email</a>
-            </div>
+        <h3>CRMs a medida</h3>
+        <p>Diseñamos tu sistema de gestion de clientes adaptado a como trabaja tu equipo, no al reves.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
         </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-left">
-                <img src="Logo Quasor.png" alt="Quasor">
-                &copy; 2026 Quasor. Todos los derechos reservados.
-            </div>
-            <div class="footer-links">
-                <a href="https://www.instagram.com/quasortech/" target="_blank">Instagram</a>
-                <a href="#">Facebook</a>
-                <a href="https://wa.me/5492236892809" target="_blank">WhatsApp</a>
-            </div>
+        <h3>Dashboards analiticos</h3>
+        <p>Paneles que unifican todas tus fuentes de datos en un solo lugar, con alertas y reportes automaticos.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
         </div>
-    </footer>
+        <h3>Integraciones</h3>
+        <p>Conectamos Meta, Google, WhatsApp, CRMs externos y cualquier API que tu negocio necesite.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6"/><path d="M1 12h6m6 0h6"/></svg>
+        </div>
+        <h3>Automatizaciones</h3>
+        <p>Procesos que antes eran manuales, ahora corren solos. Sync de datos, alertas, reportes, asignaciones.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>IA aplicada</h3>
+        <p>Integramos inteligencia artificial donde tiene sentido: generacion de contenido, analisis de datos, chatbots.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h3>Desarrollo completo</h3>
+        <p>Backend, frontend, base de datos, deploy. Entregamos el sistema funcionando, no un prototipo.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
+<!-- PROCESO -->
+<section id="proceso">
+  <div class="container">
+    <div class="section-label reveal">Proceso</div>
+    <h2 class="section-title reveal">Como trabajamos</h2>
+    <p class="section-desc reveal">Simple, directo, sin vueltas.</p>
 
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    <div class="timeline-wrapper reveal">
+      <div class="timeline">
+        <div class="timeline-progress"></div>
+        <div class="tl-step">
+          <div class="tl-node">01</div>
+          <div>
+            <h3>Escuchamos</h3>
+            <p>Entendemos como opera tu negocio hoy, que funciona y que no. Sin jerga tecnica.</p>
+          </div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-node">02</div>
+          <div>
+            <h3>Diseñamos</h3>
+            <p>Definimos la solucion exacta. Que se construye, que se integra, que se automatiza.</p>
+          </div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-node">03</div>
+          <div>
+            <h3>Construimos</h3>
+            <p>Desarrollamos el sistema con entregas parciales para que veas avances reales cada semana.</p>
+          </div>
+        </div>
+        <div class="tl-step">
+          <div class="tl-node">04</div>
+          <div>
+            <h3>Acompañamos</h3>
+            <p>No desaparecemos despues del deploy. Soporte, ajustes y evolucion del sistema incluidos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // Interactive CRM mockup navigation
-        const titles = {
-            'auto-dash': 'Dashboard Marketing',
-            'auto-leads': 'Leads',
-            'auto-alerts': 'Alertas',
-            'auto-report': 'Reportes',
-            'inmo-pipeline': 'Pipeline de Leads',
-            'inmo-leads': 'Leads',
-            'inmo-agenda': 'Agenda',
-            'inmo-stats': 'Estadísticas'
-        };
+<!-- CTA -->
+<section id="contacto" class="cta">
+  <div class="container">
+    <div class="section-label reveal">Contacto</div>
+    <h2 class="section-title reveal">¿Tu empresa necesita<br>un sistema que funcione?</h2>
+    <p class="section-desc reveal">Si tu operacion depende de Excel, WhatsApp y buena voluntad, hablemos. Podemos construir algo mejor.</p>
+    <div class="hero-buttons reveal" style="justify-content:center">
+      <a href="https://wa.me/5492236892809" class="btn-primary" target="_blank">Escribinos por WhatsApp</a>
+      <a href="mailto:quasortech@gmail.com" class="btn-secondary">Enviar email</a>
+    </div>
+  </div>
+</section>
 
-        document.querySelectorAll('.crm-sb-item[data-view]').forEach(item => {
-            item.addEventListener('click', () => {
-                const viewId = item.dataset.view;
-                const crmId = item.dataset.crm;
-                const accent = item.dataset.accent;
-                const crm = document.getElementById(crmId);
+<!-- FOOTER -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-left">
+      <img src="Logo Quasor.png" alt="Quasor">
+      &copy; 2026 Quasor. Todos los derechos reservados.
+    </div>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/quasortech/" target="_blank">Instagram</a>
+      <a href="https://wa.me/5492236892809" target="_blank">WhatsApp</a>
+      <a href="mailto:quasortech@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
 
-                // Switch active sidebar item
-                crm.querySelectorAll('.crm-sb-item[data-view]').forEach(si => {
-                    si.classList.remove('active');
-                    si.style.background = '';
-                });
-                item.classList.add('active');
-                item.style.background = accent;
+<script>
+// ===== PARTICLE SYSTEM =====
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let mouse = { x: -500, y: -500 };
 
-                // Switch view panel
-                crm.querySelectorAll('.crm-view-panel').forEach(p => p.classList.remove('active'));
-                document.getElementById(viewId).classList.add('active');
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
 
-                // Update topbar title
-                const titleEl = crmId === 'crm-auto'
-                    ? document.getElementById('auto-topbar-title')
-                    : document.getElementById('inmo-topbar-title');
-                titleEl.textContent = titles[viewId] || '';
-            });
-        });
-    </script>
+function createParticles() {
+  const count = Math.min(80, Math.floor(window.innerWidth * window.innerHeight / 15000));
+  particles = [];
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      r: Math.random() * 1.5 + 0.5,
+      o: Math.random() * 0.4 + 0.1
+    });
+  }
+}
+createParticles();
+
+function drawParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let i = 0; i < particles.length; i++) {
+    const p = particles[i];
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0) p.x = canvas.width;
+    if (p.x > canvas.width) p.x = 0;
+    if (p.y < 0) p.y = canvas.height;
+    if (p.y > canvas.height) p.y = 0;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(0,240,160,${p.o})`;
+    ctx.fill();
+
+    for (let j = i + 1; j < particles.length; j++) {
+      const p2 = particles[j];
+      const dx = p.x - p2.x, dy = p.y - p2.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 150) {
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.strokeStyle = `rgba(0,240,160,${0.06 * (1 - dist / 150)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+    // Mouse interaction
+    const mdx = p.x - mouse.x, mdy = p.y - mouse.y;
+    const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+    if (mdist < 200) {
+      ctx.beginPath();
+      ctx.moveTo(p.x, p.y);
+      ctx.lineTo(mouse.x, mouse.y);
+      ctx.strokeStyle = `rgba(0,212,255,${0.08 * (1 - mdist / 200)})`;
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+    }
+  }
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+// ===== NOISE TEXTURE =====
+(function() {
+  const c = document.createElement('canvas');
+  c.width = 200; c.height = 200;
+  const x = c.getContext('2d');
+  const d = x.createImageData(200, 200);
+  for (let i = 0; i < d.data.length; i += 4) {
+    const v = Math.random() * 255;
+    d.data[i] = v; d.data[i+1] = v; d.data[i+2] = v; d.data[i+3] = 20;
+  }
+  x.putImageData(d, 0, 0);
+  document.querySelector('.noise').style.backgroundImage = `url(${c.toDataURL()})`;
+})();
+
+// ===== MOUSE ORB =====
+const orb = document.getElementById('orb');
+let orbX = -500, orbY = -500, targetX = -500, targetY = -500;
+document.addEventListener('mousemove', e => {
+  targetX = e.clientX; targetY = e.clientY;
+  mouse.x = e.clientX; mouse.y = e.clientY;
+  orb.style.display = 'block';
+});
+function animateOrb() {
+  orbX += (targetX - orbX) * 0.08;
+  orbY += (targetY - orbY) * 0.08;
+  orb.style.left = orbX + 'px';
+  orb.style.top = orbY + 'px';
+  requestAnimationFrame(animateOrb);
+}
+animateOrb();
+
+// ===== NAV SCROLL =====
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+
+// ===== MOBILE MENU =====
+const toggle = document.querySelector('.nav-toggle');
+const mobileMenu = document.querySelector('.mobile-menu');
+toggle.addEventListener('click', () => {
+  toggle.classList.toggle('active');
+  mobileMenu.classList.toggle('open');
+});
+mobileMenu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    toggle.classList.remove('active');
+    mobileMenu.classList.remove('open');
+  });
+});
+
+// ===== SCROLL REVEAL =====
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// ===== COUNTER ANIMATION =====
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting || e.target.dataset.done) return;
+    e.target.dataset.done = '1';
+    const target = +e.target.dataset.target;
+    const duration = 1500;
+    const start = performance.now();
+    function tick(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      e.target.textContent = Math.floor(target * ease);
+      if (p < 1) requestAnimationFrame(tick);
+      else e.target.textContent = target;
+    }
+    requestAnimationFrame(tick);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.counter').forEach(el => counterObs.observe(el));
+
+// ===== SERVICE CARD GLOW =====
+document.querySelectorAll('.service-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  });
+});
+
+// ===== TIMELINE SCROLL =====
+function updateTimeline() {
+  const section = document.getElementById('proceso');
+  if (!section) return;
+  const rect = section.getBoundingClientRect();
+  const wh = window.innerHeight;
+  const progress = Math.max(0, Math.min(1, (wh - rect.top) / (rect.height + wh * 0.3)));
+  const bar = document.querySelector('.timeline-progress');
+  const isMobile = window.innerWidth <= 768;
+  if (isMobile) {
+    bar.style.width = '';
+    bar.style.height = (progress * 100) + '%';
+  } else {
+    bar.style.height = '';
+    bar.style.width = (progress * 100) + '%';
+  }
+  document.querySelectorAll('.tl-step').forEach((step, i) => {
+    const threshold = (i + 0.5) / 4;
+    step.classList.toggle('active', progress >= threshold);
+  });
+}
+window.addEventListener('scroll', updateTimeline, { passive: true });
+updateTimeline();
+
+// ===== BUTTON RIPPLE =====
+document.querySelectorAll('.btn-primary').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    const r = this.getBoundingClientRect();
+    const ripple = document.createElement('span');
+    ripple.classList.add('ripple');
+    ripple.style.left = (e.clientX - r.left) + 'px';
+    ripple.style.top = (e.clientY - r.top) + 'px';
+    ripple.style.width = ripple.style.height = Math.max(r.width, r.height) + 'px';
+    this.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 600);
+  });
+});
+
+// ===== MOCKUP CHART BARS =====
+const chartAuto = document.getElementById('chart-auto');
+if (chartAuto) {
+  const heights = [40,55,48,72,65,88,78,95,82,70,90,100];
+  const colors = ['var(--cyan)','var(--green)','var(--cyan)','var(--green)','var(--violet)','var(--cyan)','var(--green)','var(--green)','var(--cyan)','var(--violet)','var(--green)','var(--cyan)'];
+  heights.forEach((h, i) => {
+    const bar = document.createElement('div');
+    bar.classList.add('mock-bar-el');
+    bar.style.height = '4px';
+    bar.style.background = colors[i];
+    bar.style.opacity = '0.7';
+    chartAuto.appendChild(bar);
+    setTimeout(() => { bar.style.height = h + '%'; }, 300 + i * 80);
+  });
+  // Animate bars periodically
+  setInterval(() => {
+    chartAuto.querySelectorAll('.mock-bar-el').forEach(bar => {
+      const current = parseInt(bar.style.height);
+      const delta = (Math.random() - 0.5) * 15;
+      const next = Math.max(15, Math.min(100, current + delta));
+      bar.style.height = next + '%';
+    });
+  }, 3000);
+}
+
+// ===== PARALLAX =====
+window.addEventListener('scroll', () => {
+  const sy = window.scrollY;
+  const hero = document.querySelector('.hero');
+  if (hero && sy < window.innerHeight) {
+    hero.style.transform = `translateY(${sy * 0.15}px)`;
+  }
+}, { passive: true });
+</script>
 </body>
 </html>
