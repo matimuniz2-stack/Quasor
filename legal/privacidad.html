@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Política de Privacidad — Quasor</title>
+  <meta name="description" content="Política de Privacidad de Quasor. Cómo tratamos tus datos y los de tus clientes." />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-2: #f6f6f7;
+      --ink: #0a0a0a;
+      --ink-2: #2a2a2a;
+      --ink-3: #6b6b6b;
+      --line: #ececec;
+      --line-2: #d9d9d9;
+      --accent: #ff5a1f;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    .serif { font-family: "Instrument Serif", serif; font-weight: 400; }
+    .mono { font-family: "JetBrains Mono", monospace; }
+    .ink-2 { color: var(--ink-2); }
+    .ink-3 { color: var(--ink-3); }
+    .accent { color: var(--accent); }
+    header {
+      position: sticky; top: 0; z-index: 40;
+      background: color-mix(in oklab, var(--bg) 90%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-wrap {
+      max-width: 1000px; margin: 0 auto; padding: 0 24px;
+      height: 56px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-family: "Instrument Serif", serif; font-size: 24px; text-decoration: none; color: var(--ink); }
+    .back { text-decoration: none; color: var(--ink-2); font-size: 14px; transition: color .2s; }
+    .back:hover { color: var(--accent); }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 80px 24px 120px;
+    }
+    .kicker {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--ink-3);
+    }
+    h1 {
+      font-family: "Instrument Serif", serif;
+      font-weight: 400;
+      font-size: clamp(48px, 8vw, 88px);
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+      margin: 16px 0 32px;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+    .updated {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      color: var(--ink-3);
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--bg-2);
+      display: inline-block;
+      margin-bottom: 48px;
+    }
+    h2 {
+      font-family: "Instrument Serif", serif;
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 56px 0 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    h2:first-of-type { border-top: none; padding-top: 0; }
+    h2 .num {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      color: var(--ink-3);
+      letter-spacing: 0.1em;
+      margin-right: 12px;
+      vertical-align: middle;
+    }
+    h3 {
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 17px;
+      margin: 28px 0 8px;
+      color: var(--ink);
+    }
+    p, li { color: var(--ink-2); font-size: 16px; }
+    p { margin: 12px 0; }
+    ul, ol { padding-left: 20px; margin: 12px 0; }
+    li { margin: 6px 0; }
+    ul li::marker { color: var(--accent); }
+    strong { color: var(--ink); font-weight: 600; }
+    a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
+    a:hover { opacity: 0.8; }
+    .callout {
+      border-left: 3px solid var(--accent);
+      background: var(--bg-2);
+      padding: 18px 22px;
+      margin: 24px 0;
+      border-radius: 4px;
+    }
+    .callout p { margin: 0; }
+    footer.pagefoot {
+      border-top: 1px solid var(--line);
+      padding: 40px 24px;
+      text-align: center;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      color: var(--ink-3);
+    }
+    footer.pagefoot a { color: var(--ink-2); border: none; margin: 0 12px; }
+    footer.pagefoot a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-wrap">
+      <a href="../Landing.html" class="logo">quasor<span class="accent">.</span></a>
+      <a href="../Landing.html" class="back">← Volver al inicio</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="kicker">LEGAL · 01</div>
+    <h1>Política de <em>privacidad</em>.</h1>
+
+    <div class="updated">Última actualización: 19 de abril de 2026</div>
+
+    <p>En Quasor ofrecemos un CRM para inmobiliarias argentinas. Eso implica que manejamos datos —los tuyos, y los de tus clientes. Esta política explica <strong>qué hacemos con esos datos, cómo los protegemos, y qué derechos tenés</strong> sobre ellos. Está escrita en español llano, no en lenguaje legal impenetrable. Si algo no queda claro, escribinos a <a href="mailto:ventas@quasor.com">ventas@quasor.com</a>.</p>
+
+    <div class="callout">
+      <p><strong>Resumen en 30 segundos:</strong> tus datos son tuyos. Los usamos sólo para darte el servicio que contrataste. No los vendemos a terceros. Podés pedirnos que los exportemos o eliminemos en cualquier momento.</p>
+    </div>
+
+    <h2><span class="num">01</span>Qué datos recopilamos</h2>
+    <h3>Datos que nos das directamente</h3>
+    <p>Cuando contratás Quasor nos compartís información de tu empresa: nombre, email, teléfono, dirección fiscal, y las credenciales de las plataformas que integramos (Meta Business, Google Ads, tu CRM actual, WhatsApp Business, etc.). Esta información es necesaria para configurar y operar el sistema.</p>
+
+    <h3>Datos generados por el uso del sistema</h3>
+    <p>Una vez que el CRM está en marcha, la plataforma almacena los datos operativos que vos y tu equipo ingresan: leads, clientes, interacciones, asignaciones, métricas de conversión, y cualquier dato que fluye desde tus integraciones externas (formularios de Meta, llamadas de Google Ads, consultas de portales inmobiliarios, etc.).</p>
+
+    <h3>Datos técnicos y de uso</h3>
+    <p>Recopilamos automáticamente datos técnicos básicos: dirección IP, navegador, dispositivo, páginas visitadas dentro del sistema, y timestamps de actividad. Los usamos para monitoreo, seguridad y mejora del producto.</p>
+
+    <h2><span class="num">02</span>Para qué usamos los datos</h2>
+    <ul>
+      <li><strong>Operar el servicio:</strong> sin tus datos no podemos darte el CRM, las integraciones, ni los reportes. Es el uso principal.</li>
+      <li><strong>Soporte:</strong> cuando nos pedís ayuda, revisamos tu cuenta para poder resolver el problema.</li>
+      <li><strong>Facturación:</strong> generamos facturas mensuales con tus datos fiscales.</li>
+      <li><strong>Mejora del producto:</strong> analizamos patrones agregados y anonimizados para entender qué features usan más los clientes y mejorar lo que importa.</li>
+      <li><strong>Comunicaciones operativas:</strong> te avisamos cambios importantes del servicio, incidencias, y actualizaciones. Nunca te spameamos con promociones.</li>
+    </ul>
+
+    <h2><span class="num">03</span>Qué NO hacemos con los datos</h2>
+    <ul>
+      <li><strong>No los vendemos</strong> a terceros. Ni a brokers de datos, ni a anunciantes, ni a nadie.</li>
+      <li><strong>No los usamos para entrenar modelos de IA</strong> genéricos. Si dentro de tu cuenta usamos IA (scoring de leads, por ejemplo), el modelo corre sobre tus datos, para darte a vos el beneficio, sin mezclarlos con otros clientes.</li>
+      <li><strong>No compartimos con terceros</strong>, salvo las excepciones puntuales del próximo punto.</li>
+    </ul>
+
+    <h2><span class="num">04</span>Con quién compartimos datos</h2>
+    <p>Sólo con proveedores necesarios para operar el servicio, y sólo lo mínimo indispensable:</p>
+    <ul>
+      <li><strong>Proveedores de infraestructura</strong> (AWS, Google Cloud): para alojar la base de datos y los servidores. Firman acuerdos de confidencialidad con nosotros.</li>
+      <li><strong>Pasarelas de pago</strong> (MercadoPago, Stripe): para procesar tu factura mensual. Reciben sólo los datos de facturación, no los datos operativos de tu CRM.</li>
+      <li><strong>Plataformas que vos conectás</strong> (Meta, Google, tu CRM): cuando configuramos una integración, los datos fluyen entre esas plataformas y la tuya según los permisos que vos autorizás.</li>
+      <li><strong>Autoridades</strong>: si una autoridad judicial argentina nos lo exige mediante orden válida, cumplimos la ley. Te avisaríamos salvo que la orden lo prohíba.</li>
+    </ul>
+
+    <h2><span class="num">05</span>Dónde viven tus datos</h2>
+    <p>Por defecto alojamos los datos en servidores de AWS en la región <strong>sa-east-1 (São Paulo, Brasil)</strong>, con redundancia diaria. Si preferís que vivan en tu propia infraestructura (on-premise) o en otro proveedor, lo coordinamos en el setup — ese es tu derecho y no cobramos extra por elegirlo.</p>
+
+    <h2><span class="num">06</span>Cómo los protegemos</h2>
+    <ul>
+      <li>Encriptación en tránsito (TLS 1.3) y en reposo (AES-256).</li>
+      <li>Accesos al sistema con autenticación de dos factores.</li>
+      <li>Logs de auditoría de cualquier acceso administrativo.</li>
+      <li>Backups automáticos diarios con retención de 30 días.</li>
+      <li>El equipo de Quasor firma NDAs y accede a datos sólo cuando es estrictamente necesario para soporte.</li>
+    </ul>
+
+    <h2><span class="num">07</span>Tus derechos</h2>
+    <p>Bajo la <strong>Ley 25.326 de Protección de Datos Personales</strong> (Argentina), tenés derecho a:</p>
+    <ul>
+      <li><strong>Acceder</strong> a los datos que tenemos sobre vos o tu empresa.</li>
+      <li><strong>Rectificar</strong> información incorrecta.</li>
+      <li><strong>Eliminar</strong> datos cuando dejan de ser necesarios.</li>
+      <li><strong>Exportar</strong> todos tus datos en formato estándar (CSV, JSON) en cualquier momento.</li>
+      <li><strong>Oponerte</strong> a usos específicos que no aceptás.</li>
+    </ul>
+    <p>Para ejercer cualquiera de estos derechos escribinos a <a href="mailto:ventas@quasor.com">ventas@quasor.com</a>. Respondemos en 72 horas hábiles como máximo.</p>
+
+    <h2><span class="num">08</span>Qué pasa si cortás el servicio</h2>
+    <p>Si cancelás tu cuenta:</p>
+    <ul>
+      <li>Te exportamos todos tus datos en los 7 días siguientes (o antes si los necesitás urgente).</li>
+      <li>Mantenemos un backup de tus datos operativos por 90 días por si querés volver.</li>
+      <li>Pasados esos 90 días, eliminamos todo excepto los registros de facturación que AFIP nos exige conservar (5 años, Resolución General 1415/2003).</li>
+    </ul>
+
+    <h2><span class="num">09</span>Cookies y tracking</h2>
+    <p>Usamos cookies técnicas esenciales (sesión, preferencias de idioma) y una sola herramienta de analítica: <strong>Plausible</strong>, que no usa cookies y no rastrea individualmente. No usamos Google Analytics, Meta Pixel, ni herramientas de fingerprinting.</p>
+
+    <h2><span class="num">10</span>Cambios a esta política</h2>
+    <p>Si actualizamos esta política te avisamos por email con al menos 30 días de anticipación si los cambios son sustanciales. Si son ajustes menores (aclaraciones, cambios de nombre de proveedores), los publicamos acá sin aviso individual.</p>
+
+    <h2><span class="num">11</span>Contacto</h2>
+    <p>Para cualquier consulta sobre esta política o sobre tus datos:</p>
+    <ul>
+      <li><strong>Email:</strong> <a href="mailto:ventas@quasor.com">ventas@quasor.com</a></li>
+      <li><strong>WhatsApp:</strong> <a href="https://wa.me/5492236892809">+54 9 223 689 2809</a></li>
+      <li><strong>Dirección:</strong> Mar del Plata, Buenos Aires, Argentina</li>
+    </ul>
+
+    <p style="margin-top: 48px;"><a href="terminos.html">→ Ver Términos y Condiciones</a></p>
+  </main>
+
+  <footer class="pagefoot">
+    © 2026 Quasor · <a href="../Landing.html">Inicio</a> · <a href="terminos.html">Términos</a> · <a href="mailto:ventas@quasor.com">Contacto</a>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quasor — Software a medida para empresas que quieren dejar Excel</title>
+<meta name="description" content="Sistemas de gestión, dashboards y automatizaciones diseñados para tu operación. Tu equipo deja de cargar datos a mano y vos controlás todo desde un solo lugar.">
+<meta name="keywords" content="software a medida, CRM, dashboard, automatización, sistemas de gestión, desarrollo web, Argentina">
+<meta name="author" content="Quasor">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://quasor.io/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://quasor.io/">
+<meta property="og:title" content="Quasor — Software a medida para empresas">
+<meta property="og:description" content="Sistemas de gestión, dashboards y automatizaciones diseñados para tu operación. Dejá de depender de Excel y WhatsApp.">
+<meta property="og:image" content="https://quasor.io/og-image.png">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Quasor">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Quasor — Software a medida para empresas">
+<meta name="twitter:description" content="Sistemas de gestión, dashboards y automatizaciones diseñados para tu operación.">
+<meta name="twitter:image" content="https://quasor.io/og-image.png">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Quasor",
+  "url": "https://quasor.io",
+  "logo": "https://quasor.io/logo-quasor.png",
+  "email": "ventas@quasor.com",
+  "telephone": "+5492236892809",
+  "description": "Desarrollo de software a medida: sistemas de gestión, CRMs, dashboards y automatizaciones para empresas.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Mar del Plata",
+    "addressRegion": "Buenos Aires",
+    "addressCountry": "AR"
+  },
+  "sameAs": [
+    "https://www.instagram.com/quasortech/"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+5492236892809",
+    "contactType": "sales",
+    "email": "ventas@quasor.com",
+    "availableLanguage": "Spanish"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#08090c;
+  --bg2:#0e1015;
+  --bg3:#141820;
+  --surface:#1a1f2b;
+  --surface2:#232a38;
+  --border:#1e2433;
+  --border2:#2a3345;
+  --text:#e8eaf0;
+  --text2:#9ba3b5;
+  --text3:#5d6577;
+  --accent:#ff6b2b;
+  --accent2:#e85d1e;
+  --accent-dim:rgba(255,107,43,.08);
+  --accent-glow:rgba(255,107,43,.15);
+  --accent-bright:#ff8f5a;
+  --blue:#3b82f6;
+  --purple:#8b5cf6;
+  --font:'Outfit',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* === GRID BACKGROUND === */
+.grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:80px 80px;
+}
+.grid-bg::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(255,107,43,.05),transparent 70%);
+}
+
+/* === NAV === */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1rem 2rem;
+  background:rgba(8,9,12,.8);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  transition:padding .3s;
+}
+nav.scrolled{padding:.6rem 2rem}
+.nav-logo{display:flex;align-items:center;gap:.6rem;font-weight:700;font-size:1.2rem;letter-spacing:-.03em}
+.nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px rgba(255,107,43,.5)}
+.nav-links{display:flex;gap:2rem;font-size:.85rem;color:var(--text2)}
+.nav-links a{transition:color .2s;position:relative}
+.nav-links a:hover{color:var(--text)}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width .3s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{font-size:.78rem;padding:.5rem 1.25rem;border:1px solid var(--accent);color:var(--accent);border-radius:6px;transition:all .25s;font-family:var(--mono)}
+.nav-cta:hover{background:var(--accent);color:var(--bg);box-shadow:0 0 20px rgba(255,107,43,.3)}
+
+/* === HERO === */
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;padding:8rem 2rem 4rem}
+.hero-inner{max-width:1100px;margin:0 auto;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-family:var(--mono);color:var(--accent);
+  padding:.4rem 1rem;border:1px solid rgba(255,107,43,.25);border-radius:100px;margin-bottom:2rem;
+  background:var(--accent-dim);opacity:0;transform:translateY(20px);animation:heroIn .8s .2s forwards}
+.hero-badge .pulse{width:6px;height:6px;border-radius:50%;background:var(--accent);
+  animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(255,107,43,.4)}50%{opacity:.7;box-shadow:0 0 0 8px rgba(255,107,43,0)}}
+@keyframes heroIn{to{opacity:1;transform:translateY(0)}}
+.hero h1{font-size:clamp(2.5rem,5.5vw,4.2rem);font-weight:800;letter-spacing:-.04em;line-height:1.08;margin-bottom:1.5rem;max-width:820px;
+  opacity:0;transform:translateY(30px);animation:heroIn .8s .35s forwards}
+.hero h1 .highlight{
+  background:linear-gradient(135deg,#ff6b2b,#ff9a5c);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{font-size:1.15rem;color:var(--text2);max-width:560px;line-height:1.7;margin-bottom:2.5rem;
+  opacity:0;transform:translateY(30px);animation:heroIn .8s .5s forwards}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:4rem;
+  opacity:0;transform:translateY(20px);animation:heroIn .8s .65s forwards}
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;
+  padding:.9rem 2.2rem;background:var(--accent);color:#fff;font-weight:600;font-size:.9rem;
+  border-radius:8px;border:none;cursor:pointer;transition:all .25s;font-family:var(--font);position:relative;overflow:hidden}
+.btn-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent,rgba(255,255,255,.15));opacity:0;transition:opacity .3s}
+.btn-primary:hover::before{opacity:1}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,107,43,.35)}
+.btn-primary svg{width:16px;height:16px}
+.btn-secondary{display:inline-flex;align-items:center;gap:.5rem;
+  padding:.9rem 2.2rem;background:transparent;color:var(--text);font-weight:500;font-size:.9rem;
+  border-radius:8px;border:1px solid var(--border2);cursor:pointer;transition:all .25s;font-family:var(--font)}
+.btn-secondary:hover{border-color:var(--text3);background:var(--surface)}
+
+/* Tech stack */
+.tech-stack{display:flex;align-items:center;gap:2rem;padding-top:1.25rem;border-top:1px solid var(--border);
+  opacity:0;animation:heroIn .8s .8s forwards}
+.tech-stack-label{font-size:.68rem;font-family:var(--mono);color:var(--text3);text-transform:uppercase;letter-spacing:.12em;white-space:nowrap}
+.tech-icons{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
+.tech-icons span{font-size:.8rem;color:var(--text3);font-family:var(--mono);transition:color .2s}
+.tech-icons span:hover{color:var(--accent)}
+
+/* === SCROLL ANIMATIONS === */
+.reveal{opacity:0;transform:translateY(50px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-60px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(60px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.reveal-scale{opacity:0;transform:scale(.85);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+
+/* Stagger children */
+.stagger-children .reveal:nth-child(1){transition-delay:.05s}
+.stagger-children .reveal:nth-child(2){transition-delay:.12s}
+.stagger-children .reveal:nth-child(3){transition-delay:.19s}
+.stagger-children .reveal:nth-child(4){transition-delay:.26s}
+
+/* === SECTIONS === */
+section{position:relative;z-index:1;padding:7rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-label{font-size:.68rem;font-family:var(--mono);color:var(--accent);text-transform:uppercase;letter-spacing:.15em;margin-bottom:.75rem}
+.section-title{font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.035em;line-height:1.1;margin-bottom:1rem}
+.section-desc{font-size:1.05rem;color:var(--text2);max-width:520px;line-height:1.7;margin-bottom:2rem}
+
+/* === DASHBOARD EXPLODER (Apple-style) === */
+.exploder{position:relative;min-height:180vh}
+.exploder-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:visible}
+.exploder-screen{width:min(90vw,900px);position:relative}
+
+/* Industry tabs */
+.industry-tabs{display:flex;gap:.5rem;justify-content:center;margin-bottom:2rem}
+.industry-tab{font-size:.8rem;font-family:var(--mono);padding:.5rem 1.25rem;border-radius:6px;border:1px solid var(--border);
+  background:transparent;color:var(--text3);cursor:pointer;transition:all .25s}
+.industry-tab:hover{border-color:var(--border2);color:var(--text2)}
+.industry-tab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.industry-tabs-sticky{position:sticky;top:70px;z-index:50;display:flex;justify-content:center;padding:.75rem 0;
+  background:rgba(8,9,12,.85);backdrop-filter:blur(12px);margin:0 -2rem;padding-left:2rem;padding-right:2rem}
+
+/* Dashboard shell */
+.dash-shell{background:var(--bg3);border:1px solid var(--border);border-radius:16px;overflow:hidden;
+  transform-origin:center center;transition:transform .1s linear,opacity .1s linear,border-radius .1s linear}
+.dash-topbar{display:flex;align-items:center;gap:.5rem;padding:.75rem 1rem;border-bottom:1px solid var(--border)}
+.dash-dot{width:8px;height:8px;border-radius:50%}
+.dash-tab{font-size:.6rem;font-family:var(--mono);color:var(--text3);padding:.2rem .5rem;border-radius:4px;background:var(--surface)}
+.dash-tab.active{color:var(--accent);background:var(--accent-dim)}
+
+/* Dashboard content layers */
+.dash-layer{transition:transform .1s linear,opacity .1s linear}
+.dash-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;padding:1rem}
+.dash-metric{background:var(--surface);border-radius:8px;padding:.75rem;border:1px solid var(--border);
+  transition:transform .3s,opacity .3s}
+.dash-metric .label{font-size:.58rem;font-family:var(--mono);color:var(--text3);text-transform:uppercase;letter-spacing:.05em}
+.dash-metric .value{font-size:1.15rem;font-weight:700;margin-top:.2rem}
+.dash-metric .change{font-size:.58rem;font-family:var(--mono);margin-top:.1rem}
+.dash-metric .change.up{color:#22c55e}
+.dash-metric .change.down{color:#ef4444}
+
+/* Chart area */
+.dash-chart{padding:0 1rem 1rem;position:relative;height:120px}
+.chart-bar-group{display:flex;align-items:flex-end;gap:4px;height:100%;padding-top:10px}
+.chart-bar{flex:1;border-radius:3px 3px 0 0;background:var(--accent);transition:height 1.2s cubic-bezier(.16,1,.3,1);height:0}
+.chart-bar.animate{height:var(--h)}
+.chart-bar:nth-child(odd){opacity:.4}
+.chart-bar:nth-child(even){opacity:.65}
+.chart-bar:last-child{opacity:1}
+
+/* Table area */
+.dash-table{padding:0 1rem 1rem}
+.dash-table-row{display:grid;grid-template-columns:1.5fr 1fr 1fr .8fr;gap:.5rem;padding:.45rem .5rem;font-size:.65rem;
+  border-bottom:1px solid var(--border);color:var(--text2);transition:transform .3s,opacity .3s}
+.dash-table-row:first-child{color:var(--text3);font-family:var(--mono);text-transform:uppercase;font-size:.55rem;letter-spacing:.05em}
+.dash-table-row .status{display:inline-block;padding:1px 6px;border-radius:3px;font-size:.55rem}
+.status-new{background:rgba(59,130,246,.15);color:var(--blue)}
+.status-hot{background:rgba(255,107,43,.15);color:var(--accent)}
+.status-closed{background:rgba(34,197,94,.15);color:#22c55e}
+
+/* Exploder text callouts */
+.exploder-text{position:absolute;max-width:260px;transition:opacity .3s,transform .3s;pointer-events:none;z-index:10}
+.exploder-text h3{font-size:1.1rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.35rem}
+.exploder-text p{font-size:.8rem;color:var(--text2);line-height:1.55}
+.exploder-text .tag{display:inline-block;font-size:.6rem;font-family:var(--mono);color:var(--accent);
+  padding:.2rem .5rem;border:1px solid rgba(255,107,43,.2);border-radius:4px;background:var(--accent-dim);margin-bottom:.5rem}
+
+/* Annotation lines */
+.annotation-line{position:absolute;pointer-events:none;transition:opacity .3s}
+.annotation-line line{stroke:var(--accent);stroke-width:1;stroke-dasharray:4 3;opacity:.4}
+
+/* === CASES (after exploder) === */
+.case-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:2rem;
+  transition:border-color .3s}
+.case-card:hover{border-color:var(--border2)}
+.case-header{padding:2rem 2rem 1.5rem}
+.case-industry{font-size:.68rem;font-family:var(--mono);color:var(--accent);text-transform:uppercase;letter-spacing:.1em;
+  padding:.3rem .75rem;border:1px solid rgba(255,107,43,.2);border-radius:4px;background:var(--accent-dim)}
+.case-title{font-size:1.35rem;font-weight:700;letter-spacing:-.02em;margin-top:.75rem}
+.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;padding:0 2rem}
+.case-problem,.case-solution{padding:1.25rem;border-radius:10px}
+.case-problem{background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.1)}
+.case-solution{background:var(--accent-dim);border:1px solid rgba(255,107,43,.12)}
+.case-problem h4,.case-solution h4{font-size:.68rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem}
+.case-problem h4{color:#ef4444}
+.case-solution h4{color:var(--accent)}
+.case-problem p,.case-solution p{font-size:.85rem;color:var(--text2);line-height:1.6}
+.case-features{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;padding:1.5rem 2rem 2rem}
+.case-feature{display:flex;align-items:flex-start;gap:.5rem;font-size:.8rem;color:var(--text2);line-height:1.5}
+.case-feature::before{content:'›';color:var(--accent);font-weight:700;font-size:1rem;line-height:1.2;flex-shrink:0}
+
+/* === SERVICES === */
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border-radius:16px;overflow:hidden}
+.service-card{background:var(--bg2);padding:2.5rem;transition:background .3s}
+.service-card:hover{background:var(--bg3)}
+.service-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.25rem;font-family:var(--mono);font-size:.8rem;font-weight:500}
+.service-card:nth-child(1) .service-icon{background:rgba(255,107,43,.1);color:var(--accent)}
+.service-card:nth-child(2) .service-icon{background:rgba(59,130,246,.1);color:var(--blue)}
+.service-card:nth-child(3) .service-icon{background:rgba(139,92,246,.1);color:var(--purple)}
+.service-card:nth-child(4) .service-icon{background:rgba(251,191,36,.1);color:#fbbf24}
+.service-card h3{font-size:1.05rem;font-weight:700;margin-bottom:.5rem;letter-spacing:-.01em}
+.service-card p{font-size:.85rem;color:var(--text2);line-height:1.65}
+
+/* === PROCESS === */
+.process-track{position:relative;padding:3rem 0}
+.process-line-v{position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--border);transform:translateX(-50%)}
+.process-line-fill{position:absolute;left:50%;top:0;width:1px;height:0;background:linear-gradient(180deg,var(--accent),rgba(255,107,43,.2));
+  transform:translateX(-50%);transition:height .1s linear}
+.process-step{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding:3rem 0;position:relative}
+.process-step:nth-child(even) .step-content{order:2;text-align:left}
+.process-step:nth-child(even) .step-visual{order:1}
+.step-dot{position:absolute;left:50%;top:50%;width:14px;height:14px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--border);transform:translate(-50%,-50%);z-index:2;
+  transition:border-color .5s,box-shadow .5s}
+.step-dot.active{border-color:var(--accent);box-shadow:0 0 16px rgba(255,107,43,.3)}
+.step-num{font-size:.62rem;font-family:var(--mono);color:var(--accent);margin-bottom:.5rem}
+.step-content h3{font-size:1.3rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.5rem}
+.step-content p{font-size:.88rem;color:var(--text2);line-height:1.65}
+.step-visual{display:flex;align-items:center;justify-content:center}
+.step-terminal{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:1rem;
+  font-family:var(--mono);font-size:.7rem;color:var(--text3);width:100%;max-width:340px;line-height:1.8}
+.step-terminal .prompt{color:var(--accent)}
+.step-terminal .comment{color:var(--text3);opacity:.5}
+.step-terminal .output{color:var(--text2)}
+
+/* === TESTIMONIALS === */
+.testimonials{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2.5rem}
+.testimonial-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.75rem;
+  transition:border-color .3s,transform .3s}
+.testimonial-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.testimonial-quote{font-size:.95rem;color:var(--text2);line-height:1.75;margin-bottom:1.25rem}
+.testimonial-quote::before{content:'\201C';color:var(--accent);font-size:2rem;font-weight:800;line-height:0;vertical-align:-.35em;margin-right:4px}
+.testimonial-author{display:flex;align-items:center;gap:.75rem}
+.testimonial-avatar{width:38px;height:38px;border-radius:50%;background:var(--accent-dim);border:1px solid rgba(255,107,43,.2);
+  display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:600;color:var(--accent);font-family:var(--mono)}
+.testimonial-name{font-size:.82rem;font-weight:600}
+.testimonial-role{font-size:.7rem;color:var(--text3)}
+
+/* === CTA / CONTACT === */
+.cta-section{text-align:center;padding:7rem 2rem;position:relative}
+.cta-section::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:700px;height:350px;background:radial-gradient(ellipse,rgba(255,107,43,.06),transparent 70%);pointer-events:none}
+.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem}
+.cta-contact-info{display:flex;gap:2rem;justify-content:center;margin-top:1.5rem;font-size:.8rem;color:var(--text3);font-family:var(--mono)}
+.cta-contact-info a{color:var(--text2);transition:color .2s}
+.cta-contact-info a:hover{color:var(--accent)}
+
+/* Cal.com embed */
+.cal-embed{max-width:650px;margin:3rem auto 0;border:1px solid var(--border);border-radius:14px;overflow:hidden;
+  background:var(--bg2);min-height:400px;display:flex;align-items:center;justify-content:center}
+.cal-embed iframe{width:100%;min-height:400px;border:none}
+.cal-placeholder{text-align:center;padding:3rem;color:var(--text3);font-size:.85rem}
+.cal-placeholder .mono{font-family:var(--mono);font-size:.7rem;color:var(--accent);
+  background:var(--accent-dim);padding:.5rem 1rem;border-radius:6px;display:inline-block;margin-top:1rem}
+
+/* === FOOTER === */
+footer{border-top:1px solid var(--border);padding:2.5rem 2rem;display:flex;justify-content:space-between;align-items:center;
+  position:relative;z-index:1;font-size:.75rem;color:var(--text3)}
+footer a{color:var(--text2);margin-left:1.5rem;transition:color .2s}
+footer a:hover{color:var(--accent)}
+
+/* === WHATSAPP FLOAT === */
+.wa-float{position:fixed;bottom:1.5rem;right:1.5rem;z-index:99;
+  width:52px;height:52px;border-radius:50%;background:#25d366;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.3);transition:transform .2s;cursor:pointer}
+.wa-float:hover{transform:scale(1.1)}
+.wa-float svg{width:26px;height:26px;fill:#fff}
+
+/* === COUNTER ANIMATION === */
+.counter{display:inline-block}
+
+/* === RESPONSIVE === */
+@media(max-width:1200px){
+  .exploder-text{display:none}
+  .exploder-sticky{overflow:hidden}
+}
+@media(max-width:768px){
+  .exploder-text{display:block}
+  .nav-links{display:none}
+  .hero h1{font-size:2.2rem}
+  .case-grid,.testimonials{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr}
+  .process-step{grid-template-columns:1fr;gap:1.5rem;text-align:center}
+  .process-step:nth-child(even) .step-content{order:1}
+  .process-step:nth-child(even) .step-visual{order:2}
+  .process-line-v,.process-line-fill,.step-dot{display:none}
+  .dash-metrics{grid-template-columns:1fr 1fr}
+  .case-features{grid-template-columns:1fr}
+  .tech-stack{flex-direction:column;align-items:flex-start;gap:.75rem}
+  .exploder{min-height:auto}
+  .exploder-sticky{position:relative;height:auto;min-height:auto;padding:2rem 0}
+  .exploder-text{position:relative!important;opacity:1!important;transform:none!important;max-width:100%;
+    text-align:center;margin-top:2rem;pointer-events:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo"><span class="dot"></span> quasor</a>
+  <div class="nav-links">
+    <a href="#proyectos">Proyectos</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#proceso">Proceso</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <a href="#contacto" class="nav-cta">Agendar demo →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="pulse"></span> Disponible para nuevos proyectos</div>
+    <h1>Tu empresa funciona con Excel y WhatsApp.<br><span class="highlight">Nosotros lo resolvemos.</span></h1>
+    <p class="hero-sub">Sistemas de gestión, dashboards y automatizaciones diseñados para tu operación. Tu equipo deja de cargar datos a mano y vos controlás todo desde un solo lugar.</p>
+    <div class="hero-actions">
+      <a href="#contacto" class="btn-primary">Agendar una demo <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      <a href="#proyectos" class="btn-secondary">Ver nuestros sistemas</a>
+    </div>
+    <div class="tech-stack">
+      <span class="tech-stack-label">Stack</span>
+      <div class="tech-icons">
+        <span>React</span><span>Node.js</span><span>PostgreSQL</span><span>Python</span><span>AWS</span><span>OpenAI</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD EXPLODER — Apple-style scroll experience -->
+<section id="proyectos" style="padding-top:2rem;padding-bottom:1rem">
+  <div class="container">
+    <div class="section-label reveal">Casos de éxito</div>
+    <h2 class="section-title reveal">Mirá el sistema<br>por dentro</h2>
+    <p class="section-desc reveal" id="exploder-desc">Esto no es un mockup. Es un dashboard real que controla $4.2M en inversión publicitaria para una concesionaria automotriz.</p>
+  </div>
+
+  <div class="industry-tabs-sticky">
+    <div class="industry-tabs">
+      <button class="industry-tab active" data-industry="automotriz">Concesionaria</button>
+      <button class="industry-tab" data-industry="inmobiliaria">Inmobiliaria</button>
+    </div>
+  </div>
+
+  <div class="exploder" id="exploder">
+    <div class="exploder-sticky">
+      <div class="exploder-screen" id="exploder-screen">
+
+        <!-- Callout texts (positioned by JS) -->
+        <div class="exploder-text" id="callout-metrics" style="opacity:0;left:-280px;top:20px">
+          <span class="tag">Tiempo real</span>
+          <h3>Todo en un vistazo</h3>
+          <p>Gasto, leads, CPL y conversión. Sin entrar a cada plataforma por separado.</p>
+        </div>
+        <div class="exploder-text" id="callout-chart" style="opacity:0;right:-280px;top:30%">
+          <span class="tag">Anomalías</span>
+          <h3>Detecta problemas antes</h3>
+          <p>Si el gasto sube sin clicks, el sistema alerta automáticamente.</p>
+        </div>
+        <div class="exploder-text" id="callout-table" style="opacity:0;left:-280px;bottom:10%">
+          <span class="tag">Pipeline</span>
+          <h3>Cada lead, rastreado</h3>
+          <p>Desde el click hasta el cierre. Sabés qué vendedor convierte y cuál no.</p>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="dash-shell" id="dash-shell">
+          <div class="dash-topbar">
+            <span class="dash-dot" style="background:#ef4444"></span>
+            <span class="dash-dot" style="background:#fbbf24"></span>
+            <span class="dash-dot" style="background:#22c55e"></span>
+            <span style="flex:1"></span>
+            <span class="dash-tab active">Dashboard</span>
+            <span class="dash-tab">Leads</span>
+            <span class="dash-tab">Alertas</span>
+            <span class="dash-tab">Reportes</span>
+          </div>
+
+          <div class="dash-layer" id="layer-metrics">
+            <div class="dash-metrics">
+              <div class="dash-metric"><div class="label">Gasto total</div><div class="value">$<span class="counter" data-target="4.2" data-decimals="1">0</span>M</div><div class="change down">-12% vs mes ant.</div></div>
+              <div class="dash-metric"><div class="label">Leads mes</div><div class="value" style="color:var(--accent)"><span class="counter" data-target="347" data-decimals="0">0</span></div><div class="change up">+23% vs mes ant.</div></div>
+              <div class="dash-metric"><div class="label">CPL promedio</div><div class="value">$<span class="counter" data-target="12.1" data-decimals="1">0</span>k</div><div class="change">Meta: $15k</div></div>
+              <div class="dash-metric"><div class="label">Conversión</div><div class="value"><span class="counter" data-target="8.4" data-decimals="1">0</span>%</div><div class="change down">-0.3% vs mes ant.</div></div>
+            </div>
+          </div>
+
+          <div class="dash-layer" id="layer-chart">
+            <div class="dash-chart">
+              <div class="chart-bar-group">
+                <div class="chart-bar" style="--h:35%"></div>
+                <div class="chart-bar" style="--h:50%"></div>
+                <div class="chart-bar" style="--h:42%"></div>
+                <div class="chart-bar" style="--h:65%"></div>
+                <div class="chart-bar" style="--h:55%"></div>
+                <div class="chart-bar" style="--h:48%"></div>
+                <div class="chart-bar" style="--h:72%"></div>
+                <div class="chart-bar" style="--h:60%"></div>
+                <div class="chart-bar" style="--h:68%"></div>
+                <div class="chart-bar" style="--h:82%"></div>
+                <div class="chart-bar" style="--h:78%"></div>
+                <div class="chart-bar" style="--h:95%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dash-layer" id="layer-table">
+            <div class="dash-table">
+              <div class="dash-table-row"><span>Campaña</span><span>Plataforma</span><span>Gasto</span><span>Estado</span></div>
+              <div class="dash-table-row"><span>Hilux SR5 - Marzo</span><span>Meta Ads</span><span>$890k</span><span class="status status-hot">84 leads</span></div>
+              <div class="dash-table-row"><span>Corolla Cross CVT</span><span>Google</span><span>$720k</span><span class="status status-new">52 leads</span></div>
+              <div class="dash-table-row"><span>Usados Premium</span><span>Meta Ads</span><span>$1.1M</span><span class="status status-closed">127 leads</span></div>
+              <div class="dash-table-row"><span>Plan Ahorro Yaris</span><span>Google</span><span>$480k</span><span class="status status-new">41 leads</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE 2 — CRM -->
+<section style="padding-top:3rem">
+  <div class="container">
+    <div class="case-card reveal">
+      <div class="case-header">
+        <span class="case-industry">Inmobiliaria</span>
+        <h3 class="case-title">CRM Comercial + Seguimiento Inteligente</h3>
+      </div>
+      <div class="case-grid">
+        <div class="case-problem">
+          <h4>El problema</h4>
+          <p>Los leads caían en chats personales de 6 vendedores. Se perdían consultas, nadie sabía quién atendía a quién, y no había forma de medir la conversión real.</p>
+        </div>
+        <div class="case-solution">
+          <h4>La solución</h4>
+          <p>Un CRM que captura cada consulta automáticamente, la asigna al vendedor correcto y le da al dueño visibilidad total sobre el pipeline.</p>
+        </div>
+      </div>
+      <div class="case-features">
+        <span class="case-feature">Historial de cada cliente desde la consulta hasta el cierre</span>
+        <span class="case-feature">Asignación automática por zona, tipo y disponibilidad</span>
+        <span class="case-feature">Métricas de conversión por vendedor en tiempo real</span>
+        <span class="case-feature">Agenda de visitas y seguimientos que no se pierden</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="servicios" style="border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label reveal">Servicios</div>
+    <h2 class="section-title reveal">Lo que hacemos</h2>
+    <p class="section-desc reveal">No hacemos de todo — hacemos bien lo que sabemos.</p>
+
+    <div class="services-grid stagger-children">
+      <div class="service-card reveal">
+        <div class="service-icon">CRM</div>
+        <h3>CRMs & gestión a medida</h3>
+        <p>Tu sistema de clientes adaptado a cómo trabaja tu equipo, no al revés. Cada campo, vista y flujo pensado para tu operación.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">▦</div>
+        <h3>Dashboards analíticos</h3>
+        <p>Paneles que unifican todas tus fuentes de datos en un solo lugar, con alertas inteligentes y reportes automáticos.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">⟷</div>
+        <h3>Integraciones & APIs</h3>
+        <p>Conectamos Meta, Google, WhatsApp, CRMs externos y cualquier API que tu negocio necesite. Todo sincronizado.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">⚡</div>
+        <h3>Automatizaciones + IA</h3>
+        <p>Procesos que antes eran manuales ahora corren solos. Sync de datos, alertas, reportes, asignaciones e IA donde suma.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="proceso" style="border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label reveal" style="text-align:center">Proceso</div>
+    <h2 class="section-title reveal" style="text-align:center">Cómo trabajamos</h2>
+    <p class="section-desc reveal" style="text-align:center;margin-left:auto;margin-right:auto">Simple, directo, sin vueltas.</p>
+
+    <div class="process-track" id="process-track">
+      <div class="process-line-v"></div>
+      <div class="process-line-fill" id="process-fill"></div>
+
+      <div class="process-step reveal">
+        <div class="step-dot" data-step="0"></div>
+        <div class="step-content" style="text-align:right">
+          <div class="step-num">01 — ESCUCHAMOS</div>
+          <h3>Entendemos tu operación</h3>
+          <p>Cómo trabaja tu equipo hoy, qué funciona, qué no. Sin jerga técnica, sin humo.</p>
+        </div>
+        <div class="step-visual">
+          <div class="step-terminal">
+            <div class="comment"># discovery call</div>
+            <div><span class="prompt">→</span> ¿Cómo entra un lead hoy?</div>
+            <div><span class="prompt">→</span> ¿Quién lo sigue?</div>
+            <div><span class="prompt">→</span> ¿Dónde se pierde?</div>
+            <div class="output" style="margin-top:.5rem;color:var(--accent)">// mapeado ✓</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step reveal">
+        <div class="step-dot" data-step="1"></div>
+        <div class="step-content">
+          <div class="step-num">02 — DISEÑAMOS</div>
+          <h3>Definimos la solución exacta</h3>
+          <p>Qué se construye, qué se integra, qué se automatiza. Wireframes y scope cerrado antes de escribir código.</p>
+        </div>
+        <div class="step-visual">
+          <div class="step-terminal">
+            <div class="comment"># scope.md</div>
+            <div><span class="prompt">├</span> dashboard/</div>
+            <div><span class="prompt">├</span> crm/</div>
+            <div><span class="prompt">├</span> integrations/</div>
+            <div><span class="prompt">└</span> automations/</div>
+            <div class="output" style="margin-top:.5rem">4 módulos · 6 semanas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step reveal">
+        <div class="step-dot" data-step="2"></div>
+        <div class="step-content" style="text-align:right">
+          <div class="step-num">03 — CONSTRUIMOS</div>
+          <h3>Entregas semanales reales</h3>
+          <p>Deploy a staging cada viernes. Repo privado en GitHub desde el día 1. Ves avances, no promesas.</p>
+        </div>
+        <div class="step-visual">
+          <div class="step-terminal">
+            <div class="comment"># deploy log</div>
+            <div><span class="prompt">$</span> git push origin main</div>
+            <div class="output">→ Building...</div>
+            <div class="output">→ Deployed to staging ✓</div>
+            <div class="output" style="color:var(--accent)">→ https://staging.cliente.com</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-step reveal">
+        <div class="step-dot" data-step="3"></div>
+        <div class="step-content">
+          <div class="step-num">04 — ACOMPAÑAMOS</div>
+          <h3>No desaparecemos</h3>
+          <p>Soporte post-deploy, ajustes, nuevas features. El sistema crece con tu negocio. Documentación técnica incluida.</p>
+        </div>
+        <div class="step-visual">
+          <div class="step-terminal">
+            <div class="comment"># support</div>
+            <div><span class="prompt">→</span> Monitoreo 24/7</div>
+            <div><span class="prompt">→</span> Hotfixes &lt; 4hs</div>
+            <div><span class="prompt">→</span> Updates mensuales</div>
+            <div class="output" style="margin-top:.5rem;color:var(--accent)">// siempre online ✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label reveal" style="text-align:center">Clientes</div>
+    <h2 class="section-title reveal" style="text-align:center">Lo que dicen quienes<br>trabajan con nosotros</h2>
+
+    <div class="testimonials stagger-children">
+      <div class="testimonial-card reveal">
+        <p class="testimonial-quote">Dejamos de perder leads y ahora sabemos exactamente cuánto convierte cada vendedor. El sistema se pagó solo el primer mes.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">MG</div>
+          <div>
+            <div class="testimonial-name">— Gerente Comercial</div>
+            <div class="testimonial-role">Concesionaria automotriz · Mar del Plata</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <p class="testimonial-quote">Antes cada vendedor manejaba sus leads por WhatsApp personal. Ahora tengo visibilidad total del pipeline sin preguntar nada.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">RD</div>
+          <div>
+            <div class="testimonial-name">— Director</div>
+            <div class="testimonial-role">Inmobiliaria · Mar del Plata</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
+<section id="contacto" class="cta-section" style="border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label reveal">Contacto</div>
+    <h2 class="section-title reveal" style="margin-left:auto;margin-right:auto">¿Tu empresa necesita un<br>sistema que funcione?</h2>
+    <p class="section-desc reveal" style="text-align:center;margin-left:auto;margin-right:auto">Si tu operación depende de Excel, WhatsApp y buena voluntad, hablemos.</p>
+    <div class="cta-actions reveal">
+      <a href="https://wa.me/5492236892809" class="btn-primary" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.612.638l4.682-1.23A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.24 0-4.326-.733-6.016-1.971a.5.5 0 00-.416-.07l-3.406.896.72-3.14a.5.5 0 00-.064-.404A9.946 9.946 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+        Escribinos por WhatsApp
+      </a>
+      <a href="mailto:ventas@quasor.com" class="btn-secondary">ventas@quasor.com</a>
+    </div>
+
+    <div class="cta-contact-info reveal">
+      <a href="mailto:ventas@quasor.com">ventas@quasor.com</a>
+      <a href="https://wa.me/5492236892809">+54 9 223 689 2809</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <span style="font-weight:700;color:var(--text2)">quasor</span>
+    <span style="margin-left:.5rem">© 2026 · Software a medida para empresas</span>
+  </div>
+  <div>
+    <a href="https://www.instagram.com/quasortech/" target="_blank">Instagram</a>
+    <a href="https://wa.me/5492236892809" target="_blank">WhatsApp</a>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/5492236892809" target="_blank" class="wa-float" title="Escribinos por WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.612.638l4.682-1.23A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.24 0-4.326-.733-6.016-1.971a.5.5 0 00-.416-.07l-3.406.896.72-3.14a.5.5 0 00-.064-.404A9.946 9.946 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+</a>
+
+<script>
+// === NAV SHRINK ===
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 80);
+});
+
+// === REVEAL ON SCROLL ===
+const revealObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}});
+},{threshold:.12});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(el=>revealObs.observe(el));
+
+// === COUNTER ANIMATION ===
+const counterObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const el=e.target, target=parseFloat(el.dataset.target), dec=parseInt(el.dataset.decimals||0);
+    let start=0;const dur=1200,t0=performance.now();
+    function tick(now){
+      const p=Math.min((now-t0)/dur,1);
+      const ease=1-Math.pow(1-p,3);
+      el.textContent=(target*ease).toFixed(dec);
+      if(p<1)requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    counterObs.unobserve(el);
+  });
+},{threshold:.5});
+document.querySelectorAll('.counter').forEach(el=>counterObs.observe(el));
+
+// === CHART BAR ANIMATION ===
+const chartObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    e.target.querySelectorAll('.chart-bar').forEach((bar,i)=>{
+      setTimeout(()=>bar.classList.add('animate'),i*60);
+    });
+    chartObs.unobserve(e.target);
+  });
+},{threshold:.3});
+document.querySelectorAll('.chart-bar-group').forEach(el=>chartObs.observe(el));
+
+// === PROCESS LINE FILL ===
+const processTrack=document.getElementById('process-track');
+const processFill=document.getElementById('process-fill');
+const stepDots=document.querySelectorAll('.step-dot');
+if(processTrack && processFill){
+  window.addEventListener('scroll',()=>{
+    const rect=processTrack.getBoundingClientRect();
+    const trackH=rect.height;
+    const scrolled=Math.max(0,Math.min(1,(-rect.top+window.innerHeight*.5)/trackH));
+    processFill.style.height=(scrolled*100)+'%';
+    stepDots.forEach(dot=>{
+      const stepRect=dot.getBoundingClientRect();
+      dot.classList.toggle('active',stepRect.top<window.innerHeight*.55);
+    });
+  });
+}
+
+// === APPLE-STYLE DASHBOARD EXPLODER ===
+const exploder=document.getElementById('exploder');
+const dashShell=document.getElementById('dash-shell');
+const layerMetrics=document.getElementById('layer-metrics');
+const layerChart=document.getElementById('layer-chart');
+const layerTable=document.getElementById('layer-table');
+const calloutMetrics=document.getElementById('callout-metrics');
+const calloutChart=document.getElementById('callout-chart');
+const calloutTable=document.getElementById('callout-table');
+
+if(exploder && dashShell && window.innerWidth>768){
+  window.addEventListener('scroll',()=>{
+    const rect=exploder.getBoundingClientRect();
+    const totalH=rect.height-window.innerHeight;
+    const raw=-rect.top/totalH;
+    const progress=Math.max(0,Math.min(1,raw));
+
+    // Phase 0-0.15: Dashboard scales up and assembles
+    // Phase 0.15-0.4: Metrics layer highlights + callout
+    // Phase 0.4-0.65: Chart layer highlights + callout
+    // Phase 0.65-0.9: Table layer highlights + callout
+    // Phase 0.9-1: Everything comes back together
+
+    const scale=progress<.05?(.92+progress/.05*.08):1;
+    dashShell.style.transform=`scale(${scale})`;
+    dashShell.style.opacity=1;
+
+    // Explode layers apart
+    let metricsY=0,chartY=0,tableY=0;
+    let metricsOp=1,chartOp=1,tableOp=1;
+
+    if(progress>.12 && progress<.9){
+      const explodeAmount=Math.min(1,(progress-.12)/.12);
+      metricsY=-20*explodeAmount;
+      chartY=0;
+      tableY=20*explodeAmount;
+    }
+
+    // Highlight phases
+    if(progress>=.15 && progress<.4){
+      const p=(progress-.15)/.25;
+      metricsOp=1;chartOp=.25;tableOp=.25;
+      calloutMetrics.style.opacity=p<.2?p/.2:(p>.8?(1-(p-.8)/.2):1);
+      calloutMetrics.style.transform=`translateX(${(1-Math.min(1,p/.3))*30}px)`;
+    } else {
+      calloutMetrics.style.opacity=0;
+    }
+
+    if(progress>=.4 && progress<.65){
+      const p=(progress-.4)/.25;
+      metricsOp=.25;chartOp=1;tableOp=.25;
+      calloutChart.style.opacity=p<.2?p/.2:(p>.8?(1-(p-.8)/.2):1);
+      calloutChart.style.transform=`translateX(${-(1-Math.min(1,p/.3))*30}px)`;
+    } else {
+      calloutChart.style.opacity=progress>=.15&&progress<.4?calloutChart.style.opacity:0;
+    }
+
+    if(progress>=.65 && progress<.9){
+      const p=(progress-.65)/.25;
+      metricsOp=.25;chartOp=.25;tableOp=1;
+      calloutTable.style.opacity=p<.2?p/.2:(p>.8?(1-(p-.8)/.2):1);
+      calloutTable.style.transform=`translateX(${(1-Math.min(1,p/.3))*30}px)`;
+    } else if(progress<.65){
+      calloutTable.style.opacity=0;
+    }
+
+    if(progress>=.9){
+      metricsOp=1;chartOp=1;tableOp=1;
+      metricsY=0;chartY=0;tableY=0;
+      calloutMetrics.style.opacity=0;
+      calloutChart.style.opacity=0;
+      calloutTable.style.opacity=0;
+    }
+
+    layerMetrics.style.transform=`translateY(${metricsY}px)`;
+    layerMetrics.style.opacity=metricsOp;
+    layerChart.style.transform=`translateY(${chartY}px)`;
+    layerChart.style.opacity=chartOp;
+    layerTable.style.transform=`translateY(${tableY}px)`;
+    layerTable.style.opacity=tableOp;
+  });
+}
+
+// === INDUSTRY TAB SWITCHER ===
+const industryData={
+  automotriz:{
+    desc:'Esto no es un mockup. Es un dashboard real que controla $4.2M en inversión publicitaria para una concesionaria automotriz.',
+    metrics:[
+      {label:'Gasto total',value:'$4.2M',change:'-12% vs mes ant.',changeClass:'down'},
+      {label:'Leads mes',value:'347',change:'+23% vs mes ant.',changeClass:'up',accent:true},
+      {label:'CPL promedio',value:'$12.1k',change:'Meta: $15k',changeClass:''},
+      {label:'Conversión',value:'8.4%',change:'-0.3% vs mes ant.',changeClass:'down'}
+    ],
+    rows:[
+      ['Hilux SR5 - Marzo','Meta Ads','$890k','84 leads','hot'],
+      ['Corolla Cross CVT','Google','$720k','52 leads','new'],
+      ['Usados Premium','Meta Ads','$1.1M','127 leads','closed'],
+      ['Plan Ahorro Yaris','Google','$480k','41 leads','new']
+    ],
+    callouts:{
+      metrics:{tag:'Tiempo real',title:'Todo en un vistazo',text:'Gasto, leads, CPL y conversión. Sin entrar a cada plataforma por separado.'},
+      chart:{tag:'Anomalías',title:'Detecta problemas antes',text:'Si el gasto sube sin clicks, el sistema alerta automáticamente.'},
+      table:{tag:'Pipeline',title:'Cada lead, rastreado',text:'Desde el click hasta el cierre. Sabés qué vendedor convierte y cuál no.'}
+    }
+  },
+  inmobiliaria:{
+    desc:'Dashboard real de una inmobiliaria con 6 vendedores. Controla cada consulta desde el portal hasta el cierre de operación.',
+    metrics:[
+      {label:'Consultas mes',value:'284',change:'+18% vs mes ant.',changeClass:'up',accent:true},
+      {label:'Visitas agendadas',value:'91',change:'+12% vs mes ant.',changeClass:'up'},
+      {label:'Tasa de cierre',value:'6.2%',change:'Meta: 8%',changeClass:''},
+      {label:'Ticket promedio',value:'$85M',change:'+5% vs trimestre',changeClass:'up'}
+    ],
+    rows:[
+      ['Depto 2amb Güemes','ZonaProp','$45k','12 consultas','hot'],
+      ['Casa Playa Grande','Instagram','$32k','8 consultas','new'],
+      ['Local Comercial Centro','Google','$28k','18 consultas','closed'],
+      ['Cocheras Colón','ZonaProp','$15k','6 consultas','new']
+    ],
+    callouts:{
+      metrics:{tag:'Tiempo real',title:'Pipeline completo',text:'Consultas, visitas, ofertas y cierres. Todo el funnel de cada propiedad.'},
+      chart:{tag:'Tendencias',title:'Demanda por zona',text:'Visualizá qué zonas tienen más consultas y ajustá tu inversión.'},
+      table:{tag:'Seguimiento',title:'Cada consulta asignada',text:'Quién atendió, cuándo siguió y en qué estado está. Sin perder ninguna.'}
+    }
+  }
+};
+
+document.querySelectorAll('.industry-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.industry-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    const key=tab.dataset.industry;
+    const d=industryData[key];
+
+    // Update description
+    const descEl=document.getElementById('exploder-desc');
+    if(descEl) descEl.textContent=d.desc;
+
+    // Update metrics
+    const metricsContainer=document.querySelector('.dash-metrics');
+    if(metricsContainer){
+      metricsContainer.innerHTML=d.metrics.map(m=>
+        `<div class="dash-metric"><div class="label">${m.label}</div><div class="value"${m.accent?' style="color:var(--accent)"':''}>${m.value}</div><div class="change ${m.changeClass}">${m.change}</div></div>`
+      ).join('');
+    }
+
+    // Update table
+    const tableContainer=document.querySelector('.dash-table');
+    if(tableContainer){
+      tableContainer.innerHTML=
+        `<div class="dash-table-row"><span>Campaña</span><span>Plataforma</span><span>Gasto</span><span>Estado</span></div>`+
+        d.rows.map(r=>
+          `<div class="dash-table-row"><span>${r[0]}</span><span>${r[1]}</span><span>${r[2]}</span><span class="status status-${r[4]}">${r[3]}</span></div>`
+        ).join('');
+    }
+
+    // Update callouts
+    if(calloutMetrics){
+      calloutMetrics.querySelector('.tag').textContent=d.callouts.metrics.tag;
+      calloutMetrics.querySelector('h3').textContent=d.callouts.metrics.title;
+      calloutMetrics.querySelector('p').textContent=d.callouts.metrics.text;
+    }
+    if(calloutChart){
+      calloutChart.querySelector('.tag').textContent=d.callouts.chart.tag;
+      calloutChart.querySelector('h3').textContent=d.callouts.chart.title;
+      calloutChart.querySelector('p').textContent=d.callouts.chart.text;
+    }
+    if(calloutTable){
+      calloutTable.querySelector('.tag').textContent=d.callouts.table.tag;
+      calloutTable.querySelector('h3').textContent=d.callouts.table.title;
+      calloutTable.querySelector('p').textContent=d.callouts.table.text;
+    }
+  });
+});
+</script>
+
+</body>
+</html>
