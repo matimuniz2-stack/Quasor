@@ -1,5 +1,6 @@
 // Shared data for dashboard + sections
-const DATASETS = {
+
+export const DATASETS = {
   concesionaria: {
     label: "Concesionaria",
     sub: "Toyota · Mar del Plata",
@@ -84,7 +85,7 @@ const DATASETS = {
   },
 };
 
-const SERVICES = [
+export const SERVICES = [
   {
     k: "CRM",
     name: "CRM para inmobiliarias",
@@ -111,7 +112,7 @@ const SERVICES = [
   },
 ];
 
-const PROCESS = [
+export const PROCESS = [
   {
     n: "01", tag: "CONOCEMOS", name: "Entendemos tu inmobiliaria",
     body: "Cómo trabaja tu equipo hoy, qué portales usás, qué está roto. Una reunión corta, sin humo.",
@@ -136,8 +137,6 @@ const PROCESS = [
     ],
   },
   {
-    n: "03", tag: "CONSTRUIMOS", name: "Entregas semanales reales",
-    body: "Deploy a staging cada viernes. Repo privado en GitHub desde el día 1. Ves avances, no promesas.",
     n: "03", tag: "CAPACITAMOS", name: "Tu equipo usando el sistema",
     body: "Capacitación en vivo con tu equipo. Videos cortos para consultar después. Manual en español. Arrancan a usar el sistema desde el día 1.",
     term: [
@@ -161,7 +160,7 @@ const PROCESS = [
   },
 ];
 
-const TESTIMONIALS = [
+export const TESTIMONIALS = [
   {
     quote: "Antes perdíamos consultas en los WhatsApps personales de cada vendedor. Ahora cada lead queda registrado, asignado y con seguimiento. Tengo visibilidad real del pipeline por primera vez.",
     who: "Cliente piloto",
@@ -173,7 +172,7 @@ const TESTIMONIALS = [
 ];
 
 // Resultados esperados basados en el caso piloto y benchmarks de mercado
-const EXPECTED_RESULTS = [
+export const EXPECTED_RESULTS = [
   {
     metric: { v: "-62%", k: "Leads perdidos" },
     desc: "Consultas que antes caían en chats personales, hoy se capturan y asignan automáticamente.",
@@ -196,42 +195,28 @@ const EXPECTED_RESULTS = [
   },
 ];
 
-const PRICING = [
-  {
-    name: "Starter", price: "USD 120", period: "/mes", tag: "Para empezar",
-    body: "Para equipos que necesitan ver qué está pasando hoy.",
-    items: ["Dashboard con métricas clave", "Integraciones básicas (Meta + Google)", "Alertas automáticas", "Hasta 3 usuarios", "Soporte por email"],
-    cta: "Empezar",
-  },
-  {
-    name: "Growth", price: "USD 240", period: "/mes", tag: "El más elegido", featured: true,
-    body: "CRM completo + dashboard + automatizaciones. Escala con tu equipo.",
-    items: ["CRM completo para tu inmobiliaria", "Dashboard + alertas inteligentes", "Integraciones bidireccionales", "Automatizaciones + 1 modelo IA", "Hasta 10 usuarios", "Nuevas features cada mes", "Soporte prioritario"],
-    cta: "Empezar ahora",
-  },
-  {
-    name: "Scale", price: "A cotizar", period: "", tag: "Empresa + multi-sede",
-    body: "Para operaciones con múltiples sucursales y necesidades específicas.",
-    items: ["Todo Growth +", "Multi-empresa / multi-zona", "SLA firmado", "Auditorías y logs", "Usuarios ilimitados", "Soporte dedicado 24/7", "Roadmap compartido"],
-    cta: "Hablemos",
-  },
-];
-
-const FAQ = [
+export const FAQ = [
   { q: "¿Cuánto tarda en estar andando?", a: "Setup inicial: 1-2 semanas. Configuramos integraciones, importamos tus datos si los tenés y capacitamos al equipo. Empezás a usar el sistema desde el día 1 con la configuración base." },
-  { q: "¿De quién son mis datos?", a: "Tuyos. 100%. Podés exportarlos en cualquier momento — CSV, JSON o backup completo de la base. Si preferís tener el sistema en tu propio servidor (on-premise), también se puede. Sin lock-in, sin letra chica." },,
+  { q: "¿De quién son mis datos?", a: "Tuyos. 100%. Podés exportarlos en cualquier momento — CSV, JSON o backup completo de la base. Si preferís tener el sistema en tu propio servidor (on-premise), también se puede. Sin lock-in, sin letra chica." },
   { q: "¿Trabajan con empresas fuera de Mar del Plata?", a: "Sí. Trabajamos 100% remoto con reuniones semanales y entregas asincrónicas. La ubicación no es limitante — si tenés buena conexión y decisores disponibles, arrancamos." },
   { q: "¿Qué pasa si quiero cortar el servicio?", a: "Cortás cuando quieras — contrato mensual sin permanencia. Te exportamos todos tus datos en formato estándar (CSV, JSON). Sin lock-in." },
   { q: "¿El precio incluye nuevas features?", a: "Sí. El CRM se va ampliando mes a mes con mejoras y nuevas integraciones. Además, cada cliente puede pedir features específicas — las que benefician a varios, las incluimos en el roadmap." },
 ];
 
-const CLIENTS = ["Grupo Costa", "Toyota MdP", "InmoSur", "Nordelta Motors", "AutoPlus", "Torre Mar", "Sede Norte", "Benetti"];
+export const CLIENTS = ["Grupo Costa", "Toyota MdP", "InmoSur", "Nordelta Motors", "AutoPlus", "Torre Mar", "Sede Norte", "Benetti"];
 
-window.DATASETS = DATASETS;
-window.SERVICES = SERVICES;
-window.PROCESS = PROCESS;
-window.TESTIMONIALS = TESTIMONIALS;
-window.EXPECTED_RESULTS = EXPECTED_RESULTS;
-window.PRICING = PRICING;
-window.FAQ = FAQ;
-window.CLIENTS = CLIENTS;
+// Dynamic slots — auto-rolls to next month when current month ends
+const MONTHS_AR = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+export const getCurrentSlots = () => {
+  const now = new Date();
+  const day = now.getDate();
+  const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+  // If we're past day 25 of the month, roll to next month (slots fill up)
+  const targetMonth = day > 25 ? (now.getMonth() + 1) % 12 : now.getMonth();
+  const monthName = MONTHS_AR[targetMonth];
+  // Slot count: starts at 3, drops by 1 every 10 days into the month
+  const dayInTargetMonth = day > 25 ? (day - 25) : day;
+  const remaining = Math.max(1, 3 - Math.floor(dayInTargetMonth / 10));
+  return { count: remaining, total: 3, month: monthName };
+};
+

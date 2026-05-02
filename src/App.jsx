@@ -1,9 +1,56 @@
-const App = () => {
-  const [tweaks, setTweaks] = React.useState(window.__TWEAKS__ || { accent: "orange", theme: "light", density: "cozy" });
-  const [showTweaks, setShowTweaks] = React.useState(false);
+import { useState, useEffect } from 'react';
+import Lenis from 'lenis';
+import {
+  Nav, Hero, Marquee, UseCases, UseCase, Services,
+  WhyQuasor, Process, Testimonials, Pricing, Faq, Contact, Footer
+} from './components/Sections.jsx';
+import { TweakPanel, applyTweaks } from './components/Tweaks.jsx';
 
-  React.useEffect(() => {
-    window.applyTweaks(tweaks);
+const App = () => {
+  // Hydrate from <html data-theme> set by the inline script in index.html.
+  // That script already read localStorage > prefers-color-scheme.
+  const [tweaks, setTweaks] = useState(() => {
+    const initialTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    return { ...(window.__TWEAKS__ || { accent: "orange", density: "cozy" }), theme: initialTheme };
+  });
+  const [showTweaks, setShowTweaks] = useState(false);
+
+  const toggleTheme = () => {
+    const next = tweaks.theme === 'dark' ? 'light' : 'dark';
+    const updated = { ...tweaks, theme: next };
+    setTweaks(updated);
+    applyTweaks(updated);
+    try { localStorage.setItem('quasor-theme', next); } catch (e) {}
+  };
+
+  useEffect(() => {
+    applyTweaks(tweaks);
+
+    // Easter egg para devs curiosos en la consola
+    if (!window.__QUASOR_HELLO__) {
+      window.__QUASOR_HELLO__ = true;
+      console.log(
+        "%cquasor.",
+        "color: #ff5a1f; font-size: 28px; font-weight: 700; letter-spacing: -0.04em;"
+      );
+      console.log(
+        "%c¿sos dev curioso? hablanos: ventas@quasor.com\n%cconstruido en Mar del Plata 🌊",
+        "color: #6b6b6b; font-family: ui-monospace, monospace; font-size: 12px;",
+        "color: #6b6b6b; font-family: ui-monospace, monospace; font-size: 11px;"
+      );
+    }
+
+    // Live-respond to system theme changes IF the user hasn't picked manually
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+    const onSystemChange = (e) => {
+      try { if (localStorage.getItem('quasor-theme')) return; } catch (err) { return; }
+      const next = e.matches ? 'dark' : 'light';
+      const updated = { ...tweaks, theme: next };
+      setTweaks(updated);
+      applyTweaks(updated);
+    };
+    mq.addEventListener('change', onSystemChange);
+    const cleanupSystemListener = () => mq.removeEventListener('change', onSystemChange);
 
     const onMsg = (e) => {
       const d = e.data || {};
@@ -15,14 +62,21 @@ const App = () => {
     try { window.parent.postMessage({ type: "__edit_mode_available" }, "*"); } catch(e) {}
 
     // Reveal on scroll: observe every <section> and add .reveal/.in
+    // Sections already inside the viewport on mount are revealed immediately —
+    // avoids a blank page when StrictMode double-mounts cancel the IO's initial firing.
     const sections = document.querySelectorAll("section");
-    sections.forEach(s => s.classList.add("reveal"));
+    sections.forEach(s => {
+      const rect = s.getBoundingClientRect();
+      const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+      s.classList.add("reveal");
+      if (inViewport) s.classList.add("in");
+    });
     const io = new IntersectionObserver((entries) => {
       entries.forEach(en => {
         if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
       });
     }, { threshold: 0.08, rootMargin: "0px 0px -60px 0px" });
-    sections.forEach(s => io.observe(s));
+    sections.forEach(s => { if (!s.classList.contains("in")) io.observe(s); });
 
     // ============================================================
     // LENIS smooth scroll
@@ -30,8 +84,9 @@ const App = () => {
     let lenis = null;
     let rafId = null;
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (window.Lenis && !prefersReduced) {
-      lenis = new window.Lenis({
+    let smoothAnchorClick = null;
+    if (!prefersReduced) {
+      lenis = new Lenis({
         duration: 1.1,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
@@ -41,7 +96,7 @@ const App = () => {
       const raf = (t) => { lenis.raf(t); rafId = requestAnimationFrame(raf); };
       rafId = requestAnimationFrame(raf);
       // Smooth anchor scroll
-      document.addEventListener("click", (e) => {
+      smoothAnchorClick = (e) => {
         const a = e.target.closest('a[href^="#"]');
         if (!a) return;
         const id = a.getAttribute("href");
@@ -49,7 +104,8 @@ const App = () => {
           const tgt = document.querySelector(id);
           if (tgt) { e.preventDefault(); lenis.scrollTo(tgt, { offset: -80, duration: 1.4 }); }
         }
-      });
+      };
+      document.addEventListener("click", smoothAnchorClick);
     }
 
     // ============================================================
@@ -98,45 +154,11 @@ const App = () => {
     revealTargets.forEach(t => rwIo.observe(t));
 
     // ============================================================
-    // CUSTOM CURSOR + MAGNETIC BUTTONS
+    // MAGNETIC BUTTONS (only on fine pointer + non-reduced-motion)
     // ============================================================
     const isFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    let cursorCleanup = null;
-    if (isFinePointer) {
-      document.body.classList.add("has-custom-cursor");
-      const dot = document.createElement("div"); dot.className = "q-cursor";
-      const ring = document.createElement("div"); ring.className = "q-cursor-ring";
-      document.body.appendChild(dot); document.body.appendChild(ring);
-      let mx = window.innerWidth/2, my = window.innerHeight/2;
-      let rx = mx, ry = my;
-      let ready = false;
-      const onMove = (e) => {
-        mx = e.clientX; my = e.clientY;
-        dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
-        if (!ready) { ready = true; dot.classList.add("ready"); ring.classList.add("ready"); }
-      };
-      const tick = () => {
-        rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
-        ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
-        requestAnimationFrame(tick);
-      };
-      window.addEventListener("mousemove", onMove, { passive: true });
-      tick();
-      // Hover states
-      const linkSel = 'a, button, [role="button"], [data-magnetic]';
-      const textSel = 'input, textarea, [contenteditable="true"]';
-      document.addEventListener("mouseover", (e) => {
-        if (e.target.closest(linkSel)) { dot.classList.add("is-link"); ring.classList.add("is-link"); }
-        else if (e.target.closest(textSel)) { dot.classList.add("is-text"); ring.classList.add("is-text"); }
-      });
-      document.addEventListener("mouseout", (e) => {
-        if (e.target.closest(linkSel)) { dot.classList.remove("is-link"); ring.classList.remove("is-link"); }
-        if (e.target.closest(textSel)) { dot.classList.remove("is-text"); ring.classList.remove("is-text"); }
-      });
-      document.addEventListener("mouseleave", () => { dot.classList.add("is-hidden"); ring.classList.add("is-hidden"); });
-      document.addEventListener("mouseenter", () => { dot.classList.remove("is-hidden"); ring.classList.remove("is-hidden"); });
-
-      // Magnetic buttons
+    let magCleanup = null;
+    if (isFinePointer && !prefersReduced) {
       const mags = document.querySelectorAll("[data-magnetic]");
       const magHandlers = [];
       mags.forEach(el => {
@@ -160,11 +182,11 @@ const App = () => {
         el.addEventListener("mouseleave", ml);
         magHandlers.push([el, mm, ml]);
       });
-      cursorCleanup = () => {
-        window.removeEventListener("mousemove", onMove);
-        magHandlers.forEach(([el, mm, ml]) => { el.removeEventListener("mousemove", mm); el.removeEventListener("mouseleave", ml); });
-        dot.remove(); ring.remove();
-        document.body.classList.remove("has-custom-cursor");
+      magCleanup = () => {
+        magHandlers.forEach(([el, mm, ml]) => {
+          el.removeEventListener("mousemove", mm);
+          el.removeEventListener("mouseleave", ml);
+        });
       };
     }
 
@@ -172,29 +194,37 @@ const App = () => {
       window.removeEventListener("message", onMsg);
       io.disconnect();
       rwIo.disconnect();
-      if (lenis) { lenis.destroy(); cancelAnimationFrame(rafId); }
-      if (cursorCleanup) cursorCleanup();
+      if (lenis) {
+        if (smoothAnchorClick) document.removeEventListener("click", smoothAnchorClick);
+        lenis.destroy();
+        cancelAnimationFrame(rafId);
+      }
+      if (magCleanup) magCleanup();
+      cleanupSystemListener();
     };
   }, []);
 
   return (
     <div className="min-h-screen">
-      <Nav />
-      <Hero />
-      <Marquee />
-      <UseCases />
-      <UseCase />
-      <Services />
-      <WhyQuasor />
-      <Process />
-      <Testimonials />
-      <Pricing />
-      <Faq />
-      <Contact />
+      <a href="#main" className="skip-link">Saltar al contenido</a>
+      <Nav theme={tweaks.theme} onToggleTheme={toggleTheme} />
+      <main id="main">
+        <Hero />
+        <Marquee />
+        <UseCases />
+        <UseCase />
+        <Services />
+        <WhyQuasor />
+        <Process />
+        <Testimonials />
+        <Pricing />
+        <Faq />
+        <Contact />
+      </main>
       <Footer />
       <TweakPanel tweaks={tweaks} setTweaks={setTweaks} visible={showTweaks} />
     </div>
   );
 };
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+export default App;

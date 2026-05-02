@@ -1,11 +1,10 @@
-// Tweaks panel
 const ACCENTS = {
   orange: { v: "#ff7a59", ink: "#c04624", label: "Naranja" },
   blue:   { v: "#5b8cff", ink: "#2e4fb4", label: "Azul" },
   green:  { v: "#2fb27d", ink: "#197253", label: "Verde" },
 };
 
-const applyTweaks = (t) => {
+export const applyTweaks = (t) => {
   const root = document.documentElement;
   root.setAttribute("data-theme", t.theme);
   root.setAttribute("data-density", t.density);
@@ -15,7 +14,7 @@ const applyTweaks = (t) => {
   root.style.setProperty("--density", t.density === "compact" ? "0.7" : "1");
 };
 
-const TweakPanel = ({ tweaks, setTweaks, visible }) => {
+export const TweakPanel = ({ tweaks, setTweaks, visible }) => {
   if (!visible) return null;
   const update = (k, v) => {
     const next = { ...tweaks, [k]: v };
@@ -66,6 +65,3 @@ const TweakPanel = ({ tweaks, setTweaks, visible }) => {
     </div>
   );
 };
-
-window.TweakPanel = TweakPanel;
-window.applyTweaks = applyTweaks;

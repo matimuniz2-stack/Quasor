@@ -6,232 +6,118 @@
   <title>Quasor — CRM para inmobiliarias argentinas | Pipeline, integraciones y automatización</title>
   <meta name="description" content="CRM para inmobiliarias argentinas desde Mar del Plata. Conectás ZonaProp, Argenprop, Tokko y WhatsApp en una sola plataforma. Setup en días, sin permanencia." />
   <meta name="author" content="Quasor" />
-  <meta name="robots" content="index, follow" />
-  <meta name="theme-color" content="#ff5a1f" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#ff5a1f" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0b0b0c" media="(prefers-color-scheme: dark)" />
+  <link rel="canonical" href="https://quasor.io/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_AR" />
+  <meta property="og:url" content="https://quasor.io/" />
   <meta property="og:title" content="Quasor — CRM para inmobiliarias argentinas" />
   <meta property="og:description" content="Pipeline, integraciones y automatización en una sola plataforma. Desde Mar del Plata para todo el país." />
   <meta property="og:site_name" content="Quasor" />
+  <meta property="og:image" content="https://quasor.io/og-image.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Quasor — CRM para inmobiliarias argentinas" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Quasor — CRM para inmobiliarias argentinas" />
   <meta name="twitter:description" content="Pipeline, integraciones y automatización en una plataforma." />
+  <meta name="twitter:image" content="https://quasor.io/og-image.jpg" />
 
-  <!-- Schema.org LocalBusiness -->
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Schema.org: SoftwareApplication -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": "SoftwareApplication",
     "name": "Quasor",
-    "description": "CRM para inmobiliarias argentinas: pipeline, integraciones y automatización en una sola plataforma.",
-    "address": { "@type": "PostalAddress", "addressLocality": "Mar del Plata", "addressRegion": "Buenos Aires", "addressCountry": "AR" },
-    "priceRange": "USD 120 - USD 240 / mes",
-    "areaServed": "Argentina"
+    "applicationCategory": "BusinessApplication",
+    "applicationSubCategory": "CRM",
+    "operatingSystem": "Web",
+    "description": "CRM para inmobiliarias argentinas: pipeline, integraciones con ZonaProp, Argenprop, Tokko, WhatsApp Business y automatización en una sola plataforma.",
+    "url": "https://quasor.io/",
+    "inLanguage": "es-AR",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "Quasor",
+      "address": { "@type": "PostalAddress", "addressLocality": "Mar del Plata", "addressRegion": "Buenos Aires", "addressCountry": "AR" },
+      "areaServed": "AR",
+      "url": "https://quasor.io/",
+      "email": "ventas@quasor.com",
+      "telephone": "+54-9-223-689-2809"
+    }
   }
   </script>
+
+  <!-- Schema.org: FAQPage (rich snippets) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "¿Cuánto tarda en estar andando?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Setup inicial: 1-2 semanas. Configuramos integraciones, importamos tus datos si los tenés y capacitamos al equipo. Empezás a usar el sistema desde el día 1 con la configuración base." } },
+      { "@type": "Question", "name": "¿De quién son mis datos?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Tuyos. 100%. Podés exportarlos en cualquier momento — CSV, JSON o backup completo de la base. Si preferís tener el sistema en tu propio servidor (on-premise), también se puede. Sin lock-in, sin letra chica." } },
+      { "@type": "Question", "name": "¿Trabajan con empresas fuera de Mar del Plata?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí. Trabajamos 100% remoto con reuniones semanales y entregas asincrónicas. La ubicación no es limitante — si tenés buena conexión y decisores disponibles, arrancamos." } },
+      { "@type": "Question", "name": "¿Qué pasa si quiero cortar el servicio?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Cortás cuando quieras — contrato mensual sin permanencia. Te exportamos todos tus datos en formato estándar (CSV, JSON). Sin lock-in." } },
+      { "@type": "Question", "name": "¿El precio incluye nuevas features?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí. El CRM se va ampliando mes a mes con mejoras y nuevas integraciones. Además, cada cliente puede pedir features específicas — las que benefician a varios, las incluimos en el roadmap." } }
+    ]
+  }
+  </script>
+
+  <!-- Schema.org: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Quasor",
+    "url": "https://quasor.io/",
+    "logo": "https://quasor.io/logo.png",
+    "sameAs": [
+      "https://www.instagram.com/quasortech/"
+    ],
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "telephone": "+54-9-223-689-2809",
+      "contactType": "sales",
+      "email": "ventas@quasor.com",
+      "availableLanguage": ["Spanish"],
+      "areaServed": "AR"
+    }]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
-  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-  <style>
-    :root {
-      --bg: #ffffff;
-      --bg-2: #f6f6f7;
-      --ink: #0a0a0a;
-      --ink-2: #2a2a2a;
-      --ink-3: #6b6b6b;
-      --line: #ececec;
-      --line-2: #d9d9d9;
-      --accent: #ff5a1f;
-      --accent-2: #ff7a3d;
-      --accent-ink: #b83300;
-      --accent-glow: #ff5a1f;
-      --pos: #00a86b;
-      --neg: #e02424;
-      --density: 1;
-    }
-    html[data-theme="dark"] {
-      --bg: #0b0b0c;
-      --bg-2: #141416;
-      --ink: #f4f1ea;
-      --ink-2: #bab5ab;
-      --ink-3: #7a756d;
-      --line: #1e1e21;
-      --line-2: #2a2a2f;
-      --pos: #58c08a;
-      --neg: #ff6f66;
-    }
-    html, body { background: var(--bg); color: var(--ink); }
-    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-feature-settings: "ss01","cv11"; -webkit-font-smoothing: antialiased; letter-spacing: -0.005em; }
-    .serif { font-family: 'Inter', system-ui, sans-serif; font-weight: 600; letter-spacing: -0.035em; }
-    .serif em { font-family: 'Instrument Serif', 'Times New Roman', serif; font-weight: 400; font-style: italic; letter-spacing: -0.02em; }
-    .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
-    .ink { color: var(--ink); }
-    .ink-2 { color: var(--ink-2); }
-    .ink-3 { color: var(--ink-3); }
-    .bg-surface { background: var(--bg); }
-    .bg-surface-2 { background: var(--bg-2); }
-    .border-line { border-color: var(--line); }
-    .border-line-2 { border-color: var(--line-2); }
-    .accent { color: var(--accent); }
-    .bg-accent { background: var(--accent); }
-    .bg-accent-soft { background: color-mix(in oklab, var(--accent) 12%, var(--bg)); }
-    .ring-accent { box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent) 40%, transparent); }
+  <!-- Non-blocking font load: rel=preload swaps to stylesheet via onload -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap"></noscript>
 
-    .hairline { border-top: 1px solid var(--line); }
-    .dotline { background-image: radial-gradient(circle, var(--line-2) 1px, transparent 1px); background-size: 6px 6px; }
-    .grain::before {
-      content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .4; mix-blend-mode: multiply;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    }
-    html[data-theme="dark"] .grain::before { mix-blend-mode: screen; opacity: .25; }
-
-    .glow {
-      background: radial-gradient(900px 500px at 85% -10%, color-mix(in oklab, var(--accent) 28%, transparent), transparent 55%),
-                  radial-gradient(700px 400px at 5% 5%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 55%);
-    }
-    .accent { color: var(--accent); }
-    .accent-glow { text-shadow: 0 0 24px color-mix(in oklab, var(--accent) 55%, transparent); }
-    .bg-accent-grad { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%); }
-    .btn-accent { background: var(--accent); color: white; box-shadow: 0 6px 20px -6px color-mix(in oklab, var(--accent) 70%, transparent), inset 0 1px 0 rgba(255,255,255,0.18); }
-    .btn-accent:hover { background: var(--accent-2); }
-    html[data-theme="dark"] .glow {
-      background: radial-gradient(1200px 600px at 80% -10%, color-mix(in oklab, var(--accent) 28%, transparent), transparent 60%),
-                  radial-gradient(900px 500px at 10% 10%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 55%);
-    }
-
-    .blink { animation: blink 1.05s steps(1) infinite; }
-    @keyframes blink { 50% { opacity: 0; } }
-    .pulse-dot { position: relative; }
-    .pulse-dot::after {
-      content: ""; position: absolute; inset: -4px; border-radius: 999px;
-      background: color-mix(in oklab, var(--pos) 40%, transparent); animation: pulseD 1.8s ease-out infinite;
-    }
-    @keyframes pulseD { 0% { transform: scale(.6); opacity: .9;} 100% { transform: scale(1.9); opacity: 0;} }
-
-    /* tabs underline */
-    .tab { position: relative; }
-    .tab[data-on="1"]::after { content:""; position:absolute; left:0; right:0; bottom:-1px; height:2px; background: var(--ink); }
-
-    /* bar chart + sparkline */
-    .bar { transition: transform .6s cubic-bezier(.2,.7,.2,1); transform-origin: bottom; }
-
-    /* scroll marquee */
-    .marquee { display: flex; gap: 4rem; animation: mq 40s linear infinite; }
-    @keyframes mq { to { transform: translateX(-50%); } }
-
-    /* typewriter */
-    .caret::after { content: "▌"; margin-left: 2px; animation: blink 1s steps(1) infinite; color: var(--accent); }
-
-    /* density */
-    [data-density="compact"] section { padding-top: calc(56px * var(--density)); padding-bottom: calc(56px * var(--density)); }
-
-    /* scrollbar polish */
-    ::-webkit-scrollbar { width: 10px; height: 10px; }
-    ::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 999px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-
-    /* fade in on mount */
-    .rise { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
-    @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-
-    /* reveal on scroll */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
-    .reveal.in { opacity: 1; transform: none; }
-    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
-
-    /* gradient hairline */
-    .hl-grad { height: 1px; background: linear-gradient(90deg, transparent, var(--line-2), transparent); }
-
-    /* soft card */
-    .card { background: var(--bg); border: 1px solid var(--line); border-radius: 16px; }
-    html[data-theme="dark"] .card { background: var(--bg-2); }
-
-    /* number ticker monospace lining */
-    .num { font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
-
-    /* ============================================================
-       TECH ANIMATIONS
-       ============================================================ */
-
-    /* Lenis smooth scroll */
-    html.lenis, html.lenis body { height: auto; }
-    .lenis.lenis-smooth { scroll-behavior: auto !important; }
-    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-    .lenis.lenis-stopped { overflow: clip; }
-
-    /* Custom cursor */
-    @media (hover: hover) and (pointer: fine) {
-      body.has-custom-cursor { cursor: none; }
-      body.has-custom-cursor a,
-      body.has-custom-cursor button,
-      body.has-custom-cursor [data-magnetic],
-      body.has-custom-cursor input,
-      body.has-custom-cursor textarea { cursor: none; }
-    }
-    .q-cursor {
-      position: fixed; top: 0; left: 0; width: 10px; height: 10px;
-      border-radius: 999px; background: var(--ink); pointer-events: none;
-      transform: translate(-50%, -50%); z-index: 9998;
-      transition: width .25s cubic-bezier(.2,.7,.2,1), height .25s cubic-bezier(.2,.7,.2,1),
-                  background .2s, border-radius .2s, opacity .2s, mix-blend-mode .2s;
-      mix-blend-mode: difference;
-      opacity: 0;
-    }
-    .q-cursor.ready { opacity: 1; }
-    .q-cursor-ring {
-      position: fixed; top: 0; left: 0; width: 36px; height: 36px;
-      border: 1px solid var(--ink); border-radius: 999px; pointer-events: none;
-      transform: translate(-50%, -50%); z-index: 9997;
-      transition: width .35s cubic-bezier(.2,.7,.2,1), height .35s cubic-bezier(.2,.7,.2,1),
-                  border-color .2s, background .2s, opacity .2s;
-      opacity: 0;
-      mix-blend-mode: difference;
-    }
-    .q-cursor-ring.ready { opacity: .55; }
-    /* States */
-    .q-cursor.is-link { width: 6px; height: 6px; background: var(--accent); }
-    .q-cursor-ring.is-link { width: 54px; height: 54px; border-color: var(--accent); opacity: 1; }
-    .q-cursor.is-text { width: 2px; height: 22px; border-radius: 2px; background: var(--accent); }
-    .q-cursor-ring.is-text { opacity: 0; }
-    .q-cursor.is-hidden, .q-cursor-ring.is-hidden { opacity: 0 !important; }
-
-    /* Magnetic button baseline */
-    [data-magnetic] { display: inline-flex; will-change: transform; transition: transform .4s cubic-bezier(.2,.7,.2,1); }
-    [data-magnetic] > * { pointer-events: none; }
-    [data-magnetic] .mag-inner { display: inline-flex; align-items: center; gap: inherit; pointer-events: none; transition: transform .4s cubic-bezier(.2,.7,.2,1); }
-
-    /* Word / char reveal on scroll */
-    [data-reveal-words] .rw-word { display: inline-block; overflow: hidden; vertical-align: bottom; }
-    [data-reveal-words] .rw-word > span {
-      display: inline-block;
-      transform: translateY(110%);
-      opacity: 0;
-      filter: blur(8px);
-      transition: transform .9s cubic-bezier(.2,.7,.2,1), opacity .9s cubic-bezier(.2,.7,.2,1), filter .9s cubic-bezier(.2,.7,.2,1);
-      transition-delay: var(--rw-delay, 0ms);
-      will-change: transform, opacity, filter;
-    }
-    [data-reveal-words].rw-in .rw-word > span { transform: translateY(0); opacity: 1; filter: blur(0); }
-    @media (prefers-reduced-motion: reduce) {
-      [data-reveal-words] .rw-word > span { transform: none; opacity: 1; filter: none; transition: none; }
-    }
-
-    /* Hide custom cursor on touch / mobile */
-    @media (hover: none), (pointer: coarse) {
-      .q-cursor, .q-cursor-ring { display: none !important; }
-      body.has-custom-cursor { cursor: auto !important; }
-    }
-  </style>
+  <!-- Theme detection — runs before React to avoid flash of wrong theme -->
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('quasor-theme');
+        var sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', saved || sys);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
 </head>
 <body>
   <div id="root"></div>
@@ -244,10 +130,6 @@
       "density": "compact"
     }/*EDITMODE-END*/;
   </script>
-  <script type="text/babel" data-presets="env,react" src="./src/data.jsx"></script>
-  <script type="text/babel" data-presets="env,react" src="./src/Dashboard.jsx"></script>
-  <script type="text/babel" data-presets="env,react" src="./src/Sections.jsx"></script>
-  <script type="text/babel" data-presets="env,react" src="./src/Tweaks.jsx"></script>
-  <script type="text/babel" data-presets="env,react" src="./src/App.jsx"></script>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

@@ -1,0 +1,316 @@
+@import "tailwindcss";
+
+/* Tailwind 4 — custom theme variables surfaced as utilities where useful */
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-serif: 'Instrument Serif', 'Times New Roman', serif;
+}
+
+:root {
+  --bg: #ffffff;
+  --bg-2: #f6f6f7;
+  --ink: #0a0a0a;
+  --ink-2: #2a2a2a;
+  --ink-3: #6b6b6b;
+  --line: #ececec;
+  --line-2: #d9d9d9;
+  --accent: #ff5a1f;
+  --accent-2: #ff7a3d;
+  --accent-ink: #b83300;
+  --accent-glow: #ff5a1f;
+  --pos: #00a86b;
+  --neg: #e02424;
+  --density: 1;
+}
+html[data-theme="dark"] {
+  --bg: #0b0b0c;
+  --bg-2: #141416;
+  --ink: #f4f1ea;
+  --ink-2: #bab5ab;
+  --ink-3: #7a756d;
+  --line: #1e1e21;
+  --line-2: #2a2a2f;
+  --pos: #58c08a;
+  --neg: #ff6f66;
+}
+html, body { background: var(--bg); color: var(--ink); }
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-feature-settings: "ss01","cv11";
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -0.005em;
+}
+.serif { font-family: 'Inter', system-ui, sans-serif; font-weight: 600; letter-spacing: -0.035em; }
+.serif em { font-family: 'Instrument Serif', 'Times New Roman', serif; font-weight: 400; font-style: italic; letter-spacing: -0.02em; }
+.mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+.ink { color: var(--ink); }
+.ink-2 { color: var(--ink-2); }
+.ink-3 { color: var(--ink-3); }
+.bg-surface { background: var(--bg); }
+.bg-surface-2 { background: var(--bg-2); }
+.border-line { border-color: var(--line); }
+.border-line-2 { border-color: var(--line-2); }
+.accent { color: var(--accent); }
+.bg-accent { background: var(--accent); }
+.bg-accent-soft { background: color-mix(in oklab, var(--accent) 12%, var(--bg)); }
+.ring-accent { box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent) 40%, transparent); }
+
+.hairline { border-top: 1px solid var(--line); }
+.dotline { background-image: radial-gradient(circle, var(--line-2) 1px, transparent 1px); background-size: 6px 6px; }
+.grain::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .4; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+html[data-theme="dark"] .grain::before { mix-blend-mode: screen; opacity: .25; }
+
+.glow {
+  background: radial-gradient(900px 500px at 85% -10%, color-mix(in oklab, var(--accent) 28%, transparent), transparent 55%),
+              radial-gradient(700px 400px at 5% 5%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 55%);
+}
+.accent-glow { text-shadow: 0 0 24px color-mix(in oklab, var(--accent) 55%, transparent); }
+.bg-accent-grad { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%); }
+.btn-accent { background: var(--accent); color: white; box-shadow: 0 6px 20px -6px color-mix(in oklab, var(--accent) 70%, transparent), inset 0 1px 0 rgba(255,255,255,0.18); }
+.btn-accent:hover { background: var(--accent-2); }
+html[data-theme="dark"] .glow {
+  background: radial-gradient(1200px 600px at 80% -10%, color-mix(in oklab, var(--accent) 28%, transparent), transparent 60%),
+              radial-gradient(900px 500px at 10% 10%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 55%);
+}
+
+.blink { animation: blink 1.05s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.pulse-dot { position: relative; }
+.pulse-dot::after {
+  content: ""; position: absolute; inset: -4px; border-radius: 999px;
+  background: color-mix(in oklab, var(--pos) 40%, transparent); animation: pulseD 1.8s ease-out infinite;
+}
+@keyframes pulseD { 0% { transform: scale(.6); opacity: .9;} 100% { transform: scale(1.9); opacity: 0;} }
+
+.tab { position: relative; }
+.tab[data-on="1"]::after { content:""; position:absolute; left:0; right:0; bottom:-1px; height:2px; background: var(--ink); }
+
+.bar { transition: transform .6s cubic-bezier(.2,.7,.2,1); transform-origin: bottom; }
+
+.marquee { display: flex; gap: 4rem; animation: mq 40s linear infinite; }
+@keyframes mq { to { transform: translateX(-50%); } }
+
+/* ============================================================
+   FAQ — native <details>/<summary>
+   ============================================================ */
+.faq-item summary { list-style: none; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::marker { content: ""; }
+.faq-item summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+
+/* ============================================================
+   INTEGRATIONS CONSTELLATION
+   ============================================================ */
+.integrations-stage {
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+.mq-track {
+  display: flex;
+  width: max-content;
+  gap: 0.875rem;
+  animation: mq-ltr 56s linear infinite;
+  will-change: transform;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.mq-track--rtl { animation-name: mq-rtl; animation-duration: 64s; }
+/* Pause only the hovered/touched track, not the whole stage. */
+.mq-track:hover,
+.mq-track:focus-within,
+.mq-track:active { animation-play-state: paused; }
+/* Track is tripled, so loop translates -33.333% (one full copy width). */
+@keyframes mq-ltr { from { transform: translate3d(0,0,0); } to { transform: translate3d(-33.3333%,0,0); } }
+@keyframes mq-rtl { from { transform: translate3d(-33.3333%,0,0); } to { transform: translate3d(0,0,0); } }
+
+.integration-chip {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.55rem 0.95rem 0.55rem 0.55rem;
+  border-radius: 999px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  transition: transform .35s cubic-bezier(.2,.7,.2,1), border-color .35s, box-shadow .35s;
+}
+html[data-theme="dark"] .integration-chip { background: var(--bg-2); }
+.integration-chip:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--accent) 45%, var(--line));
+  box-shadow: 0 10px 28px -12px color-mix(in oklab, var(--accent) 40%, transparent);
+}
+.integration-chip .chip-icon {
+  width: 28px; height: 28px; flex: 0 0 auto;
+  border-radius: 8px;
+  display: grid; place-items: center;
+  color: white;
+}
+.integration-chip .chip-icon svg { width: 16px; height: 16px; }
+.integration-chip .chip-name { font-size: 13px; font-weight: 500; white-space: nowrap; letter-spacing: -0.005em; }
+
+/* Quasor core */
+.qcore {
+  position: relative;
+  width: 116px; height: 116px;
+  border-radius: 999px;
+  display: grid; place-items: center;
+  background: radial-gradient(circle at 30% 30%, var(--accent-2), var(--accent) 55%, color-mix(in oklab, var(--accent) 55%, black));
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--accent) 40%, transparent),
+    0 0 50px -8px color-mix(in oklab, var(--accent) 75%, transparent),
+    0 0 100px -25px color-mix(in oklab, var(--accent) 55%, transparent);
+  color: white;
+  z-index: 3;
+}
+@media (min-width: 768px) { .qcore { width: 140px; height: 140px; } }
+.qcore-label {
+  font-family: 'Instrument Serif', 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.25);
+}
+@media (min-width: 768px) { .qcore-label { font-size: 28px; } }
+.qcore::before, .qcore::after {
+  content: ""; position: absolute; inset: -6px; border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--accent) 55%, transparent);
+  animation: qpulse 3.6s cubic-bezier(.2,.7,.2,1) infinite;
+  pointer-events: none;
+}
+.qcore::after { animation-delay: 1.8s; }
+@keyframes qpulse {
+  0%   { transform: scale(.9); opacity: .85; }
+  80%  { transform: scale(1.7); opacity: 0; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+
+/* Radial connection lines (SVG) */
+.qlines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+.qlines line { stroke: var(--line-2); stroke-width: 1; opacity: 0.5; }
+.qlines .qline-pulse {
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-dasharray: 18 240;
+  animation: qline-travel 2.8s linear infinite;
+  opacity: 0.85;
+}
+@keyframes qline-travel {
+  from { stroke-dashoffset: 260; }
+  to   { stroke-dashoffset: 0; }
+}
+
+.caret::after { content: "▌"; margin-left: 2px; animation: blink 1s steps(1) infinite; color: var(--accent); }
+
+[data-density="compact"] section { padding-top: calc(56px * var(--density)); padding-bottom: calc(56px * var(--density)); }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 999px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* Keyboard-only focus ring — invisible on mouse focus, visible on Tab nav */
+:focus { outline: none; }
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+button:focus-visible,
+a:focus-visible {
+  outline-offset: 2px;
+}
+
+/* Skip link — invisible until focused via Tab */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 16px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--accent);
+  color: white;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: top .2s ease;
+}
+.skip-link:focus { top: 16px; outline: none; }
+
+.rise { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+.hl-grad { height: 1px; background: linear-gradient(90deg, transparent, var(--line-2), transparent); }
+
+.card { background: var(--bg); border: 1px solid var(--line); border-radius: 16px; }
+html[data-theme="dark"] .card { background: var(--bg-2); }
+
+.num { font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+
+/* ============================================================
+   TECH ANIMATIONS
+   ============================================================ */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: clip; }
+
+[data-magnetic] { display: inline-flex; will-change: transform; transition: transform .4s cubic-bezier(.2,.7,.2,1); }
+[data-magnetic] > * { pointer-events: none; }
+[data-magnetic] .mag-inner { display: inline-flex; align-items: center; gap: inherit; pointer-events: none; transition: transform .4s cubic-bezier(.2,.7,.2,1); }
+
+[data-reveal-words] .rw-word { display: inline-block; overflow: hidden; vertical-align: bottom; }
+[data-reveal-words] .rw-word > span {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+  filter: blur(8px);
+  transition: transform .9s cubic-bezier(.2,.7,.2,1), opacity .9s cubic-bezier(.2,.7,.2,1), filter .9s cubic-bezier(.2,.7,.2,1);
+  transition-delay: var(--rw-delay, 0ms);
+  will-change: transform, opacity, filter;
+}
+[data-reveal-words].rw-in .rw-word > span { transform: translateY(0); opacity: 1; filter: blur(0); }
+
+/* ============================================================
+   REDUCED MOTION — global override (W3C recommended pattern).
+   Stops all decorative animations + transitions for users who
+   prefer reduced motion. Inline-styled animations are also caught
+   thanks to !important.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal-words] .rw-word > span { transform: none; opacity: 1; filter: none; }
+
+  /* Constellation: the global rule above completes animations to their end
+     state, which leaves the marquee tracks stuck at -50% (half offscreen)
+     and the core's pulse rings at full-scale-zero-opacity. Override here. */
+  .mq-track, .mq-track--rtl {
+    animation: none !important;
+    transform: none !important;
+  }
+  .qcore::before, .qcore::after {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+  .qline-pulse {
+    animation: none !important;
+    stroke-dasharray: none !important;
+    opacity: 0.5 !important;
+  }
+}
+
