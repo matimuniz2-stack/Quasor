@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eliminar mis datos — Quasor</title>
+  <meta name="description" content="Cómo solicitar la eliminación de tus datos personales en Quasor: instrucciones, plazos y revocación de permisos de Meta." />
+  <meta name="robots" content="index, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-2: #f6f6f7;
+      --ink: #0a0a0a;
+      --ink-2: #2a2a2a;
+      --ink-3: #6b6b6b;
+      --line: #ececec;
+      --line-2: #d9d9d9;
+      --accent: #ff5a1f;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    .serif { font-family: "Instrument Serif", serif; font-weight: 400; }
+    .mono { font-family: "JetBrains Mono", monospace; }
+    .ink-2 { color: var(--ink-2); }
+    .ink-3 { color: var(--ink-3); }
+    .accent { color: var(--accent); }
+    header {
+      position: sticky; top: 0; z-index: 40;
+      background: color-mix(in oklab, var(--bg) 90%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-wrap {
+      max-width: 1000px; margin: 0 auto; padding: 0 24px;
+      height: 56px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-family: "Instrument Serif", serif; font-size: 24px; text-decoration: none; color: var(--ink); }
+    .back { text-decoration: none; color: var(--ink-2); font-size: 14px; transition: color .2s; }
+    .back:hover { color: var(--accent); }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 80px 24px 120px;
+    }
+    .kicker {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--ink-3);
+    }
+    h1 {
+      font-family: "Instrument Serif", serif;
+      font-weight: 400;
+      font-size: clamp(48px, 8vw, 88px);
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+      margin: 16px 0 32px;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+    .updated {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      color: var(--ink-3);
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--bg-2);
+      display: inline-block;
+      margin-bottom: 48px;
+    }
+    h2 {
+      font-family: "Instrument Serif", serif;
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 56px 0 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    h2:first-of-type { border-top: none; padding-top: 0; }
+    h2 .num {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      color: var(--ink-3);
+      letter-spacing: 0.1em;
+      margin-right: 12px;
+      vertical-align: middle;
+    }
+    h3 {
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 17px;
+      margin: 28px 0 8px;
+      color: var(--ink);
+    }
+    p, li { color: var(--ink-2); font-size: 16px; }
+    p { margin: 12px 0; }
+    ul, ol { padding-left: 20px; margin: 12px 0; }
+    li { margin: 6px 0; }
+    ul li::marker, ol li::marker { color: var(--accent); }
+    strong { color: var(--ink); font-weight: 600; }
+    a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
+    a:hover { opacity: 0.8; }
+    .callout {
+      border-left: 3px solid var(--accent);
+      background: var(--bg-2);
+      padding: 18px 22px;
+      margin: 24px 0;
+      border-radius: 4px;
+    }
+    .callout p { margin: 0; }
+    footer.pagefoot {
+      border-top: 1px solid var(--line);
+      padding: 40px 24px;
+      text-align: center;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      color: var(--ink-3);
+    }
+    footer.pagefoot a { color: var(--ink-2); border: none; margin: 0 12px; }
+    footer.pagefoot a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-wrap">
+      <a href="../Landing.html" class="logo">quasor<span class="accent">.</span></a>
+      <a href="../Landing.html" class="back">← Volver al inicio</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="kicker">LEGAL · 03</div>
+    <h1>Eliminar mis <em>datos</em>.</h1>
+
+    <div class="updated">Última actualización: 7 de mayo de 2026</div>
+
+    <p>Si querés que eliminemos los datos personales que tenemos sobre vos, esta página explica cómo hacerlo. El proceso es simple, gratuito, y respondemos en hasta 72 horas hábiles.</p>
+
+    <h2><span class="num">01</span>¿A quién aplica?</h2>
+    <ul>
+      <li><strong>Sos cliente de Quasor (inmobiliaria):</strong> podés pedir la eliminación de todos los datos de tu cuenta, integraciones y datos operativos del CRM.</li>
+      <li><strong>Sos un lead que completó un formulario:</strong> podés pedir la eliminación de los datos personales que una inmobiliaria capturó a través de un formulario de Lead Ads de Meta o canal similar y que están almacenados en Quasor.</li>
+      <li><strong>Conectaste Facebook a Quasor:</strong> podés pedir la eliminación de todos los datos derivados de esa autorización.</li>
+    </ul>
+
+    <h2><span class="num">02</span>Cómo pedir la eliminación</h2>
+    <p>Mandanos un email a <strong><a href="mailto:privacidad@quasor.com">privacidad@quasor.com</a></strong> desde la dirección asociada a tu cuenta o, si sos un lead, desde el email que dejaste en el formulario. Incluí:</p>
+    <ol>
+      <li><strong>Asunto:</strong> "Solicitud de eliminación de datos"</li>
+      <li>Tu nombre completo</li>
+      <li>Email asociado (si lo recordás)</li>
+      <li>Si sos un lead: nombre de la inmobiliaria a la que contactaste (si lo recordás)</li>
+      <li>Una breve descripción de qué datos querés eliminar</li>
+    </ol>
+
+    <h2><span class="num">03</span>Plazos</h2>
+    <ul>
+      <li><strong>Confirmación de recepción:</strong> dentro de las 24 horas hábiles.</li>
+      <li><strong>Eliminación efectiva:</strong> dentro de los 7 días corridos.</li>
+      <li><strong>Excepciones:</strong> si no podemos eliminar algún dato (por ejemplo, registros de facturación que AFIP nos exige conservar 5 años bajo Resolución General 1415/2003), te lo aclaramos puntualmente.</li>
+    </ul>
+
+    <h2><span class="num">04</span>Revocar permisos de Facebook directamente</h2>
+    <p>Si conectaste tu cuenta de Facebook a Quasor y querés revocar los permisos directamente desde Meta:</p>
+    <ol>
+      <li>Andá a <a href="https://www.facebook.com/settings?tab=applications" target="_blank" rel="noopener noreferrer">Configuración de Facebook → Aplicaciones y sitios web</a>.</li>
+      <li>Buscá "Quasor" en la lista.</li>
+      <li>Clic en "Eliminar" o "Quitar".</li>
+    </ol>
+    <p>Cuando revocás los permisos:</p>
+    <ul>
+      <li>Dejamos de sincronizar nuevos datos de inmediato.</li>
+      <li>Recibimos el aviso de Meta y eliminamos los datos vinculados a tu cuenta de Facebook dentro de los 30 días.</li>
+    </ul>
+
+    <h2><span class="num">05</span>Contacto</h2>
+    <ul>
+      <li><strong>Email:</strong> <a href="mailto:privacidad@quasor.com">privacidad@quasor.com</a></li>
+      <li><strong>WhatsApp:</strong> <a href="https://wa.me/5492236892809">+54 9 223 689 2809</a></li>
+      <li><strong>Dirección:</strong> Mar del Plata, Buenos Aires, Argentina</li>
+    </ul>
+
+    <p style="margin-top: 48px;"><a href="privacidad.html">→ Política de Privacidad</a><br><a href="terminos.html">→ Términos y Condiciones</a></p>
+  </main>
+
+  <footer class="pagefoot">
+    © 2026 Quasor · <a href="../Landing.html">Inicio</a> · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a> · <a href="mailto:privacidad@quasor.com">Contacto</a>
+  </footer>
+</body>
+</html>

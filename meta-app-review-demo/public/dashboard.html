@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quasor CRM — Elegí tu Página</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-wrap">
+      <a href="/" class="brand">quasor<span class="dot">.</span></a>
+      <div class="topbar-actions">
+        <span class="step-chip"><span class="num">02</span> Elegí tu Página</span>
+        <div id="userChip" class="user-chip">
+          <img id="userPic" alt="" />
+          <div>
+            <div class="name" id="userName">—</div>
+            <div class="role">public_profile</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="kicker">PASO 2 — PAGES_SHOW_LIST</div>
+    <h1 class="title">Elegí la <em>Página</em><br>de la que querés traer leads.</h1>
+    <p class="lede">Estas son las Páginas de Facebook que administrás. Quasor sincronizará únicamente los leads de la Página que selecciones — el resto no se toca.</p>
+
+    <div class="notice">
+      <b>Permiso en uso:</b> <span class="mono">pages_show_list</span> — sólo leemos los nombres, IDs y categorías de tus Páginas para mostrarte esta lista. No accedemos a su contenido, mensajes ni publicaciones.
+    </div>
+
+    <div id="pages" class="pages-grid"></div>
+
+    <div style="margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap;">
+      <button class="btn btn-accent" id="continueBtn" disabled style="opacity:.5; cursor:not-allowed;">Continuar →</button>
+      <button class="btn btn-ghost" onclick="disconnect()">Desconectar Meta</button>
+    </div>
+  </main>
+
+  <footer class="pagefoot">
+    Quasor · CRM para inmobiliarias · localhost demo for Meta App Review
+  </footer>
+
+  <script>
+    let selected = null;
+
+    async function init() {
+      const me = await fetch("/api/me").then(r => r.ok ? r.json() : null);
+      if (!me) { window.location = "/"; return; }
+      document.getElementById("userName").textContent = me.name;
+      document.getElementById("userPic").src = me.picture;
+
+      const { data } = await fetch("/api/pages").then(r => r.json());
+      const root = document.getElementById("pages");
+      root.innerHTML = data.map(p => `
+        <div class="page-row" data-id="${p.id}" onclick="select('${p.id}')">
+          <img src="${p.picture}" alt="" />
+          <div class="meta">
+            <span class="name">${p.name}</span>
+            <span class="sub">${p.category} · ${p.fan_count.toLocaleString()} seguidores · ID ${p.id}</span>
+          </div>
+          <span class="badge">no conectada</span>
+        </div>
+      `).join("");
+    }
+
+    function select(id) {
+      selected = id;
+      document.querySelectorAll(".page-row").forEach(row => {
+        row.classList.toggle("selected", row.dataset.id === id);
+        row.querySelector(".badge").textContent = row.dataset.id === id ? "seleccionada" : "no conectada";
+        row.querySelector(".badge").classList.toggle("accent", row.dataset.id === id);
+      });
+      const btn = document.getElementById("continueBtn");
+      btn.disabled = false;
+      btn.style.opacity = 1;
+      btn.style.cursor = "pointer";
+      btn.onclick = confirmSelection;
+    }
+
+    async function confirmSelection() {
+      await fetch("/api/pages/select", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ pageId: selected })
+      });
+      window.location = "/leads.html";
+    }
+
+    async function disconnect() {
+      await fetch("/api/disconnect", { method: "POST" });
+      window.location = "/";
+    }
+
+    init();
+  </script>
+</body>
+</html>

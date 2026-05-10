@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quasor CRM — Leads en vivo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-wrap">
+      <a href="/" class="brand">quasor<span class="dot">.</span></a>
+      <div class="topbar-actions">
+        <span class="step-chip"><span class="num">03</span> Leads en vivo</span>
+        <div id="userChip" class="user-chip">
+          <img id="userPic" alt="" />
+          <div>
+            <div class="name" id="userName">—</div>
+            <div class="role">public_profile</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="section-head">
+      <div>
+        <div class="kicker">PASO 3 — LEADS_RETRIEVAL</div>
+        <h2 class="serif" style="font-size: 44px; margin: 8px 0 0;">Leads de <em class="accent" style="font-style: italic;">Lead Ads</em>.</h2>
+        <p class="ink-2" style="margin-top: 6px;" id="pageInfo">Conectado a —</p>
+      </div>
+      <div class="live-dot"><span class="pulse"></span>Webhook activo · escuchando nuevos leads</div>
+    </div>
+
+    <div class="notice">
+      <b>Permiso en uso:</b> <span class="mono">leads_retrieval</span> — Meta nos avisa por webhook cuando alguien completa el formulario y leemos sus respuestas para meterlas en el CRM. Cada lead queda asociado a una propiedad y se le asigna automáticamente a un vendedor, que recibe un email de aviso.
+    </div>
+
+    <div class="leads-toolbar">
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <button class="btn btn-accent" onclick="simulateLead()">+ Simular nuevo lead (webhook)</button>
+        <a class="btn btn-ghost" href="/dashboard.html">← Cambiar Página</a>
+      </div>
+      <span class="mono ink-3" id="counter">0 leads</span>
+    </div>
+
+    <table class="leads-table" id="tbl">
+      <thead>
+        <tr>
+          <th style="width: 22%;">Lead</th>
+          <th style="width: 22%;">Contacto</th>
+          <th style="width: 24%;">Consulta</th>
+          <th style="width: 18%;">Vendedor asignado</th>
+          <th style="width: 14%;">Estado</th>
+        </tr>
+      </thead>
+      <tbody id="rows">
+        <tr><td colspan="5">
+          <div class="empty-state">
+            <div class="kicker">SIN LEADS TODAVÍA</div>
+            <h3>Esperando webhook de Meta…</h3>
+            <p>Cuando alguien complete tu formulario de Lead Ads, va a aparecer acá en tiempo real.<br>Hacé clic en <b>"Simular nuevo lead"</b> para ver el flujo.</p>
+          </div>
+        </td></tr>
+      </tbody>
+    </table>
+  </main>
+
+  <footer class="pagefoot">
+    Quasor · CRM para inmobiliarias · localhost demo for Meta App Review
+  </footer>
+
+  <script>
+    async function init() {
+      const me = await fetch("/api/me").then(r => r.ok ? r.json() : null);
+      if (!me) { window.location = "/"; return; }
+      document.getElementById("userName").textContent = me.name;
+      document.getElementById("userPic").src = me.picture;
+
+      const { page } = await fetch("/api/pages/selected").then(r => r.json());
+      if (!page) { window.location = "/dashboard.html"; return; }
+      document.getElementById("pageInfo").innerHTML = `Conectado a <b>${page.name}</b> · ID ${page.id}`;
+
+      await refresh();
+    }
+
+    async function refresh(highlightId) {
+      const { data } = await fetch("/api/leads").then(r => r.json());
+      const rows = document.getElementById("rows");
+      document.getElementById("counter").textContent = `${data.length} lead${data.length === 1 ? "" : "s"}`;
+
+      if (data.length === 0) return;
+
+      rows.innerHTML = data.map(l => {
+        const consulta = l.field_data.find(f => f.name === "tipo_propiedad")?.value || "—";
+        const zona = l.field_data.find(f => f.name === "zona")?.value || "";
+        return `
+        <tr class="${l.id === highlightId ? "new" : ""}" onclick="window.location='/lead-detail.html?id=${l.id}'">
+          <td><b>${l.full_name}</b><div class="mono ink-3" style="font-size: 11px; margin-top: 2px;">${l.id.slice(0,18)}…</div></td>
+          <td>${l.email}<div class="ink-3" style="font-size: 12px; margin-top: 2px;">${l.phone}</div></td>
+          <td>${consulta}<div class="ink-3" style="font-size: 12px; margin-top: 2px;">${zona}</div></td>
+          <td>${l.assigned_to.name}<div class="ink-3" style="font-size: 11px; margin-top: 2px; font-family: 'JetBrains Mono', monospace;">${l.assigned_to.email}</div></td>
+          <td>
+            <span class="badge pos">✓ asignado</span>
+            ${l.email_sent ? '<div style="margin-top: 4px;"><span class="badge">email enviado</span></div>' : ''}
+          </td>
+        </tr>`;
+      }).join("");
+    }
+
+    async function simulateLead() {
+      const r = await fetch("/api/webhook/lead", { method: "POST" });
+      const json = await r.json();
+      await refresh(json.lead?.id);
+    }
+
+    init();
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "quasor-meta-app-review-demo",
+  "version": "1.0.0",
+  "description": "Demo app for Meta App Review — shows pages_show_list, leads_retrieval and public_profile in action",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

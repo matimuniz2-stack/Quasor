@@ -1606,6 +1606,7 @@ export const Footer = () => {
             <a href="#contacto" className="hover:accent transition">Contacto</a>
             <a href="legal/privacidad.html" className="hover:accent transition">Privacidad</a>
             <a href="legal/terminos.html" className="hover:accent transition">Términos</a>
+            <a href="legal/eliminar-datos.html" className="hover:accent transition">Eliminar mis datos</a>
           </div>
         </div>
 
@@ -1635,6 +1636,8 @@ export const Footer = () => {
           <a href="legal/privacidad.html" className="hover:accent transition">Política de Privacidad</a>
           <span>·</span>
           <a href="legal/terminos.html" className="hover:accent transition">Términos y Condiciones</a>
+          <span>·</span>
+          <a href="legal/eliminar-datos.html" className="hover:accent transition">Eliminar mis datos</a>
         </div>
       </div>
     </div>

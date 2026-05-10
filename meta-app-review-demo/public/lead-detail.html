@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quasor CRM — Detalle de lead</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-wrap">
+      <a href="/" class="brand">quasor<span class="dot">.</span></a>
+      <div class="topbar-actions">
+        <a class="btn btn-ghost" href="/leads.html" style="padding: 8px 16px;">← Volver a leads</a>
+        <div id="userChip" class="user-chip">
+          <img id="userPic" alt="" />
+          <div>
+            <div class="name" id="userName">—</div>
+            <div class="role">public_profile</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="kicker">DETALLE — DATOS RECIBIDOS POR LEADS_RETRIEVAL</div>
+    <h1 class="title" id="leadName">—</h1>
+    <p class="lede" id="leadSub">—</p>
+
+    <div class="lead-grid">
+      <div class="card">
+        <h3 class="serif" style="font-size: 24px; margin: 0 0 12px;">Datos del formulario</h3>
+        <div id="fields"></div>
+      </div>
+
+      <div class="card surface">
+        <h3 class="serif" style="font-size: 24px; margin: 0 0 8px;">Procesamiento en Quasor</h3>
+        <ul class="timeline" id="timeline"></ul>
+
+        <div style="margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line);">
+          <div class="kicker">METADATA DEL ANUNCIO</div>
+          <div class="mono ink-3" style="font-size: 12px; margin-top: 8px; line-height: 1.7;" id="meta"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pagefoot">
+    Quasor · CRM para inmobiliarias · localhost demo for Meta App Review
+  </footer>
+
+  <script>
+    async function init() {
+      const me = await fetch("/api/me").then(r => r.ok ? r.json() : null);
+      if (!me) { window.location = "/"; return; }
+      document.getElementById("userName").textContent = me.name;
+      document.getElementById("userPic").src = me.picture;
+
+      const id = new URLSearchParams(location.search).get("id");
+      const lead = await fetch("/api/leads/" + encodeURIComponent(id)).then(r => r.ok ? r.json() : null);
+      if (!lead) { window.location = "/leads.html"; return; }
+
+      document.getElementById("leadName").innerHTML = lead.full_name.replace(/( \S+)$/, ' <em class="accent" style="font-style:italic;">$1</em>');
+      document.getElementById("leadSub").innerHTML = `Recibido desde <b>${lead.page_name}</b> · ${new Date(lead.created_time).toLocaleString("es-AR")}`;
+
+      const fieldRows = [
+        ["Nombre", lead.full_name],
+        ["Email", lead.email],
+        ["Teléfono", lead.phone],
+        ...lead.field_data.map(f => [f.name.replace(/_/g, " "), f.value])
+      ];
+      document.getElementById("fields").innerHTML = fieldRows.map(([k, v]) => `
+        <div class="field-row">
+          <div class="label">${k}</div>
+          <div class="value">${v}</div>
+        </div>
+      `).join("");
+
+      document.getElementById("timeline").innerHTML = `
+        <li>
+          <span class="dot done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px"><path d="M5 12l5 5L20 7"/></svg></span>
+          <div class="body">
+            <b>Webhook recibido de Meta</b>
+            <small>Permiso usado: leads_retrieval · ${new Date(lead.created_time).toLocaleTimeString("es-AR")}</small>
+          </div>
+        </li>
+        <li>
+          <span class="dot done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px"><path d="M5 12l5 5L20 7"/></svg></span>
+          <div class="body">
+            <b>Lead guardado en el CRM</b>
+            <small>Vinculado a la propiedad sugerida según la zona y tipo consultado.</small>
+          </div>
+        </li>
+        <li>
+          <span class="dot done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px"><path d="M5 12l5 5L20 7"/></svg></span>
+          <div class="body">
+            <b>Asignado a ${lead.assigned_to.name}</b>
+            <small>Por reglas de turnos del equipo comercial.</small>
+          </div>
+        </li>
+        <li>
+          <span class="dot done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px"><path d="M5 12l5 5L20 7"/></svg></span>
+          <div class="body">
+            <b>Email enviado al vendedor</b>
+            <small>→ ${lead.assigned_to.email}</small>
+          </div>
+        </li>
+      `;
+
+      document.getElementById("meta").innerHTML = `
+        form_id: ${lead.form_id}<br>
+        ad_id: ${lead.ad_id}<br>
+        campaign_id: ${lead.campaign_id}<br>
+        page_id: ${lead.page_id}<br>
+        lead_id: ${lead.id}
+      `;
+    }
+
+    init();
+  </script>
+</body>
+</html>

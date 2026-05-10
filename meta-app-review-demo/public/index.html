@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quasor CRM — Conectá tu cuenta de Meta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-wrap">
+      <a href="/" class="brand">quasor<span class="dot">.</span></a>
+      <span class="step-chip"><span class="num">01</span> Conectar Meta</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid-2" style="align-items:center; min-height: 70vh;">
+      <div>
+        <div class="kicker">CRM PARA INMOBILIARIAS</div>
+        <h1 class="title">Conectá tu cuenta de <em>Meta</em><br>para empezar a recibir leads.</h1>
+        <p class="lede">Quasor lee automáticamente los leads de tus formularios de Lead Ads, los asigna a un vendedor y los notifica por email. Para empezar, conectá tu cuenta de Facebook con permisos de solo lectura.</p>
+
+        <div style="margin-top: 32px; display: flex; gap: 12px; flex-wrap: wrap;">
+          <a class="btn btn-fb" href="/api/oauth/start">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9V14.9H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.3 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4V22A10 10 0 0 0 22 12Z"/></svg>
+            Conectar con Facebook
+          </a>
+          <a class="btn btn-ghost" href="https://quasor.com/legal/privacidad.html" target="_blank" rel="noopener">Ver política de privacidad</a>
+        </div>
+
+        <div class="notice" style="max-width: 560px; margin-top: 28px;">
+          <b>Permisos que vamos a pedir:</b> ver el perfil público (<span class="mono">public_profile</span>),
+          listar las páginas que administrás (<span class="mono">pages_show_list</span>),
+          y leer los leads de tus formularios (<span class="mono">leads_retrieval</span>).
+          Nunca publicamos en tu nombre.
+        </div>
+      </div>
+
+      <div class="card surface">
+        <div class="kicker">DEMO PARA META APP REVIEW</div>
+        <h3 class="serif" style="font-size: 26px; margin: 10px 0 8px;">Lo que vas a ver</h3>
+        <ol style="padding-left: 18px; line-height: 1.8; font-size: 14px; color: var(--ink-2);">
+          <li>Login con Facebook (pantalla de consentimiento de Meta).</li>
+          <li>Tu <b>perfil público</b> aparece arriba a la derecha como usuario autenticado.</li>
+          <li>Lista de <b>Páginas que administrás</b> — seleccionás de cuál querés traer leads.</li>
+          <li>Los leads ingresan en vivo vía webhook y aparecen en la tabla.</li>
+          <li>Cada lead se asigna a un vendedor y se le envía email automáticamente.</li>
+        </ol>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pagefoot">
+    Quasor · CRM para inmobiliarias · localhost demo for Meta App Review
+  </footer>
+</body>
+</html>

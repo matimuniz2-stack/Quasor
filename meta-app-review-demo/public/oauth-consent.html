@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Continuar como Carlos · Facebook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="consent-wrap">
+    <div class="consent-card">
+      <div class="fb-logo">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9V14.9H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.3 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4V22A10 10 0 0 0 22 12Z"/></svg>
+        facebook
+      </div>
+
+      <h2>Continuar como Carlos a Quasor</h2>
+      <p class="sub">Quasor recibirá tu información pública y los permisos que aceptes a continuación. Esto no le da acceso a tu contraseña ni le permite publicar en tu nombre.</p>
+
+      <div class="app-row">
+        <div class="logo">q<span class="dot">.</span></div>
+        <div class="info">
+          <b>Quasor — CRM para inmobiliarias</b>
+          <small>quasor.com · Política de Privacidad</small>
+        </div>
+      </div>
+
+      <div class="perms">
+        <div class="perm">
+          <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
+          <div>
+            <b>Recibir tu información pública</b>
+            <small>Nombre, foto de perfil e ID de usuario de Facebook. <span class="mono">(public_profile)</span></small>
+          </div>
+        </div>
+        <div class="perm">
+          <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
+          <div>
+            <b>Ver la lista de Páginas que administrás</b>
+            <small>Sólo nombres, IDs y categorías de tus Páginas, para que puedas elegir cuáles conectar al CRM. <span class="mono">(pages_show_list)</span></small>
+          </div>
+        </div>
+        <div class="perm">
+          <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>
+          <div>
+            <b>Leer los leads de tus formularios de Lead Ads</b>
+            <small>Datos que cargaron los usuarios al completar tus formularios (nombre, email, teléfono, respuestas), para ingestarlos en Quasor. <span class="mono">(leads_retrieval)</span></small>
+          </div>
+        </div>
+      </div>
+
+      <div class="consent-actions">
+        <button class="deny" onclick="window.location='/'">Cancelar</button>
+        <button class="allow" onclick="allow()">Continuar como Carlos</button>
+      </div>
+
+      <p class="consent-foot">
+        Esta es una pantalla simulada de Facebook Login para la grabación de demo de App Review.<br>
+        Podés revocar los permisos en cualquier momento desde <a href="#" onclick="event.preventDefault()">Configuración → Aplicaciones</a>.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    async function allow() {
+      await fetch("/api/oauth/callback", { method: "POST" });
+      window.location = "/dashboard.html";
+    }
+  </script>
+</body>
+</html>
