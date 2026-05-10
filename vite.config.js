@@ -13,6 +13,7 @@ export default defineConfig({
         main: 'index.html',
         privacidad: 'legal/privacidad.html',
         terminos: 'legal/terminos.html',
+        eliminar: 'legal/eliminar-datos.html',
       },
     },
   },
