@@ -149,9 +149,9 @@
     <div class="kicker">LEGAL · 01</div>
     <h1>Política de <em>privacidad</em>.</h1>
 
-    <div class="updated">Última actualización: 10 de mayo de 2026</div>
+    <div class="updated">Última actualización: 15 de mayo de 2026</div>
 
-    <p>En Quasor ofrecemos un CRM para inmobiliarias argentinas. Eso implica que manejamos datos —los tuyos, y los de tus clientes. Esta política explica <strong>qué hacemos con esos datos, cómo los protegemos, y qué derechos tenés</strong> sobre ellos. Está escrita en español llano, no en lenguaje legal impenetrable. Si algo no queda claro, escribinos a <a href="mailto:privacidad@quasor.com">privacidad@quasor.com</a>.</p>
+    <p>En Quasor ofrecemos un CRM para inmobiliarias argentinas. Eso implica que manejamos datos —los tuyos, y los de tus clientes. Esta política explica <strong>qué hacemos con esos datos, cómo los protegemos, y qué derechos tenés</strong> sobre ellos. Está escrita en español llano, no en lenguaje legal impenetrable. Si algo no queda claro, escribinos a <a href="mailto:privacidad@quasor.io">privacidad@quasor.io</a>.</p>
 
     <div class="callout">
       <p><strong>Resumen en 30 segundos:</strong> tus datos son tuyos. Los usamos sólo para darte el servicio que contrataste. No los vendemos a terceros. Podés pedirnos que los exportemos o eliminemos en cualquier momento.</p>
@@ -208,14 +208,33 @@
     <p><strong>Roles de tratamiento:</strong> respecto a los datos de los leads, Quasor actúa como <em>encargado de tratamiento</em> (data processor) y la inmobiliaria que contrata el servicio es la <em>responsable</em> (data controller). Los leads conservan todos los derechos previstos en la Ley 25.326 frente al responsable, y Quasor colabora con la inmobiliaria para garantizarlos.</p>
     <p><strong>¿Cómo elimino mis datos?</strong> Si sos un lead que completó un formulario y querés que tus datos sean eliminados, seguí las instrucciones en <a href="eliminar-datos.html">Eliminar mis datos</a>.</p>
 
-    <h2><span class="num">06</span>Integración con Tokobroker</h2>
+    <h2><span class="num">06</span>Integración con Google</h2>
+    <p>Cuando un cliente de Quasor conecta su cuenta de Google a la plataforma, accedemos a través de las APIs oficiales de Google (Google Ads API, Google Calendar API, Google Business Profile API) a los siguientes datos, según los permisos que el cliente otorgue durante la autenticación OAuth:</p>
+    <ul>
+      <li><strong>Google Ads</strong> (scope <code>adwords</code>): cuentas de Google Ads que el usuario administra, campañas, lead form assets configurados, y los datos de los <strong>leads</strong> que completaron formularios (nombre, email, teléfono y respuestas del formulario, junto con el ID del lead, ID del formulario, ID de la campaña y fecha/hora del envío). Usamos este acceso únicamente para sincronizar los leads al CRM del cliente.</li>
+      <li><strong>Google Calendar</strong> (scope <code>calendar.events</code>): lectura y escritura de eventos del calendario del corredor. Creamos eventos cuando se agenda una visita o reunión desde Quasor, y leemos los eventos existentes para mostrar disponibilidad. No accedemos a calendarios que el usuario no haya elegido conectar.</li>
+      <li><strong>Google Business Profile</strong> (scope <code>business.manage</code>): listas de fichas de negocio que el usuario administra, reviews recibidas y publicaciones. Permitimos responder reviews y publicar novedades desde Quasor.</li>
+      <li><strong>Perfil básico</strong> (scopes <code>openid</code>, <code>email</code>, <code>profile</code>): nombre, email y foto de la cuenta de Google del usuario que conectó la integración, usados sólo para identificar la cuenta autenticada dentro de Quasor.</li>
+    </ul>
+    <p><strong>Uso conforme a Google API Services User Data Policy:</strong> el uso y la transferencia de información recibida de las APIs de Google a Quasor cumplen con la <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, incluidos los requisitos de Limited Use. No usamos los datos de Google para entrenar modelos de IA generalizados, no los vendemos, no los compartimos con terceros con fines publicitarios y los procesamos únicamente para proveer las funcionalidades del CRM que el cliente contrató.</p>
+    <p><strong>Aclaraciones:</strong></p>
+    <ul>
+      <li>No publicamos contenido en nombre del usuario fuera de las acciones explícitas que el usuario inicia desde Quasor (por ejemplo, responder una review puntual).</li>
+      <li>No accedemos a cuentas, calendarios o fichas que el usuario no haya conectado explícitamente.</li>
+      <li>No almacenamos contraseñas de Google (la autenticación es vía OAuth).</li>
+      <li>Si el usuario revoca los permisos desde <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">https://myaccount.google.com/permissions</a>, dejamos de sincronizar nuevos datos de inmediato.</li>
+    </ul>
+    <p><strong>Roles de tratamiento:</strong> respecto a los datos de los leads obtenidos vía Google Ads Lead Forms, Quasor actúa como <em>encargado de tratamiento</em> (data processor) y la inmobiliaria que contrata el servicio es la <em>responsable</em> (data controller), tal como aclaramos para los datos provenientes de Meta.</p>
+    <p><strong>¿Cómo elimino mis datos?</strong> Si sos un lead que completó un formulario de Google Ads y querés que tus datos sean eliminados, seguí las instrucciones en <a href="eliminar-datos.html">Eliminar mis datos</a>.</p>
+
+    <h2><span class="num">07</span>Integración con Tokobroker</h2>
     <p>Cuando una inmobiliaria conecta su cuenta de <strong>Tokobroker</strong> a Quasor, sincronizamos automáticamente la información del catálogo de propiedades que la inmobiliaria administra en esa plataforma: dirección, características, fotos, precio y estado de cada propiedad. Esos datos se usan dentro del CRM para vincular cada lead con la propiedad por la que consultó y operar el resto del flujo (agendas de visita, recibos, asignación al vendedor).</p>
     <p>No accedemos a información de Tokobroker que no sea estrictamente la del catálogo de la inmobiliaria que autorizó la conexión, y la sincronización se interrumpe en el momento en que la inmobiliaria revoca la integración o cancela el servicio.</p>
 
-    <h2><span class="num">07</span>Dónde viven tus datos</h2>
+    <h2><span class="num">08</span>Dónde viven tus datos</h2>
     <p>Por defecto alojamos los datos en servidores de AWS en la región <strong>sa-east-1 (São Paulo, Brasil)</strong>, con redundancia diaria. Si preferís que vivan en tu propia infraestructura (on-premise) o en otro proveedor, lo coordinamos en el setup — ese es tu derecho y no cobramos extra por elegirlo.</p>
 
-    <h2><span class="num">08</span>Cómo los protegemos</h2>
+    <h2><span class="num">09</span>Cómo los protegemos</h2>
     <ul>
       <li>Encriptación en tránsito (TLS 1.3) y en reposo (AES-256).</li>
       <li>Accesos al sistema con autenticación de dos factores.</li>
@@ -224,7 +243,7 @@
       <li>El equipo de Quasor firma NDAs y accede a datos sólo cuando es estrictamente necesario para soporte.</li>
     </ul>
 
-    <h2><span class="num">09</span>Tus derechos</h2>
+    <h2><span class="num">10</span>Tus derechos</h2>
     <p>Bajo la <strong>Ley 25.326 de Protección de Datos Personales</strong> (Argentina), tenés derecho a:</p>
     <ul>
       <li><strong>Acceder</strong> a los datos que tenemos sobre vos o tu empresa.</li>
@@ -233,9 +252,9 @@
       <li><strong>Exportar</strong> todos tus datos en formato estándar (CSV, JSON) en cualquier momento.</li>
       <li><strong>Oponerte</strong> a usos específicos que no aceptás.</li>
     </ul>
-    <p>Para ejercer cualquiera de estos derechos escribinos a <a href="mailto:privacidad@quasor.com">privacidad@quasor.com</a>. Respondemos en 72 horas hábiles como máximo.</p>
+    <p>Para ejercer cualquiera de estos derechos escribinos a <a href="mailto:privacidad@quasor.io">privacidad@quasor.io</a>. Respondemos en 72 horas hábiles como máximo.</p>
 
-    <h2><span class="num">10</span>Qué pasa si cortás el servicio</h2>
+    <h2><span class="num">11</span>Qué pasa si cortás el servicio</h2>
     <p>Si cancelás tu cuenta:</p>
     <ul>
       <li>Te exportamos todos tus datos en los 7 días siguientes (o antes si los necesitás urgente).</li>
@@ -243,20 +262,21 @@
       <li>Pasados esos 90 días, eliminamos todo excepto los registros de facturación que AFIP nos exige conservar (5 años, Resolución General 1415/2003).</li>
     </ul>
     <p><strong>Datos provenientes de Meta:</strong> los leads obtenidos vía Meta Lead Ads se almacenan mientras la cuenta del cliente esté activa. Si el cliente revoca los permisos de Meta o desconecta la integración, dejamos de recibir nuevos leads de inmediato; los leads ya recibidos permanecen en el CRM del cliente bajo su responsabilidad. Si el cliente cancela el servicio Quasor por completo, aplican los plazos generales de eliminación descritos arriba.</p>
+    <p><strong>Datos provenientes de Google:</strong> los leads obtenidos vía Google Ads Lead Forms, los eventos de Calendar y los datos de Business Profile se almacenan mientras la cuenta del cliente esté activa. Si el cliente revoca los permisos de Google o desconecta la integración, dejamos de recibir nuevos datos de inmediato; los datos ya sincronizados permanecen en el CRM del cliente bajo su responsabilidad. Si el cliente cancela el servicio Quasor por completo, aplican los plazos generales de eliminación descritos arriba.</p>
 
-    <h2><span class="num">11</span>Datos de menores</h2>
-    <p>Quasor no está dirigido a menores de 18 años y no recopilamos conscientemente datos personales de menores. Si advertimos que se cargaron datos de un menor sin consentimiento parental válido, los eliminamos apenas tomamos conocimiento. Si sos padre, madre o tutor y creés que se cargaron datos de un menor a tu cargo, escribinos a <a href="mailto:privacidad@quasor.com">privacidad@quasor.com</a>.</p>
+    <h2><span class="num">12</span>Datos de menores</h2>
+    <p>Quasor no está dirigido a menores de 18 años y no recopilamos conscientemente datos personales de menores. Si advertimos que se cargaron datos de un menor sin consentimiento parental válido, los eliminamos apenas tomamos conocimiento. Si sos padre, madre o tutor y creés que se cargaron datos de un menor a tu cargo, escribinos a <a href="mailto:privacidad@quasor.io">privacidad@quasor.io</a>.</p>
 
-    <h2><span class="num">12</span>Cookies y tracking</h2>
+    <h2><span class="num">13</span>Cookies y tracking</h2>
     <p>Usamos cookies técnicas esenciales (sesión, preferencias de idioma) y una sola herramienta de analítica: <strong>Plausible</strong>, que no usa cookies y no rastrea individualmente. No usamos Google Analytics, Meta Pixel, ni herramientas de fingerprinting.</p>
 
-    <h2><span class="num">13</span>Cambios a esta política</h2>
+    <h2><span class="num">14</span>Cambios a esta política</h2>
     <p>Si actualizamos esta política te avisamos por email con al menos 30 días de anticipación si los cambios son sustanciales. Si son ajustes menores (aclaraciones, cambios de nombre de proveedores), los publicamos acá sin aviso individual.</p>
 
-    <h2><span class="num">14</span>Contacto</h2>
+    <h2><span class="num">15</span>Contacto</h2>
     <p>Para cualquier consulta sobre esta política o sobre tus datos:</p>
     <ul>
-      <li><strong>Email:</strong> <a href="mailto:privacidad@quasor.com">privacidad@quasor.com</a></li>
+      <li><strong>Email:</strong> <a href="mailto:privacidad@quasor.io">privacidad@quasor.io</a></li>
       <li><strong>WhatsApp:</strong> <a href="https://wa.me/5492236892809">+54 9 223 689 2809</a></li>
       <li><strong>Dirección:</strong> Mar del Plata, Buenos Aires, Argentina</li>
     </ul>
@@ -265,7 +285,7 @@
   </main>
 
   <footer class="pagefoot">
-    © 2026 Quasor · <a href="../Landing.html">Inicio</a> · <a href="terminos.html">Términos</a> · <a href="eliminar-datos.html">Eliminar mis datos</a> · <a href="mailto:privacidad@quasor.com">Contacto</a>
+    © 2026 Quasor · <a href="../Landing.html">Inicio</a> · <a href="terminos.html">Términos</a> · <a href="eliminar-datos.html">Eliminar mis datos</a> · <a href="mailto:privacidad@quasor.io">Contacto</a>
   </footer>
 </body>
 </html>
