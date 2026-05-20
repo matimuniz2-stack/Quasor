@@ -71,13 +71,13 @@ Lista de trámites manuales en consolas de Google. No se pueden scriptear. Tach�
 | Scope | Tipo | Para qué |
 | --- | --- | --- |
 | `openid` | non-sensitive | identificación |
-| `.../auth/userinfo.email` | non-sensitive | leer email del usuario |
-| `.../auth/userinfo.profile` | non-sensitive | leer nombre y foto |
+| `.../auth/userinfo.email` | non-sensitive | leer email del usuario (para saber qué cuenta conectó) |
 | `.../auth/adwords` | **restricted** | Google Ads API (lead forms) |
 | `.../auth/calendar.events` | **restricted** | Google Calendar (eventos) |
-| `.../auth/business.manage` | **restricted** | Business Profile (reviews + posts) |
 
-Los 3 **restricted** son los que disparan la OAuth verification obligatoria. Sin verificación, sólo podés tener hasta 100 test users.
+Los 2 **restricted** son los que disparan la OAuth verification obligatoria. Sin verificación, sólo podés tener hasta 100 test users.
+
+> **Scopes descartados 2026-05-19:** `business.manage` (Business Profile no es priority para piloto; se puede agregar después con verification incremental) + `userinfo.profile` (alcanza con `email` para identificar la cuenta; sin nombre/foto el UI muestra sólo el email).
 
 - [ ] Click "Save and Continue"
 
@@ -98,10 +98,8 @@ Los 3 **restricted** son los que disparan la OAuth verification obligatoria. Sin
 
 - [ ] <https://console.cloud.google.com/apis/library/googleads.googleapis.com> → Enable
 - [ ] <https://console.cloud.google.com/apis/library/calendar-json.googleapis.com> → Enable
-- [ ] <https://console.cloud.google.com/apis/library/mybusinessbusinessinformation.googleapis.com> → Enable
-- [ ] <https://console.cloud.google.com/apis/library/mybusinessaccountmanagement.googleapis.com> → Enable
 
-(Las dos últimas son parte del stack de Business Profile; ambas requieren acceso aprobado — ver paso 7.)
+> Las APIs de Business Profile (`mybusinessbusinessinformation` + `mybusinessaccountmanagement`) ya **no se habilitan** — el scope `business.manage` fue removido del alcance inicial (decisión 2026-05-19). Si en algún momento se quiere reincorporar, habilitar ambas + pedir API access aprobado en developers.google.com/my-business/content/prereqs (requiere ficha BP creada y verificada).
 
 ---
 
@@ -147,13 +145,15 @@ Los 3 **restricted** son los que disparan la OAuth verification obligatoria. Sin
 
 ---
 
-## 7. Pedir acceso a Google Business Profile API
+## 7. ~~Business Profile API~~ — Descartado 2026-05-19
 
-(Acceso gated, suele tardar 2–4 semanas. **No bloquea** Ads ni Calendar — la verificación de OAuth se puede pedir antes de tener esto.)
+Originalmente este paso pedía acceso a la Business Profile API para responder reviews y publicar posts desde Quasor. Se descartó por:
 
-- [ ] Entrar a <https://developers.google.com/my-business/content/prereqs> y seguir el link al "Request Form"
-- [ ] Use case a justificar: "Gestión de fichas de Google Business Profile de inmobiliarias multi-sucursal en Argentina. Funcionalidades: responder reviews recibidas en cada ficha y publicar novedades operativas (nuevas propiedades en venta, open houses, eventos). El acceso se ejerce siempre en nombre del cliente inmobiliario que conectó su cuenta vía OAuth — no operamos sus fichas sin autorización explícita."
-- [ ] Mandar el form y esperar respuesta de Google a `quasortech@gmail.com`
+- BP es priority 3 (no core para el piloto de inmobiliarias)
+- Destraba el path de verification — ya no hay que crear ficha BP ni esperar API access
+- Reduce el alcance del review de Google (menos scopes a justificar)
+
+Si más adelante se reincorpora: habilitar ambas APIs (`mybusinessbusinessinformation` + `mybusinessaccountmanagement`), volver a agregar el scope `business.manage` al OAuth Consent Screen, y pedir API access en developers.google.com/my-business/content/prereqs (requiere ficha BP creada). Re-trigger de verification es **incremental** — sólo se revisa el scope nuevo, no los aprobados previamente.
 
 ---
 

@@ -1,6 +1,8 @@
 # OAuth Verification — Checklist de Preparación
 
-Lo que tiene que estar listo el día que mandamos la verificación a Google. Los reviewers de Google evalúan **video del flujo + justification por scope + privacy policy + uso real**. Si alguno de los tres scopes restricted (`adwords`, `calendar.events`, `business.manage`) está sin justificar bien, rechazan toda la submission.
+Lo que tiene que estar listo el día que mandamos la verificación a Google. Los reviewers de Google evalúan **video del flujo + justification por scope + privacy policy + uso real**. Si alguno de los dos scopes restricted (`adwords`, `calendar.events`) está sin justificar bien, rechazan toda la submission.
+
+**Scopes finales pedidos (decisión 2026-05-19):** `openid` + `userinfo.email` (no-sensitive) + `adwords` + `calendar.events` (restricted). `business.manage` y `userinfo.profile` fueron descartados para simplificar el path de verification y reducir fricción del consent screen.
 
 **Timeline esperado:** 4–6 semanas para restricted scopes, a veces más si los reviewers piden cambios.
 
@@ -14,7 +16,7 @@ Lo que tiene que estar listo el día que mandamos la verificación a Google. Los
 - [ ] Eliminar-datos en `https://quasor.io/legal/eliminar-datos.html` publicado con sección **05 Revocar permisos de Google**
 - [ ] Dominio `quasor.io` verificado en Search Console
 - [ ] Dev confirma que el OAuth flow corre E2E contra sandbox (al menos: arrancar OAuth, consent, callback, llamar 1 endpoint por scope, mostrar el dato accedido en la UI)
-- [ ] Existe **al menos una pantalla en Quasor que demuestre uso real** de cada uno de los 3 scopes. Si un scope no se usa visiblemente, los reviewers rechazan.
+- [ ] Existe **al menos una pantalla en Quasor que demuestre uso real** de cada uno de los 2 scopes restricted (`adwords` y `calendar.events`). Si un scope no se usa visiblemente, los reviewers rechazan.
 
 ---
 
@@ -26,7 +28,7 @@ Google espera **2–5 min**, una sola corrida, mínima edición. Pantalla compar
 
 **1. Intro — 15 s**
 
-> "Soy [Mati], de Quasor, un CRM para inmobiliarias en Argentina. Voy a mostrar cómo un cliente inmobiliario conecta su cuenta de Google a Quasor y cómo usamos los 3 scopes restricted que pedimos: `adwords`, `calendar.events` y `business.manage`."
+> "Soy [Mati], de Quasor, un CRM para inmobiliarias en Argentina. Voy a mostrar cómo un cliente inmobiliario conecta su cuenta de Google a Quasor y cómo usamos los 2 scopes restricted que pedimos: `adwords` y `calendar.events`."
 
 **2. Login a Quasor — 15 s**
 
@@ -37,7 +39,7 @@ Google espera **2–5 min**, una sola corrida, mínima edición. Pantalla compar
 
 - Click en **Settings → Integrations → Conectar Google**.
 - Aparece el consent screen de Google.
-- **Acercar (zoom in) al panel de scopes** y leer en voz alta los tres restricted: `adwords`, `calendar.events`, `business.manage`.
+- **Acercar (zoom in) al panel de scopes** y leer en voz alta los dos restricted: `adwords` y `calendar.events`.
 - Click en el link de **Privacy Policy** del consent screen → abre `https://quasor.io/legal/privacidad.html`. Scrollear hasta la sección **06 Integración con Google**, dejarla unos segundos en pantalla. Volver al consent.
 - Click **Allow**.
 
@@ -55,21 +57,13 @@ Google espera **2–5 min**, una sola corrida, mínima edición. Pantalla compar
 - Cambiar a la app de Google Calendar (otra pestaña) → mostrar el evento creado ahí mismo.
 - Aclarar: "Quasor crea, lee y actualiza eventos sólo del calendario que el corredor conectó. Nunca toca otros calendarios."
 
-**6. Uso de `business.manage` — 45 s**
-
-- Pantalla **Mis fichas de Google Business Profile** en Quasor.
-- Click en una ficha → ver reviews recibidas.
-- Click **Responder review** → escribir respuesta corta → enviar.
-- Mostrar que la respuesta se publicó (refrescar la vista, mostrar el reply).
-- Aclarar: "publicamos sólo cuando el agente lo dispara explícitamente desde Quasor."
-
-**7. Revocación — 15 s**
+**6. Revocación — 15 s**
 
 - Volver a Quasor → Settings → Integrations → **Desconectar Google**.
 - Confirmar.
 - Abrir `https://myaccount.google.com/permissions` en otra pestaña → mostrar que Quasor ya no aparece (o aparece sin permisos efectivos).
 
-**8. Cierre — 10 s**
+**7. Cierre — 10 s**
 
 > "Quasor cumple con la Google API Services User Data Policy y los requisitos de Limited Use. Los datos accedidos se usan únicamente para las funcionalidades del CRM contratado por la inmobiliaria. Gracias."
 
@@ -114,18 +108,7 @@ Texto plantilla para pegar en el form de verificación. Ajustar si el dev cambia
 >
 > `calendar.events` is the minimal scope for our use case. `calendar.events.readonly` was considered and rejected because we need event creation, which is the primary user action.
 
-### `https://www.googleapis.com/auth/business.manage`
-
-> Real estate agencies in Argentina maintain Google Business Profile listings for each office and, in many cases, for individual properties they sell. Quasor centralizes review responses and post publication so agents can manage all their listings from a single dashboard. We use the Business Profile API with the `business.manage` scope to:
->
-> 1. List the Business Profile listings the agency manages (so the user selects which to connect).
-> 2. Read reviews received on each connected listing.
-> 3. Publish review replies that the agent authored inside Quasor.
-> 4. Publish posts (new property announcements, open house events, operational updates) on connected listings, only when the agent explicitly triggers the action.
->
-> We do NOT modify listing details (address, hours, categories). We do NOT publish content without explicit user action. We do not access listings the user did not connect.
->
-> A read-only scope on reviews was considered, but it does not allow replies — and replying to reviews is the central use case for the integration.
+> **Nota:** El scope `business.manage` fue descartado el 2026-05-19. Si en el futuro se reincorpora, su justification ya redactada vive en el historial de git de este archivo (commit anterior a esa fecha).
 
 ---
 
@@ -133,7 +116,7 @@ Texto plantilla para pegar en el form de verificación. Ajustar si el dev cambia
 
 Los reviewers leen la privacy policy buscando puntos concretos. Confirmá:
 
-- [ ] Privacy policy menciona los 3 scopes explícitamente (`adwords`, `calendar.events`, `business.manage`). ✅ (sección 06 de `legal/privacidad.html`)
+- [ ] Privacy policy menciona los 2 scopes restricted explícitamente (`adwords`, `calendar.events`). ✅ (sección 06 de `legal/privacidad.html`)
 - [ ] Menciona literalmente **"Google API Services User Data Policy"** y **"Limited Use"**. ✅ (sección 06)
 - [ ] Aclara que NO usamos los datos para entrenar modelos de IA generalizados, NO los vendemos, NO los compartimos con terceros con fines publicitarios. ✅ (sección 06)
 - [ ] Explica cómo el usuario puede revocar (link a `myaccount.google.com/permissions`). ✅ (sección 06)
@@ -158,7 +141,7 @@ Los reviewers leen la privacy policy buscando puntos concretos. Confirmá:
 
 ### "Why do you need restricted scopes if you can use Google Sign-In with basic profile?"
 
-> Quasor does not use Google Sign-In. The platform has its own user authentication system. The Google connection is a separate, opt-in integration the user activates after they're already authenticated in Quasor. The restricted scopes are required to read Lead Form leads (`adwords`), manage calendar events (`calendar.events`), and respond to reviews / publish posts (`business.manage`) — none of which can be accomplished with basic profile scopes.
+> Quasor does not use Google Sign-In. The platform has its own user authentication system. The Google connection is a separate, opt-in integration the user activates after they're already authenticated in Quasor. The restricted scopes are required to read Lead Form leads (`adwords`) and manage calendar events (`calendar.events`) — neither of which can be accomplished with basic profile scopes.
 
 ### "Do you store the user's Google credentials?"
 
