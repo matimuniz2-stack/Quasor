@@ -19,6 +19,7 @@
   --accent-2: #ff7a3d;
   --accent-ink: #b83300;
   --accent-glow: #ff5a1f;
+  --accent-text: #b83300;
   --pos: #00a86b;
   --neg: #e02424;
   --density: 1;
@@ -33,6 +34,7 @@ html[data-theme="dark"] {
   --line-2: #2a2a2f;
   --pos: #58c08a;
   --neg: #ff6f66;
+  --accent-text: #ffb086;
 }
 html, body { background: var(--bg); color: var(--ink); }
 body {

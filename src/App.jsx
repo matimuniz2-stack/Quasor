@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import Lenis from 'lenis';
 import {
   Nav, Hero, Marquee, UseCases, UseCase, Services,
-  WhyQuasor, Process, Testimonials, Pricing, Faq, Contact, Footer
+  WhyQuasor, Process, Testimonials, Pricing, Faq, Contact, Footer,
+  StickyMobileCTA
 } from './components/Sections.jsx';
 import { TweakPanel, applyTweaks } from './components/Tweaks.jsx';
 
@@ -34,7 +35,7 @@ const App = () => {
         "color: #ff5a1f; font-size: 28px; font-weight: 700; letter-spacing: -0.04em;"
       );
       console.log(
-        "%c¿sos dev curioso? hablanos: ventas@quasor.com\n%cconstruido en Mar del Plata 🌊",
+        "%c¿sos dev curioso? hablanos: ventas@quasor.io\n%cconstruido en Mar del Plata 🌊",
         "color: #6b6b6b; font-family: ui-monospace, monospace; font-size: 12px;",
         "color: #6b6b6b; font-family: ui-monospace, monospace; font-size: 11px;"
       );
@@ -208,20 +209,21 @@ const App = () => {
     <div className="min-h-screen">
       <a href="#main" className="skip-link">Saltar al contenido</a>
       <Nav theme={tweaks.theme} onToggleTheme={toggleTheme} />
-      <main id="main">
+      <main id="main" className="md:pb-0 pb-20">
         <Hero />
         <Marquee />
         <UseCases />
         <UseCase />
         <Services />
         <WhyQuasor />
-        <Process />
         <Testimonials />
+        <Process />
         <Pricing />
         <Faq />
         <Contact />
       </main>
       <Footer />
+      <StickyMobileCTA />
       <TweakPanel tweaks={tweaks} setTweaks={setTweaks} visible={showTweaks} />
     </div>
   );

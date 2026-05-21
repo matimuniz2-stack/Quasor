@@ -314,19 +314,29 @@ export const Hero = () => {
       <div className="relative max-w-[1280px] mx-auto px-6 md:px-10 pt-10 md:pt-16 pb-12 md:pb-20">
         {/* Eyebrow row */}
         <div className="flex items-center gap-2 mono text-[11px] ink-3 uppercase tracking-[0.18em] rise">
-          <span>Quasor</span><span>·</span><span>Mar del Plata, AR</span><span>·</span><span>CRM para inmobiliarias</span>
-          <span className="ml-auto hidden md:flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)] pulse-dot" />
-            <span>{slots.count} slots · {slots.month}</span>
-          </span>
+          <span>Quasor</span><span>·</span><span>Mar del Plata, AR</span>
         </div>
 
-        {/* Two-column hero: text left, live dashboard right (kicks in at xl to avoid cramped dashboard on lg) */}
+        {/* Two-column hero: text left, live dashboard right (kicks in at lg+ for laptop visibility) */}
         {/* items-start: title is anchored to the top so dashboard view-switching doesn't push it up/down */}
-        <div className="mt-8 md:mt-10 grid xl:grid-cols-12 gap-10 xl:gap-12 items-start">
-          <div className="xl:col-span-5">
+        <div className="mt-8 md:mt-10 grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+          <div className="lg:col-span-5">
+            {/* Category anchor — visible CRM positioning above the H1 */}
+            <div
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mono text-[11px] uppercase tracking-[0.18em] rise mb-5"
+              style={{
+                animationDelay: "40ms",
+                border: "1px solid color-mix(in oklab, var(--accent) 35%, transparent)",
+                background: "color-mix(in oklab, var(--accent) 10%, var(--bg))",
+                color: "var(--accent-text)"
+              }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: "var(--accent)" }} aria-hidden="true" />
+              CRM para inmobiliarias argentinas
+            </div>
+
             <h1
-              className="serif text-[44px] md:text-[56px] xl:text-[60px] leading-[1] tracking-[-0.035em] rise"
+              className="serif text-[44px] md:text-[56px] lg:text-[60px] leading-[1] tracking-[-0.035em] rise"
               style={{ animationDelay: "80ms" }}
             >
               Tu empresa funciona con<br/>
@@ -340,7 +350,7 @@ export const Hero = () => {
               className="mt-6 text-base md:text-lg ink-2 max-w-md rise"
               style={{ animationDelay: "160ms" }}
             >
-              Dashboards, CRMs y automatizaciones que reemplazan el caos de planillas. A la derecha, el sistema real — interfaz funcional con datos de ejemplo.
+              Pipeline, integraciones con portales y WhatsApp, y reportes automáticos. A la derecha, el sistema real funcionando con datos de ejemplo.
             </p>
 
             <div
@@ -354,14 +364,19 @@ export const Hero = () => {
                 Ver casos
               </a>
             </div>
-            <div className="mt-3 mono text-[12px] ink-3">
-              respondemos en 2h hábiles
+            <div className="mt-4 flex items-center gap-3 mono text-[11px] ink-3 flex-wrap">
+              <span className="inline-flex items-center gap-1.5">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>
+                sin permanencia · exportás cuando quieras
+              </span>
+              <span aria-hidden="true">·</span>
+              <span>respondemos en 2h hábiles</span>
             </div>
           </div>
 
-          {/* Dashboard — right column on xl+, full-width below text on lg- */}
+          {/* Dashboard — right column on lg+, full-width below text on md- */}
           <div
-            className="xl:col-span-7 xl:-mr-2 rise"
+            className="lg:col-span-7 lg:-mr-2 rise"
             style={{ animationDelay: "320ms" }}
           >
             <div className="relative">
@@ -383,10 +398,10 @@ export const Hero = () => {
           style={{ animationDelay: "400ms" }}
         >
           {[
-            ["6 sem", "en producción con piloto"],
-            ["100%", "leads trackeados (vs 38% antes)"],
+            ["6 sem", "del kickoff a producción"],
+            ["100%", "leads trackeados end-to-end"],
             ["< 60s", "sync portales + Meta/Google"],
-            ["Cloud", "infra moderna · zero downtime deploys"],
+            ["8", "integraciones nativas"],
           ].map(([v, k], i) => (
             <div key={i} className="px-5 py-4 border-r last:border-r-0 border-line">
               <div className="serif text-3xl num">{v}</div>
@@ -495,12 +510,12 @@ export const Marquee = () => (
     <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-24">
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-        <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3 mb-4">integraciones · 8</div>
+        <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3 mb-4">01 — integraciones · 8</div>
         <h2 className="serif text-3xl md:text-5xl tracking-tight leading-[1.05]">
-          Conectamos con <em className="italic accent">todo lo que ya usás.</em>
+          Conectamos con <em className="italic">todo lo que ya usás.</em>
         </h2>
         <p className="mono text-[12px] ink-3 mt-5 flex items-center justify-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)] pulse-dot" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)]" aria-hidden="true" />
           sync bidireccional · &lt; 60s
         </p>
       </div>
@@ -546,14 +561,16 @@ export const Marquee = () => (
           <span className="transition-transform group-hover:translate-x-1">→</span>
         </a>
         <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-          <span className="mono text-[11px] uppercase tracking-[0.18em] ink-3">primer caso en producción</span>
+          <span className="mono text-[11px] uppercase tracking-[0.18em] ink-3">en producción · 6 semanas</span>
           <div className="flex items-center gap-3 pl-3 pr-4 py-2 rounded-full border border-line bg-surface">
-            <span className="w-8 h-8 rounded-md grid place-items-center accent font-bold text-[11px]" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }}>●</span>
+            <span className="w-8 h-8 rounded-md grid place-items-center accent" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }} aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18M5 21V9l7-5 7 5v12"/></svg>
+            </span>
             <div className="leading-tight">
-              <div className="text-sm font-medium">Cliente piloto</div>
-              <div className="mono text-[10px] ink-3">Inmobiliaria · Mar del Plata</div>
+              <div className="text-sm font-medium">Inmobiliaria · Mar del Plata</div>
+              <div className="mono text-[10px] ink-3">6 vendedores · 100% leads trazados</div>
             </div>
-            <span className="mono text-[10px] ink-3" title="Bajo acuerdo de confidencialidad">NDA</span>
+            <span className="mono text-[10px] ink-3 opacity-60" aria-label="Identidad del cliente bajo acuerdo de confidencialidad">NDA</span>
           </div>
         </div>
       </div>
@@ -820,6 +837,79 @@ const USECASE_PHASES = [
   },
 ];
 
+// Phase-specific inline SVG visualizations.
+// Built minimally — each anchors the eye with a different "shape" so the
+// scrollytelling reads as a progression even if the user skims.
+const PhaseVisual = ({ kind, active }) => {
+  const dim = active ? 1 : 0.5;
+  if (kind === "chaos") {
+    // Scattered chat bubbles, some lost (faded with red strikethrough).
+    return (
+      <svg viewBox="0 0 320 110" className="w-full h-24 md:h-28" aria-hidden="true">
+        <g style={{ opacity: dim, transition: "opacity .7s" }}>
+          <rect x="12"  y="18" width="60" height="20" rx="10" fill="var(--ink-3)" opacity="0.35"/>
+          <rect x="86"  y="8"  width="48" height="18" rx="9"  fill="var(--ink-3)" opacity="0.55"/>
+          <rect x="148" y="22" width="56" height="20" rx="10" fill="var(--ink-3)" opacity="0.3"/>
+          <rect x="218" y="6"  width="52" height="18" rx="9"  fill="var(--ink-3)" opacity="0.45"/>
+          <rect x="22"  y="58" width="64" height="20" rx="10" fill="var(--neg)"   opacity="0.45"/>
+          <line x1="22" y1="58" x2="86" y2="78" stroke="var(--neg)" strokeWidth="1.5" opacity="0.7"/>
+          <line x1="22" y1="78" x2="86" y2="58" stroke="var(--neg)" strokeWidth="1.5" opacity="0.7"/>
+          <rect x="106" y="62" width="44" height="20" rx="10" fill="var(--ink-3)" opacity="0.4"/>
+          <rect x="170" y="56" width="58" height="20" rx="10" fill="var(--accent)" opacity="0.7"/>
+          <rect x="244" y="64" width="60" height="20" rx="10" fill="var(--ink-3)" opacity="0.35"/>
+          <text x="160" y="100" textAnchor="middle" fill="var(--ink-3)" fontSize="9" fontFamily="ui-monospace" letterSpacing="0.18em">CHATS DISPERSOS · LEADS PERDIDOS</text>
+        </g>
+      </svg>
+    );
+  }
+  if (kind === "pipeline") {
+    // Sources on left → hub in center → pipeline stages on right.
+    return (
+      <svg viewBox="0 0 320 110" className="w-full h-24 md:h-28" aria-hidden="true">
+        <g style={{ opacity: dim, transition: "opacity .7s" }}>
+          <rect x="8"   y="14" width="60" height="14" rx="7" fill="var(--ink-3)" opacity="0.55"/>
+          <rect x="8"   y="38" width="60" height="14" rx="7" fill="var(--ink-3)" opacity="0.55"/>
+          <rect x="8"   y="62" width="60" height="14" rx="7" fill="var(--ink-3)" opacity="0.55"/>
+          <line x1="68" y1="21" x2="138" y2="55" stroke="var(--accent)" strokeWidth="1" opacity="0.5"/>
+          <line x1="68" y1="45" x2="138" y2="55" stroke="var(--accent)" strokeWidth="1" opacity="0.5"/>
+          <line x1="68" y1="69" x2="138" y2="55" stroke="var(--accent)" strokeWidth="1" opacity="0.5"/>
+          <circle cx="160" cy="55" r="22" fill="var(--accent)" opacity="0.95"/>
+          <text x="160" y="59" textAnchor="middle" fill="white" fontSize="9" fontFamily="ui-monospace" letterSpacing="0.05em">CRM</text>
+          <line x1="182" y1="55" x2="252" y2="21" stroke="var(--accent)" strokeWidth="1" opacity="0.5"/>
+          <line x1="182" y1="55" x2="252" y2="45" stroke="var(--accent)" strokeWidth="1" opacity="0.5"/>
+          <line x1="182" y1="55" x2="252" y2="69" stroke="var(--accent)" strokeWidth="1" opacity="0.5"/>
+          <rect x="252" y="14" width="60" height="14" rx="7" fill="var(--ink-3)" opacity="0.6"/>
+          <rect x="252" y="38" width="60" height="14" rx="7" fill="var(--ink-3)" opacity="0.75"/>
+          <rect x="252" y="62" width="60" height="14" rx="7" fill="var(--accent)" opacity="0.85"/>
+          <text x="160" y="100" textAnchor="middle" fill="var(--ink-3)" fontSize="9" fontFamily="ui-monospace" letterSpacing="0.18em">FUENTES → PIPELINE TRAZABLE</text>
+        </g>
+      </svg>
+    );
+  }
+  // growth
+  return (
+    <svg viewBox="0 0 320 110" className="w-full h-24 md:h-28" aria-hidden="true">
+      <g style={{ opacity: dim, transition: "opacity .7s" }}>
+        <line x1="12" y1="84" x2="308" y2="84" stroke="var(--line-2)" strokeWidth="1"/>
+        {[
+          { h: 18, c: "var(--ink-3)", o: 0.35 },
+          { h: 26, c: "var(--ink-3)", o: 0.45 },
+          { h: 36, c: "var(--accent)", o: 0.55 },
+          { h: 48, c: "var(--accent)", o: 0.7 },
+          { h: 58, c: "var(--accent)", o: 0.85 },
+          { h: 70, c: "var(--accent)", o: 1 },
+        ].map((b, i) => (
+          <rect key={i} x={28 + i * 44} y={84 - b.h} width="28" height={b.h} rx="3" fill={b.c} opacity={b.o}/>
+        ))}
+        <path d="M 42 75 Q 110 65, 180 45 T 290 18" stroke="var(--accent)" strokeWidth="1.5" fill="none" strokeDasharray="3 3" opacity="0.6"/>
+        <circle cx="290" cy="18" r="6" fill="var(--pos)"/>
+        <path d="M 286 18 L 289 21 L 294 15.5" stroke="white" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+        <text x="160" y="103" textAnchor="middle" fill="var(--ink-3)" fontSize="9" fontFamily="ui-monospace" letterSpacing="0.18em">6 SEMANAS · OPERACIÓN MEDIBLE</text>
+      </g>
+    </svg>
+  );
+};
+
 export const UseCase = () => {
   const [activePhase, setActivePhase] = useState(0);
   const phase0 = useRef(null);
@@ -845,17 +935,23 @@ export const UseCase = () => {
     {
       label: "01 / Problema",
       title: "Cero visibilidad.",
-      body: "Los leads caían en chats personales de cada vendedor. Se perdían consultas, nadie sabía quién atendía a quién, no había forma de medir conversión real.",
+      body: "Los leads caían en chats personales. Nadie sabía quién atendía a quién, ni cómo medir conversión real.",
+      stat: { v: "62%", k: "leads perdidos" },
+      visual: "chaos",
     },
     {
       label: "02 / Solución",
       title: "Una sola fuente de verdad.",
-      body: "Un CRM que captura cada consulta automáticamente desde portales, Meta y WhatsApp Business. La asigna al vendedor correcto según zona y disponibilidad. Le da al dueño visibilidad total del pipeline.",
+      body: "Captura automática desde portales, Meta y WhatsApp. Asignación por zona y disponibilidad. Pipeline visible para todos.",
+      stat: { v: "3 → 1", k: "plataformas a revisar" },
+      visual: "pipeline",
     },
     {
       label: "03 / Resultado",
       title: "6 semanas. Otra operación.",
-      body: "Trazabilidad end-to-end. Asignación instantánea. Más cierres con el mismo equipo. Y por primera vez, una operación que se mide.",
+      body: "Trazabilidad end-to-end. Asignación instantánea. Más cierres con el mismo equipo.",
+      stat: { v: "+43%", k: "cierres / mes" },
+      visual: "growth",
     },
   ];
 
@@ -880,18 +976,52 @@ export const UseCase = () => {
         {/* LEFT — scrolling phases. On mobile a tighter gap; on md+ we
             need ~55vh so the IO rootMargin (-45/-45) can activate one
             phase at a time as the user scrolls past them. */}
-        <div className="space-y-12 md:space-y-[55vh] md:pr-4">
+        <div className="space-y-16 md:space-y-[55vh] md:pr-4">
           {phases.map((p, i) => {
             const ref = i === 0 ? phase0 : i === 1 ? phase1 : phase2;
+            const isActive = activePhase === i;
+            const phaseColor = USECASE_PHASES[i].color;
             return (
               <div
                 key={i}
                 ref={ref}
-                className={`transition-opacity duration-500 ${activePhase === i ? "opacity-100" : "md:opacity-30"}`}
+                className={`transition-all duration-700 ease-out ${
+                  isActive ? "opacity-100 md:scale-100" : "md:opacity-30 md:scale-[0.97]"
+                }`}
               >
-                <div className="mono text-[11px] uppercase tracking-[0.18em] accent mb-3">{p.label}</div>
-                <h3 className="serif text-3xl md:text-5xl leading-[1.05] tracking-tight mb-5">{p.title}</h3>
-                <p className="ink-2 text-lg leading-relaxed max-w-md">{p.body}</p>
+                {/* Visual anchor — eye lands here first */}
+                <div
+                  className="mb-6 rounded-xl border border-line bg-surface-2 px-4 py-3 overflow-hidden transition-colors duration-500"
+                  style={{
+                    borderColor: isActive ? `color-mix(in oklab, ${phaseColor} 35%, var(--line))` : undefined,
+                    boxShadow: isActive ? `0 10px 30px -16px ${phaseColor}` : undefined,
+                  }}
+                >
+                  <PhaseVisual kind={p.visual} active={isActive} />
+                </div>
+
+                {/* Phase label */}
+                <div className="flex items-center gap-2 mono text-[11px] uppercase tracking-[0.18em] accent mb-3">
+                  <span>{p.label}</span>
+                  <span className="h-px flex-1 max-w-[60px]" style={{ background: "color-mix(in oklab, var(--accent) 50%, transparent)" }} aria-hidden="true" />
+                </div>
+
+                {/* Punchier title */}
+                <h3 className="serif text-4xl md:text-6xl leading-[1] tracking-[-0.025em] mb-5">{p.title}</h3>
+
+                {/* Tighter body */}
+                <p className="ink-2 text-lg leading-relaxed max-w-md mb-6">{p.body}</p>
+
+                {/* Stat callout — visual punch + memorability */}
+                <div className="inline-flex items-baseline gap-3 pt-4 border-t border-line">
+                  <span
+                    className="serif num tabular-nums text-4xl md:text-5xl leading-none transition-colors duration-500"
+                    style={{ color: isActive ? phaseColor : "var(--ink-2)" }}
+                  >
+                    {p.stat.v}
+                  </span>
+                  <span className="mono text-[11px] uppercase tracking-wider ink-3">{p.stat.k}</span>
+                </div>
               </div>
             );
           })}
@@ -905,7 +1035,7 @@ export const UseCase = () => {
               {/* Header morphs with active phase */}
               <div className="flex items-center justify-between px-6 py-4 border-b border-line bg-surface-2">
                 <div className="flex items-center gap-3 min-w-0">
-                  <span className="w-2 h-2 rounded-full pulse-dot shrink-0" style={{ background: data.color, transition: "background .7s" }} />
+                  <span className="w-2 h-2 rounded-full shrink-0" style={{ background: data.color, transition: "background .7s" }} />
                   <div key={data.label} className="mono text-[11px] uppercase tracking-[0.18em] ink-3 truncate" style={{ animation: 'rise .4s cubic-bezier(.2,.7,.2,1) both' }}>
                     {data.label}
                   </div>
@@ -1023,21 +1153,6 @@ export const UseCase = () => {
           </div>
         </div>
       </div>
-
-      {/* Bullets — moved out of sticky column to remain visible */}
-      <div className="mt-16 md:mt-20 pt-10 border-t border-line grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {[
-          "Historial de cada cliente desde la consulta hasta el cierre",
-          "Asignación automática por zona, tipo y disponibilidad",
-          "Métricas de conversión por vendedor en tiempo real",
-          "Agenda de visitas y seguimientos que no se pierden",
-        ].map((t, i) => (
-          <div key={i} className="flex gap-3 items-start">
-            <span className="accent mt-1 shrink-0">✓</span>
-            <span className="ink-2 text-sm">{t}</span>
-          </div>
-        ))}
-      </div>
     </section>
   );
 };
@@ -1054,18 +1169,17 @@ export const Services = () => (
     <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-24 md:py-32">
       <div className="flex items-end justify-between mb-14 gap-8 flex-wrap">
         <div>
-          <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">04 — servicios</div>
+          <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">04 — más allá del CRM</div>
           <h2 className="serif text-5xl md:text-7xl leading-[0.98] mt-4 tracking-tight max-w-3xl">
-            Enfocados. <em className="italic accent">Nada más.</em>
+            El CRM es el corazón. <em className="italic">Esto lo amplifica.</em>
           </h2>
         </div>
         <p className="ink-2 max-w-sm">
-          Cuatro pilares. Hechos en producción para que tu equipo los use,
-          no que los mire.
+          Tres pilares más, conectados al CRM.
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-px bg-[var(--line)] border border-line">
+      <div className="grid md:grid-cols-3 gap-px bg-[var(--line)] border border-line">
         {SERVICES.map((s, i) => {
           const ServiceIcon = SERVICE_ICONS[s.k] || SERVICE_ICONS.CRM;
           return (
@@ -1079,7 +1193,7 @@ export const Services = () => (
                   <div className="mono text-[11px] ink-3 mt-0.5">{s.k}</div>
                 </div>
               </div>
-              <h3 className="serif text-4xl md:text-5xl mt-6 leading-[1] tracking-tight">{s.name}</h3>
+              <h3 className="serif text-3xl md:text-4xl lg:text-5xl mt-6 leading-[1] tracking-tight">{s.name}</h3>
               <p className="mt-4 ink-2 max-w-sm">{s.body}</p>
               <ul className="mt-6 space-y-2">
                 {s.bullets.map(b => (
@@ -1105,23 +1219,19 @@ export const WhyQuasor = () => {
       desc: "Barato, rápido de contratar",
       rows: [
         { v: "1 persona", good: false, hint: "Si se enferma o desaparece, tu proyecto también" },
-        { v: "Sin procesos", good: false },
         { v: "Cotiza por hora", good: false, hint: "Incentivo a estirar horas" },
-        { v: "Soporte variable", good: false },
-        { v: "Código sin docs", good: false },
+        { v: "Código sin docs", good: false, hint: "Cuando se va, te quedás con un binario" },
       ],
     },
     {
       k: "quasor",
       name: "Quasor",
       tone: "accent",
-      desc: "Estudio pequeño, procesos reales",
+      desc: "Estudio enfocado, procesos reales",
       rows: [
-        { v: "2 personas dedicadas", good: true, hint: "Hablás directo con quien programa. Sin account managers." },
-        { v: "Demo semanal + staging", good: true },
-        { v: "Precio fijo por entregable", good: true },
-        { v: "Soporte post-launch", good: true },
-        { v: "Código documentado · vos sos dueño", good: true },
+        { v: "Equipo dedicado", good: true, hint: "Hablás directo con quien programa. Sin account managers." },
+        { v: "Precio fijo por entregable", good: true, hint: "Sabés el costo antes de empezar" },
+        { v: "Código documentado · vos sos dueño", good: true, hint: "Sin lock-in, exportás cuando quieras" },
       ],
     },
     {
@@ -1131,10 +1241,8 @@ export const WhyQuasor = () => {
       desc: "Grande, formal, lenta",
       rows: [
         { v: "Equipo rotativo", good: false, hint: "Empezás con seniors, terminás con juniors" },
-        { v: "3 meses de discovery", good: false },
-        { v: "Retainer mensual alto", good: false },
-        { v: "Account manager de por medio", good: false },
-        { v: "Código que no podés mantener", good: false },
+        { v: "3 meses de discovery", good: false, hint: "Pagás por reuniones antes de ver código" },
+        { v: "Código que no podés mantener", good: false, hint: "Quedás atado al proveedor original" },
       ],
     },
   ];
@@ -1145,12 +1253,11 @@ export const WhyQuasor = () => {
           <div>
             <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">05 — por qué Quasor</div>
             <h2 className="serif text-5xl md:text-7xl leading-[0.98] mt-4 tracking-tight max-w-3xl">
-              ¿Y por qué <em className="italic accent">nosotros?</em>
+              ¿Y por qué <em className="italic">nosotros?</em>
             </h2>
           </div>
           <p className="ink-2 max-w-sm">
-            Te podés encontrar con tres caminos para llevar tu operación al siguiente nivel.
-            Esta es la verdad de cada uno, sin vender humo.
+            Tres caminos. Sin letra chica.
           </p>
         </div>
 
@@ -1182,8 +1289,8 @@ export const WhyQuasor = () => {
                       </span>
                       <div className="flex-1 min-w-0">
                         <div className={`text-sm ${isUs ? "" : "ink"}`}>{r.v}</div>
-                        {r.hint && (
-                          <div className={`mono text-[10px] mt-0.5 ${isUs ? "opacity-50" : "ink-3"}`}>{r.hint}</div>
+                        {r.hint && isUs && (
+                          <div className="mono text-[10px] mt-0.5 opacity-60">{r.hint}</div>
                         )}
                       </div>
                     </li>
@@ -1194,9 +1301,6 @@ export const WhyQuasor = () => {
           })}
         </div>
 
-        <p className="mt-8 mono text-[11px] ink-3 text-center max-w-2xl mx-auto">
-          No somos para todos. Si buscás la opción más barata o la agencia con 200 personas, hay mejores opciones afuera.
-        </p>
       </div>
     </section>
   );
@@ -1222,61 +1326,120 @@ export const Process = () => {
     }
   };
 
+  // Dots sit at the left edge of each grid column. Center of dot i is at
+  // (i / N)*100% + 12px from the left. So the track from dot 0 to dot (N-1)
+  // spans ((N-1)/N)*100% of width starting at 12px (=left-3).
+  const trackLenPct = ((PROCESS.length - 1) / PROCESS.length) * 100;
+  const progressPct = PROCESS.length > 1 ? (active / (PROCESS.length - 1)) * trackLenPct : 0;
+
   return (
     <section id="proceso" className="relative border-t border-line">
       <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-24 md:py-32">
-        <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">06 — proceso</div>
-        <h2 className="serif text-5xl md:text-7xl leading-[0.98] mt-4 tracking-tight max-w-3xl">
-          Simple, directo, <em className="italic">sin vueltas.</em>
-        </h2>
-        <p className="ink-2 mt-5 max-w-lg">Cuatro etapas. Cada una con un entregable concreto. Sin reuniones que podrían haber sido un email.</p>
+        <div className="flex items-end justify-between gap-8 flex-wrap mb-12">
+          <div>
+            <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">07 — proceso</div>
+            <h2 className="serif text-5xl md:text-7xl leading-[0.98] mt-4 tracking-tight">
+              Cuatro etapas. <em className="italic">Sin vueltas.</em>
+            </h2>
+          </div>
+          <p className="ink-2 max-w-xs">
+            Cada una con un entregable concreto. Sin reuniones que podrían haber sido un email.
+          </p>
+        </div>
 
-        <div className="mt-14 grid md:grid-cols-[260px_1fr] gap-10">
-          <div className="relative">
-            <div
-              className="flex md:flex-col gap-3 overflow-x-auto md:overflow-visible pb-3 md:pb-0"
-              role="tablist"
-              aria-label="Etapas del proceso"
-              onKeyDown={onTabKeyDown}
-            >
-              {PROCESS.map((p, i) => (
+        {/* Horizontal timeline — desktop */}
+        <div
+          className="relative mb-10 hidden md:block"
+          role="tablist"
+          aria-label="Etapas del proceso"
+          onKeyDown={onTabKeyDown}
+        >
+          {/* Track + progress fill — both start at center of dot 0 (12px = left-3) */}
+          <div
+            className="absolute top-[11px] left-3 h-px bg-[var(--line-2)]"
+            style={{ width: `${trackLenPct}%` }}
+            aria-hidden="true"
+          />
+          <div
+            className="absolute top-[11px] left-3 h-px bg-[var(--accent)] transition-[width] duration-700 ease-out"
+            style={{ width: `${progressPct}%` }}
+            aria-hidden="true"
+          />
+          <div className="grid grid-cols-4 gap-4 relative">
+            {PROCESS.map((p, i) => {
+              const isActive = active === i;
+              const isDone = i < active;
+              return (
                 <button
                   key={p.n}
                   ref={(el) => (tabRefs.current[i] = el)}
                   onClick={() => setActive(i)}
                   role="tab"
-                  aria-selected={active === i}
+                  aria-selected={isActive}
                   aria-controls={`process-panel-${i}`}
                   id={`process-tab-${i}`}
-                  tabIndex={active === i ? 0 : -1}
-                  className={`text-left p-4 rounded-lg border transition shrink-0 md:w-full min-w-[200px] md:min-w-0 ${active === i ? "border-line-2 bg-surface-2" : "border-transparent hover:bg-surface-2"}`}
+                  tabIndex={isActive ? 0 : -1}
+                  className="text-left group focus:outline-none"
                 >
-                  <div className="mono text-[11px] ink-3">{p.n} — {p.tag}</div>
-                  <div className="serif text-xl mt-1">{p.name}</div>
+                  <div
+                    className={`relative w-6 h-6 rounded-full grid place-items-center mb-4 transition-all duration-300 mono text-[10px] font-bold ${
+                      isActive
+                        ? "bg-[var(--accent)] text-white scale-110 shadow-[0_0_0_4px_color-mix(in_oklab,var(--accent)_18%,transparent)]"
+                        : isDone
+                          ? "bg-[var(--accent)] text-white"
+                          : "bg-surface ink-3 border border-line-2 group-hover:border-[var(--accent)]"
+                    }`}
+                  >
+                    {isDone ? "✓" : i + 1}
+                  </div>
+                  <div className={`mono text-[10px] uppercase tracking-[0.18em] mb-1 transition-colors ${isActive ? "accent" : "ink-3"}`}>{p.tag}</div>
+                  <div className={`serif text-lg leading-tight transition-colors ${isActive ? "ink" : "ink-2 group-hover:ink"}`}>{p.name}</div>
                 </button>
-              ))}
-            </div>
-            {/* Mobile-only edge fade hint to suggest horizontal scroll */}
-            <div className="md:hidden absolute right-0 top-0 bottom-3 w-12 pointer-events-none bg-gradient-to-l from-[var(--bg)] to-transparent" />
+              );
+            })}
           </div>
-          <div
-            className="card p-8"
-            role="tabpanel"
-            id={`process-panel-${active}`}
-            aria-labelledby={`process-tab-${active}`}
-          >
-            <div className="flex items-baseline justify-between gap-4 mb-4">
-              <div>
-                <div className="mono text-[11px] ink-3 uppercase tracking-[0.18em]">{PROCESS[active].tag}</div>
-                <h3 className="serif text-4xl md:text-5xl mt-2 tracking-tight">{PROCESS[active].name}</h3>
-              </div>
-              <div className="serif text-6xl ink-3 opacity-40" aria-hidden="true">{PROCESS[active].n}</div>
-            </div>
-            <p className="ink-2 max-w-lg">{PROCESS[active].body}</p>
-            <div className="mt-6">
-              <Terminal lines={PROCESS[active].term} playKey={active} />
-            </div>
+        </div>
+
+        {/* Mobile — horizontal scroll pills */}
+        <div
+          className="md:hidden mb-6 flex gap-2 overflow-x-auto pb-3 -mx-6 px-6"
+          role="tablist"
+          aria-label="Etapas del proceso"
+          onKeyDown={onTabKeyDown}
+        >
+          {PROCESS.map((p, i) => {
+            const isActive = active === i;
+            return (
+              <button
+                key={p.n}
+                ref={(el) => (tabRefs.current[i] = el)}
+                onClick={() => setActive(i)}
+                role="tab"
+                aria-selected={isActive}
+                aria-controls={`process-panel-${i}`}
+                tabIndex={isActive ? 0 : -1}
+                className={`shrink-0 text-left p-3 rounded-lg border min-w-[180px] transition ${isActive ? "border-line-2 bg-surface-2" : "border-line"}`}
+              >
+                <div className="mono text-[10px] ink-3">{p.n} — {p.tag}</div>
+                <div className="serif text-lg mt-1">{p.name}</div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Active panel */}
+        <div
+          className="card p-6 md:p-8 grid md:grid-cols-[1fr_1.2fr] gap-6 md:gap-10 items-center"
+          role="tabpanel"
+          id={`process-panel-${active}`}
+          aria-labelledby={`process-tab-${active}`}
+        >
+          <div>
+            <div className="mono text-[11px] ink-3 uppercase tracking-[0.18em]">{PROCESS[active].tag}</div>
+            <h3 className="serif text-3xl md:text-4xl mt-2 tracking-tight leading-tight">{PROCESS[active].name}</h3>
+            <p className="ink-2 mt-4 max-w-md leading-relaxed">{PROCESS[active].body}</p>
           </div>
+          <Terminal lines={PROCESS[active].term} playKey={active} />
         </div>
       </div>
     </section>
@@ -1290,13 +1453,13 @@ export const Testimonials = () => {
       <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-24 md:py-32">
         <div className="flex items-end justify-between gap-8 flex-wrap mb-14">
           <div>
-            <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">07 — cliente real</div>
+            <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">06 — voz del cliente</div>
             <h2 className="serif text-5xl md:text-7xl leading-[0.98] mt-4 tracking-tight max-w-3xl">
-              Arrancamos con <em className="italic accent">un cliente.</em><br/>Bien.
+              Lo que dicen los <em className="italic">que ya operan</em> con esto.
             </h2>
           </div>
           <p className="ink-2 max-w-xs">
-            Preferimos decir que tenemos 1 cliente feliz antes que inventar 10.
+            Inmobiliaria de Mar del Plata · 6 vendedores · 6 semanas en producción.
             Los resultados abajo son los que esperás según tu vertical.
           </p>
         </div>
@@ -1306,13 +1469,13 @@ export const Testimonials = () => {
             <div className="absolute inset-0 glow opacity-60 pointer-events-none" />
             <div className="relative">
               <div className="flex items-center gap-2 mono text-[11px] uppercase tracking-[0.18em] opacity-80">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)]" /> cliente piloto
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)]" /> resultado real · 6 semanas
               </div>
               <div className="serif num leading-[0.88] mt-3 accent accent-glow" style={{ fontSize: "clamp(72px, 12vw, 128px)" }}>{hero.metric.v}</div>
               <div className="mono text-sm opacity-80 mt-2">{hero.metric.k}</div>
               <div className="hl-grad my-7 opacity-30" />
               <div className="mono text-[11px] uppercase tracking-wider opacity-60">
-                primer caso · Mar del Plata
+                inmobiliaria · Mar del Plata · 6 vendedores
               </div>
             </div>
           </div>
@@ -1325,13 +1488,17 @@ export const Testimonials = () => {
             </div>
             <div className="mt-8 flex items-center justify-between gap-4">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full grid place-items-center mono text-xl font-semibold accent" style={{ background: "var(--surface-2)", border: "1px solid var(--line)" }}>{hero.init}</div>
+                <div className="w-14 h-14 rounded-full grid place-items-center accent" style={{ background: "var(--bg-2)", border: "1px solid var(--line)" }} aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 21h18M5 21V9l7-5 7 5v12M9 13h2M9 17h2M13 13h2M13 17h2"/>
+                  </svg>
+                </div>
                 <div>
                   <div className="font-medium">{hero.who}</div>
                   <div className="mono text-[11px] ink-3">{hero.where}</div>
                 </div>
               </div>
-              <div className="mono text-[11px] ink-3" title="Bajo acuerdo de confidencialidad">bajo NDA</div>
+              <div className="mono text-[10px] ink-3 opacity-60" aria-label="Nombre del cliente bajo acuerdo de confidencialidad">identidad bajo NDA</div>
             </div>
           </figure>
         </div>
@@ -1339,26 +1506,21 @@ export const Testimonials = () => {
         <div className="mt-16">
           <div className="flex items-end justify-between gap-4 flex-wrap mb-6">
             <div>
-              <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">resultados esperados · por vertical</div>
-              <h3 className="serif text-3xl md:text-4xl mt-2 tracking-tight">Lo que podés esperar si te sumás hoy.</h3>
+              <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">resultados por vertical</div>
+              <h3 className="serif text-3xl md:text-4xl mt-2 tracking-tight">El piso, no la promesa.</h3>
             </div>
             <p className="mono text-[11px] ink-3 max-w-xs">
-              Inmobiliarias: validado en el piloto. Otras verticales: benchmarks + capacidad técnica.<br/>
-              No son promesas: son el piso del sistema.
+              Inmobiliarias: validado en piloto.<br/>
+              Otras verticales: benchmark del rubro.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[var(--line)] border border-line rounded-xl overflow-hidden">
             {EXPECTED_RESULTS.map((r, i) => (
-              <div key={i} className="card p-6 flex flex-col justify-between min-h-[200px]">
-                <div>
-                  <div className="mono text-[10px] uppercase tracking-wider accent mb-3">{r.vertical}</div>
-                  <div className="flex items-baseline gap-2 mb-3">
-                    <span className="serif text-5xl num leading-none">{r.metric.v}</span>
-                  </div>
-                  <div className="mono text-[10px] uppercase tracking-wider ink-3 mb-3">{r.metric.k}</div>
-                </div>
-                <p className="ink-2 text-sm leading-snug">{r.desc}</p>
+              <div key={i} className="bg-surface p-5 md:p-6">
+                <div className="mono text-[10px] uppercase tracking-wider accent mb-3">{r.vertical}</div>
+                <div className="serif text-4xl md:text-5xl num leading-none mb-2">{r.metric.v}</div>
+                <div className="mono text-[10px] uppercase tracking-wider ink-3">{r.metric.k}</div>
               </div>
             ))}
           </div>
@@ -1372,18 +1534,14 @@ export const Testimonials = () => {
 // but now shows a qualification filter ("para quién es") instead of price tiers.
 export const Pricing = () => {
   const fitYou = [
-    { t: "Tenés 4+ vendedores activos en cancha", h: "Si sos solo, una planilla alcanza." },
-    { t: "Recibís 50+ consultas por mes", h: "Acá la asignación automática rinde de verdad." },
-    { t: "Ya invertís en Meta o Google Ads", h: "Conectamos el spend al lead en tiempo real." },
-    { t: "Querés medir conversión por vendedor", h: "Cada lead queda atribuido y trackeable." },
-    { t: "Tenés un decisor con 1-2 semanas para el setup", h: "El primer mes es de implementación, no de operación." },
+    { t: "Tenés 4+ vendedores activos", h: "Si sos solo, una planilla alcanza." },
+    { t: "Recibís 50+ consultas por mes", h: "Acá la asignación automática rinde." },
+    { t: "Querés medir conversión por vendedor", h: "Cada lead atribuido y trackeable." },
   ];
   const notYou = [
     { t: "Buscás algo gratis o muy barato", h: "Hay opciones. Esta no es esa." },
     { t: "Vendés 2-3 propiedades al año", h: "El ROI no cierra a esa escala." },
-    { t: "No tenés tiempo para implementar", h: "El setup necesita decisores presentes." },
-    { t: "Querés un sistema \"que se haga solo\"", h: "Las primeras 2 semanas requieren tu input." },
-    { t: "Necesitás operar offline / on-premise", h: "Cloud-first. Si lo necesitás on-prem, hablemos antes." },
+    { t: "Querés un sistema que se haga solo", h: "Las primeras 2 semanas requieren tu input." },
   ];
 
   return (
@@ -1397,7 +1555,7 @@ export const Pricing = () => {
             </h2>
           </div>
           <p className="ink-2 max-w-sm">
-            Antes que el precio, está la pregunta de si tiene sentido. Acá te decimos cuándo sí y cuándo no — sin vueltas.
+            Cuándo encajamos. Y cuándo no.
           </p>
         </div>
 
@@ -1458,7 +1616,7 @@ export const Pricing = () => {
             <div>
               <div className="mono text-[10px] uppercase tracking-[0.18em] opacity-60 mb-3">discovery — gratis · sin venta</div>
               <h3 className="serif text-3xl md:text-5xl leading-[1.05] tracking-tight">
-                30 minutos para saber si <em className="italic accent">tiene sentido.</em>
+                30 minutos para saber si <em className="italic">tiene sentido.</em>
               </h3>
               <p className="opacity-80 text-base mt-4 max-w-md">
                 Te escuchamos, hacemos preguntas, y al final te decimos si encajamos. Si no, te orientamos a algo que sí. Sin compromiso, sin pitch.
@@ -1469,7 +1627,7 @@ export const Pricing = () => {
                 Reservar 30 min →
               </a>
               <div className="flex items-center gap-2 mono text-[10px] opacity-70">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)] pulse-dot" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)]" aria-hidden="true" />
                 <span>respondemos en 2h hábiles</span>
               </div>
             </div>
@@ -1505,7 +1663,7 @@ export const Faq = () => (
         <div>
           <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">09 — FAQ</div>
           <h2 className="serif text-5xl md:text-6xl leading-[0.98] mt-4 tracking-tight">
-            Preguntas <em className="italic accent">frecuentes.</em>
+            Preguntas <em className="italic">frecuentes.</em>
           </h2>
           <p className="ink-2 mt-5">¿No está la tuya? <a href="#contacto" className="underline decoration-dotted underline-offset-4">Escribinos</a> y respondemos en 2h hábiles.</p>
         </div>
@@ -1538,9 +1696,9 @@ export const Contact = () => {
           <SiWhatsapp aria-hidden="true" />
           +54 9 223 689 2809
         </a>
-        <a href="mailto:ventas@quasor.com" data-magnetic="0.25" className="inline-flex items-center gap-3 px-6 py-4 rounded-full border border-line-2 text-[16px] hover:bg-surface-2 transition">
+        <a href="mailto:ventas@quasor.io" data-magnetic="0.25" className="inline-flex items-center gap-3 px-6 py-4 rounded-full border border-line-2 text-[16px] hover:bg-surface-2 transition">
           <SiGmail aria-hidden="true" className="opacity-70" />
-          ventas@quasor.com
+          ventas@quasor.io
         </a>
       </div>
 
@@ -1566,6 +1724,63 @@ export const Contact = () => {
   );
 };
 
+// Sticky mobile CTA — floating bar at bottom of viewport.
+// Visible only on mobile (md:hidden). Fades in after the user scrolls past
+// the hero, hides itself once #contacto is in view so we don't double-CTA.
+export const StickyMobileCTA = () => {
+  const [visible, setVisible] = useState(false);
+  const [atContacto, setAtContacto] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 520);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    let io = null;
+    const target = document.getElementById('contacto');
+    if (target) {
+      io = new IntersectionObserver(
+        (entries) => entries.forEach(e => setAtContacto(e.isIntersecting)),
+        { threshold: 0.05 }
+      );
+      io.observe(target);
+    }
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (io) io.disconnect();
+    };
+  }, []);
+
+  const show = visible && !atContacto;
+  return (
+    <div
+      className={`md:hidden fixed bottom-3 left-3 right-3 z-30 transition-all duration-300 ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}
+      aria-hidden={!show}
+      inert={!show ? "" : undefined}
+    >
+      <div className="flex items-stretch gap-2 p-1.5 rounded-full border border-line bg-[color-mix(in_oklab,var(--bg)_92%,transparent)] backdrop-blur-md shadow-[0_10px_30px_-10px_rgba(0,0,0,0.35)]">
+        <a
+          href="https://wa.me/5492236892809"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chatear por WhatsApp"
+          className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full border border-line-2 text-[14px] font-medium ink"
+        >
+          <SiWhatsapp aria-hidden="true" />
+          WhatsApp
+        </a>
+        <a
+          href="#contacto"
+          className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full btn-accent text-[14px] font-medium"
+        >
+          Agendar demo <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  );
+};
+
 export const Footer = () => {
   const year = new Date().getFullYear();
   return (
@@ -1578,11 +1793,11 @@ export const Footer = () => {
             CRM para inmobiliarias argentinas. Desde Mar del Plata, para todo el país.
           </p>
           <div className="mono text-[11px] ink-3 mt-5">
-            <div>ventas@quasor.com</div>
+            <div>ventas@quasor.io</div>
             <div className="mt-1">+54 9 223 689 2809</div>
           </div>
           <div className="mt-5 inline-flex items-center gap-2 px-2.5 py-1.5 rounded-full border border-line bg-surface mono text-[10px]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)] pulse-dot" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)]" aria-hidden="true" />
             <span className="ink-2">Sistemas operativos</span>
           </div>
         </div>
@@ -1615,7 +1830,7 @@ export const Footer = () => {
           <div className="flex flex-col gap-2.5 text-sm ink-2">
             <a href="https://www.instagram.com/quasortech/" target="_blank" rel="noopener noreferrer" aria-label="Instagram (abre en nueva pestaña)" className="hover:accent transition">Instagram ↗</a>
             <a href="https://wa.me/5492236892809" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp (abre en nueva pestaña)" className="hover:accent transition">WhatsApp ↗</a>
-            <a href="mailto:ventas@quasor.com" aria-label="Enviar email a ventas" className="hover:accent transition">Email ↗</a>
+            <a href="mailto:ventas@quasor.io" aria-label="Enviar email a ventas" className="hover:accent transition">Email ↗</a>
           </div>
         </div>
       </div>

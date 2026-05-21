@@ -90,10 +90,10 @@ const NavItem = ({ icon, label, active, onClick }) => (
     onClick={onClick}
     title={label}
     aria-label={label}
-    className={`w-full flex items-center gap-2.5 justify-center @[680px]/dash:justify-start px-2 @[680px]/dash:px-3 py-2 rounded-md text-sm transition ${active ? "bg-[color-mix(in_oklab,var(--accent)_14%,var(--bg))] accent font-medium" : "ink-2 hover:bg-surface-2"}`}
+    className={`w-full flex items-center gap-2.5 justify-center @[540px]/dash:justify-start px-2 @[540px]/dash:px-3 py-2 rounded-md text-sm transition ${active ? "bg-[color-mix(in_oklab,var(--accent)_14%,var(--bg))] accent font-medium" : "ink-2 hover:bg-surface-2"}`}
   >
     <span className="w-4 h-4 shrink-0">{icon}</span>
-    <span className="hidden @[680px]/dash:inline">{label}</span>
+    <span className="hidden @[540px]/dash:inline">{label}</span>
   </button>
 );
 
@@ -115,19 +115,19 @@ const KPI = ({ icon, value, label, delta, prefix = "", suffix = "", decimals = 0
   const v = useCountUp(value, 1400, [value]);
   const positive = delta >= 0;
   return (
-    <div className="bg-surface border border-line rounded-xl p-3 @[680px]/dash:p-4 hover:border-[var(--accent)] transition-colors">
-      <div className="flex items-center justify-between mb-2 @[680px]/dash:mb-3">
-        <div className="w-7 h-7 @[680px]/dash:w-9 @[680px]/dash:h-9 rounded-lg grid place-items-center" style={{ background: "color-mix(in oklab, var(--accent) 12%, var(--bg))", color: "var(--accent)" }}>
+    <div className="bg-surface border border-line rounded-xl p-3 @[540px]/dash:p-4 hover:border-[var(--accent)] transition-colors">
+      <div className="flex items-center justify-between mb-2 @[540px]/dash:mb-3">
+        <div className="w-7 h-7 @[540px]/dash:w-9 @[540px]/dash:h-9 rounded-lg grid place-items-center" style={{ background: "color-mix(in oklab, var(--accent) 12%, var(--bg))", color: "var(--accent)" }}>
           {icon}
         </div>
-        <span className={`mono text-[10px] @[680px]/dash:text-[11px] tabular-nums ${positive ? "text-[var(--pos)]" : "text-[var(--neg)]"}`}>
+        <span className={`mono text-[10px] @[540px]/dash:text-[11px] tabular-nums ${positive ? "text-[var(--pos)]" : "text-[var(--neg)]"}`}>
           {positive ? "↗" : "↘"} {Math.abs(delta).toFixed(1)}%
         </span>
       </div>
       <div className="flex items-baseline gap-1">
-        <span className="text-2xl @[680px]/dash:text-3xl font-semibold num ink">{prefix}{fmt(v, decimals)}{suffix}</span>
+        <span className="text-2xl @[540px]/dash:text-3xl font-semibold num ink">{prefix}{fmt(v, decimals)}{suffix}</span>
       </div>
-      <div className="text-xs @[680px]/dash:text-sm ink-2 mt-0.5 leading-tight">{label}</div>
+      <div className="text-xs @[540px]/dash:text-sm ink-2 mt-0.5 leading-tight">{label}</div>
       <div className="mono text-[11px] ink-3 mt-1">vs período anterior</div>
     </div>
   );
@@ -219,13 +219,13 @@ const ViewInicio = ({ playKey }) => (
         <button aria-label="Refrescar datos" title="Refrescar" className="w-8 h-8 rounded-md border border-line grid place-items-center ink-2 hover:bg-surface-2">{Icon.refresh}</button>
       </div>
     </div>
-    <div className="grid grid-cols-2 @[680px]/dash:grid-cols-4 gap-3">
+    <div className="grid grid-cols-2 @[540px]/dash:grid-cols-4 gap-3">
       <KPI icon={Icon.users}  value={147}  label="Total Leads"        delta={23.4} />
       <KPI icon={Icon.target} value={48}   label="Oportunidades"      delta={12.5} />
       <KPI icon={Icon.trend}  value={18.4} label="Tasa Conversión"    delta={2.1} suffix="%" decimals={1} />
       <KPI icon={Icon.dollar} value={42.8} label="Inversión Ads"      delta={-4.2} prefix="$" suffix="k" decimals={1} />
     </div>
-    <div className="grid @[680px]/dash:grid-cols-[1.4fr_1fr] gap-3">
+    <div className="grid @[540px]/dash:grid-cols-[1.4fr_1fr] gap-3">
       <div className="bg-surface border border-line rounded-xl p-4">
         <div className="flex items-baseline justify-between mb-1">
           <div>
@@ -741,14 +741,14 @@ export const Dashboard = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-[56px_1fr] @[680px]/dash:grid-cols-[180px_1fr] min-h-[620px] transition-[grid-template-columns] duration-300">
-        <aside className="border-r border-line bg-surface p-2 @[680px]/dash:p-3">
-          <div className="flex items-center gap-2 justify-center @[680px]/dash:justify-start @[680px]/dash:px-2 mb-0.5">
+      <div className="grid grid-cols-[56px_1fr] @[540px]/dash:grid-cols-[180px_1fr] min-h-[620px] transition-[grid-template-columns] duration-300">
+        <aside className="border-r border-line bg-surface p-2 @[540px]/dash:p-3">
+          <div className="flex items-center gap-2 justify-center @[540px]/dash:justify-start @[540px]/dash:px-2 mb-0.5">
             <div className="w-7 h-7 rounded-md bg-gradient-to-br from-[var(--accent)] to-[#ffb08a] grid place-items-center text-white font-bold text-[11px] shrink-0">Q</div>
-            <span className="serif text-xl leading-none hidden @[680px]/dash:inline">quasor</span>
+            <span className="serif text-xl leading-none hidden @[540px]/dash:inline">quasor</span>
           </div>
-          <div className="hidden @[680px]/dash:block px-2 mono text-[10px] ink-3 mb-4">Inmobiliaria Demo</div>
-          <div className="@[680px]/dash:hidden h-4" />
+          <div className="hidden @[540px]/dash:block px-2 mono text-[10px] ink-3 mb-4">Inmobiliaria Demo</div>
+          <div className="@[540px]/dash:hidden h-4" />
           <nav className="space-y-0.5">
             <NavItem icon={Icon.home}  label="Inicio"        active={view === "inicio"} onClick={() => setView("inicio")}/>
             <NavItem icon={Icon.leads} label="Leads"         active={view === "leads"}  onClick={() => setView("leads")}/>

@@ -87,35 +87,29 @@ export const DATASETS = {
 
 export const SERVICES = [
   {
-    k: "CRM",
-    name: "CRM para inmobiliarias",
-    body: "Pipeline visual, asignación automática y seguimiento de cada lead en un sistema pensado para el rubro. Configurable, no a medida — arrancás en días, no en meses.",
-    bullets: ["Pipeline visual por etapa", "Asignación automática", "Permisos por rol"],
-  },
-  {
     k: "DASH",
-    name: "Dashboards analíticos",
-    body: "Paneles que unifican todas tus fuentes de datos en un solo lugar. Con alertas, reportes automáticos y la verdad de los números.",
-    bullets: ["Meta + Google + CRM en uno", "Alertas por Slack/WhatsApp", "Reportes PDF automáticos"],
+    name: "Dashboards",
+    body: "Una sola fuente para Meta, Google y tu CRM.",
+    bullets: ["Multi-fuente unificada", "Alertas Slack/WhatsApp", "Reportes PDF automáticos"],
   },
   {
     k: "API",
-    name: "Integraciones & APIs",
-    body: "Conectamos Meta, Google, WhatsApp Business, CRMs externos y cualquier API que tu negocio necesite. Todo sincronizado en tiempo real.",
+    name: "Integraciones",
+    body: "Cualquier API. Sync bidireccional en menos de 60s.",
     bullets: ["Webhooks bidireccionales", "Sync < 60s", "Retry con cola"],
   },
   {
     k: "IA",
-    name: "Automatizaciones + IA",
-    body: "Procesos que antes eran manuales ahora corren solos. Sync de datos, alertas, asignaciones, y modelos de IA donde realmente suman.",
-    bullets: ["Scoring de leads con IA", "Respuestas automáticas", "Detección de anomalías"],
+    name: "Automatizaciones",
+    body: "Procesos manuales que ahora corren solos.",
+    bullets: ["Scoring de leads", "Respuestas automáticas", "Detección de anomalías"],
   },
 ];
 
 export const PROCESS = [
   {
     n: "01", tag: "CONOCEMOS", name: "Entendemos tu inmobiliaria",
-    body: "Cómo trabaja tu equipo hoy, qué portales usás, qué está roto. Una reunión corta, sin humo.",
+    body: "Una reunión corta. Cómo trabajan, qué portales usan, qué está roto.",
     term: [
       { p: "$", t: "onboarding --cliente", w: 1200 },
       { p: ">", t: "¿Cómo entra un lead hoy?" },
@@ -126,7 +120,7 @@ export const PROCESS = [
   },
   {
     n: "02", tag: "CONFIGURAMOS", name: "Dejamos todo andando",
-    body: "Conectamos tus portales, WhatsApp y mail. Importamos tus contactos. Configuramos alertas y reportes. Todo en una o dos semanas, no meses.",
+    body: "Portales, WhatsApp, mail, contactos, alertas. Una o dos semanas. Sin meses.",
     term: [
       { p: "$", t: "setup --inmobiliaria", w: 800 },
       { p: "├", t: "ZonaProp + Argenprop ✓" },
@@ -138,7 +132,7 @@ export const PROCESS = [
   },
   {
     n: "03", tag: "CAPACITAMOS", name: "Tu equipo usando el sistema",
-    body: "Capacitación en vivo con tu equipo. Videos cortos para consultar después. Manual en español. Arrancan a usar el sistema desde el día 1.",
+    body: "Capacitación en vivo. Videos cortos. Operativos desde el día 1.",
     term: [
       { p: "$", t: "onboarding --users=6", w: 800 },
       { p: ">", t: "Sesión grupal: 45 min" },
@@ -149,7 +143,7 @@ export const PROCESS = [
   },
   {
     n: "04", tag: "ACOMPAÑAMOS", name: "Mejoras cada mes",
-    body: "Nuevas features, integraciones y mejoras liberadas periódicamente. El sistema crece con el uso. Soporte por WhatsApp y email.",
+    body: "Updates mensuales. Nuevas features e integraciones. Soporte por WhatsApp y mail.",
     term: [
       { p: "$", t: "status --all", w: 800 },
       { p: ">", t: "Uptime 99.98%" },
@@ -163,7 +157,7 @@ export const PROCESS = [
 export const TESTIMONIALS = [
   {
     quote: "Antes perdíamos consultas en los WhatsApps personales de cada vendedor. Ahora cada lead queda registrado, asignado y con seguimiento. Tengo visibilidad real del pipeline por primera vez.",
-    who: "Cliente piloto",
+    who: "Gerencia comercial",
     where: "Inmobiliaria · Mar del Plata",
     init: "●",
     metric: { v: "100%", k: "Leads trazados" },
