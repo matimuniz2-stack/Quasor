@@ -35,9 +35,8 @@ const App = () => {
         "color: #ff5a1f; font-size: 28px; font-weight: 700; letter-spacing: -0.04em;"
       );
       console.log(
-        "%c¿sos dev curioso? hablanos: ventas@quasor.io\n%cconstruido en Mar del Plata 🌊",
-        "color: #6b6b6b; font-family: ui-monospace, monospace; font-size: 12px;",
-        "color: #6b6b6b; font-family: ui-monospace, monospace; font-size: 11px;"
+        "%c¿sos dev curioso? hablanos: ventas@quasor.io",
+        "color: #6b6b6b; font-family: ui-monospace, monospace; font-size: 12px;"
       );
     }
 

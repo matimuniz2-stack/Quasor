@@ -309,7 +309,13 @@ export const Hero = () => {
   const slots = getCurrentSlots();
   return (
     <section className="relative overflow-hidden">
-      <div className="absolute inset-0 glow opacity-70 pointer-events-none" />
+      {/* Cinematic background: mesh blobs + dotted grid + grain */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div className="mesh-blob mesh-blob-1" />
+        <div className="mesh-blob mesh-blob-2" />
+        <div className="mesh-blob mesh-blob-3" />
+      </div>
+      <div className="absolute inset-0 dotted-grid pointer-events-none" aria-hidden="true" />
       <div className="absolute inset-0 grain pointer-events-none" />
       <div className="relative max-w-[1280px] mx-auto px-6 md:px-10 pt-10 md:pt-16 pb-12 md:pb-20">
         {/* Eyebrow row */}
@@ -398,10 +404,10 @@ export const Hero = () => {
           style={{ animationDelay: "400ms" }}
         >
           {[
-            ["6 sem", "del kickoff a producción"],
-            ["100%", "leads trackeados end-to-end"],
-            ["< 60s", "sync portales + Meta/Google"],
-            ["8", "integraciones nativas"],
+            ["+43%", "cierres mes a mes"],
+            ["−62%", "leads perdidos"],
+            ["−97%", "tiempo de asignación"],
+            ["100%", "leads trazados end-to-end"],
           ].map(([v, k], i) => (
             <div key={i} className="px-5 py-4 border-r last:border-r-0 border-line">
               <div className="serif text-3xl num">{v}</div>
@@ -578,189 +584,114 @@ export const Marquee = () => (
   </section>
 );
 
-export const UseCases = () => {
-  const cases = [
-    {
-      tag: "Inmobiliarias",
-      title: "Gestión completa de pipeline",
-      desc: "Captura leads desde ZonaProp, Argenprop, Tokko y WhatsApp. Asigna por zona, mide conversión por vendedor.",
-      track: ["leads", "visitas", "cierres", "conversión por vendedor", "fuente del lead"],
-      preview: "inmobiliaria",
-    },
-    {
-      tag: "Concesionarias",
-      title: "Del aviso al patentamiento",
-      desc: "Seguimiento de consultas, reservas, test drives y stock en tiempo real. Dashboards de venta por modelo.",
-      track: ["stock", "test drives", "reservas", "ticket promedio", "ad spend vs ventas"],
-      preview: "concesionaria",
-    },
-    {
-      tag: "Agencias de marketing",
-      title: "Reporting automático a clientes",
-      desc: "Conecta Meta, Google, TikTok. Genera reportes white-label. Muestra ROI real por campaña, sin Excel.",
-      track: ["ROAS", "CPL", "CPA", "spend por cliente", "reportes automáticos"],
-      preview: "agencia",
-    },
-    {
-      tag: "E-commerce",
-      title: "Operación centralizada",
-      desc: "Stock, ventas, logística y atención unificados. Integra con Tienda Nube, Mercado Libre, Shopify.",
-      track: ["stock", "órdenes", "LTV", "carritos abandonados", "integraciones"],
-      preview: "ecommerce",
-    },
-  ];
-
-  const MiniPreview = ({ kind }) => {
-    if (kind === "inmobiliaria") {
-      return (
-        <div className="absolute inset-0 p-4 flex flex-col gap-2">
-          <div className="flex items-center justify-between mb-1">
-            <div className="mono text-[9px] uppercase ink-3">pipeline · abril</div>
-            <div className="mono text-[9px] accent">● live</div>
-          </div>
-          {[
-            { n: "Consulta", c: 34, w: "22%" },
-            { n: "Contactado", c: 22, w: "38%" },
-            { n: "Visita", c: 12, w: "55%" },
-            { n: "Oferta", c: 6, w: "78%" },
-            { n: "Cerrado", c: 3, w: "100%" },
-          ].map((s, i) => (
-            <div key={i} className="flex items-center gap-2">
-              <div className="mono text-[9px] ink-3 w-16 shrink-0">{s.n}</div>
-              <div className="flex-1 h-4 rounded bg-surface-2 overflow-hidden relative">
-                <div className="absolute inset-y-0 left-0 rounded" style={{ width: s.w, background: i >= 3 ? "var(--accent)" : "var(--ink-2)" }} />
-              </div>
-              <div className="mono text-[9px] tabular-nums w-6 text-right">{s.c}</div>
-            </div>
-          ))}
-        </div>
-      );
-    }
-    if (kind === "concesionaria") {
-      return (
-        <div className="absolute inset-0 p-4">
-          <div className="flex items-center justify-between mb-3">
-            <div className="mono text-[9px] uppercase ink-3">stock · 142 unidades</div>
-            <div className="mono text-[9px] accent">▲ 12%</div>
-          </div>
-          <div className="grid grid-cols-4 gap-1.5">
-            {Array.from({length: 20}).map((_, i) => (
-              <div key={i} className="aspect-[3/2] rounded" style={{
-                background: i % 7 === 0 ? "var(--accent)" : i % 3 === 0 ? "var(--ink-2)" : "var(--line)",
-                opacity: i % 5 === 0 ? 0.4 : 1,
-              }} />
-            ))}
-          </div>
-          <div className="mt-3 flex items-end gap-1 h-8">
-            {[45,62,38,71,88,55,92].map((h, i) => (
-              <div key={i} className="flex-1 rounded-t-sm" style={{ height: `${h}%`, background: "var(--accent)", opacity: 0.7 + i*0.04 }} />
-            ))}
-          </div>
-        </div>
-      );
-    }
-    if (kind === "agencia") {
-      return (
-        <div className="absolute inset-0 p-4">
-          <div className="flex items-center justify-between mb-2">
-            <div className="mono text-[9px] uppercase ink-3">ROAS por cliente</div>
-            <div className="mono text-[9px] ink-3">7d</div>
-          </div>
-          {[
-            { n: "Cliente A", v: "4.2x", w: "85%" },
-            { n: "Cliente B", v: "3.1x", w: "62%" },
-            { n: "Cliente C", v: "2.8x", w: "56%" },
-            { n: "Cliente D", v: "5.7x", w: "100%" },
-          ].map((c, i) => (
-            <div key={i} className="flex items-center gap-2 py-1.5 border-t border-line first:border-t-0">
-              <div className="mono text-[10px] w-16">{c.n}</div>
-              <div className="flex-1 h-1 rounded bg-surface-2 overflow-hidden">
-                <div className="h-full rounded" style={{ width: c.w, background: "var(--accent)" }} />
-              </div>
-              <div className="mono text-[10px] tabular-nums accent font-semibold">{c.v}</div>
-            </div>
-          ))}
-        </div>
-      );
-    }
-    return (
-      <div className="absolute inset-0 p-4">
-        <div className="mono text-[9px] uppercase ink-3 mb-2">ventas · hoy</div>
-        <div className="serif text-4xl num">$847k</div>
-        <div className="mono text-[10px] accent">▲ 23% vs ayer</div>
-        <div className="mt-3 grid grid-cols-3 gap-1 h-10">
-          {[40,68,55,82,71,94,62,78,88].map((h,i) => (
-            <div key={i} className="rounded-t-sm" style={{ height: `${h}%`, background: i === 5 ? "var(--accent)" : "var(--ink-2)", opacity: i === 5 ? 1 : 0.3 }} />
-          ))}
-        </div>
-        <div className="mt-2 flex justify-between mono text-[9px] ink-3">
-          <span>32 órdenes</span><span>LTV $12.4k</span>
-        </div>
+// Animated pipeline preview for the inmobiliarias hero card.
+// Bars fill on group-hover via CSS — see .pipeline-bar in index.css.
+const PipelinePreview = () => (
+  <div className="absolute inset-0 p-5 md:p-7 flex flex-col gap-2.5">
+    <div className="flex items-center justify-between mb-2">
+      <div className="mono text-[10px] uppercase tracking-[0.18em] ink-3">pipeline · abril</div>
+      <div className="mono text-[10px] accent flex items-center gap-1.5">
+        <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" aria-hidden="true" />
+        live
       </div>
-    );
-  };
+    </div>
+    {[
+      { n: "Consulta",   c: 34, w: 22,  delay: 0 },
+      { n: "Contactado", c: 22, w: 38,  delay: 120 },
+      { n: "Visita",     c: 12, w: 55,  delay: 240 },
+      { n: "Oferta",     c: 6,  w: 78,  delay: 360 },
+      { n: "Cerrado",    c: 3,  w: 100, delay: 480 },
+    ].map((s, i) => (
+      <div key={i} className="flex items-center gap-3">
+        <div className="mono text-[10px] ink-3 w-16 shrink-0">{s.n}</div>
+        <div className="flex-1 h-4 md:h-5 rounded bg-surface-2 overflow-hidden relative">
+          <div
+            className="pipeline-bar absolute inset-y-0 left-0 rounded"
+            style={{
+              "--bar-w": `${s.w}%`,
+              "--bar-delay": `${s.delay}ms`,
+              background: i >= 3 ? "var(--accent)" : "var(--ink-2)",
+            }}
+          />
+        </div>
+        <div className="mono text-[11px] tabular-nums w-6 text-right font-medium">{s.c}</div>
+      </div>
+    ))}
+  </div>
+);
+
+export const UseCases = () => {
+  const others = [
+    { tag: "Concesionarias", title: "Del aviso al patentamiento",   desc: "Stock, test drives, reservas, ad spend vs ventas." },
+    { tag: "Agencias",       title: "Reporting white-label",         desc: "ROAS por cliente, reportes PDF automáticos." },
+    { tag: "E-commerce",     title: "Operación centralizada",        desc: "Stock, órdenes, LTV, carritos abandonados." },
+  ];
 
   return (
     <section id="casos" className="relative border-t border-line bg-surface">
       <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-24 md:py-32">
         <div className="flex items-end justify-between gap-8 flex-wrap mb-14">
           <div>
-            <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">02 — casos de uso</div>
+            <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">02 — vertical primario</div>
             <h2 data-reveal-words className="serif text-5xl md:text-7xl leading-[0.98] mt-4 tracking-tight max-w-3xl">
               Para empresas que <em className="italic accent">venden todos los días.</em>
             </h2>
           </div>
           <p className="ink-2 max-w-sm">
-            Un CRM pensado para inmobiliarias argentinas. Con todo lo que necesitás
-            para operar: pipeline, portales, WhatsApp y reportes en un solo lugar.
+            Inmobiliarias en producción.<br/>
+            Resto de verticales: bajo consulta.
           </p>
         </div>
 
-        {/* Bento grid: Inmobiliarias dominates (2x2), Concesi + Agencias 1x1, E-commerce wide */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5 md:auto-rows-[230px]">
-          {cases.map((c, i) => {
-            // 0 = Inmobiliarias (big 2x2), 1 = Concesi, 2 = Agencias, 3 = E-commerce (wide 2x1)
-            const isBig = i === 0;
-            const isWide = i === 3;
-            const layout = isBig
-              ? "md:col-span-2 md:row-span-2"
-              : isWide
-                ? "md:col-span-2 md:row-start-2 md:col-start-3"
-                : i === 1
-                  ? "md:col-start-3 md:row-start-1"
-                  : "md:col-start-4 md:row-start-1";
-
-            const previewH = isBig ? "h-64 md:h-[50%]" : "h-36 md:h-[55%]";
-            const titleSize = isBig ? "serif text-3xl md:text-4xl" : "serif text-xl md:text-2xl";
-            const showDesc = isBig || isWide;
-            const trackPills = isBig ? c.track : c.track.slice(0, 3);
-
-            return (
+        {/* Primary case — Inmobiliarias, in-production deep dive */}
+        <div className="card overflow-hidden grid md:grid-cols-2 group hover:border-[var(--accent)] transition-colors duration-300">
+          <div className="relative h-72 md:h-auto md:min-h-[420px] bg-surface-2 border-b md:border-b-0 md:border-r border-line overflow-hidden">
+            <PipelinePreview />
+            <div className="absolute inset-0 bg-gradient-to-tr from-[var(--bg)]/30 via-transparent to-transparent pointer-events-none" />
+          </div>
+          <div className="p-7 md:p-10 flex flex-col">
+            <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+              <div className="mono text-[11px] uppercase tracking-[0.18em] accent">Inmobiliarias</div>
               <div
-                key={i}
-                className={`card overflow-hidden hover:border-[var(--accent)] hover:-translate-y-0.5 transition-[transform,border-color] duration-300 group cursor-pointer flex flex-col ${layout}`}
+                className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full mono text-[10px] uppercase tracking-wider"
+                style={{
+                  background: "color-mix(in oklab, var(--pos) 12%, var(--bg))",
+                  color: "var(--pos)",
+                  border: "1px solid color-mix(in oklab, var(--pos) 30%, transparent)"
+                }}
               >
-                <div className={`relative ${previewH} bg-surface-2 border-b border-line overflow-hidden shrink-0`}>
-                  <MiniPreview kind={c.preview} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)]/40 via-transparent to-transparent pointer-events-none" />
-                </div>
-                <div className={`p-5 ${isBig ? "md:p-7" : "md:p-5"} flex-1 flex flex-col`}>
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="mono text-[11px] uppercase tracking-[0.18em] accent">{c.tag}</div>
-                    <div className="mono text-[10px] ink-3 group-hover:accent transition">ver caso →</div>
-                  </div>
-                  <h3 className={`${titleSize} tracking-tight mb-2 leading-[1.05]`}>{c.title}</h3>
-                  {showDesc && <p className="ink-2 text-sm mb-3 leading-snug">{c.desc}</p>}
-                  <div className="flex flex-wrap gap-1.5 mt-auto">
-                    {isBig && <span className="mono text-[10px] ink-3 uppercase tracking-wider mr-1 self-center">track:</span>}
-                    {trackPills.map(t => (
-                      <span key={t} className="mono text-[10px] px-2 py-0.5 rounded-full bg-surface-2 border border-line">{t}</span>
-                    ))}
-                  </div>
-                </div>
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)]" aria-hidden="true" />
+                en producción
               </div>
-            );
-          })}
+            </div>
+            <h3 className="serif text-3xl md:text-5xl leading-[1.02] tracking-tight mb-4">Pipeline inmobiliario, end-to-end.</h3>
+            <p className="ink-2 mb-6 max-w-md leading-relaxed">
+              Captura desde ZonaProp, Argenprop, Tokko y WhatsApp. Asigna por zona, mide conversión por vendedor. Reportes automáticos sin Excel.
+            </p>
+            <div className="flex flex-wrap gap-1.5 mt-auto">
+              <span className="mono text-[10px] ink-3 uppercase tracking-wider mr-1 self-center">track:</span>
+              {["leads", "visitas", "cierres", "conversión por vendedor", "fuente del lead"].map(t => (
+                <span key={t} className="mono text-[10px] px-2 py-0.5 rounded-full bg-surface-2 border border-line">{t}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Other verticals — honest "consultanos" strip */}
+        <div className="mt-10 md:mt-12">
+          <div className="mono text-[10px] uppercase tracking-[0.18em] ink-3 mb-5">también para</div>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {others.map((o, i) => (
+              <div key={i} className="card p-5 md:p-6 flex flex-col gap-2 hover:border-[var(--accent)] hover:-translate-y-0.5 transition-[transform,border-color] duration-300">
+                <div className="flex items-center justify-between">
+                  <div className="mono text-[10px] uppercase tracking-[0.18em] accent">{o.tag}</div>
+                  <div className="mono text-[9px] ink-3 uppercase tracking-wider px-1.5 py-0.5 rounded bg-surface-2 border border-line">consultanos</div>
+                </div>
+                <div className="serif text-lg leading-tight">{o.title}</div>
+                <div className="mono text-[11px] ink-3 leading-snug">{o.desc}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -857,7 +788,6 @@ const PhaseVisual = ({ kind, active }) => {
           <rect x="106" y="62" width="44" height="20" rx="10" fill="var(--ink-3)" opacity="0.4"/>
           <rect x="170" y="56" width="58" height="20" rx="10" fill="var(--accent)" opacity="0.7"/>
           <rect x="244" y="64" width="60" height="20" rx="10" fill="var(--ink-3)" opacity="0.35"/>
-          <text x="160" y="100" textAnchor="middle" fill="var(--ink-3)" fontSize="9" fontFamily="ui-monospace" letterSpacing="0.18em">CHATS DISPERSOS · LEADS PERDIDOS</text>
         </g>
       </svg>
     );
@@ -881,7 +811,6 @@ const PhaseVisual = ({ kind, active }) => {
           <rect x="252" y="14" width="60" height="14" rx="7" fill="var(--ink-3)" opacity="0.6"/>
           <rect x="252" y="38" width="60" height="14" rx="7" fill="var(--ink-3)" opacity="0.75"/>
           <rect x="252" y="62" width="60" height="14" rx="7" fill="var(--accent)" opacity="0.85"/>
-          <text x="160" y="100" textAnchor="middle" fill="var(--ink-3)" fontSize="9" fontFamily="ui-monospace" letterSpacing="0.18em">FUENTES → PIPELINE TRAZABLE</text>
         </g>
       </svg>
     );
@@ -904,7 +833,6 @@ const PhaseVisual = ({ kind, active }) => {
         <path d="M 42 75 Q 110 65, 180 45 T 290 18" stroke="var(--accent)" strokeWidth="1.5" fill="none" strokeDasharray="3 3" opacity="0.6"/>
         <circle cx="290" cy="18" r="6" fill="var(--pos)"/>
         <path d="M 286 18 L 289 21 L 294 15.5" stroke="white" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-        <text x="160" y="103" textAnchor="middle" fill="var(--ink-3)" fontSize="9" fontFamily="ui-monospace" letterSpacing="0.18em">6 SEMANAS · OPERACIÓN MEDIBLE</text>
       </g>
     </svg>
   );
@@ -1265,32 +1193,56 @@ export const WhyQuasor = () => {
           {cols.map((c) => {
             const isUs = c.tone === "accent";
             return (
-              <div key={c.k} className={`p-8 md:p-10 ${isUs ? "bg-[var(--ink)] text-[var(--bg)] relative" : "bg-surface"}`}>
+              <div
+                key={c.k}
+                className={`p-8 md:p-10 relative ${isUs ? "" : "bg-surface"}`}
+                style={isUs ? {
+                  background: "var(--rec-bg)",
+                  color: "var(--rec-fg)",
+                  boxShadow: "inset 0 0 0 1px color-mix(in oklab, var(--accent) 22%, transparent)"
+                } : undefined}
+              >
                 {isUs && (
                   <div className="absolute top-4 right-4 mono text-[10px] uppercase tracking-wider accent border border-[var(--accent)] px-2 py-0.5 rounded-full">
                     recomendado
                   </div>
                 )}
-                <div className={`mono text-[11px] uppercase tracking-[0.18em] ${isUs ? "opacity-60" : "ink-3"}`}>{c.k}</div>
+                <div
+                  className="mono text-[11px] uppercase tracking-[0.18em]"
+                  style={isUs ? { color: "var(--rec-fg-muted)" } : undefined}
+                >
+                  {isUs ? c.k : <span className="ink-3">{c.k}</span>}
+                </div>
                 <h3 className="serif text-3xl md:text-4xl mt-3 tracking-tight leading-tight">{c.name}</h3>
-                <p className={`mt-2 text-sm ${isUs ? "opacity-80" : "ink-2"}`}>{c.desc}</p>
-                <div className={`hl-grad my-6 ${isUs ? "opacity-40" : ""}`} />
+                <p
+                  className={`mt-2 text-sm ${isUs ? "" : "ink-2"}`}
+                  style={isUs ? { color: "var(--rec-fg-muted)" } : undefined}
+                >
+                  {c.desc}
+                </p>
+                <div
+                  className={`hl-grad my-6 ${isUs ? "" : ""}`}
+                  style={isUs ? { background: "linear-gradient(90deg, transparent, var(--rec-divider), transparent)" } : undefined}
+                />
                 <ul className="space-y-3.5">
                   {c.rows.map((r, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <span className={`mt-0.5 shrink-0 w-5 h-5 rounded-full grid place-items-center text-[11px] font-bold ${
-                        r.good
-                          ? "bg-[var(--accent)] text-white"
-                          : isUs
-                            ? "bg-white/10 text-white/60"
-                            : "bg-surface-2 ink-3"
-                      }`}>
+                      <span
+                        className={`mt-0.5 shrink-0 w-5 h-5 rounded-full grid place-items-center text-[11px] font-bold ${
+                          r.good
+                            ? "bg-[var(--accent)] text-white"
+                            : isUs
+                              ? ""
+                              : "bg-surface-2 ink-3"
+                        }`}
+                        style={!r.good && isUs ? { background: "var(--rec-chip-bg)", color: "var(--rec-chip-fg)" } : undefined}
+                      >
                         {r.good ? "✓" : "×"}
                       </span>
                       <div className="flex-1 min-w-0">
                         <div className={`text-sm ${isUs ? "" : "ink"}`}>{r.v}</div>
                         {r.hint && isUs && (
-                          <div className="mono text-[10px] mt-0.5 opacity-60">{r.hint}</div>
+                          <div className="mono text-[10px] mt-0.5" style={{ color: "var(--rec-fg-muted)" }}>{r.hint}</div>
                         )}
                       </div>
                     </li>
@@ -1838,14 +1790,8 @@ export const Footer = () => {
       <div className="hl-grad my-10" />
 
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <div className="mono text-[11px] ink-3 flex items-center gap-1.5">
-          <span>© {year} Quasor · construido frente al mar</span>
-          <svg width="14" height="8" viewBox="0 0 24 8" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="opacity-60">
-            <path d="M1 4 Q 4 1, 7 4 T 13 4 T 19 4 T 25 4">
-              <animate attributeName="d" dur="3s" repeatCount="indefinite" values="M1 4 Q 4 1, 7 4 T 13 4 T 19 4 T 25 4; M1 4 Q 4 7, 7 4 T 13 4 T 19 4 T 25 4; M1 4 Q 4 1, 7 4 T 13 4 T 19 4 T 25 4"/>
-            </path>
-          </svg>
-          <span>mar del plata, AR</span>
+        <div className="mono text-[11px] ink-3">
+          © {year} Quasor · Mar del Plata, AR
         </div>
         <div className="flex items-center gap-4 mono text-[11px] ink-3">
           <a href="legal/privacidad.html" className="hover:accent transition">Política de Privacidad</a>
