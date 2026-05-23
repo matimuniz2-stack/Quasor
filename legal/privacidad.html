@@ -149,7 +149,7 @@
     <div class="kicker">LEGAL · 01</div>
     <h1>Política de <em>privacidad</em>.</h1>
 
-    <div class="updated">Última actualización: 15 de mayo de 2026</div>
+    <div class="updated">Última actualización: 23 de mayo de 2026</div>
 
     <p>En Quasor ofrecemos un CRM para inmobiliarias argentinas. Eso implica que manejamos datos —los tuyos, y los de tus clientes. Esta política explica <strong>qué hacemos con esos datos, cómo los protegemos, y qué derechos tenés</strong> sobre ellos. Está escrita en español llano, no en lenguaje legal impenetrable. Si algo no queda claro, escribinos a <a href="mailto:privacidad@quasor.io">privacidad@quasor.io</a>.</p>
 
@@ -209,16 +209,26 @@
     <p><strong>¿Cómo elimino mis datos?</strong> Si sos un lead que completó un formulario y querés que tus datos sean eliminados, seguí las instrucciones en <a href="eliminar-datos.html">Eliminar mis datos</a>.</p>
 
     <h2><span class="num">06</span>Integración con Google</h2>
-    <p>Cuando un cliente de Quasor conecta su cuenta de Google a la plataforma, accedemos a través de las APIs oficiales de Google (Google Ads API, Google Calendar API) a los siguientes datos, según los permisos que el cliente otorgue durante la autenticación OAuth:</p>
+    <p>Cuando un cliente de Quasor conecta su cuenta de Google a la plataforma, accedemos a través de la <strong>Google Ads API</strong> a los siguientes datos, según los permisos que el cliente otorgue durante la autenticación OAuth:</p>
     <ul>
-      <li><strong>Google Ads</strong> (scope <code>adwords</code>): cuentas de Google Ads que el usuario administra, campañas, lead form assets configurados, y los datos de los <strong>leads</strong> que completaron formularios (nombre, email, teléfono y respuestas del formulario, junto con el ID del lead, ID del formulario, ID de la campaña y fecha/hora del envío). Usamos este acceso únicamente para sincronizar los leads al CRM del cliente.</li>
-      <li><strong>Google Calendar</strong> (scope <code>calendar.events</code>): lectura y escritura de eventos del calendario del corredor. Creamos eventos cuando se agenda una visita o reunión desde Quasor, y leemos los eventos existentes para mostrar disponibilidad. No accedemos a calendarios que el usuario no haya elegido conectar.</li>
-      <li><strong>Identificación de la cuenta</strong> (scopes <code>openid</code>, <code>email</code>): email de la cuenta de Google del usuario que conectó la integración, usado sólo para identificar qué cuenta autenticó la conexión dentro de Quasor.</li>
+      <li><strong>Google Ads</strong> (scope <code>https://www.googleapis.com/auth/adwords</code>): cuentas de Google Ads que el usuario administra, campañas, lead form assets configurados, y los datos de los <strong>leads</strong> que completaron formularios (nombre, email, teléfono y respuestas del formulario, junto con el ID del lead, ID del formulario, ID de la campaña y fecha/hora del envío). Usamos este acceso únicamente para sincronizar los leads al CRM del cliente.</li>
+      <li><strong>Identificación de la cuenta</strong> (scopes <code>openid</code>, <code>https://www.googleapis.com/auth/userinfo.email</code>): email de la cuenta de Google del usuario que conectó la integración, usado sólo para identificar qué cuenta autenticó la conexión dentro de Quasor.</li>
     </ul>
-    <p><strong>Uso conforme a Google API Services User Data Policy:</strong> el uso y la transferencia de información recibida de las APIs de Google a Quasor cumplen con la <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, incluidos los requisitos de Limited Use. No usamos los datos de Google para entrenar modelos de IA generalizados, no los vendemos, no los compartimos con terceros con fines publicitarios y los procesamos únicamente para proveer las funcionalidades del CRM que el cliente contrató.</p>
+
+    <div class="callout">
+      <p><strong>Cumplimiento de la Google API Services User Data Policy (Limited Use):</strong> el uso y la transferencia a cualquier otra aplicación de información recibida de las APIs de Google por parte de Quasor cumplen con la <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, incluidos los requisitos de Limited Use. Específicamente:</p>
+      <ul style="margin-top: 8px;">
+        <li>No usamos los datos obtenidos de las APIs de Google para entrenar modelos de IA generalizados.</li>
+        <li>No vendemos esos datos a terceros.</li>
+        <li>No los compartimos con terceros con fines de publicidad o marketing.</li>
+        <li>No los transferimos a terceros salvo para proveer o mejorar las funcionalidades del CRM que el cliente contrató, cumplir con la ley aplicable, o cuando el cliente lo autorice explícitamente.</li>
+        <li>El acceso humano a esos datos por parte del equipo de Quasor se limita a casos de seguridad, soporte solicitado por el cliente, o cumplimiento legal.</li>
+      </ul>
+    </div>
+
     <p><strong>Aclaraciones:</strong></p>
     <ul>
-      <li>No accedemos a cuentas o calendarios que el usuario no haya conectado explícitamente.</li>
+      <li>No accedemos a cuentas que el usuario no haya conectado explícitamente.</li>
       <li>No almacenamos contraseñas de Google (la autenticación es vía OAuth).</li>
       <li>Si el usuario revoca los permisos desde <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">https://myaccount.google.com/permissions</a>, dejamos de sincronizar nuevos datos de inmediato.</li>
     </ul>
@@ -260,7 +270,7 @@
       <li>Pasados esos 90 días, eliminamos todo excepto los registros de facturación que AFIP nos exige conservar (5 años, Resolución General 1415/2003).</li>
     </ul>
     <p><strong>Datos provenientes de Meta:</strong> los leads obtenidos vía Meta Lead Ads se almacenan mientras la cuenta del cliente esté activa. Si el cliente revoca los permisos de Meta o desconecta la integración, dejamos de recibir nuevos leads de inmediato; los leads ya recibidos permanecen en el CRM del cliente bajo su responsabilidad. Si el cliente cancela el servicio Quasor por completo, aplican los plazos generales de eliminación descritos arriba.</p>
-    <p><strong>Datos provenientes de Google:</strong> los leads obtenidos vía Google Ads Lead Forms y los eventos de Calendar se almacenan mientras la cuenta del cliente esté activa. Si el cliente revoca los permisos de Google o desconecta la integración, dejamos de recibir nuevos datos de inmediato; los datos ya sincronizados permanecen en el CRM del cliente bajo su responsabilidad. Si el cliente cancela el servicio Quasor por completo, aplican los plazos generales de eliminación descritos arriba.</p>
+    <p><strong>Datos provenientes de Google:</strong> los leads obtenidos vía Google Ads Lead Forms se almacenan mientras la cuenta del cliente esté activa. Si el cliente revoca los permisos de Google o desconecta la integración, dejamos de recibir nuevos datos de inmediato; los datos ya sincronizados permanecen en el CRM del cliente bajo su responsabilidad. Si el cliente cancela el servicio Quasor por completo, aplican los plazos generales de eliminación descritos arriba.</p>
 
     <h2><span class="num">12</span>Datos de menores</h2>
     <p>Quasor no está dirigido a menores de 18 años y no recopilamos conscientemente datos personales de menores. Si advertimos que se cargaron datos de un menor sin consentimiento parental válido, los eliminamos apenas tomamos conocimiento. Si sos padre, madre o tutor y creés que se cargaron datos de un menor a tu cargo, escribinos a <a href="mailto:privacidad@quasor.io">privacidad@quasor.io</a>.</p>
