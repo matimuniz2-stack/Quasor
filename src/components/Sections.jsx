@@ -1481,13 +1481,13 @@ export const Testimonials = () => {
 };
 
 // Pricing: 3 tiers + qualification filter + CTA strip.
-// Tiers viven en el array `tiers` abajo — editar ahí para ajustar precios, tag o features.
+// Tiers viven en el array `tiers` abajo — editar ahí para ajustar tag o features.
+// El precio NO se publica: se cierra en discovery.
 export const Pricing = () => {
   const tiers = [
     {
       k: "esencial",
       name: "Esencial",
-      price: 500,
       tag: "Inmobiliarias chicas · 4–6 vendedores",
       features: [
         "WhatsApp Business",
@@ -1501,7 +1501,6 @@ export const Pricing = () => {
     {
       k: "pro",
       name: "Pro",
-      price: 800,
       tag: "Inmobiliarias medianas · 6–12 vendedores",
       features: [
         "Todo lo de Esencial, más:",
@@ -1516,7 +1515,6 @@ export const Pricing = () => {
     {
       k: "custom",
       name: "Custom",
-      price: 1400,
       tag: "12+ vendedores · grupos · multi-sucursal",
       features: [
         "Todo lo de Pro, más:",
@@ -1553,8 +1551,8 @@ export const Pricing = () => {
             </h2>
           </div>
           <p className="ink-2 max-w-sm">
-            Mensual en USD. Facturamos en AR$ o USD según prefieras.<br/>
-            <span className="mono text-[11px] ink-3">Setup según integraciones · lo cerramos en discovery.</span>
+            Mensual, sin permanencia. Cancelás cuando quieras.<br/>
+            <span className="mono text-[11px] ink-3">Precio según escala e integraciones · lo cerramos en discovery.</span>
           </p>
         </div>
 
@@ -1578,9 +1576,8 @@ export const Pricing = () => {
                 </div>
                 <h3 className="serif text-3xl md:text-4xl mt-3 tracking-tight leading-tight">{t.name}</h3>
                 <div className="mt-4 flex items-baseline gap-2">
-                  <span className="mono text-[12px]" style={isRec ? { color: "var(--rec-fg-muted)" } : { color: "var(--ink-3)" }}>USD</span>
-                  <span className="serif num text-5xl md:text-6xl leading-none">${t.price}</span>
-                  <span className="mono text-[12px]" style={isRec ? { color: "var(--rec-fg-muted)" } : { color: "var(--ink-3)" }}>/mes</span>
+                  <span className="serif italic text-2xl md:text-3xl leading-none">A medida</span>
+                  <span className="mono text-[12px]" style={isRec ? { color: "var(--rec-fg-muted)" } : { color: "var(--ink-3)" }}>· en discovery</span>
                 </div>
                 <p className={`mt-4 text-sm ${isRec ? "" : "ink-2"}`} style={isRec ? { color: "var(--rec-fg-muted)" } : undefined}>
                   {t.tag}
