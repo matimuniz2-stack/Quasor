@@ -5,3 +5,38 @@ lighthouse-report.json
 .env
 .env.local
 .DS_Store
+
+# Sensitive / personal files — never commit
+Backup-codes-*
+*.backup
+
+# Heavy media — must not be committed
+*.mp4
+*.mov
+*.webm
+*.pdf
+*.docx
+*.xlsx
+*.pptx
+
+# Image dumps at root (commit assets only under /public)
+/Carrusel*
+/Gemini_Generated_Image*
+/Logo Quasor.png
+/ogimage2.png
+/WhatsApp Image*
+
+# Old / experimental folders
+Nueva Pagina/
+instagram/
+prospectos/
+uploads/
+scripts/
+
+# Dead landing files
+index-old.html
+quasor.html
+
+# One-off generation scripts
+/generate-*.cjs
+/generate-*.js

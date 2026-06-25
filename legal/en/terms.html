@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Terms and Conditions — Quasor</title>
+  <meta name="description" content="Terms and Conditions of the Quasor service." />
+  <meta name="robots" content="index, follow" />
+  <link rel="alternate" hreflang="es-AR" href="https://quasor.io/legal/terminos.html" />
+  <link rel="alternate" hreflang="en" href="https://quasor.io/legal/en/terms.html" />
+  <link rel="alternate" hreflang="x-default" href="https://quasor.io/legal/terminos.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-2: #f6f6f7;
+      --ink: #0a0a0a;
+      --ink-2: #2a2a2a;
+      --ink-3: #6b6b6b;
+      --line: #ececec;
+      --line-2: #d9d9d9;
+      --accent: #ff5a1f;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    .serif { font-family: "Instrument Serif", serif; font-weight: 400; }
+    .mono { font-family: "JetBrains Mono", monospace; }
+    .ink-2 { color: var(--ink-2); }
+    .ink-3 { color: var(--ink-3); }
+    .accent { color: var(--accent); }
+    header {
+      position: sticky; top: 0; z-index: 40;
+      background: color-mix(in oklab, var(--bg) 90%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-wrap {
+      max-width: 1000px; margin: 0 auto; padding: 0 24px;
+      height: 56px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-right { display: flex; gap: 20px; align-items: center; }
+    .logo { font-family: "Instrument Serif", serif; font-size: 24px; text-decoration: none; color: var(--ink); }
+    .back { text-decoration: none; color: var(--ink-2); font-size: 14px; transition: color .2s; }
+    .back:hover { color: var(--accent); }
+    .lang { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--ink-3); text-decoration: none; border: 1px solid var(--line); padding: 4px 10px; border-radius: 12px; transition: all .2s; }
+    .lang:hover { color: var(--accent); border-color: var(--accent); }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 80px 24px 120px;
+    }
+    .kicker {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--ink-3);
+    }
+    h1 {
+      font-family: "Instrument Serif", serif;
+      font-weight: 400;
+      font-size: clamp(48px, 8vw, 88px);
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+      margin: 16px 0 32px;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+    .updated {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      color: var(--ink-3);
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--bg-2);
+      display: inline-block;
+      margin-bottom: 48px;
+    }
+    h2 {
+      font-family: "Instrument Serif", serif;
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 56px 0 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    h2:first-of-type { border-top: none; padding-top: 0; }
+    h2 .num {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      color: var(--ink-3);
+      letter-spacing: 0.1em;
+      margin-right: 12px;
+      vertical-align: middle;
+    }
+    h3 {
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 17px;
+      margin: 28px 0 8px;
+      color: var(--ink);
+    }
+    p, li { color: var(--ink-2); font-size: 16px; }
+    p { margin: 12px 0; }
+    ul, ol { padding-left: 20px; margin: 12px 0; }
+    li { margin: 6px 0; }
+    ul li::marker { color: var(--accent); }
+    strong { color: var(--ink); font-weight: 600; }
+    code { font-family: "JetBrains Mono", monospace; font-size: 0.88em; background: var(--bg-2); border: 1px solid var(--line); padding: 1px 6px; border-radius: 4px; color: var(--ink); }
+    em { font-style: italic; }
+    a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
+    a:hover { opacity: 0.8; }
+    .callout {
+      border-left: 3px solid var(--accent);
+      background: var(--bg-2);
+      padding: 18px 22px;
+      margin: 24px 0;
+      border-radius: 4px;
+    }
+    .callout p { margin: 0; }
+    footer.pagefoot {
+      border-top: 1px solid var(--line);
+      padding: 40px 24px;
+      text-align: center;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      color: var(--ink-3);
+    }
+    footer.pagefoot a { color: var(--ink-2); border: none; margin: 0 12px; }
+    footer.pagefoot a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-wrap">
+      <a href="/" class="logo">quasor<span class="accent">.</span></a>
+      <div class="nav-right">
+        <a href="/legal/terminos.html" class="lang">ES</a>
+        <a href="/" class="back">← Back to home</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="kicker">LEGAL · 02</div>
+    <h1>Terms and <em>conditions</em>.</h1>
+
+    <div class="updated">Last updated: May 10, 2026</div>
+
+    <p>These are the terms governing the use of the Quasor service. By contracting the service, you accept these terms. If anything here doesn't work for you, write to us first at <a href="mailto:privacidad@quasor.io">privacidad@quasor.io</a> and let's talk it through.</p>
+
+    <div class="callout">
+      <p><strong>Honest summary:</strong> we give you a CRM for your real estate agency, with conditions we agree on in a meeting and sign before starting. You can cancel whenever you want. We don't promise magic: we promise a system that works, is maintained, and is improved every month.</p>
+    </div>
+
+    <h2><span class="num">01</span>Who we are</h2>
+    <p>Quasor is a software studio based in Mar del Plata, Buenos Aires Province, Argentina. In these terms "Quasor", "we", or "our" refer to Quasor. "Customer", "you", or "your" refer to the company or person contracting the service.</p>
+
+    <h2><span class="num">02</span>What the service is</h2>
+    <p>Quasor is a CRM for real estate agencies that automates lead capture, management, and follow-up. Specifically, the service includes:</p>
+    <ul>
+      <li><strong>Automatic lead ingestion</strong> from Meta Lead Ads, Google Ads, WhatsApp Business, and other authorized integrations.</li>
+      <li><strong>Assignment of leads to sales reps</strong> in the agency, with automatic email notification to the assigned rep.</li>
+      <li><strong>Property catalog synchronization</strong> through integration with <strong>Tokobroker</strong>, to link each lead with the property they inquired about.</li>
+      <li><strong>Schedules</strong> of visits and meetings, and <strong>receipts</strong> and payment records associated with the operation.</li>
+      <li><strong>Analytics dashboards</strong> and conversion metrics on commercial activity.</li>
+    </ul>
+    <p>The service is delivered under a <strong>SaaS (Software as a Service)</strong> model. <strong>Commercial conditions</strong> (scope, monthly fee, included modules, implementation timelines) <strong>are agreed case by case in a discovery meeting</strong> and are reflected in a commercial proposal signed before onboarding.</p>
+
+    <h2><span class="num">03</span>Onboarding, setup, and go-live</h2>
+    <p>After signing the commercial proposal, initial setup takes between <strong>1 and 4 weeks</strong> depending on the level of customization agreed. During setup we configure integrations, import existing data if you have any, train your team, and leave everything running in production.</p>
+    <p>The scope of the setup (included or quoted separately) is defined in the signed commercial proposal.</p>
+
+    <h2><span class="num">04</span>Billing and payments</h2>
+    <ul>
+      <li>We invoice monthly in advance on the 1st of each month, for the amount agreed in the signed commercial proposal.</li>
+      <li>Amounts may be expressed in <strong>Argentine pesos (AR$)</strong> or <strong>US dollars (USD)</strong> as agreed. If invoiced in USD, we issue a receipt in Argentine pesos at the BCRA (Argentine Central Bank) exchange rate of the day, or in USD if the customer has a USD account.</li>
+      <li>Accepted payment methods: bank transfer (AR$ or USD).</li>
+      <li>Payment is due within <strong>10 calendar days</strong> of invoice issuance. After that period without payment, we suspend the service after prior email notice.</li>
+      <li>Scope changes that imply monthly fee adjustments apply in the following cycle, prorated if applicable.</li>
+    </ul>
+
+    <h2><span class="num">05</span>Cancellation</h2>
+    <p><strong>You can cancel whenever you want</strong>, without penalty or minimum commitment. To cancel, notify us by email at <a href="mailto:privacidad@quasor.io">privacidad@quasor.io</a> with at least <strong>15 days' notice before the next cycle</strong>.</p>
+    <p>If you cancel mid-month, you continue to have access until the last day of the paid cycle. We do not refund partial months.</p>
+    <p>Upon cancellation, we export all your data in CSV/JSON within 7 days and keep a backup for 90 days in case you want to come back.</p>
+
+    <h2><span class="num">06</span>Our obligations</h2>
+    <ul>
+      <li><strong>Availability:</strong> we commit to a target uptime of <strong>99.5% monthly</strong>. Higher levels (with signed SLA) can be agreed in the commercial proposal.</li>
+      <li><strong>Security:</strong> we maintain the standards described in our <a href="privacy.html">Privacy Policy</a>.</li>
+      <li><strong>Support:</strong> we answer operational queries within <strong>24 business hours</strong> as a target. Stricter response times can be agreed in the commercial proposal.</li>
+      <li><strong>Improvements:</strong> we release new features and improvements regularly; they are included at no additional cost within the contracted scope.</li>
+      <li><strong>Backups:</strong> we make automatic daily backups and keep them for 30 days.</li>
+    </ul>
+
+    <h2><span class="num">07</span>Your obligations</h2>
+    <ul>
+      <li>Use the system in accordance with Argentine law and these terms.</li>
+      <li>Do not use Quasor to send spam, illegal content, or to violate the rights of third parties.</li>
+      <li>Maintain the confidentiality of your access credentials.</li>
+      <li>Pay invoices issued on time and in form.</li>
+      <li>Comply with applicable data protection legislation regarding the data of <strong>your own customers</strong> that you store in the system.</li>
+    </ul>
+
+    <h2><span class="num">08</span>Intellectual property</h2>
+    <ul>
+      <li>The <strong>Quasor system code</strong> is ours. You have usage rights according to your plan, but you cannot copy it, resell it, or reverse engineer it.</li>
+      <li>The <strong>data you upload</strong> (leads, customers, reports, etc.) is 100% yours. We never make commercial use of it.</li>
+      <li>If during setup we develop <strong>specific configurations</strong> for your company, those configurations are licensed to you on a perpetual, non-exclusive basis.</li>
+    </ul>
+
+    <h2><span class="num">09</span>Liability and limits</h2>
+    <p>We do everything reasonable for the service to work correctly, but like any software, it may have incidents. Our total liability for any claim is limited to the <strong>amount you paid us in the 12 months prior</strong> to the event that originated the claim.</p>
+    <p>We are not responsible for:</p>
+    <ul>
+      <li>Loss of commercial opportunities or lost profits arising from service outages.</li>
+      <li>Incidents caused by third parties (outages of Meta, Google, AWS, etc.), although we do our best to mitigate their impact.</li>
+      <li>Improper use of the system by users you have authorized.</li>
+      <li>Data loss when you have disabled backups or modified critical configurations without authorization.</li>
+    </ul>
+
+    <h2><span class="num">10</span>Changes to these terms</h2>
+    <p>We may update these terms. If the change is substantial (for example, changes to pricing structure or cancellation conditions), we notify you by email with <strong>60 days' notice</strong>. During that period you can cancel without penalty if you do not accept the new terms.</p>
+    <p>Minor changes (wording, clarifications, vendor adjustments) are published directly and take effect 15 days later.</p>
+
+    <h2><span class="num">11</span>Service suspension</h2>
+    <p>We may suspend your access to the service, with prior notice when possible, in the following cases:</p>
+    <ul>
+      <li>Non-payment for more than 15 days past due.</li>
+      <li>Use of the system for illegal activities or violations of these terms.</li>
+      <li>Threat to the integrity or security of the service for other customers.</li>
+      <li>Judicial order.</li>
+    </ul>
+
+    <h2><span class="num">12</span>Applicable law and jurisdiction</h2>
+    <p>These terms are governed by the laws of the <strong>Argentine Republic</strong>. Any controversy will be resolved first through good faith dialogue. If we don't reach an agreement, the competent jurisdiction will be the <strong>Ordinary Courts of the Mar del Plata Judicial Department, Buenos Aires Province</strong>, the parties waiving any other forum.</p>
+
+    <h2><span class="num">13</span>Contact</h2>
+    <p>For questions about these terms or the service in general:</p>
+    <ul>
+      <li><strong>Email:</strong> <a href="mailto:privacidad@quasor.io">privacidad@quasor.io</a></li>
+      <li><strong>WhatsApp:</strong> <a href="https://wa.me/5492236892809">+54 9 223 689 2809</a></li>
+      <li><strong>Address:</strong> Mar del Plata, Buenos Aires, Argentina</li>
+    </ul>
+
+    <p style="margin-top: 48px;"><a href="privacy.html">→ View Privacy Policy</a></p>
+  </main>
+
+  <footer class="pagefoot">
+    © 2026 Quasor · <a href="/">Home</a> · <a href="privacy.html">Privacy</a> · <a href="mailto:privacidad@quasor.io">Contact</a> · <a href="/legal/terminos.html">Español</a>
+  </footer>
+</body>
+</html>

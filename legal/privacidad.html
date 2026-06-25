@@ -6,6 +6,9 @@
   <title>Política de Privacidad — Quasor</title>
   <meta name="description" content="Política de Privacidad de Quasor. Cómo tratamos tus datos y los de tus clientes." />
   <meta name="robots" content="index, follow" />
+  <link rel="alternate" hreflang="es-AR" href="https://quasor.io/legal/privacidad.html" />
+  <link rel="alternate" hreflang="en" href="https://quasor.io/legal/en/privacy.html" />
+  <link rel="alternate" hreflang="x-default" href="https://quasor.io/legal/privacidad.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -48,6 +51,9 @@
     .logo { font-family: "Instrument Serif", serif; font-size: 24px; text-decoration: none; color: var(--ink); }
     .back { text-decoration: none; color: var(--ink-2); font-size: 14px; transition: color .2s; }
     .back:hover { color: var(--accent); }
+    .nav-right { display: flex; gap: 20px; align-items: center; }
+    .lang { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--ink-3); text-decoration: none; border: 1px solid var(--line); padding: 4px 10px; border-radius: 12px; transition: all .2s; }
+    .lang:hover { color: var(--accent); border-color: var(--accent); }
 
     main {
       max-width: 760px;
@@ -140,8 +146,11 @@
 <body>
   <header>
     <div class="nav-wrap">
-      <a href="../Landing.html" class="logo">quasor<span class="accent">.</span></a>
-      <a href="../Landing.html" class="back">← Volver al inicio</a>
+      <a href="/" class="logo">quasor<span class="accent">.</span></a>
+      <div class="nav-right">
+        <a href="/legal/en/privacy.html" class="lang">EN</a>
+        <a href="/" class="back">← Volver al inicio</a>
+      </div>
     </div>
   </header>
 
@@ -293,7 +302,7 @@
   </main>
 
   <footer class="pagefoot">
-    © 2026 Quasor · <a href="../Landing.html">Inicio</a> · <a href="terminos.html">Términos</a> · <a href="eliminar-datos.html">Eliminar mis datos</a> · <a href="mailto:privacidad@quasor.io">Contacto</a>
+    © 2026 Quasor · <a href="/">Inicio</a> · <a href="terminos.html">Términos</a> · <a href="eliminar-datos.html">Eliminar mis datos</a> · <a href="mailto:privacidad@quasor.io">Contacto</a> · <a href="/legal/en/privacy.html">English</a>
   </footer>
 </body>
 </html>

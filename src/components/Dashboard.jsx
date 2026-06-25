@@ -115,20 +115,20 @@ const KPI = ({ icon, value, label, delta, prefix = "", suffix = "", decimals = 0
   const v = useCountUp(value, 1400, [value]);
   const positive = delta >= 0;
   return (
-    <div className="bg-surface border border-line rounded-xl p-3 @[540px]/dash:p-4 hover:border-[var(--accent)] transition-colors">
-      <div className="flex items-center justify-between mb-2 @[540px]/dash:mb-3">
-        <div className="w-7 h-7 @[540px]/dash:w-9 @[540px]/dash:h-9 rounded-lg grid place-items-center" style={{ background: "color-mix(in oklab, var(--accent) 12%, var(--bg))", color: "var(--accent)" }}>
+    <div className="bg-surface border border-line rounded-xl p-3 @[760px]/dash:p-4 hover:border-[var(--accent)] transition-colors min-w-0">
+      <div className="flex items-center justify-between mb-2 @[760px]/dash:mb-3">
+        <div className="w-7 h-7 @[760px]/dash:w-9 @[760px]/dash:h-9 rounded-lg grid place-items-center shrink-0" style={{ background: "color-mix(in oklab, var(--accent) 12%, var(--bg))", color: "var(--accent)" }}>
           {icon}
         </div>
-        <span className={`mono text-[10px] @[540px]/dash:text-[11px] tabular-nums ${positive ? "text-[var(--pos)]" : "text-[var(--neg)]"}`}>
+        <span className={`mono text-[10px] @[760px]/dash:text-[11px] tabular-nums ${positive ? "text-[var(--pos)]" : "text-[var(--neg)]"}`}>
           {positive ? "↗" : "↘"} {Math.abs(delta).toFixed(1)}%
         </span>
       </div>
-      <div className="flex items-baseline gap-1">
-        <span className="text-2xl @[540px]/dash:text-3xl font-semibold num ink">{prefix}{fmt(v, decimals)}{suffix}</span>
+      <div className="flex items-baseline gap-1 min-w-0">
+        <span className="text-xl @[760px]/dash:text-2xl @[1040px]/dash:text-3xl font-semibold num ink truncate">{prefix}{fmt(v, decimals)}{suffix}</span>
       </div>
-      <div className="text-xs @[540px]/dash:text-sm ink-2 mt-0.5 leading-tight">{label}</div>
-      <div className="mono text-[11px] ink-3 mt-1">vs período anterior</div>
+      <div className="text-[10px] @[760px]/dash:text-[13px] @[900px]/dash:text-sm ink-2 mt-0.5 leading-tight">{label}</div>
+      <div className="mono text-[10px] @[760px]/dash:text-[11px] ink-3 mt-1 truncate">mes anterior</div>
     </div>
   );
 };
@@ -627,17 +627,17 @@ const IntegCard = ({ logo, name, desc, status, lastSync, account }) => {
   );
 };
 
-const ZonapropLogo = () => <div className="w-8 h-8 rounded-lg bg-[#f05000] text-white grid place-items-center font-bold text-sm">Z</div>;
-const ArgenpropLogo = () => <div className="w-8 h-8 rounded-lg bg-[#009a44] text-white grid place-items-center font-bold text-sm">A</div>;
 const WhatsAppLogo = () => <div className="w-8 h-8 rounded-lg bg-[#25D366] text-white grid place-items-center font-bold text-sm">W</div>;
 const InstagramLogo = () => <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#fd1d1d] via-[#fcb045] to-[#833ab4] text-white grid place-items-center font-bold text-[10px]">IG</div>;
+const ZonapropLogo = () => <div className="w-8 h-8 rounded-lg bg-[#f05000] text-white grid place-items-center font-bold text-sm">Z</div>;
+const ArgenpropLogo = () => <div className="w-8 h-8 rounded-lg bg-[#009a44] text-white grid place-items-center font-bold text-sm">A</div>;
 
 const ViewIntegr = () => (
   <div className="p-5 space-y-5">
     {/* Header with sync status */}
     <div className="flex items-center justify-between gap-2 flex-wrap">
       <div className="flex items-center gap-2 text-xs ink-3">
-        <span className="mono">5 conectadas</span>
+        <span className="mono">3 conectadas</span>
         <span className="w-1 h-1 rounded-full bg-[var(--ink-3)]" />
         <span className="mono">última sync: hace 12s</span>
       </div>
@@ -651,7 +651,7 @@ const ViewIntegr = () => (
     <div>
       <div className="flex items-center gap-2 mb-3">
         <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)] pulse-dot" />
-        <span className="mono text-[10px] uppercase tracking-[0.18em] ink-3">conectadas · 5</span>
+        <span className="mono text-[10px] uppercase tracking-[0.18em] ink-3">conectadas · 3</span>
       </div>
       <div className="grid grid-cols-1 @[600px]/dash:grid-cols-2 gap-3">
         <IntegCard
@@ -669,22 +669,6 @@ const ViewIntegr = () => (
           status="connected"
           account="API conectada"
           lastSync="hace 8m"
-        />
-        <IntegCard
-          logo={<ZonapropLogo/>}
-          name="ZonaProp"
-          desc="Auto-import de leads desde portal."
-          status="connected"
-          account="grupocosta.zonaprop.com.ar"
-          lastSync="hace 2m"
-        />
-        <IntegCard
-          logo={<ArgenpropLogo/>}
-          name="Argenprop"
-          desc="Auto-import de leads desde portal."
-          status="connected"
-          account="Grupo Costa Inmobiliaria"
-          lastSync="hace 5m"
         />
         <IntegCard
           logo={<WhatsAppLogo/>}
@@ -711,6 +695,18 @@ const ViewIntegr = () => (
           logo={<InstagramLogo/>}
           name="Instagram DM"
           desc="DMs como leads, asignación automática."
+          status="soon"
+        />
+        <IntegCard
+          logo={<ZonapropLogo/>}
+          name="ZonaProp"
+          desc="Auto-import de leads desde portal."
+          status="soon"
+        />
+        <IntegCard
+          logo={<ArgenpropLogo/>}
+          name="Argenprop"
+          desc="Auto-import de leads desde portal."
           status="soon"
         />
       </div>

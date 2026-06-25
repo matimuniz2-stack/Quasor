@@ -60,14 +60,14 @@ export const DATASETS = {
       { k: "Orgánico",  pct:  9, color: "#9a9689" },
     ],
     campaigns: [
-      { name: "Departamentos Centro — 1A", plat: "ZonaProp", spend: 420, leads: 78, cpl:  5.4, status: "hot"  },
+      { name: "Departamentos Centro — 1A", plat: "Meta Ads", spend: 420, leads: 78, cpl:  5.4, status: "hot"  },
       { name: "Casas Barrio Parque",       plat: "Meta Ads", spend: 380, leads: 46, cpl:  8.3, status: "ok"   },
-      { name: "Monoambientes Inversores",  plat: "Argenprop",spend: 240, leads: 31, cpl:  7.7, status: "ok"   },
+      { name: "Monoambientes Inversores",  plat: "Google",   spend: 240, leads: 31, cpl:  7.7, status: "ok"   },
       { name: "Pozo Torres del Mar",       plat: "Meta Ads", spend: 560, leads: 22, cpl: 25.4, status: "warn" },
       { name: "Alquileres Temporarios",    plat: "Google",   spend: 180, leads: 54, cpl:  3.3, status: "hot"  },
     ],
     leads: [
-      { name: "Sofía Iglesias",  car: "Depto 2 amb · Centro",    src: "ZonaProp", stage: "Visita agendada", score: 88, when: "hace 9m" },
+      { name: "Sofía Iglesias",  car: "Depto 2 amb · Centro",    src: "Meta",     stage: "Visita agendada", score: 88, when: "hace 9m" },
       { name: "Ramiro Salas",    car: "Casa · Parque Luro",      src: "Meta",     stage: "Cotización",      score: 72, when: "hace 22m" },
       { name: "Alejo Vera",      car: "PH · Güemes",             src: "Portal",   stage: "Nuevo",           score: 60, when: "hace 48m" },
       { name: "Paula Ortiz",     car: "Depto pozo · Torre Mar",  src: "Meta",     stage: "Negociación",     score: 84, when: "hace 1h" },
@@ -96,13 +96,13 @@ export const SERVICES = [
     k: "API",
     name: "Integraciones",
     body: "Cualquier API. Sync bidireccional en menos de 60s.",
-    bullets: ["Webhooks bidireccionales", "Sync < 60s", "Retry con cola"],
+    bullets: ["Cambios del portal en Quasor en < 60s", "Si el portal cae, los leads no se pierden", "Conectamos con cualquier endpoint"],
   },
   {
     k: "IA",
     name: "Automatizaciones",
-    body: "Procesos manuales que ahora corren solos.",
-    bullets: ["Scoring de leads", "Respuestas automáticas", "Detección de anomalías"],
+    body: "Lo que antes hacías a mano, ahora es una notificación.",
+    bullets: ["Alerta: lead respondió 2 veces sin asignar", "Auto-respuesta WhatsApp en < 30s", "Aviso si tu CPL se dispara 3x"],
   },
 ];
 
@@ -123,7 +123,7 @@ export const PROCESS = [
     body: "Portales, WhatsApp, mail, contactos, alertas. Una o dos semanas. Sin meses.",
     term: [
       { p: "$", t: "setup --inmobiliaria", w: 800 },
-      { p: "├", t: "ZonaProp + Argenprop ✓" },
+      { p: "├", t: "Meta Lead Ads + Google Ads ✓" },
       { p: "├", t: "WhatsApp Business ✓" },
       { p: "├", t: "Importados: 1.240 contactos" },
       { p: "└", t: "Usuarios: 6 vendedores" },
@@ -184,7 +184,7 @@ export const EXPECTED_RESULTS = [
   },
   {
     metric: { v: "4 → 1", k: "Plataformas a revisar" },
-    desc: "ZonaProp, Argenprop, Tokko y WhatsApp integrados en un solo tablero.",
+    desc: "Meta Ads, Google Ads, Tokko y WhatsApp integrados en un solo tablero.",
     vertical: "Inmobiliarias",
   },
 ];

@@ -1,21 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://quasor.io/</loc>
-    <lastmod>2026-04-30</lastmod>
+    <lastmod>2026-05-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://quasor.io/legal/privacidad.html</loc>
-    <lastmod>2026-04-30</lastmod>
+    <lastmod>2026-05-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="es-AR" href="https://quasor.io/legal/privacidad.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://quasor.io/legal/en/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://quasor.io/legal/privacidad.html"/>
+  </url>
+  <url>
+    <loc>https://quasor.io/legal/en/privacy.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="es-AR" href="https://quasor.io/legal/privacidad.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://quasor.io/legal/en/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://quasor.io/legal/privacidad.html"/>
   </url>
   <url>
     <loc>https://quasor.io/legal/terminos.html</loc>
-    <lastmod>2026-04-30</lastmod>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="es-AR" href="https://quasor.io/legal/terminos.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://quasor.io/legal/en/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://quasor.io/legal/terminos.html"/>
+  </url>
+  <url>
+    <loc>https://quasor.io/legal/en/terms.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="es-AR" href="https://quasor.io/legal/terminos.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://quasor.io/legal/en/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://quasor.io/legal/terminos.html"/>
+  </url>
+  <url>
+    <loc>https://quasor.io/legal/eliminar-datos.html</loc>
+    <lastmod>2026-05-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="es-AR" href="https://quasor.io/legal/eliminar-datos.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://quasor.io/legal/en/data-deletion.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://quasor.io/legal/eliminar-datos.html"/>
+  </url>
+  <url>
+    <loc>https://quasor.io/legal/en/data-deletion.html</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="es-AR" href="https://quasor.io/legal/eliminar-datos.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://quasor.io/legal/en/data-deletion.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://quasor.io/legal/eliminar-datos.html"/>
   </url>
 </urlset>

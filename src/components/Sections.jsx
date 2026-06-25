@@ -326,7 +326,7 @@ export const Hero = () => {
         {/* Two-column hero: text left, live dashboard right (kicks in at lg+ for laptop visibility) */}
         {/* items-start: title is anchored to the top so dashboard view-switching doesn't push it up/down */}
         <div className="mt-8 md:mt-10 grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5 xl:col-span-4">
             {/* Category anchor — visible CRM positioning above the H1 */}
             <div
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mono text-[11px] uppercase tracking-[0.18em] rise mb-5"
@@ -364,10 +364,10 @@ export const Hero = () => {
               style={{ animationDelay: "240ms" }}
             >
               <a href="#contacto" data-magnetic="0.3" className="text-[15px] px-5 py-3 rounded-full btn-accent hover:opacity-95 transition flex items-center gap-2 font-medium">
-                Agendar una demo <span>→</span>
+                Hablemos 30 min <span>→</span>
               </a>
               <a href="#casos" data-magnetic="0.25" className="text-[15px] px-5 py-3 rounded-full border border-line-2 hover:bg-surface-2 transition">
-                Ver casos
+                Ver caso real
               </a>
             </div>
             <div className="mt-4 flex items-center gap-3 mono text-[11px] ink-3 flex-wrap">
@@ -382,7 +382,7 @@ export const Hero = () => {
 
           {/* Dashboard — right column on lg+, full-width below text on md- */}
           <div
-            className="lg:col-span-7 lg:-mr-2 rise"
+            className="lg:col-span-7 xl:col-span-8 lg:-mr-2 rise"
             style={{ animationDelay: "320ms" }}
           >
             <div className="relative">
@@ -439,8 +439,6 @@ const TokkoMark = () => (
 );
 
 const INTEGRATIONS = [
-  { n: "ZonaProp",     c: "#f05000", Logo: ZonaPropMark   },
-  { n: "Argenprop",    c: "#009a44", Logo: ArgenPropMark  },
   { n: "Tokko Broker", c: "#ff5a1f", Logo: TokkoMark      },
   { n: "WhatsApp",     c: "#25D366", Logo: SiWhatsapp     },
   { n: "Meta Ads",     c: "#0866ff", Logo: SiMeta         },
@@ -666,7 +664,7 @@ export const UseCases = () => {
             </div>
             <h3 className="serif text-3xl md:text-5xl leading-[1.02] tracking-tight mb-4">Pipeline inmobiliario, end-to-end.</h3>
             <p className="ink-2 mb-6 max-w-md leading-relaxed">
-              Captura desde ZonaProp, Argenprop, Tokko y WhatsApp. Asigna por zona, mide conversión por vendedor. Reportes automáticos sin Excel.
+              Captura desde Meta Lead Ads, Google Ads, Tokko y WhatsApp. Asigna por zona, mide conversión por vendedor. Reportes automáticos sin Excel.
             </p>
             <div className="flex flex-wrap gap-1.5 mt-auto">
               <span className="mono text-[10px] ink-3 uppercase tracking-wider mr-1 self-center">track:</span>
@@ -1141,36 +1139,36 @@ export const Services = () => (
 export const WhyQuasor = () => {
   const cols = [
     {
-      k: "freelance",
-      name: "Dev freelance",
+      k: "internacional",
+      name: "HubSpot · Zoho · Salesforce",
       tone: "neutral",
-      desc: "Barato, rápido de contratar",
+      desc: "Líderes globales, no enfocados en ARG",
       rows: [
-        { v: "1 persona", good: false, hint: "Si se enferma o desaparece, tu proyecto también" },
-        { v: "Cotiza por hora", good: false, hint: "Incentivo a estirar horas" },
-        { v: "Código sin docs", good: false, hint: "Cuando se va, te quedás con un binario" },
+        { v: "Pricing en USD · sin factura local", good: false, hint: "Plans complejos. Cambio de divisa y reconciliación AFIP a tu cargo." },
+        { v: "Dashboards y soporte en inglés", good: false, hint: "Tu equipo se capacita en jerga US, no en el lenguaje del rubro AR." },
+        { v: "Tokko / Meta Lead Ads / Google: vía Zapier", good: false, hint: "Sin integraciones nativas para el stack inmobiliario AR. Conectores externos en el medio." },
       ],
     },
     {
       k: "quasor",
       name: "Quasor",
       tone: "accent",
-      desc: "Estudio enfocado, procesos reales",
+      desc: "Hecho para inmobiliarias argentinas",
       rows: [
-        { v: "Equipo dedicado", good: true, hint: "Hablás directo con quien programa. Sin account managers." },
-        { v: "Precio fijo por entregable", good: true, hint: "Sabés el costo antes de empezar" },
-        { v: "Código documentado · vos sos dueño", good: true, hint: "Sin lock-in, exportás cuando quieras" },
+        { v: "Pricing en AR$ · sin permanencia", good: true, hint: "Factura local. Cancelás cuando quieras." },
+        { v: "Tokko · WhatsApp · Meta · Google · nativos", good: true, hint: "Integraciones nativas. Sync < 60s. Sin Zapier en el medio." },
+        { v: "Soporte WhatsApp horario AR · < 2h", good: true, hint: "Hablás directo con quien programa. Sin tickets ni account managers." },
       ],
     },
     {
-      k: "agencia",
-      name: "Agencia tradicional",
+      k: "local",
+      name: "Tokko · Wasi",
       tone: "neutral",
-      desc: "Grande, formal, lenta",
+      desc: "Gestión inmobiliaria · CRM secundario",
       rows: [
-        { v: "Equipo rotativo", good: false, hint: "Empezás con seniors, terminás con juniors" },
-        { v: "3 meses de discovery", good: false, hint: "Pagás por reuniones antes de ver código" },
-        { v: "Código que no podés mantener", good: false, hint: "Quedás atado al proveedor original" },
+        { v: "Foco: catálogo y administración", good: false, hint: "El CRM es un módulo, no el foco. Property management primero, sales pipeline después." },
+        { v: "Pipeline / automation: limitados", good: false, hint: "Asignación inteligente y alertas requieren workarounds." },
+        { v: "Cambios custom: cola + ticket", good: false, hint: "Software empaquetado, no a medida de tu operación." },
       ],
     },
   ];
@@ -1482,9 +1480,56 @@ export const Testimonials = () => {
   );
 };
 
-// Renamed from "Pricing" — same export name kept for App.jsx compat,
-// but now shows a qualification filter ("para quién es") instead of price tiers.
+// Pricing: 3 tiers + qualification filter + CTA strip.
+// Tiers viven en el array `tiers` abajo — editar ahí para ajustar precios, tag o features.
 export const Pricing = () => {
+  const tiers = [
+    {
+      k: "esencial",
+      name: "Esencial",
+      price: 500,
+      tag: "Inmobiliarias chicas · 4–6 vendedores",
+      features: [
+        "WhatsApp Business",
+        "Tokko · sync de catálogo",
+        "Pipeline + asignación a vendedor",
+        "Reportes mensuales",
+        "Soporte WhatsApp en horario AR",
+      ],
+      recommended: false,
+    },
+    {
+      k: "pro",
+      name: "Pro",
+      price: 800,
+      tag: "Inmobiliarias medianas · 6–12 vendedores",
+      features: [
+        "Todo lo de Esencial, más:",
+        "Meta Lead Ads + Google Ads",
+        "Automatizaciones (auto-respuesta, alertas, scoring)",
+        "Dashboards multi-fuente",
+        "Reportes semanales + ad-hoc",
+        "Soporte prioritario · < 4h",
+      ],
+      recommended: true,
+    },
+    {
+      k: "custom",
+      name: "Custom",
+      price: 1400,
+      tag: "12+ vendedores · grupos · multi-sucursal",
+      features: [
+        "Todo lo de Pro, más:",
+        "Integraciones custom (cualquier API)",
+        "White-label del CRM",
+        "On-premise opcional (tu infra)",
+        "SLA firmado · uptime 99.9%",
+        "Account manager dedicado",
+      ],
+      recommended: false,
+    },
+  ];
+
   const fitYou = [
     { t: "Tenés 4+ vendedores activos", h: "Si sos solo, una planilla alcanza." },
     { t: "Recibís 50+ consultas por mes", h: "Acá la asignación automática rinde." },
@@ -1499,12 +1544,80 @@ export const Pricing = () => {
   return (
     <section id="precios" className="relative border-t border-line">
       <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-24 md:py-32">
+        {/* Header — pricing */}
         <div className="flex items-end justify-between gap-8 flex-wrap mb-14">
           <div>
-            <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">08 — para quién es</div>
+            <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">08 — pricing</div>
             <h2 className="serif text-5xl md:text-7xl leading-[0.98] mt-4 tracking-tight">
-              ¿Es <em className="italic accent">para vos?</em>
+              Tres planes. <em className="italic">Honestos.</em>
             </h2>
+          </div>
+          <p className="ink-2 max-w-sm">
+            Mensual en USD. Facturamos en AR$ o USD según prefieras.<br/>
+            <span className="mono text-[11px] ink-3">Setup según integraciones · lo cerramos en discovery.</span>
+          </p>
+        </div>
+
+        {/* Tier cards */}
+        <div className="grid md:grid-cols-3 gap-px bg-[var(--line)] border border-line rounded-2xl overflow-hidden mb-16 md:mb-20">
+          {tiers.map((t) => {
+            const isRec = t.recommended;
+            return (
+              <div
+                key={t.k}
+                className={`relative p-7 md:p-9 flex flex-col ${isRec ? "" : "bg-surface"}`}
+                style={isRec ? { background: "var(--rec-bg)", color: "var(--rec-fg)" } : undefined}
+              >
+                {isRec && (
+                  <div className="absolute top-4 right-4 mono text-[10px] uppercase tracking-wider accent border border-[var(--accent)] px-2 py-0.5 rounded-full">
+                    recomendado
+                  </div>
+                )}
+                <div className="mono text-[11px] uppercase tracking-[0.18em]" style={isRec ? { color: "var(--rec-fg-muted)" } : undefined}>
+                  {isRec ? t.k : <span className="ink-3">{t.k}</span>}
+                </div>
+                <h3 className="serif text-3xl md:text-4xl mt-3 tracking-tight leading-tight">{t.name}</h3>
+                <div className="mt-4 flex items-baseline gap-2">
+                  <span className="mono text-[12px]" style={isRec ? { color: "var(--rec-fg-muted)" } : { color: "var(--ink-3)" }}>USD</span>
+                  <span className="serif num text-5xl md:text-6xl leading-none">${t.price}</span>
+                  <span className="mono text-[12px]" style={isRec ? { color: "var(--rec-fg-muted)" } : { color: "var(--ink-3)" }}>/mes</span>
+                </div>
+                <p className={`mt-4 text-sm ${isRec ? "" : "ink-2"}`} style={isRec ? { color: "var(--rec-fg-muted)" } : undefined}>
+                  {t.tag}
+                </p>
+                <div
+                  className="hl-grad my-6"
+                  style={isRec ? { background: "linear-gradient(90deg, transparent, var(--rec-divider), transparent)" } : undefined}
+                />
+                <ul className="space-y-2.5 flex-1">
+                  {t.features.map((f, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm">
+                      <span className="accent mono mt-0.5 shrink-0">→</span>
+                      <span style={isRec ? { color: "var(--rec-fg-muted)" } : { color: "var(--ink-2)" }}>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="#contacto"
+                  className={`mt-7 inline-flex items-center justify-center w-full gap-2 px-5 py-3 rounded-full text-[14px] font-medium transition ${
+                    isRec ? "btn-accent hover:opacity-95" : "border border-line-2 hover:bg-surface-2"
+                  }`}
+                  style={!isRec ? undefined : undefined}
+                >
+                  Reservar 30 min <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Fit / qualification — sub-bloque sin nuevo número */}
+        <div className="flex items-end justify-between gap-8 flex-wrap mb-10 pt-12 border-t border-line">
+          <div>
+            <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">antes de empezar</div>
+            <h3 className="serif text-3xl md:text-5xl leading-[1.05] mt-3 tracking-tight">
+              ¿Es <em className="italic accent">para vos?</em>
+            </h3>
           </div>
           <p className="ink-2 max-w-sm">
             Cuándo encajamos. Y cuándo no.
@@ -1726,7 +1839,7 @@ export const StickyMobileCTA = () => {
           href="#contacto"
           className="flex-1 inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full btn-accent text-[14px] font-medium"
         >
-          Agendar demo <span aria-hidden="true">→</span>
+          Hablar 30 min <span aria-hidden="true">→</span>
         </a>
       </div>
     </div>
