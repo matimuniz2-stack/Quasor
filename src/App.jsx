@@ -153,43 +153,6 @@ const App = () => {
     }, { threshold: 0.2, rootMargin: "0px 0px -40px 0px" });
     revealTargets.forEach(t => rwIo.observe(t));
 
-    // ============================================================
-    // MAGNETIC BUTTONS (only on fine pointer + non-reduced-motion)
-    // ============================================================
-    const isFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    let magCleanup = null;
-    if (isFinePointer && !prefersReduced) {
-      const mags = document.querySelectorAll("[data-magnetic]");
-      const magHandlers = [];
-      mags.forEach(el => {
-        let inner = el.querySelector(".mag-inner");
-        if (!inner) {
-          inner = document.createElement("span");
-          inner.className = "mag-inner";
-          while (el.firstChild) inner.appendChild(el.firstChild);
-          el.appendChild(inner);
-        }
-        const strength = parseFloat(el.dataset.magnetic) || 0.35;
-        const mm = (e) => {
-          const r = el.getBoundingClientRect();
-          const x = e.clientX - (r.left + r.width/2);
-          const y = e.clientY - (r.top + r.height/2);
-          el.style.transform = `translate(${x*strength}px, ${y*strength}px)`;
-          inner.style.transform = `translate(${x*strength*0.5}px, ${y*strength*0.5}px)`;
-        };
-        const ml = () => { el.style.transform = ""; inner.style.transform = ""; };
-        el.addEventListener("mousemove", mm);
-        el.addEventListener("mouseleave", ml);
-        magHandlers.push([el, mm, ml]);
-      });
-      magCleanup = () => {
-        magHandlers.forEach(([el, mm, ml]) => {
-          el.removeEventListener("mousemove", mm);
-          el.removeEventListener("mouseleave", ml);
-        });
-      };
-    }
-
     return () => {
       window.removeEventListener("message", onMsg);
       io.disconnect();
@@ -199,7 +162,6 @@ const App = () => {
         lenis.destroy();
         cancelAnimationFrame(rafId);
       }
-      if (magCleanup) magCleanup();
       cleanupSystemListener();
     };
   }, []);

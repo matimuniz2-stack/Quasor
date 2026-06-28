@@ -12,6 +12,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    (function(){try{var s=localStorage.getItem('quasor-theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',s||m);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();
+  </script>
   <style>
     :root {
       --bg: #ffffff;
@@ -23,6 +26,18 @@
       --line-2: #d9d9d9;
       --accent: #ff5a1f;
     }
+    html[data-theme="dark"] {
+      --bg: #0b0b0c;
+      --bg-2: #141416;
+      --ink: #f4f1ea;
+      --ink-2: #bab5ab;
+      --ink-3: #7a756d;
+      --line: #1e1e21;
+      --line-2: #2a2a2f;
+      --accent: #ff7a3d;
+    }
+    html { color-scheme: light; }
+    html[data-theme="dark"] { color-scheme: dark; }
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
     body {
@@ -51,9 +66,20 @@
     .logo { font-family: "Instrument Serif", serif; font-size: 24px; text-decoration: none; color: var(--ink); }
     .back { text-decoration: none; color: var(--ink-2); font-size: 14px; transition: color .2s; }
     .back:hover { color: var(--accent); }
-    .nav-right { display: flex; gap: 20px; align-items: center; }
+    .nav-right { display: flex; gap: 16px; align-items: center; }
     .lang { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--ink-3); text-decoration: none; border: 1px solid var(--line); padding: 4px 10px; border-radius: 12px; transition: all .2s; }
     .lang:hover { color: var(--accent); border-color: var(--accent); }
+    .theme-toggle {
+      width: 32px; height: 32px; border-radius: 999px;
+      border: 1px solid var(--line); background: transparent; color: var(--ink-2);
+      display: grid; place-items: center; cursor: pointer; padding: 0;
+      transition: color .2s, border-color .2s;
+    }
+    .theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+    .theme-toggle svg { width: 16px; height: 16px; }
+    .theme-toggle .icon-sun { display: none; }
+    html[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+    html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
     main {
       max-width: 760px;
@@ -148,6 +174,7 @@
     <div class="nav-wrap">
       <a href="/" class="logo">quasor<span class="accent">.</span></a>
       <div class="nav-right">
+        <button type="button" class="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema"><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button>
         <a href="/legal/en/privacy.html" class="lang">EN</a>
         <a href="/" class="back">← Volver al inicio</a>
       </div>
@@ -195,7 +222,7 @@
     <h2><span class="num">04</span>Con quién compartimos datos</h2>
     <p>Sólo con proveedores necesarios para operar el servicio, y sólo lo mínimo indispensable:</p>
     <ul>
-      <li><strong>Proveedores de infraestructura</strong> (AWS, Google Cloud): para alojar la base de datos y los servidores. Firman acuerdos de confidencialidad con nosotros.</li>
+      <li><strong>Proveedores de infraestructura</strong> (Google Cloud): para alojar la base de datos y los servidores. Firman acuerdos de confidencialidad con nosotros.</li>
       <li><strong>Plataformas que vos conectás:</strong> cuando autorizás una integración con Meta (Facebook/Instagram), Google Ads, WhatsApp Business, <strong>Tokobroker</strong> u otra plataforma, los datos fluyen entre esas plataformas y Quasor según los permisos puntuales que otorgaste durante la autenticación. Nunca accedemos a páginas, cuentas o datos que no hayas conectado expresamente, y nunca publicamos contenido en tu nombre. Cumplimos con las <a href="https://developers.facebook.com/terms" target="_blank" rel="noopener noreferrer">Platform Terms de Meta</a> y sus Developer Policies.</li>
       <li><strong>Autoridades</strong>: si una autoridad judicial argentina nos lo exige mediante orden válida, cumplimos la ley. Te avisaríamos salvo que la orden lo prohíba.</li>
     </ul>
@@ -249,7 +276,7 @@
     <p>No accedemos a información de Tokobroker que no sea estrictamente la del catálogo de la inmobiliaria que autorizó la conexión, y la sincronización se interrumpe en el momento en que la inmobiliaria revoca la integración o cancela el servicio.</p>
 
     <h2><span class="num">08</span>Dónde viven tus datos</h2>
-    <p>Por defecto alojamos los datos en servidores de AWS en la región <strong>sa-east-1 (São Paulo, Brasil)</strong>, con redundancia diaria. Si preferís que vivan en tu propia infraestructura (on-premise) o en otro proveedor, lo coordinamos en el setup — ese es tu derecho y no cobramos extra por elegirlo.</p>
+    <p>Alojamos los datos en la infraestructura de <strong>Google Cloud</strong>, en la región <strong>US East (Virginia, Estados Unidos)</strong>, con redundancia diaria. Google Cloud es una de las plataformas de nube más usadas y certificadas del mundo (ISO 27001, SOC 1/2/3, entre otras), lo que garantiza estándares de seguridad de nivel empresarial para tu información.</p>
 
     <h2><span class="num">09</span>Cómo los protegemos</h2>
     <ul>
@@ -304,5 +331,8 @@
   <footer class="pagefoot">
     © 2026 Quasor · <a href="/">Inicio</a> · <a href="terminos.html">Términos</a> · <a href="eliminar-datos.html">Eliminar mis datos</a> · <a href="mailto:privacidad@quasor.io">Contacto</a> · <a href="/legal/en/privacy.html">English</a>
   </footer>
+  <script>
+    (function(){var b=document.querySelector('.theme-toggle');if(!b)return;b.addEventListener('click',function(){var cur=document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light';var next=cur==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',next);try{localStorage.setItem('quasor-theme',next);}catch(e){}});})();
+  </script>
 </body>
 </html>

@@ -1,7 +1,8 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { SiWhatsapp, SiMeta, SiGoogleads, SiInstagram, SiGmail } from 'react-icons/si';
 import { Dashboard } from './Dashboard.jsx';
-import { SERVICES, PROCESS, TESTIMONIALS, EXPECTED_RESULTS, FAQ, getCurrentSlots } from '../data.js';
+import { Button, Badge, Card, FeatureSurface } from './ui/index.js';
+import { SERVICES, PROCESS, TESTIMONIALS, EXPECTED_RESULTS, FAQ } from '../data.js';
 
 // 3D tilt wrapper — perspective + lerp-smoothed rotation following the cursor.
 // No-op on touch devices and when prefers-reduced-motion is set.
@@ -178,7 +179,6 @@ const HamburgerIcon = ({ open }) => (
 );
 
 export const Nav = ({ theme, onToggleTheme }) => {
-  const slots = getCurrentSlots();
   const [menuOpen, setMenuOpen] = useState(false);
 
   // Lock body scroll when mobile menu is open + close on Escape
@@ -202,12 +202,11 @@ export const Nav = ({ theme, onToggleTheme }) => {
           </nav>
         </div>
         <div className="flex items-center gap-3">
-          <div className="hidden md:flex items-center gap-2 mono text-[11px] ink-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)] pulse-dot" />
-            <span>Disponible · {slots.count} slots {slots.month}</span>
-          </div>
+          <Badge pulse className="max-md:hidden mono text-[11px] ink-3">
+            <span>Disponible · respondemos hoy</span>
+          </Badge>
           <ThemeToggle theme={theme} onToggle={onToggleTheme} />
-          <a href="#contacto" className="hidden sm:inline-flex text-sm px-3.5 py-1.5 rounded-full btn-accent hover:opacity-95 transition items-center font-medium">Agendar demo →</a>
+          <Button href="#contacto" className="max-sm:hidden text-sm px-3.5 py-1.5 font-medium">Agendar demo →</Button>
           <button
             type="button"
             className="md:hidden w-8 h-8 rounded-full border border-line grid place-items-center ink-2"
@@ -238,17 +237,16 @@ export const Nav = ({ theme, onToggleTheme }) => {
               {label}
             </a>
           ))}
-          <div className="mt-3 flex items-center gap-2 mono text-[11px] ink-3 pb-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)] pulse-dot" />
-            <span>Disponible · {slots.count} slots {slots.month}</span>
-          </div>
-          <a
+          <Badge pulse className="mt-3 mono text-[11px] ink-3 pb-2">
+            <span>Disponible · respondemos hoy</span>
+          </Badge>
+          <Button
             href="#contacto"
             onClick={() => setMenuOpen(false)}
-            className="sm:hidden mt-1 text-center text-sm px-3.5 py-3 rounded-full btn-accent font-medium"
+            className="sm:hidden w-full mt-1 text-sm px-3.5 py-3 font-medium"
           >
             Agendar demo →
-          </a>
+          </Button>
         </nav>
       </div>
     </header>
@@ -306,7 +304,6 @@ const TypeRotator = ({ words, className }) => {
 };
 
 export const Hero = () => {
-  const slots = getCurrentSlots();
   return (
     <section className="relative overflow-hidden">
       {/* Cinematic background: mesh blobs + dotted grid + grain */}
@@ -363,12 +360,12 @@ export const Hero = () => {
               className="mt-8 flex flex-wrap items-center gap-3 rise"
               style={{ animationDelay: "240ms" }}
             >
-              <a href="#contacto" data-magnetic="0.3" className="text-[15px] px-5 py-3 rounded-full btn-accent hover:opacity-95 transition flex items-center gap-2 font-medium">
+              <Button href="#contacto" className="text-[15px] px-5 py-3 font-medium">
                 Hablemos 30 min <span>→</span>
-              </a>
-              <a href="#casos" data-magnetic="0.25" className="text-[15px] px-5 py-3 rounded-full border border-line-2 hover:bg-surface-2 transition">
+              </Button>
+              <Button href="#casos" variant="secondary" className="text-[15px] px-5 py-3">
                 Ver caso real
-              </a>
+              </Button>
             </div>
             <div className="mt-4 flex items-center gap-3 mono text-[11px] ink-3 flex-wrap">
               <span className="inline-flex items-center gap-1.5">
@@ -642,7 +639,7 @@ export const UseCases = () => {
         </div>
 
         {/* Primary case — Inmobiliarias, in-production deep dive */}
-        <div className="card overflow-hidden grid md:grid-cols-2 group hover:border-[var(--accent)] transition-colors duration-300">
+        <Card hover className="overflow-hidden grid md:grid-cols-2 group">
           <div className="relative h-72 md:h-auto md:min-h-[420px] bg-surface-2 border-b md:border-b-0 md:border-r border-line overflow-hidden">
             <PipelinePreview />
             <div className="absolute inset-0 bg-gradient-to-tr from-[var(--bg)]/30 via-transparent to-transparent pointer-events-none" />
@@ -673,7 +670,7 @@ export const UseCases = () => {
               ))}
             </div>
           </div>
-        </div>
+        </Card>
 
         {/* Other verticals — honest "consultanos" strip */}
         <div className="mt-10 md:mt-12">
@@ -1109,7 +1106,7 @@ export const Services = () => (
         {SERVICES.map((s, i) => {
           const ServiceIcon = SERVICE_ICONS[s.k] || SERVICE_ICONS.CRM;
           return (
-            <div key={s.k} className="bg-surface p-8 md:p-10 group hover:bg-[color-mix(in_oklab,var(--accent)_3%,var(--bg))] transition-colors">
+            <div key={s.k} className="bg-surface p-8 md:p-10 group hover:bg-[color-mix(in_oklab,var(--accent)_3%,var(--bg))] transition-colors overflow-hidden">
               <div className="flex items-start justify-between">
                 <div className="w-12 h-12 rounded-xl grid place-items-center transition-transform duration-300 group-hover:scale-105 group-hover:rotate-2" style={{ background: "color-mix(in oklab, var(--accent) 12%, var(--bg))", color: "var(--accent)" }}>
                   <ServiceIcon />
@@ -1119,7 +1116,7 @@ export const Services = () => (
                   <div className="mono text-[11px] ink-3 mt-0.5">{s.k}</div>
                 </div>
               </div>
-              <h3 className="serif text-3xl md:text-4xl lg:text-5xl mt-6 leading-[1] tracking-tight">{s.name}</h3>
+              <h3 className="serif text-3xl md:text-4xl mt-6 leading-[1] tracking-tight break-words hyphens-auto">{s.name}</h3>
               <p className="mt-4 ink-2 max-w-sm">{s.body}</p>
               <ul className="mt-6 space-y-2">
                 {s.bullets.map(b => (
@@ -1415,7 +1412,7 @@ export const Testimonials = () => {
         </div>
 
         <div className="grid md:grid-cols-[0.9fr_1.3fr] gap-0 border border-line rounded-2xl overflow-hidden bg-surface">
-          <div className="relative p-8 md:p-10 bg-[var(--ink)] text-[var(--bg)] overflow-hidden">
+          <FeatureSurface className="relative p-8 md:p-10 overflow-hidden">
             <div className="absolute inset-0 glow opacity-60 pointer-events-none" />
             <div className="relative">
               <div className="flex items-center gap-2 mono text-[11px] uppercase tracking-[0.18em] opacity-80">
@@ -1428,7 +1425,7 @@ export const Testimonials = () => {
                 inmobiliaria · Mar del Plata · 6 vendedores
               </div>
             </div>
-          </div>
+          </FeatureSurface>
           <figure className="p-8 md:p-10 flex flex-col justify-between">
             <div>
               <div className="serif text-7xl accent leading-none opacity-30">"</div>
@@ -1482,7 +1479,7 @@ export const Testimonials = () => {
 
 // Pricing: 3 tiers + qualification filter + CTA strip.
 // Tiers viven en el array `tiers` abajo — editar ahí para ajustar tag o features.
-// El precio NO se publica: se cierra en discovery.
+// El precio NO se publica: se define en la primera reunión.
 export const Pricing = () => {
   const tiers = [
     {
@@ -1520,7 +1517,7 @@ export const Pricing = () => {
         "Todo lo de Pro, más:",
         "Integraciones custom (cualquier API)",
         "White-label del CRM",
-        "On-premise opcional (tu infra)",
+        "Base de datos dedicada en Google Cloud",
         "SLA firmado · uptime 99.9%",
         "Account manager dedicado",
       ],
@@ -1552,7 +1549,7 @@ export const Pricing = () => {
           </div>
           <p className="ink-2 max-w-sm">
             Mensual, sin permanencia. Cancelás cuando quieras.<br/>
-            <span className="mono text-[11px] ink-3">Precio según escala e integraciones · lo cerramos en discovery.</span>
+            <span className="mono text-[11px] ink-3">Precio según escala e integraciones · lo definimos en la primera reunión.</span>
           </p>
         </div>
 
@@ -1577,7 +1574,7 @@ export const Pricing = () => {
                 <h3 className="serif text-3xl md:text-4xl mt-3 tracking-tight leading-tight">{t.name}</h3>
                 <div className="mt-4 flex items-baseline gap-2">
                   <span className="serif italic text-2xl md:text-3xl leading-none">A medida</span>
-                  <span className="mono text-[12px]" style={isRec ? { color: "var(--rec-fg-muted)" } : { color: "var(--ink-3)" }}>· en discovery</span>
+                  <span className="mono text-[12px]" style={isRec ? { color: "var(--rec-fg-muted)" } : { color: "var(--ink-3)" }}>· según tu escala</span>
                 </div>
                 <p className={`mt-4 text-sm ${isRec ? "" : "ink-2"}`} style={isRec ? { color: "var(--rec-fg-muted)" } : undefined}>
                   {t.tag}
@@ -1672,29 +1669,28 @@ export const Pricing = () => {
         </div>
 
         {/* Bottom CTA strip */}
-        <div className="mt-12 md:mt-16 relative rounded-2xl border border-line bg-[var(--ink)] text-[var(--bg)] overflow-hidden">
+        <FeatureSurface className="mt-12 md:mt-16 relative rounded-2xl border border-line overflow-hidden">
           <div className="absolute inset-0 opacity-50 pointer-events-none" style={{ background: "radial-gradient(700px 400px at 100% 0%, color-mix(in oklab, var(--accent) 50%, transparent), transparent 60%)" }} />
           <div className="relative p-8 md:p-12 grid md:grid-cols-[1.4fr_1fr] gap-8 items-center">
             <div>
-              <div className="mono text-[10px] uppercase tracking-[0.18em] opacity-60 mb-3">discovery — gratis · sin venta</div>
+              <div className="mono text-[10px] uppercase tracking-[0.18em] opacity-60 mb-3">primera reunión — gratis · sin venta</div>
               <h3 className="serif text-3xl md:text-5xl leading-[1.05] tracking-tight">
                 30 minutos para saber si <em className="italic">tiene sentido.</em>
               </h3>
               <p className="opacity-80 text-base mt-4 max-w-md">
-                Te escuchamos, hacemos preguntas, y al final te decimos si encajamos. Si no, te orientamos a algo que sí. Sin compromiso, sin pitch.
+                Te escuchamos, hacemos preguntas y al final te decimos con honestidad si encajamos. Si no, te orientamos hacia algo que sí. Sin compromiso y sin que te vendamos nada.
               </p>
             </div>
             <div className="flex flex-col gap-3 md:items-end">
-              <a href="#contacto" data-magnetic="0.3" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full btn-accent text-sm font-semibold hover:opacity-95 transition">
+              <Button href="#contacto" className="px-6 py-3.5 text-sm font-semibold">
                 Reservar 30 min →
-              </a>
-              <div className="flex items-center gap-2 mono text-[10px] opacity-70">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)]" aria-hidden="true" />
+              </Button>
+              <Badge className="mono text-[10px] opacity-70">
                 <span>respondemos en 2h hábiles</span>
-              </div>
+              </Badge>
             </div>
           </div>
-        </div>
+        </FeatureSurface>
       </div>
     </section>
   );
@@ -1739,7 +1735,6 @@ export const Faq = () => (
 );
 
 export const Contact = () => {
-  const slots = getCurrentSlots();
   return (
   <section id="contacto" className="relative border-t border-line overflow-hidden">
     <div className="absolute inset-0 glow opacity-60 pointer-events-none" />
@@ -1754,14 +1749,14 @@ export const Contact = () => {
       </p>
 
       <div className="mt-12 flex flex-wrap gap-4 items-center">
-        <a href="https://wa.me/5492236892809" data-magnetic="0.3" target="_blank" rel="noopener noreferrer" aria-label="Chatear por WhatsApp (abre en nueva pestaña)" className="inline-flex items-center gap-3 px-6 py-4 rounded-full btn-accent text-[16px] font-medium hover:opacity-95 transition">
+        <Button href="https://wa.me/5492236892809" target="_blank" rel="noopener noreferrer" aria-label="Chatear por WhatsApp (abre en nueva pestaña)" className="gap-3 px-6 py-4 text-[16px] font-medium">
           <SiWhatsapp aria-hidden="true" />
           +54 9 223 689 2809
-        </a>
-        <a href="mailto:ventas@quasor.io" data-magnetic="0.25" className="inline-flex items-center gap-3 px-6 py-4 rounded-full border border-line-2 text-[16px] hover:bg-surface-2 transition">
+        </Button>
+        <Button href="mailto:ventas@quasor.io" variant="secondary" className="gap-3 px-6 py-4 text-[16px]">
           <SiGmail aria-hidden="true" className="opacity-70" />
           ventas@quasor.io
-        </a>
+        </Button>
       </div>
 
       <div className="mt-16 grid md:grid-cols-3 gap-6 border-t border-line pt-10">
@@ -1777,8 +1772,8 @@ export const Contact = () => {
         </div>
         <div>
           <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">disponibilidad</div>
-          <div className="serif text-3xl mt-2">{slots.count} slots · {slots.month}</div>
-          <div className="text-sm ink-2">después: lista de espera</div>
+          <div className="serif text-3xl mt-2">Inmediata</div>
+          <div className="text-sm ink-2">coordinamos esta semana</div>
         </div>
       </div>
     </div>
@@ -1857,10 +1852,6 @@ export const Footer = () => {
           <div className="mono text-[11px] ink-3 mt-5">
             <div>ventas@quasor.io</div>
             <div className="mt-1">+54 9 223 689 2809</div>
-          </div>
-          <div className="mt-5 inline-flex items-center gap-2 px-2.5 py-1.5 rounded-full border border-line bg-surface mono text-[10px]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)]" aria-hidden="true" />
-            <span className="ink-2">Sistemas operativos</span>
           </div>
         </div>
 

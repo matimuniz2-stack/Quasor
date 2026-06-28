@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host --port 5173",
-    "build": "vite build",
+    "gen:legal": "node scripts/gen-legal.mjs",
+    "build": "node scripts/gen-legal.mjs && vite build",
     "preview": "vite preview --port 4173",
     "generate-pdf": "node generate-plan-pdf.js"
   },

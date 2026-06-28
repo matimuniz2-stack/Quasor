@@ -23,13 +23,16 @@
   --pos: #00a86b;
   --neg: #e02424;
   --density: 1;
-  /* Recommended/featured card — theme-aware so dark mode doesn't flip to glaring white */
-  --rec-bg: var(--ink);
-  --rec-fg: var(--bg);
-  --rec-fg-muted: rgba(255,255,255,0.7);
-  --rec-chip-bg: rgba(255,255,255,0.12);
-  --rec-chip-fg: rgba(255,255,255,0.65);
-  --rec-divider: rgba(255,255,255,0.18);
+  /* Recommended/featured card — an accent-tinted elevated surface. These vars
+     reference --accent/--bg-2/--ink, which are substituted at use-time, so the
+     same definitions adapt to BOTH themes (light: tinted panel on dark ink;
+     dark: tinted charcoal on light ink) instead of a glaring inversion. */
+  --rec-bg: color-mix(in oklab, var(--accent) 8%, var(--bg-2));
+  --rec-fg: var(--ink);
+  --rec-fg-muted: color-mix(in oklab, var(--ink) 65%, transparent);
+  --rec-chip-bg: color-mix(in oklab, var(--accent) 18%, transparent);
+  --rec-chip-fg: color-mix(in oklab, var(--ink) 70%, transparent);
+  --rec-divider: color-mix(in oklab, var(--ink) 22%, transparent);
 }
 html[data-theme="dark"] {
   --bg: #0b0b0c;
@@ -44,13 +47,8 @@ html[data-theme="dark"] {
   --accent: #ff7a3d;
   --accent-2: #ff9763;
   --accent-text: #ffb086;
-  /* In dark, the "featured" card is an accent-tinted elevated surface, not a glaring inversion. */
-  --rec-bg: color-mix(in oklab, var(--accent) 6%, var(--bg-2));
-  --rec-fg: var(--ink);
-  --rec-fg-muted: color-mix(in oklab, var(--ink) 65%, transparent);
-  --rec-chip-bg: color-mix(in oklab, var(--accent) 18%, transparent);
-  --rec-chip-fg: color-mix(in oklab, var(--ink) 70%, transparent);
-  --rec-divider: color-mix(in oklab, var(--ink) 22%, transparent);
+  /* --rec-* are defined once in :root with theme-relative vars, so they adapt
+     here automatically (no override needed). */
 }
 html, body { background: var(--bg); color: var(--ink); }
 body {
@@ -356,11 +354,17 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: clip; }
 
-[data-magnetic] { display: inline-flex; will-change: transform; transition: transform .4s cubic-bezier(.2,.7,.2,1); }
-[data-magnetic] > * { pointer-events: none; }
-[data-magnetic] .mag-inner { display: inline-flex; align-items: center; gap: inherit; pointer-events: none; transition: transform .4s cubic-bezier(.2,.7,.2,1); }
-
-[data-reveal-words] .rw-word { display: inline-block; overflow: hidden; vertical-align: bottom; }
+[data-reveal-words] .rw-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  /* Pad the clip box so glyphs that extend past the tight line box (leading-[0.95])
+     aren't sliced: the bottom dot of "¿"/descenders, and italic glyphs that lean
+     past the right edge (e.g. the accent "voluntad?"). Negative margins cancel the
+     padding so word-spacing and layout stay unchanged. */
+  padding: 0.12em 0.14em 0.2em;
+  margin: -0.12em -0.14em -0.2em;
+}
 [data-reveal-words] .rw-word > span {
   display: inline-block;
   transform: translateY(110%);
