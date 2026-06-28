@@ -503,7 +503,7 @@ export const Marquee = () => (
         </h2>
         <p className="mono text-[12px] ink-3 mt-5 flex items-center justify-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)]" aria-hidden="true" />
-          sync bidireccional · &lt; 60s
+          actualización automática · en segundos
         </p>
       </div>
 
@@ -575,7 +575,7 @@ const AD_STEPS = [
     tag: "Sincronizamos",
     title: "Tu inversión, sincronizada.",
     body: "Conectás Meta Ads y Google Ads una vez. Importamos campañas, avisos y lo que invertís cada día, sin planillas ni captura manual.",
-    chip: "Meta + Google · sync diaria",
+    chip: "Meta + Google · actualización diaria",
   },
   {
     n: "02",
@@ -596,7 +596,7 @@ const AD_STEPS = [
 // Conceptual attribution chain — labeled nodes joined by arrows. The arrow
 // points down when the row stacks on mobile, right when it lays out on md+.
 const AD_CHAIN = [
-  { t: "Inversión en ads",  s: "Meta + Google, sync diaria" },
+  { t: "Inversión en ads",  s: "Meta + Google, actualización diaria" },
   { t: "Lead atribuido",    s: "campaña + aviso atados" },
   { t: "Vendedor asignado", s: "automático, al instante" },
   { t: "Venta cerrada",     s: "trazada de punta a punta" },
@@ -1229,7 +1229,7 @@ export const WhyQuasor = () => {
       desc: "Hecho para inmobiliarias argentinas",
       rows: [
         { v: "Precios en AR$ · sin permanencia", good: true, hint: "Factura local. Cancelás cuando quieras." },
-        { v: "Tokko · WhatsApp · Meta · Google · nativos", good: true, hint: "Integraciones nativas. Sync < 60s. Sin Zapier en el medio." },
+        { v: "Tokko · WhatsApp · Meta · Google · nativos", good: true, hint: "Integraciones nativas. Se actualiza en segundos. Sin Zapier en el medio." },
         { v: "Soporte WhatsApp horario AR · < 2h", good: true, hint: "Hablás directo con quien programa. Sin tickets ni account managers." },
       ],
     },
@@ -1564,7 +1564,7 @@ export const Pricing = () => {
       tag: "Inmobiliarias pequeñas · 4–6 vendedores",
       features: [
         "WhatsApp Business",
-        "Tokko · sync de catálogo",
+        "Tokko · catálogo siempre al día",
         "Pipeline + asignación a vendedor",
         "Reportes mensuales",
         "Soporte WhatsApp en horario AR",

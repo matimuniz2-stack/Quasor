@@ -576,7 +576,7 @@ const ViewProps = () => (
       <div className="flex items-center gap-2 text-xs ink-3">
         <span className="mono">142 propiedades</span>
         <span className="w-1 h-1 rounded-full bg-[var(--ink-3)]" />
-        <span className="mono">última sync con Tokko: hace 2h</span>
+        <span className="mono">Tokko actualizado: hace 2h</span>
       </div>
       <div className="flex items-center gap-2">
         <button aria-label="Refrescar datos" title="Refrescar" className="w-7 h-7 rounded-md grid place-items-center ink-3 hover:bg-surface-2 hover:ink-2 transition-colors"><span className="w-3.5 h-3.5">{Icon.refresh}</span></button>
@@ -892,7 +892,7 @@ const ViewIntegr = () => (
       <div className="flex items-center gap-2 text-xs ink-3">
         <span className="mono">2 de 4 conectadas</span>
         <span className="w-1 h-1 rounded-full bg-[var(--ink-3)]" />
-        <span className="mono">última sync: hace 2h</span>
+        <span className="mono">última actualización: hace 2h</span>
       </div>
       <button aria-label="Refrescar datos" title="Refrescar" className="w-7 h-7 rounded-md grid place-items-center ink-3 hover:bg-surface-2 hover:ink-2 transition-colors"><span className="w-3.5 h-3.5">{Icon.refresh}</span></button>
     </div>

@@ -95,8 +95,8 @@ export const SERVICES = [
   {
     k: "API",
     name: "Integraciones",
-    body: "Cualquier API. Sync bidireccional en menos de 60s.",
-    bullets: ["Cambios del portal en Quasor en < 60s", "Si el portal cae, los leads no se pierden", "Conectamos con cualquier endpoint"],
+    body: "Conectamos cualquier herramienta. Tus datos, al instante.",
+    bullets: ["Lo que cambia en el portal, en Quasor en segundos", "Si el portal cae, los leads no se pierden", "Conectamos con cualquier sistema"],
   },
   {
     k: "IA",
