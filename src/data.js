@@ -18,11 +18,11 @@ export const DATASETS = {
       { k: "Orgánico", pct:  6, color: "#9a9689" },
     ],
     campaigns: [
-      { name: "Hilux SR5 — Marzo",        plat: "Meta Ads", spend: 890,  leads: 84,  cpl: 10.6, status: "ok"   },
+      { name: "Hilux SR5 · Marzo",        plat: "Meta Ads", spend: 890,  leads: 84,  cpl: 10.6, status: "ok"   },
       { name: "Corolla Cross CVT",        plat: "Google",   spend: 720,  leads: 52,  cpl: 13.8, status: "ok"   },
       { name: "Usados Premium",           plat: "Meta Ads", spend: 1120, leads: 127, cpl:  8.8, status: "hot"  },
       { name: "Plan Ahorro Yaris",        plat: "Google",   spend: 480,  leads: 41,  cpl: 11.7, status: "ok"   },
-      { name: "RAV4 Hybrid — Awareness",  plat: "TikTok",   spend: 320,  leads:  9,  cpl: 35.5, status: "warn" },
+      { name: "RAV4 Hybrid · Awareness",  plat: "TikTok",   spend: 320,  leads:  9,  cpl: 35.5, status: "warn" },
       { name: "Retargeting Test Drive",   plat: "Meta Ads", spend: 210,  leads: 38,  cpl:  5.5, status: "hot"  },
     ],
     leads: [
@@ -30,16 +30,16 @@ export const DATASETS = {
       { name: "Lucía Fernández",  car: "Corolla Cross",  src: "Google", stage: "Cotización",  score: 78, when: "hace 18m" },
       { name: "Diego Pereyra",    car: "Yaris XLS",      src: "Meta",   stage: "Contactado",  score: 64, when: "hace 42m" },
       { name: "Florencia Ríos",   car: "RAV4 Hybrid",    src: "TikTok", stage: "Nuevo",       score: 58, when: "hace 1h" },
-      { name: "Javier Molina",    car: "Usado — Etios",  src: "Google", stage: "Cerrado ✓",   score: 99, when: "hace 2h" },
+      { name: "Javier Molina",    car: "Usado · Etios",  src: "Google", stage: "Cerrado ✓",   score: 99, when: "hace 2h" },
       { name: "Camila Ozán",      car: "Corolla GR",     src: "Meta",   stage: "Negociación", score: 81, when: "hace 3h" },
     ],
     alerts: [
-      { level: "high", title: "CPL disparado en RAV4 Hybrid — TikTok", body: "$35.5k vs promedio $13.2k. Se triplicó en 48h.", when: "hace 12m" },
-      { level: "med",  title: "Gasto ↑ sin clicks en Plan Ahorro",     body: "Budget consumido 94% y CTR cayó -22%.",            when: "hace 2h"  },
-      { level: "low",  title: "Hilux SR5 — Marzo cierra hoy",          body: "Queda 6% de budget. Sugerencia: duplicar.",        when: "hace 5h"  },
+      { level: "high", title: "CPL disparado en RAV4 Hybrid · TikTok", body: "$35.5k vs promedio $13.2k. Se triplicó en 48h.", when: "hace 12m" },
+      { level: "med",  title: "Inversión ↑ sin clicks en Plan Ahorro", body: "Budget consumido 94% y CTR cayó -22%.",            when: "hace 2h"  },
+      { level: "low",  title: "Hilux SR5 · Marzo cierra hoy",          body: "Queda 6% de budget. Sugerencia: duplicar.",        when: "hace 5h"  },
     ],
     reports: {
-      weekly: ["Semana 12 — Leads +14%, CPL -9%", "Semana 11 — Usados Premium supera proyección", "Semana 10 — Lanzamiento Corolla GR"],
+      weekly: ["Semana 12 · Leads +14%, CPL -9%", "Semana 11 · Usados Premium supera proyección", "Semana 10 · Lanzamiento Corolla GR"],
       bench: { you: 4.7, market: 2.8 },
     },
   },
@@ -60,7 +60,7 @@ export const DATASETS = {
       { k: "Orgánico",  pct:  9, color: "#9a9689" },
     ],
     campaigns: [
-      { name: "Departamentos Centro — 1A", plat: "Meta Ads", spend: 420, leads: 78, cpl:  5.4, status: "hot"  },
+      { name: "Departamentos Centro · 1A", plat: "Meta Ads", spend: 420, leads: 78, cpl:  5.4, status: "hot"  },
       { name: "Casas Barrio Parque",       plat: "Meta Ads", spend: 380, leads: 46, cpl:  8.3, status: "ok"   },
       { name: "Monoambientes Inversores",  plat: "Google",   spend: 240, leads: 31, cpl:  7.7, status: "ok"   },
       { name: "Pozo Torres del Mar",       plat: "Meta Ads", spend: 560, leads: 22, cpl: 25.4, status: "warn" },
@@ -74,12 +74,12 @@ export const DATASETS = {
       { name: "Juan Benítez",    car: "Casa · Alem",             src: "Referido", stage: "Cerrado ✓",       score: 99, when: "hace 3h" },
     ],
     alerts: [
-      { level: "high", title: "Pozo Torres del Mar — CPL 3x", body: "Creatividad 'vista al mar' saturada. Rotar.", when: "hace 18m" },
+      { level: "high", title: "Pozo Torres del Mar · CPL 3x", body: "Creatividad 'vista al mar' saturada. Rotar.", when: "hace 18m" },
       { level: "med",  title: "Consultas por WhatsApp sin asignar", body: "7 leads nuevos hace >30min sin dueño.", when: "hace 45m" },
       { level: "low",  title: "Visitas del fin de semana", body: "12 agendadas · confirmar 48hs antes.", when: "hace 4h"  },
     ],
     reports: {
-      weekly: ["Semana 12 — Centro sigue liderando (+18%)", "Semana 11 — Temporarios: ROI 4.2x", "Semana 10 — Nuevo inventario Alem"],
+      weekly: ["Semana 12 · Centro sigue liderando (+18%)", "Semana 11 · Temporarios: ROI 4.2x", "Semana 10 · Nuevo inventario Alem"],
       bench: { you: 3.1, market: 1.9 },
     },
   },
@@ -168,7 +168,7 @@ export const TESTIMONIALS = [
 // Resultados esperados basados en el caso piloto y benchmarks de mercado
 export const EXPECTED_RESULTS = [
   {
-    metric: { v: "-62%", k: "Leads perdidos" },
+    metric: { v: "-99.9%", k: "Leads perdidos" },
     desc: "Consultas que antes caían en chats personales, hoy se capturan y asignan automáticamente.",
     vertical: "Inmobiliarias",
   },
@@ -190,11 +190,12 @@ export const EXPECTED_RESULTS = [
 ];
 
 export const FAQ = [
-  { q: "¿Cuánto tarda en estar andando?", a: "Setup inicial: 1-2 semanas. Configuramos integraciones, importamos tus datos si los tenés y capacitamos al equipo. Empezás a usar el sistema desde el día 1 con la configuración base." },
-  { q: "¿De quién son mis datos?", a: "Tuyos. 100%. Podés exportarlos en cualquier momento — CSV, JSON o backup completo de la base. Tu información vive en la infraestructura de Google Cloud, la misma nube que usan bancos y empresas grandes, con encriptación y backups automáticos. Sin lock-in, sin letra chica." },
-  { q: "¿Trabajan con empresas fuera de Mar del Plata?", a: "Sí. Trabajamos 100% remoto con reuniones semanales y entregas asincrónicas. La ubicación no es limitante — solo necesitamos buena conexión y que las personas que deciden estén disponibles para coordinar." },
-  { q: "¿Qué pasa si quiero cortar el servicio?", a: "Cortás cuando quieras — contrato mensual sin permanencia. Te exportamos todos tus datos en formato estándar (CSV, JSON). Sin lock-in." },
-  { q: "¿El precio incluye nuevas funciones?", a: "Sí. El CRM se va ampliando mes a mes con mejoras y nuevas integraciones. Y escuchamos lo que cada cliente necesita: si pedís una función puntual, la evaluamos y puede sumarse al roadmap del producto." },
+  { q: "¿Cuánto tarda en estar andando?", a: "Implementación inicial: 1-2 semanas. Configuramos integraciones, importamos tus datos si los tenés y capacitamos al equipo. Empezás a usar el sistema desde el día 1 con la configuración base." },
+  { q: "¿De quién son mis datos?", a: "Tuyos. 100%. Podés exportarlos en cualquier momento (CSV, JSON o backup completo de la base). Tu información vive en la infraestructura de Google Cloud, la misma nube que usan bancos y empresas grandes, con encriptación y backups automáticos. Sin ataduras, sin letra chica." },
+  { q: "¿Quasor también trackea la inversión en ads?", a: "Sí. No es solo un CRM. Sincronizamos a diario la inversión en Meta Ads y Google Ads, capturamos los leads de cada campaña y los atamos al aviso que los generó. Así ves el costo real por lead y por venta cerrada, no por click, y sabés qué campaña genera ganancia y cuál genera pérdida." },
+  { q: "¿Trabajan con empresas fuera de Mar del Plata?", a: "Sí. Trabajamos 100% remoto con reuniones semanales y entregas asincrónicas. La ubicación no es limitante: solo necesitamos buena conexión y que las personas que deciden estén disponibles para coordinar." },
+  { q: "¿Qué pasa si quiero cortar el servicio?", a: "Cortás cuando quieras, contrato mensual sin permanencia. Te exportamos todos tus datos en formato estándar (CSV, JSON). Sin ataduras." },
+  { q: "¿El precio incluye nuevas funciones?", a: "Sí. El CRM se va ampliando mes a mes con mejoras y nuevas integraciones. Y escuchamos lo que cada cliente necesita: si pedís una función puntual, la evaluamos y puede sumarse a la hoja de ruta del producto." },
 ];
 
 export const CLIENTS = ["Grupo Costa", "Toyota MdP", "InmoSur", "Nordelta Motors", "AutoPlus", "Torre Mar", "Sede Norte", "Benetti"];

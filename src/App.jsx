@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Lenis from 'lenis';
 import {
-  Nav, Hero, Marquee, UseCases, UseCase, Services,
+  Nav, Hero, Marquee, AdTracking, UseCases, UseCase, Services,
   WhyQuasor, Process, Testimonials, Pricing, Faq, Contact, Footer,
   StickyMobileCTA
 } from './components/Sections.jsx';
@@ -173,6 +173,7 @@ const App = () => {
       <main id="main" className="md:pb-0 pb-20">
         <Hero />
         <Marquee />
+        <AdTracking />
         <UseCases />
         <UseCase />
         <Services />
