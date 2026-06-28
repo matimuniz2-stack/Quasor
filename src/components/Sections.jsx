@@ -587,8 +587,8 @@ const AD_STEPS = [
   {
     n: "03",
     tag: "Medís",
-    title: "Costo por venta, no por click.",
-    body: "Ves cuánto te cuesta realmente un lead y una venta cerrada. Sabés qué campaña genera ganancia y cuál genera pérdida, y la pausás a tiempo.",
+    title: "Costo real, del click al cierre.",
+    body: "Ves cuánto te cuesta realmente un lead y una venta cerrada, no te quedás en el click. Sabés qué campaña genera ganancia y cuál genera pérdida, y la pausás a tiempo.",
     chip: "CPL + costo por cierre real",
   },
 ];
@@ -1561,12 +1561,10 @@ export const Pricing = () => {
     {
       k: "esencial",
       name: "Esencial",
-      tag: "Inmobiliarias pequeñas · 4–6 vendedores",
+      tag: "Equipos chicos que arrancan",
       features: [
-        "WhatsApp Business",
-        "Tokko · catálogo siempre al día",
-        "Pipeline + asignación a vendedor",
-        "Reportes mensuales",
+        "Hasta 4 usuarios",
+        "Meta o Google Ads — el canal que más usás",
         "Soporte WhatsApp en horario AR",
       ],
       recommended: false,
@@ -1574,31 +1572,37 @@ export const Pricing = () => {
     {
       k: "pro",
       name: "Pro",
-      tag: "Inmobiliarias medianas · 6–12 vendedores",
+      tag: "Equipos en crecimiento",
       features: [
-        "Todo lo de Esencial, más:",
-        "Meta Lead Ads + Google Ads",
-        "Automatizaciones (auto-respuesta, alertas, scoring)",
-        "Dashboards multi-fuente",
-        "Reportes semanales + ad-hoc",
-        "Soporte prioritario · < 4h",
+        "Hasta 8 usuarios",
+        "Meta y Google Ads — todo en un solo lugar",
+        "Soporte prioritario · < 8h",
       ],
       recommended: true,
     },
     {
       k: "custom",
       name: "Custom",
-      tag: "12+ vendedores · grupos · multi-sucursal",
+      tag: "Grupos y multi-sucursal",
       features: [
         "Todo lo de Pro, más:",
-        "Integraciones custom (cualquier API)",
-        "White-label del CRM",
-        "Base de datos dedicada en Google Cloud",
-        "SLA firmado · uptime 99.9%",
+        "Más de 8 usuarios, sin límite",
+        "Integraciones a medida con cualquier API",
+        "API pública, webhooks y endpoints propios",
         "Account manager dedicado",
       ],
       recommended: false,
     },
+  ];
+
+  // Lo que NO cambia entre planes — todas las funciones del CRM van en los tres.
+  const included = [
+    "WhatsApp Business integrado",
+    "Tokko · catálogo siempre al día",
+    "Pipeline + asignación a vendedor",
+    "Automatizaciones: auto-respuesta, alertas y scoring",
+    "Dashboards multi-fuente",
+    "Reportes y exportación",
   ];
 
   const fitYou = [
@@ -1620,17 +1624,17 @@ export const Pricing = () => {
           <div>
             <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">09 · precios</div>
             <h2 className="serif text-5xl md:text-7xl leading-[0.98] mt-4 tracking-tight">
-              Tres planes. <em className="italic">Honestos.</em>
+              Tres planes. <em className="italic">Por tamaño de equipo.</em>
             </h2>
           </div>
           <p className="ink-2 max-w-sm">
             Mensual, sin permanencia. Cancelás cuando quieras.<br/>
-            <span className="mono text-[11px] ink-3">Precio según escala e integraciones.</span>
+            <span className="mono text-[11px] ink-3">Cambia el tamaño del equipo, no las funciones.</span>
           </p>
         </div>
 
         {/* Tier cards */}
-        <div className="grid md:grid-cols-3 gap-px bg-[var(--line)] border border-line rounded-2xl overflow-hidden mb-16 md:mb-20">
+        <div className="grid md:grid-cols-3 gap-px bg-[var(--line)] border border-line rounded-2xl overflow-hidden mb-6 md:mb-8">
           {tiers.map((t) => {
             const isRec = t.recommended;
             return (
@@ -1679,6 +1683,29 @@ export const Pricing = () => {
               </div>
             );
           })}
+        </div>
+
+        {/* Incluido en todos los planes — las funciones NO se recortan por plan */}
+        <div className="rounded-2xl border border-line bg-surface p-7 md:p-9 mb-16 md:mb-20">
+          <div className="flex items-end justify-between gap-6 flex-wrap mb-6">
+            <div>
+              <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">en los tres planes</div>
+              <h3 className="serif text-2xl md:text-3xl mt-2 tracking-tight">
+                Todas las funciones incluidas. <em className="italic ink-2">Sin recortes.</em>
+              </h3>
+            </div>
+            <p className="mono text-[11px] ink-3 max-w-xs">
+              Lo único que cambia entre planes es el tamaño del equipo y las plataformas de ads.
+            </p>
+          </div>
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">
+            {included.map((f, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm ink-2">
+                <span className="accent mono mt-0.5 shrink-0">✓</span>
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* Fit / qualification — sub-bloque sin nuevo número */}
