@@ -301,7 +301,7 @@ export const Hero = () => {
               className="mt-6 text-base md:text-lg ink-2 max-w-md rise"
               style={{ animationDelay: "160ms" }}
             >
-              CRM y atribución de publicidad para inmobiliarias y concesionarias de toda la Argentina. Capturá los leads de Meta, Google, los portales y tu web, hacelos avanzar por un pipeline visual y cerrá con reparto de comisiones. Cada peso que invertís en ads queda atado a cada lead y a cada venta. A la derecha, una demo interactiva con datos de ejemplo.
+              CRM y atribución de publicidad para inmobiliarias y concesionarias de toda la Argentina. Capturá los leads de Meta, Google, los portales y tu web, hacelos avanzar por un pipeline visual y cerrá con reparto de comisiones. Cada peso que invertís en ads queda atado a cada lead y a cada venta.
             </p>
 
             <div
