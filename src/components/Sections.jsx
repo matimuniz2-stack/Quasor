@@ -170,7 +170,7 @@ export const Nav = ({ theme, onToggleTheme }) => {
         </div>
         <div className="flex items-center gap-3">
           <Badge pulse className="max-md:hidden mono text-[11px] ink-3">
-            <span>Disponible · respondemos hoy</span>
+            <span>Disponible, respondemos hoy</span>
           </Badge>
           <ThemeToggle theme={theme} onToggle={onToggleTheme} />
           <Button href="#contacto" className="max-sm:hidden text-sm px-3.5 py-1.5 font-medium">Hablemos 30 min →</Button>
@@ -205,7 +205,7 @@ export const Nav = ({ theme, onToggleTheme }) => {
             </a>
           ))}
           <Badge pulse className="mt-3 mono text-[11px] ink-3 pb-2">
-            <span>Disponible · respondemos hoy</span>
+            <span>Disponible, respondemos hoy</span>
           </Badge>
           <Button
             href="#contacto"
@@ -321,7 +321,7 @@ export const Hero = () => {
                 mensual, sin permanencia
               </span>
               <span aria-hidden="true">·</span>
-              <span>exportás tus datos cuando quieras</span>
+              <span>exportás tus datos en cualquier momento</span>
             </div>
           </div>
 
@@ -334,7 +334,7 @@ export const Hero = () => {
             <div className="relative">
               <div className="hidden md:flex items-center gap-2 mono text-[10px] uppercase tracking-[0.18em] ink-3 mb-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)] pulse-dot" />
-                <span>live demo · datos de ejemplo</span>
+                <span>live demo, datos de ejemplo</span>
               </div>
               <TiltWrapper max={5}>
                 <Dashboard />
@@ -454,7 +454,7 @@ export const Marquee = () => (
         </h2>
         <p className="mono text-[12px] ink-3 mt-5 flex items-center justify-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)]" aria-hidden="true" />
-          actualización automática · sin captura manual
+          actualización automática, sin captura manual
         </p>
       </div>
 
@@ -495,7 +495,7 @@ export const Marquee = () => (
       {/* Footer micro-copy + trust strip */}
       <div className="mt-12 md:mt-14 flex flex-col items-center gap-6">
         <a href="#contacto" className="inline-flex items-center gap-2 text-sm accent group">
-          ¿No está la tuya? la construimos
+          ¿No está la tuya? La construimos
           <span className="transition-transform group-hover:translate-x-1">→</span>
         </a>
         <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
@@ -539,7 +539,7 @@ const AD_STEPS = [
     n: "03",
     tag: "Medís",
     title: "Costo real, del click al cierre.",
-    body: "Ves cuánto te cuesta realmente un lead y una venta cerrada, no te quedás en el click. Sabés qué campaña genera ganancia y cuál genera pérdida, y la pausás a tiempo.",
+    body: "Ves cuánto te cuesta realmente un lead y una venta cerrada, más allá del clic. Sabés qué campaña genera ganancia y cuál genera pérdida, y la pausás a tiempo.",
     chip: "CPL + costo por cierre real",
   },
 ];
@@ -590,7 +590,7 @@ export const AdTracking = () => (
       {/* Attribution chain — the full closed loop, in one place */}
       <div className="mt-8 md:mt-10 card p-6 md:p-8">
         <div className="flex items-center justify-between mb-6 flex-wrap gap-2">
-          <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">el loop completo · en un solo lugar</div>
+          <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">el loop completo, en un solo lugar</div>
           <div className="mono text-[10px] ink-3">de lo que invertís → a lo que cerrás</div>
         </div>
         <div className="flex flex-col md:flex-row md:items-stretch gap-3 md:gap-0">
@@ -808,7 +808,7 @@ const USECASE_PHASES = [
     label: "implementando · semana 3 de 6",
     lostPct: 48,
     color: "var(--accent-2)",
-    barNote: "piloto en marcha",
+    barNote: "ya operando",
     metrics: [
       { k: "cierres / mes",           before: "12", after: "14",     delta: "+17%" },
       { k: "tiempo de asignación",    before: "4h", after: "20m",    delta: "-83%" },
@@ -1214,7 +1214,11 @@ export const Services = () => (
 const CompareMark = ({ ok }) => {
   if (ok === true) return <span className="shrink-0 mt-0.5 w-4 h-4 rounded-full grid place-items-center text-[10px] font-bold bg-[var(--accent)] text-white" aria-label="a favor">✓</span>;
   if (ok === false) return <span className="shrink-0 mt-0.5 w-4 h-4 rounded-full grid place-items-center text-[10px] font-bold bg-surface-2 ink-3 border border-line" aria-label="en contra">×</span>;
-  return <span className="shrink-0 mt-0.5 w-4 h-4 grid place-items-center text-[13px] ink-3" aria-label="parcial">·</span>;
+  return (
+    <span className="shrink-0 mt-0.5 w-4 h-4 rounded-full grid place-items-center bg-surface-2 ink-3 border border-line" aria-label="parcial">
+      <span className="block w-1.5 h-px bg-current" />
+    </span>
+  );
 };
 const CompareCell = ({ data }) => (
   <div className="flex items-start gap-2">
@@ -1279,7 +1283,7 @@ export const WhyQuasor = () => {
             </h2>
           </div>
           <p className="ink-2 max-w-sm">
-            La comparación, sin letra chica.
+            La comparación, sin medias verdades.
           </p>
         </div>
 
@@ -1291,14 +1295,14 @@ export const WhyQuasor = () => {
             <caption className="sr-only">Comparación de Quasor con CRMs internacionales y locales</caption>
             <thead>
               <tr>
-                <th scope="col" className="w-[22%]" />
+                <th scope="col" className="w-[22%] border-b border-line-2" />
                 {COLS.map((col) => {
                   const isUs = col.k === "quasor";
                   return (
                     <th
                       key={col.k}
                       scope="col"
-                      className="text-left align-bottom p-4 md:p-5 border-b border-line-2"
+                      className="text-left align-bottom p-4 md:p-5 border-b border-line-2 border-l border-line"
                       style={isUs ? { background: "var(--rec-bg)" } : undefined}
                     >
                       <span className={`serif text-xl md:text-2xl tracking-tight block ${isUs ? "accent" : "ink"}`}>{col.name}</span>
@@ -1314,13 +1318,13 @@ export const WhyQuasor = () => {
                   <th scope="row" className="text-left align-top p-4 md:p-5 border-b border-line">
                     <span className="text-sm font-medium ink leading-snug">{row.c}</span>
                   </th>
-                  <td className="align-top p-4 md:p-5 border-b border-line ink-2">
+                  <td className="align-top p-4 md:p-5 border-b border-l border-line ink-2">
                     <CompareCell data={row.intl} />
                   </td>
-                  <td className="align-top p-4 md:p-5 border-b border-line ink" style={{ background: "var(--rec-bg)" }}>
+                  <td className="align-top p-4 md:p-5 border-b border-l border-line ink" style={{ background: "var(--rec-bg)" }}>
                     <CompareCell data={row.us} />
                   </td>
-                  <td className="align-top p-4 md:p-5 border-b border-line ink-2">
+                  <td className="align-top p-4 md:p-5 border-b border-l border-line ink-2">
                     <CompareCell data={row.loc} />
                   </td>
                 </tr>
@@ -1537,7 +1541,7 @@ export const Testimonials = () => {
               <h3 className="serif text-3xl md:text-4xl mt-2 tracking-tight">El objetivo, no la promesa.</h3>
             </div>
             <p className="mono text-[11px] ink-3 max-w-xs">
-              Inmobiliarias: validado en piloto.<br/>
+              Inmobiliaria: medido en producción.<br/>
               Otras verticales: benchmark del rubro.
             </p>
           </div>
@@ -1612,7 +1616,7 @@ export const Pricing = () => {
 
   const fitYou = [
     { t: "Tenés 4+ vendedores activos", h: "Si sos solo, una planilla alcanza." },
-    { t: "Recibís 50+ consultas por mes", h: "Acá la asignación automática rinde." },
+    { t: "Recibís 50+ consultas por mes", h: "Con ese volumen, la asignación automática rinde." },
     { t: "Querés medir conversión por vendedor", h: "Cada lead atribuido y medible." },
   ];
   const notYou = [
@@ -1633,8 +1637,7 @@ export const Pricing = () => {
             </h2>
           </div>
           <p className="ink-2 max-w-sm">
-            Mensual, sin permanencia. Cancelás cuando quieras.<br/>
-            <span className="mono text-[11px] ink-3">Cambia el tamaño del equipo, no las funciones.</span>
+            Mensual, sin permanencia. Podés cancelar en cualquier momento.
           </p>
         </div>
 
@@ -1778,12 +1781,12 @@ export const Pricing = () => {
           <div className="absolute inset-0 opacity-50 pointer-events-none" style={{ background: "radial-gradient(700px 400px at 100% 0%, color-mix(in oklab, var(--accent) 50%, transparent), transparent 60%)" }} />
           <div className="relative p-8 md:p-12 grid md:grid-cols-[1.4fr_1fr] gap-8 items-center">
             <div>
-              <div className="mono text-[10px] uppercase tracking-[0.18em] opacity-60 mb-3">primera reunión gratis · sin venta</div>
+              <div className="mono text-[10px] uppercase tracking-[0.18em] opacity-60 mb-3">consulta inicial · sin compromiso</div>
               <h3 className="serif text-3xl md:text-5xl leading-[1.05] tracking-tight">
                 30 minutos para evaluar si podemos ayudarte.
               </h3>
               <p className="opacity-80 text-base mt-4 max-w-md">
-                Te escuchamos, hacemos preguntas y al final te decimos con honestidad si encajamos. Si no, te orientamos hacia algo que sí. Sin compromiso.
+                Conversamos sobre tu operación actual y los objetivos que querés resolver. Hacemos preguntas y al final te decimos con honestidad si encajamos. Si no, te orientamos hacia algo que sí.
               </p>
             </div>
             <div className="flex flex-col gap-3 md:items-end">
@@ -1850,7 +1853,7 @@ export const Contact = () => {
       </h2>
       <p className="ink-2 mt-8 text-lg max-w-xl">
         30 minutos por WhatsApp o videollamada. Te contamos qué haríamos, cuánto tarda y cuánto cuesta.
-        Si no es para vos, te lo decimos de una.
+        Si no es para vos, te lo decimos con franqueza.
       </p>
 
       <div className="mt-12 flex flex-wrap gap-4 items-center">

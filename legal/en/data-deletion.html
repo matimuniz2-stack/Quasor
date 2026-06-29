@@ -11,7 +11,7 @@
   <link rel="alternate" hreflang="x-default" href="https://quasor.io/legal/eliminar-datos.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <script>
     (function(){try{var s=localStorage.getItem('quasor-theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',s||m);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();
   </script>
@@ -31,7 +31,7 @@
       --bg-2: #141416;
       --ink: #f4f1ea;
       --ink-2: #bab5ab;
-      --ink-3: #7a756d;
+      --ink-3: #8a857c;
       --line: #1e1e21;
       --line-2: #2a2a2f;
       --accent: #ff7a3d;
@@ -41,14 +41,15 @@
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
     body {
-      font-family: "Inter", sans-serif;
+      font-family: "Schibsted Grotesk", sans-serif;
       background: var(--bg);
       color: var(--ink);
       font-size: 16px;
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+      letter-spacing: -0.005em;
     }
-    .serif { font-family: "Instrument Serif", serif; font-weight: 400; }
+    .serif { font-family: "Schibsted Grotesk", sans-serif; font-weight: 600; letter-spacing: -0.035em; }
     .mono { font-family: "JetBrains Mono", monospace; }
     .ink-2 { color: var(--ink-2); }
     .ink-3 { color: var(--ink-3); }
@@ -63,7 +64,7 @@
       max-width: 1000px; margin: 0 auto; padding: 0 24px;
       height: 56px; display: flex; align-items: center; justify-content: space-between;
     }
-    .logo { font-family: "Instrument Serif", serif; font-size: 24px; text-decoration: none; color: var(--ink); }
+    .logo { font-family: "Schibsted Grotesk", sans-serif; font-weight: 600; font-size: 20px; letter-spacing: -0.03em; text-decoration: none; color: var(--ink); }
     .back { text-decoration: none; color: var(--ink-2); font-size: 14px; transition: color .2s; }
     .back:hover { color: var(--accent); }
     .nav-right { display: flex; gap: 16px; align-items: center; }
@@ -94,14 +95,14 @@
       color: var(--ink-3);
     }
     h1 {
-      font-family: "Instrument Serif", serif;
-      font-weight: 400;
-      font-size: clamp(48px, 8vw, 88px);
-      line-height: 0.98;
-      letter-spacing: -0.035em;
+      font-family: "Schibsted Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: clamp(40px, 7vw, 68px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
       margin: 16px 0 32px;
     }
-    h1 em { font-style: italic; color: var(--accent); }
+    h1 em { font-style: normal; color: var(--accent); }
     .updated {
       font-family: "JetBrains Mono", monospace;
       font-size: 12px;
@@ -114,11 +115,11 @@
       margin-bottom: 48px;
     }
     h2 {
-      font-family: "Instrument Serif", serif;
-      font-weight: 400;
-      font-size: 32px;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
+      font-family: "Schibsted Grotesk", sans-serif;
+      font-weight: 600;
+      font-size: 26px;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
       margin: 56px 0 16px;
       padding-top: 24px;
       border-top: 1px solid var(--line);
@@ -133,7 +134,7 @@
       vertical-align: middle;
     }
     h3 {
-      font-family: "Inter", sans-serif;
+      font-family: "Schibsted Grotesk", sans-serif;
       font-weight: 600;
       font-size: 17px;
       margin: 28px 0 8px;
@@ -182,7 +183,7 @@
   </header>
 
   <main>
-    <div class="kicker">LEGAL · 03</div>
+    <div class="kicker">LEGAL</div>
     <h1>Delete my <em>data</em>.</h1>
 
     <div class="updated">Last updated: May 15, 2026</div>
