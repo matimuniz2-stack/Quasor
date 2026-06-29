@@ -5,7 +5,7 @@ export const SERVICES = [
     k: "DASH",
     name: "Dashboards",
     body: "Armás tus propios tableros, estilo Looker: combinás métrica, desglose y tipo de gráfico, y se guardan solos. Meta, Google, orgánicos y carga manual en una sola vista.",
-    bullets: ["Leads, conversión, oportunidades y ventas — por vendedor, origen o etapa", "Pivot de Ads: inversión, CTR, CPC y CPL con jerarquía campaña → conjunto → aviso", "KPIs comparados contra el período anterior, con la variación al lado"],
+    bullets: ["Leads, conversión, oportunidades y ventas, abiertos por vendedor, origen o etapa", "Pivot de Ads: inversión, CTR, CPC y CPL con jerarquía campaña → conjunto → aviso", "KPIs comparados contra el período anterior, con la variación al lado"],
   },
   {
     k: "API",
@@ -106,9 +106,9 @@ export const EXPECTED_RESULTS = [
 
 export const FAQ = [
   { q: "¿Cuánto tarda en estar funcionando?", a: "Implementación inicial: 1-2 semanas. Configuramos integraciones, importamos tus datos si los tenés y capacitamos al equipo. Empezás a usar el sistema desde el día 1 con la configuración base." },
-  { q: "¿Sirve para mi rubro?", a: "Hoy en producción con inmobiliarias, y el sistema está adaptado para concesionarias y agencias de autos. El motor —cada activo con su ficha y su ciclo de venta, y cada lead con su seguimiento— aplica a más rubros. Lo evaluamos juntos en la llamada." },
+  { q: "¿Sirve para mi rubro?", a: "Hoy en producción con inmobiliarias, y el sistema está adaptado para concesionarias y agencias de autos. El motor (cada activo con su ficha y su ciclo de venta, y cada lead con su seguimiento) aplica a más rubros. Lo evaluamos juntos en la llamada." },
   { q: "¿De quién son mis datos?", a: "Tuyos. 100%. Podés exportarlos en cualquier momento (CSV, JSON o backup completo de la base). Tu información vive en la infraestructura de Google Cloud, la misma nube que usan bancos y empresas grandes, con encriptación y backups automáticos. Sin ataduras, sin letra chica." },
-  { q: "¿Quasor también trackea la inversión en ads?", a: "Sí. No es solo un CRM. Sincronizamos a diario la inversión en Meta Ads y Google Ads, capturamos los leads de cada campaña y los atamos al aviso que los generó. Así ves el costo real de punta a punta: por lead y por venta cerrada, no te quedás en el click. Y sabés qué campaña genera ganancia y cuál genera pérdida." },
+  { q: "¿Quasor también trackea la inversión en ads?", a: "Sí. Sincronizamos a diario la inversión en Meta Ads y Google Ads, capturamos los leads de cada campaña y los atamos al aviso que los generó. Así ves el costo real de punta a punta: por lead y por venta cerrada, no te quedás en el click. Y sabés qué campaña genera ganancia y cuál genera pérdida." },
   { q: "¿Trabajan con empresas fuera de Mar del Plata?", a: "Sí. Trabajamos 100% remoto con reuniones semanales y entregas asincrónicas. La ubicación no es limitante: solo necesitamos buena conexión y que las personas que deciden estén disponibles para coordinar." },
   { q: "¿Qué pasa si quiero cortar el servicio?", a: "Cortás cuando quieras, contrato mensual sin permanencia. Te exportamos todos tus datos en formato estándar (CSV, JSON). Sin ataduras." },
   { q: "¿El precio incluye nuevas funciones?", a: "Sí. El CRM se va ampliando mes a mes con mejoras y nuevas integraciones. Y escuchamos lo que cada cliente necesita: si pedís una función puntual, la evaluamos y puede sumarse a la hoja de ruta del producto." },

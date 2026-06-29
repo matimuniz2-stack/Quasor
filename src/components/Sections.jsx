@@ -53,59 +53,21 @@ const TiltWrapper = ({ children, max = 5 }) => {
   );
 };
 
-// Typing terminal (for process steps)
-const Terminal = ({ lines, playKey }) => {
-  const [shown, setShown] = useState([]);
-  const [cursorLine, setCursorLine] = useState(0);
-  const [cursorChar, setCursorChar] = useState(0);
-
-  useEffect(() => {
-    setShown([]); setCursorLine(0); setCursorChar(0);
-  }, [playKey]);
-
-  useEffect(() => {
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setShown(lines); setCursorLine(lines.length); setCursorChar(0);
-      return;
-    }
-    if (cursorLine >= lines.length) return;
-    const line = lines[cursorLine];
-    const speed = line.p === "$" ? 32 : line.p === ">" ? 24 : 18;
-    if (cursorChar < line.t.length) {
-      const id = setTimeout(() => setCursorChar(cursorChar + 1), speed);
-      return () => clearTimeout(id);
-    }
-    const wait = line.w || 240;
-    const id = setTimeout(() => {
-      setShown(s => [...s, line]);
-      setCursorLine(cursorLine + 1);
-      setCursorChar(0);
-    }, wait);
-    return () => clearTimeout(id);
-  }, [cursorLine, cursorChar, playKey]);
-
-  const typing = cursorLine < lines.length ? lines[cursorLine] : null;
-
-  return (
-    <div className="mono text-[12.5px] leading-[1.8] bg-[var(--bg-2)] border border-line rounded-lg p-4 h-[180px] overflow-hidden">
-      {shown.map((l, i) => (
-        <div key={i} className="flex gap-2">
-          <span className="ink-3 w-3 shrink-0">{l.p}</span>
-          <span className={l.p === "//" ? "accent" : l.p === "↗" ? "ink" : "ink-2"}>{l.t}</span>
-        </div>
-      ))}
-      {typing && (
-        <div className="flex gap-2">
-          <span className="ink-3 w-3 shrink-0">{typing.p}</span>
-          <span className="ink-2">
-            {typing.t.slice(0, cursorChar)}
-            <span className="blink accent">▌</span>
-          </span>
-        </div>
-      )}
-    </div>
-  );
-};
+// Process-step terminal — renders all lines at once (no typewriter effect).
+// Keeps the technical texture of the product without the AI-demo animation.
+const Terminal = ({ lines }) => (
+  <div className="mono text-[12.5px] leading-[1.8] bg-[var(--bg-2)] border border-line rounded-lg p-4 h-[180px] overflow-hidden">
+    {lines.map((l, i) => (
+      <div key={i} className="flex gap-2">
+        <span className="ink-3 w-3 shrink-0">{l.p}</span>
+        <span className={l.p === "//" ? "accent" : l.p === "↗" ? "ink" : "ink-2"}>
+          {l.t}
+          {i === lines.length - 1 && <span className="ink-3 ml-0.5">▌</span>}
+        </span>
+      </div>
+    ))}
+  </div>
+);
 
 // Slim scroll progress bar — sits at the top edge of the Nav.
 const ScrollProgress = () => {
@@ -339,7 +301,7 @@ export const Hero = () => {
               className="mt-6 text-base md:text-lg ink-2 max-w-md rise"
               style={{ animationDelay: "160ms" }}
             >
-              CRM y atribución de publicidad para inmobiliarias y concesionarias de toda la Argentina. Capturá los leads de Meta, Google, los portales y tu web, hacelos avanzar por un pipeline visual y cerrá con reparto de comisiones — con cada peso invertido en ads atado a cada lead y a cada venta. A la derecha, una demo interactiva con datos de ejemplo.
+              CRM y atribución de publicidad para inmobiliarias y concesionarias de toda la Argentina. Capturá los leads de Meta, Google, los portales y tu web, hacelos avanzar por un pipeline visual y cerrá con reparto de comisiones. Cada peso que invertís en ads queda atado a cada lead y a cada venta. A la derecha, una demo interactiva con datos de ejemplo.
             </p>
 
             <div
@@ -380,26 +342,6 @@ export const Hero = () => {
             </div>
           </div>
         </div>
-
-        {/* Stats bar — anchor for #resultados */}
-        <div
-          id="resultados"
-          className="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-0 border border-line rounded-xl overflow-hidden bg-surface rise"
-          style={{ animationDelay: "400ms" }}
-        >
-          {[
-            ["+43%", "cierres mes a mes"],
-            ["−95%", "leads perdidos"],
-            ["−97%", "tiempo de asignación"],
-            ["100%", "leads trazados · ad → cierre"],
-          ].map(([v, k], i) => (
-            <div key={i} className="px-5 py-4 border-r last:border-r-0 border-line">
-              <div className="serif text-3xl num">{v}</div>
-              <div className="mono text-[11px] ink-3 mt-1">{k}</div>
-            </div>
-          ))}
-        </div>
-        <p className="mt-3 mono text-[10px] ink-3">Piloto real · 6 semanas · 6 vendedores · datos de ejemplo</p>
       </div>
     </section>
   );
@@ -506,9 +448,9 @@ export const Marquee = () => (
     <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-24">
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-        <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3 mb-4">01 · integraciones · 6</div>
+        <div className="text-[11px] font-medium uppercase tracking-[0.18em] ink-3 mb-4">Integraciones · 6</div>
         <h2 className="serif text-3xl md:text-5xl tracking-tight leading-[1.05]">
-          Conectamos con <em className="italic">todo lo que ya usás.</em>
+          Conectamos con todo lo que ya usás.
         </h2>
         <p className="mono text-[12px] ink-3 mt-5 flex items-center justify-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)]" aria-hidden="true" />
@@ -618,9 +560,9 @@ export const AdTracking = () => (
       {/* Header */}
       <div className="flex items-end justify-between gap-8 flex-wrap mb-14">
         <div>
-          <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">02 · del ad al cierre</div>
+          <div className="text-[11px] font-medium uppercase tracking-[0.18em] ink-3">Del ad al cierre</div>
           <h2 data-reveal-words className="serif text-5xl md:text-7xl leading-[0.98] mt-4 tracking-tight max-w-3xl">
-            No es solo un CRM. <em className="italic accent">Sabés qué ad pagó cada venta.</em>
+            Cada venta, atada al ad que la pagó.
           </h2>
         </div>
         <p className="ink-2 max-w-sm">
@@ -632,9 +574,8 @@ export const AdTracking = () => (
       <div className="grid md:grid-cols-3 gap-px bg-[var(--line)] border border-line rounded-2xl overflow-hidden">
         {AD_STEPS.map((s) => (
           <div key={s.n} className="bg-surface p-7 md:p-9 flex flex-col">
-            <div className="flex items-center justify-between mb-5">
+            <div className="mb-5">
               <span className="mono text-[11px] uppercase tracking-[0.18em] accent-text">{s.tag}</span>
-              <span className="mono text-[11px] ink-3">{s.n}/03</span>
             </div>
             <h3 className="serif text-2xl md:text-3xl leading-tight tracking-tight mb-3 md:min-h-[2.5em]">{s.title}</h3>
             <p className="ink-2 text-sm leading-relaxed mb-6">{s.body}</p>
@@ -736,9 +677,9 @@ export const UseCases = () => {
       <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-24 md:py-32">
         <div className="flex items-end justify-between gap-8 flex-wrap mb-14">
           <div>
-            <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">03 · verticales</div>
+            <div className="text-[11px] font-medium uppercase tracking-[0.18em] ink-3">Verticales</div>
             <h2 data-reveal-words className="serif text-5xl md:text-7xl leading-[0.98] mt-4 tracking-tight max-w-3xl">
-              Para empresas que <em className="italic accent">venden todos los días.</em>
+              Para empresas que venden todos los días.
             </h2>
           </div>
           <p className="ink-2 max-w-sm">
@@ -805,7 +746,7 @@ export const UseCases = () => {
             </div>
             <h3 className="serif text-3xl md:text-5xl leading-[1.02] tracking-tight mb-4">Pipeline de concesionaria, end-to-end.</h3>
             <p className="ink-2 mb-6 max-w-md leading-relaxed">
-              Captura desde Meta Lead Ads, Google Ads y tu web. Ficha de vehículo completa —marca, modelo, km, GNC, estado de dominio— y pipeline con test drive, oferta y reserva. Reportes automáticos sin Excel.
+              Captura desde Meta Lead Ads, Google Ads y tu web. Ficha de vehículo completa (marca, modelo, km, GNC, estado de dominio) y pipeline con test drive, oferta y reserva. Reportes automáticos sin Excel.
             </p>
             <div className="flex flex-wrap gap-1.5 mt-auto">
               <span className="mono text-[10px] ink-3 uppercase tracking-wider mr-1 self-center">track:</span>
@@ -985,21 +926,21 @@ export const UseCase = () => {
 
   const phases = [
     {
-      label: "01 / Problema",
+      label: "Problema",
       title: "Cero visibilidad.",
       body: "Los leads caían en chats personales. Nadie sabía quién atendía a quién, ni cómo medir conversión real.",
       stat: { v: "62%", k: "leads perdidos" },
       visual: "chaos",
     },
     {
-      label: "02 / Solución",
+      label: "Solución",
       title: "Una sola fuente de verdad.",
       body: "Captura desde portales, Meta y WhatsApp, sin carga manual. Asignación automática al vendedor. Pipeline visible para todos.",
       stat: { v: "3 → 1", k: "plataformas a revisar" },
       visual: "pipeline",
     },
     {
-      label: "03 / Resultado",
+      label: "Resultado",
       title: "6 semanas. Otra operación.",
       body: "Trazabilidad end-to-end. Asignación instantánea. Más cierres con el mismo equipo.",
       stat: { v: "+43%", k: "cierres / mes" },
@@ -1014,9 +955,9 @@ export const UseCase = () => {
     <section id="caso" className="relative max-w-[1280px] mx-auto px-6 md:px-10 py-24 md:py-32">
       {/* Section header */}
       <div className="mb-16 md:mb-20 max-w-3xl">
-        <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">04 · caso real</div>
+        <div className="text-[11px] font-medium uppercase tracking-[0.18em] ink-3">Caso real</div>
         <h2 data-reveal-words className="serif text-5xl md:text-6xl leading-[1] mt-4 tracking-tight">
-          Los leads no <em className="italic accent">se pierden.</em><br/>
+          Los leads no se pierden.<br/>
           Se pierden de vista.
         </h2>
         <p className="mt-6 text-lg ink-2 max-w-md">
@@ -1228,9 +1169,9 @@ export const Services = () => (
     <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-24 md:py-32">
       <div className="flex items-end justify-between mb-14 gap-8 flex-wrap">
         <div>
-          <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">05 · más allá del CRM</div>
+          <div className="text-[11px] font-medium uppercase tracking-[0.18em] ink-3">Más allá del CRM</div>
           <h2 className="serif text-5xl md:text-7xl leading-[0.98] mt-4 tracking-tight max-w-3xl">
-            El CRM es el corazón. <em className="italic">Tres pilares lo potencian.</em>
+            El CRM es el corazón. Tres pilares lo completan.
           </h2>
         </div>
         <p className="ink-2 max-w-sm">
@@ -1248,8 +1189,7 @@ export const Services = () => (
                   <ServiceIcon />
                 </div>
                 <div className="text-right">
-                  <div className="mono text-[11px] ink-3">{String(i+1).padStart(2,"0")} / {SERVICES.length.toString().padStart(2,"0")}</div>
-                  <div className="mono text-[11px] ink-3 mt-0.5">{s.k}</div>
+                  <div className="mono text-[11px] ink-3">{s.k}</div>
                 </div>
               </div>
               <h3 className="serif text-3xl md:text-4xl mt-6 leading-[1] tracking-tight break-words hyphens-auto">{s.name}</h3>
@@ -1270,129 +1210,124 @@ export const Services = () => (
   </section>
 );
 
+// Marca de comparación: a favor (✓), en contra (×) o parcial (·).
+const CompareMark = ({ ok }) => {
+  if (ok === true) return <span className="shrink-0 mt-0.5 w-4 h-4 rounded-full grid place-items-center text-[10px] font-bold bg-[var(--accent)] text-white" aria-label="a favor">✓</span>;
+  if (ok === false) return <span className="shrink-0 mt-0.5 w-4 h-4 rounded-full grid place-items-center text-[10px] font-bold bg-surface-2 ink-3 border border-line" aria-label="en contra">×</span>;
+  return <span className="shrink-0 mt-0.5 w-4 h-4 grid place-items-center text-[13px] ink-3" aria-label="parcial">·</span>;
+};
+const CompareCell = ({ data }) => (
+  <div className="flex items-start gap-2">
+    <CompareMark ok={data.ok} />
+    <span className="text-sm leading-snug">{data.v}</span>
+  </div>
+);
+
 export const WhyQuasor = () => {
-  const cols = [
+  const COLS = [
+    { k: "internacional", name: "Internacional", sub: "HubSpot · Zoho · Salesforce" },
+    { k: "quasor",        name: "Quasor",        sub: "Hecho para el rubro AR" },
+    { k: "local",         name: "Local",         sub: "Tokko · Wasi" },
+  ];
+  const ROWS = [
     {
-      k: "internacional",
-      name: "HubSpot · Zoho · Salesforce",
-      tone: "neutral",
-      desc: "Líderes globales, no enfocados en ARG",
-      rows: [
-        { v: "Precios en USD · sin factura local", good: false, hint: "Planes complejos. Cambio de divisa y reconciliación con AFIP a tu cargo." },
-        { v: "Dashboards y soporte en inglés", good: false, hint: "Tu equipo se capacita en jerga US, no en el lenguaje del rubro AR." },
-        { v: "Tokko / Meta Lead Ads / Google: vía Zapier", good: false, hint: "Sin integraciones nativas para el stack de ventas argentino (Tokko, Meta, Google, WhatsApp). Conectores externos en el medio." },
-        { v: "Atribución ad → venta: cara y a medias", good: false, hint: "Medir el costo real por venta cerrada exige add-ons caros o trabajo manual." },
-        { v: "Reparto de comisiones: módulo extra o por planilla", good: false, hint: "El reparto entre vendedor, oficina y broker queda por fuera o requiere add-ons." },
-      ],
+      c: "Precio y facturación",
+      intl: { v: "En USD, sin factura local", ok: false },
+      us:   { v: "En AR$, sin permanencia", ok: true },
+      loc:  { v: "En AR$, factura local", ok: true },
     },
     {
-      k: "quasor",
-      name: "Quasor",
-      tone: "accent",
-      desc: "Hecho para inmobiliarias y concesionarias argentinas",
-      rows: [
-        { v: "Precios en AR$ · sin permanencia", good: true, hint: "Factura local. Cancelás cuando quieras." },
-        { v: "Tokko · WhatsApp · Meta · Google · nativos", good: true, hint: "Integraciones nativas y automáticas. Sin Zapier en el medio." },
-        { v: "Inversión en ads atada a cada lead y venta", good: true, hint: "Del aviso a la comisión: ves qué campaña deja ganancia y cuál pérdida, no solo el costo por click." },
-        { v: "Reparto de comisiones, multi-destinatario y multimoneda", good: true, hint: "Al cerrar repartís entre vendedor, oficina, broker y referido — en % o en meses de alquiler." },
-        { v: "Soporte WhatsApp horario AR · < 6h", good: true, hint: "Hablás directo con quien programa. Sin tickets ni account managers." },
-      ],
+      c: "Integraciones del stack argentino",
+      intl: { v: "Vía Zapier, no nativas", ok: false },
+      us:   { v: "Tokko, WhatsApp, Meta y Google nativos", ok: true },
+      loc:  { v: "Parciales", ok: null },
     },
     {
-      k: "local",
-      name: "Tokko · Wasi",
-      tone: "neutral",
-      desc: "Gestión inmobiliaria · CRM secundario",
-      rows: [
-        { v: "Foco: catálogo y administración", good: false, hint: "El CRM es un módulo, no el foco. La gestión de propiedades primero; el pipeline de ventas, después." },
-        { v: "Pipeline / automatización: limitados", good: false, hint: "Asignación inteligente y alertas requieren soluciones improvisadas." },
-        { v: "Cambios custom: cola + ticket", good: false, hint: "Software empaquetado, no a medida de tu operación." },
-        { v: "No trackean la inversión publicitaria", good: false, hint: "Son catálogo + CRM. Lo que invertís en Meta/Google y su retorno quedan afuera." },
-        { v: "Comisiones: por fuera, en planilla", good: false, hint: "El reparto del cierre se administra aparte, sin quedar atado a la operación." },
-      ],
+      c: "Atribución del ad a la venta",
+      intl: { v: "Add-on caro o trabajo manual", ok: false },
+      us:   { v: "Incluida, del aviso a la comisión", ok: true },
+      loc:  { v: "No trackean la inversión", ok: false },
+    },
+    {
+      c: "Reparto de comisiones",
+      intl: { v: "Módulo extra o planilla", ok: false },
+      us:   { v: "Nativo, multi-destinatario y multimoneda", ok: true },
+      loc:  { v: "Por fuera, en planilla", ok: false },
+    },
+    {
+      c: "Pipeline y automatización",
+      intl: { v: "Potente, pero genérico", ok: null },
+      us:   { v: "Pensados para inmobiliarias y automotoras", ok: true },
+      loc:  { v: "Limitados", ok: false },
+    },
+    {
+      c: "Soporte",
+      intl: { v: "En inglés, por tickets", ok: false },
+      us:   { v: "WhatsApp en horario AR · < 6h", ok: true },
+      loc:  { v: "Cola + ticket", ok: false },
     },
   ];
+
   return (
     <section id="por-que" className="relative border-t border-line">
       <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-24 md:py-32">
         <div className="flex items-end justify-between gap-8 flex-wrap mb-14">
           <div>
-            <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">06 · por qué Quasor</div>
+            <div className="text-[11px] font-medium uppercase tracking-[0.18em] ink-3">Por qué Quasor</div>
             <h2 className="serif text-5xl md:text-7xl leading-[0.98] mt-4 tracking-tight max-w-3xl">
-              ¿Y por qué <em className="italic">nosotros?</em>
+              ¿Y por qué nosotros?
             </h2>
           </div>
           <p className="ink-2 max-w-sm">
-            Tres caminos. Sin letra chica.
+            La comparación, sin letra chica.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-px bg-[var(--line)] border border-line rounded-xl overflow-hidden">
-          {cols.map((c) => {
-            const isUs = c.tone === "accent";
-            return (
-              <div
-                key={c.k}
-                className={`p-8 md:p-10 relative ${isUs ? "" : "bg-surface"}`}
-                style={isUs ? {
-                  background: "var(--rec-bg)",
-                  color: "var(--rec-fg)",
-                  boxShadow: "inset 0 0 0 1px color-mix(in oklab, var(--accent) 22%, transparent)"
-                } : undefined}
-              >
-                {isUs && (
-                  <div className="absolute top-4 right-4 mono text-[10px] uppercase tracking-wider accent border border-[var(--accent)] px-2 py-0.5 rounded-full">
-                    recomendado
-                  </div>
-                )}
-                <div
-                  className="mono text-[11px] uppercase tracking-[0.18em]"
-                  style={isUs ? { color: "var(--rec-fg-muted)" } : undefined}
-                >
-                  {isUs ? c.k : <span className="ink-3">{c.k}</span>}
-                </div>
-                <div className="mt-3 md:min-h-[7.5rem]">
-                  <h3 className="serif text-3xl md:text-4xl tracking-tight leading-tight">{c.name}</h3>
-                  <p
-                    className={`mt-2 text-sm ${isUs ? "" : "ink-2"}`}
-                    style={isUs ? { color: "var(--rec-fg-muted)" } : undefined}
-                  >
-                    {c.desc}
-                  </p>
-                </div>
-                <div
-                  className={`hl-grad my-6 ${isUs ? "" : ""}`}
-                  style={isUs ? { background: "linear-gradient(90deg, transparent, var(--rec-divider), transparent)" } : undefined}
-                />
-                <ul className="space-y-3.5">
-                  {c.rows.map((r, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span
-                        className={`mt-0.5 shrink-0 w-5 h-5 rounded-full grid place-items-center text-[11px] font-bold ${
-                          r.good
-                            ? "bg-[var(--accent)] text-white"
-                            : isUs
-                              ? ""
-                              : "bg-surface-2 ink-3"
-                        }`}
-                        style={!r.good && isUs ? { background: "var(--rec-chip-bg)", color: "var(--rec-chip-fg)" } : undefined}
-                      >
-                        {r.good ? "✓" : "×"}
-                      </span>
-                      <div className="flex-1 min-w-0">
-                        <div className={`text-sm ${isUs ? "" : "ink"}`}>{r.v}</div>
-                        {r.hint && isUs && (
-                          <div className="mono text-[10px] mt-0.5" style={{ color: "var(--rec-fg-muted)" }}>{r.hint}</div>
-                        )}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
+        {/* Matriz de comparación — la columna del medio (Quasor) va con un tinte
+            suave y sin badge: se lee como una tabla de specs, no como una tarjeta
+            de precios. Scrollea horizontal en pantallas angostas. */}
+        <div className="overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0">
+          <table className="w-full min-w-[680px] border-collapse">
+            <caption className="sr-only">Comparación de Quasor con CRMs internacionales y locales</caption>
+            <thead>
+              <tr>
+                <th scope="col" className="w-[22%]" />
+                {COLS.map((col) => {
+                  const isUs = col.k === "quasor";
+                  return (
+                    <th
+                      key={col.k}
+                      scope="col"
+                      className="text-left align-bottom p-4 md:p-5 border-b border-line-2"
+                      style={isUs ? { background: "var(--rec-bg)" } : undefined}
+                    >
+                      <span className={`serif text-xl md:text-2xl tracking-tight block ${isUs ? "accent" : "ink"}`}>{col.name}</span>
+                      <span className="mono text-[10px] ink-3 block mt-1">{col.sub}</span>
+                    </th>
+                  );
+                })}
+              </tr>
+            </thead>
+            <tbody>
+              {ROWS.map((row, ri) => (
+                <tr key={ri}>
+                  <th scope="row" className="text-left align-top p-4 md:p-5 border-b border-line">
+                    <span className="text-sm font-medium ink leading-snug">{row.c}</span>
+                  </th>
+                  <td className="align-top p-4 md:p-5 border-b border-line ink-2">
+                    <CompareCell data={row.intl} />
+                  </td>
+                  <td className="align-top p-4 md:p-5 border-b border-line ink" style={{ background: "var(--rec-bg)" }}>
+                    <CompareCell data={row.us} />
+                  </td>
+                  <td className="align-top p-4 md:p-5 border-b border-line ink-2">
+                    <CompareCell data={row.loc} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-
       </div>
     </section>
   );
@@ -1429,9 +1364,9 @@ export const Process = () => {
       <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-24 md:py-32">
         <div className="flex items-end justify-between gap-8 flex-wrap mb-12">
           <div>
-            <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">08 · proceso</div>
+            <div className="text-[11px] font-medium uppercase tracking-[0.18em] ink-3">Proceso</div>
             <h2 className="serif text-5xl md:text-7xl leading-[0.98] mt-4 tracking-tight">
-              Cuatro etapas. <em className="italic">Sin demoras.</em>
+              Cuatro etapas. Sin demoras.
             </h2>
           </div>
           <p className="ink-2 max-w-xs">
@@ -1531,7 +1466,7 @@ export const Process = () => {
             <h3 className="serif text-3xl md:text-4xl mt-2 tracking-tight leading-tight">{PROCESS[active].name}</h3>
             <p className="ink-2 mt-4 max-w-md leading-relaxed">{PROCESS[active].body}</p>
           </div>
-          <Terminal lines={PROCESS[active].term} playKey={active} />
+          <Terminal lines={PROCESS[active].term} />
         </div>
       </div>
     </section>
@@ -1545,9 +1480,9 @@ export const Testimonials = () => {
       <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-24 md:py-32">
         <div className="flex items-end justify-between gap-8 flex-wrap mb-14">
           <div>
-            <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">07 · voz del cliente</div>
+            <div className="text-[11px] font-medium uppercase tracking-[0.18em] ink-3">Voz del cliente</div>
             <h2 className="serif text-5xl md:text-7xl leading-[0.98] mt-4 tracking-tight max-w-3xl">
-              Lo que dicen los que <em className="italic">ya operan con Quasor</em>.
+              Lo que dicen los que ya operan con Quasor.
             </h2>
           </div>
           <p className="ink-2 max-w-xs">
@@ -1598,7 +1533,7 @@ export const Testimonials = () => {
         <div className="mt-16">
           <div className="flex items-end justify-between gap-4 flex-wrap mb-6">
             <div>
-              <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">resultados por vertical</div>
+              <div className="text-[11px] font-medium uppercase tracking-[0.18em] ink-3">Resultados por vertical</div>
               <h3 className="serif text-3xl md:text-4xl mt-2 tracking-tight">El objetivo, no la promesa.</h3>
             </div>
             <p className="mono text-[11px] ink-3 max-w-xs">
@@ -1633,7 +1568,7 @@ export const Pricing = () => {
       tag: "Equipos chicos que arrancan",
       features: [
         "Hasta 4 usuarios",
-        "Meta o Google Ads — el canal que más usás",
+        "Meta o Google Ads: el canal que más usás",
         "Soporte WhatsApp en horario AR · < 6h",
       ],
       recommended: false,
@@ -1644,7 +1579,7 @@ export const Pricing = () => {
       tag: "Equipos en crecimiento",
       features: [
         "Hasta 8 usuarios",
-        "Meta y Google Ads — todo en un solo lugar",
+        "Meta y Google Ads: todo en un solo lugar",
         "Soporte prioritario",
       ],
       recommended: true,
@@ -1692,9 +1627,9 @@ export const Pricing = () => {
         {/* Header — pricing */}
         <div className="flex items-end justify-between gap-8 flex-wrap mb-14">
           <div>
-            <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">09 · precios</div>
+            <div className="text-[11px] font-medium uppercase tracking-[0.18em] ink-3">Precios</div>
             <h2 className="serif text-5xl md:text-7xl leading-[0.98] mt-4 tracking-tight">
-              Tres planes. <em className="italic">Por tamaño de equipo.</em>
+              Tres planes. Por tamaño de equipo.
             </h2>
           </div>
           <p className="ink-2 max-w-sm">
@@ -1722,9 +1657,8 @@ export const Pricing = () => {
                   {isRec ? t.k : <span className="ink-3">{t.k}</span>}
                 </div>
                 <h3 className="serif text-3xl md:text-4xl mt-3 tracking-tight leading-tight">{t.name}</h3>
-                <div className="mt-4 flex items-baseline gap-2">
-                  <span className="serif italic text-2xl md:text-3xl leading-none">A medida</span>
-                  <span className="mono text-[12px]" style={isRec ? { color: "var(--rec-fg-muted)" } : { color: "var(--ink-3)" }}>· según tu escala</span>
+                <div className="mt-4">
+                  <span className="serif text-2xl md:text-3xl leading-none">A medida</span>
                 </div>
                 <p className={`mt-4 text-sm ${isRec ? "" : "ink-2"}`} style={isRec ? { color: "var(--rec-fg-muted)" } : undefined}>
                   {t.tag}
@@ -1759,9 +1693,9 @@ export const Pricing = () => {
         <div className="rounded-2xl border border-line bg-surface p-7 md:p-9 mb-16 md:mb-20">
           <div className="flex items-end justify-between gap-6 flex-wrap mb-6">
             <div>
-              <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">en los tres planes</div>
+              <div className="text-[11px] font-medium uppercase tracking-[0.18em] ink-3">En los tres planes</div>
               <h3 className="serif text-2xl md:text-3xl mt-2 tracking-tight">
-                Todas las funciones incluidas. <em className="italic ink-2">Sin recortes.</em>
+                Todas las funciones incluidas. Sin recortes.
               </h3>
             </div>
             <p className="mono text-[11px] ink-3 max-w-xs">
@@ -1781,9 +1715,9 @@ export const Pricing = () => {
         {/* Fit / qualification — sub-bloque sin nuevo número */}
         <div className="flex items-end justify-between gap-8 flex-wrap mb-10 pt-12 border-t border-line">
           <div>
-            <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">antes de empezar</div>
+            <div className="text-[11px] font-medium uppercase tracking-[0.18em] ink-3">Antes de empezar</div>
             <h3 className="serif text-3xl md:text-5xl leading-[1.05] mt-3 tracking-tight">
-              ¿Es <em className="italic accent">para vos?</em>
+              ¿Es para vos?
             </h3>
           </div>
           <p className="ink-2 max-w-sm">
@@ -1846,7 +1780,7 @@ export const Pricing = () => {
             <div>
               <div className="mono text-[10px] uppercase tracking-[0.18em] opacity-60 mb-3">primera reunión gratis · sin venta</div>
               <h3 className="serif text-3xl md:text-5xl leading-[1.05] tracking-tight">
-                30 minutos para evaluar si <em className="italic">podemos ayudarte.</em>
+                30 minutos para evaluar si podemos ayudarte.
               </h3>
               <p className="opacity-80 text-base mt-4 max-w-md">
                 Te escuchamos, hacemos preguntas y al final te decimos con honestidad si encajamos. Si no, te orientamos hacia algo que sí. Sin compromiso.
@@ -1890,9 +1824,9 @@ export const Faq = () => (
     <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-24 md:py-32">
       <div className="grid md:grid-cols-[1fr_1.4fr] gap-16">
         <div>
-          <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">10 · FAQ</div>
+          <div className="text-[11px] font-medium uppercase tracking-[0.18em] ink-3">FAQ</div>
           <h2 className="serif text-5xl md:text-6xl leading-[0.98] mt-4 tracking-tight">
-            Preguntas <em className="italic">frecuentes.</em>
+            Preguntas frecuentes.
           </h2>
           <p className="ink-2 mt-5">¿No está la tuya? <a href="#contacto" className="underline decoration-dotted underline-offset-4">Escribinos</a> y respondemos en menos de 6h hábiles.</p>
         </div>
@@ -1910,9 +1844,9 @@ export const Contact = () => {
   <section id="contacto" className="relative border-t border-line overflow-hidden">
     <div className="absolute inset-0 glow opacity-60 pointer-events-none" />
     <div className="relative max-w-[1280px] mx-auto px-6 md:px-10 py-28 md:py-40">
-      <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">11 · contacto</div>
+      <div className="text-[11px] font-medium uppercase tracking-[0.18em] ink-3">Contacto</div>
       <h2 data-reveal-words className="serif text-5xl md:text-[72px] xl:text-[104px] leading-[0.95] tracking-[-0.02em] mt-6 max-w-5xl">
-        ¿Tu operación depende de <em className="italic accent">buena voluntad?</em> Hablemos.
+        ¿Tu operación depende de buena voluntad? Hablemos.
       </h2>
       <p className="ink-2 mt-8 text-lg max-w-xl">
         30 minutos por WhatsApp o videollamada. Te contamos qué haríamos, cuánto tarda y cuánto cuesta.

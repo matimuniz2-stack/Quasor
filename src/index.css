@@ -2,7 +2,7 @@
 
 /* Tailwind 4 — custom theme variables surfaced as utilities where useful */
 @theme {
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Schibsted Grotesk', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --font-serif: 'Instrument Serif', 'Times New Roman', serif;
 }
@@ -54,12 +54,11 @@ html[data-theme="dark"] {
 }
 html, body { background: var(--bg); color: var(--ink); }
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  font-feature-settings: "ss01","cv11";
+  font-family: 'Schibsted Grotesk', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   letter-spacing: -0.005em;
 }
-.serif { font-family: 'Inter', system-ui, sans-serif; font-weight: 600; letter-spacing: -0.035em; }
+.serif { font-family: 'Schibsted Grotesk', system-ui, sans-serif; font-weight: 600; letter-spacing: -0.035em; }
 .serif em { font-family: 'Instrument Serif', 'Times New Roman', serif; font-weight: 400; font-style: italic; letter-spacing: -0.02em; }
 .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
 .ink { color: var(--ink); }
@@ -134,13 +133,13 @@ html[data-theme="dark"] .glow {
   display: flex;
   width: max-content;
   gap: 0.875rem;
-  animation: mq-ltr 56s linear infinite;
+  animation: mq-ltr 74s linear infinite;
   will-change: transform;
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.mq-track--rtl { animation-name: mq-rtl; animation-duration: 64s; }
+.mq-track--rtl { animation-name: mq-rtl; animation-duration: 86s; }
 /* Pause only the hovered/touched track, not the whole stage. */
 .mq-track:hover,
 .mq-track:focus-within,
@@ -372,12 +371,11 @@ html.lenis, html.lenis body { height: auto; }
   display: inline-block;
   transform: translateY(110%);
   opacity: 0;
-  filter: blur(8px);
-  transition: transform .9s cubic-bezier(.2,.7,.2,1), opacity .9s cubic-bezier(.2,.7,.2,1), filter .9s cubic-bezier(.2,.7,.2,1);
+  transition: transform .7s cubic-bezier(.2,.7,.2,1), opacity .7s cubic-bezier(.2,.7,.2,1);
   transition-delay: var(--rw-delay, 0ms);
-  will-change: transform, opacity, filter;
+  will-change: transform, opacity;
 }
-[data-reveal-words].rw-in .rw-word > span { transform: translateY(0); opacity: 1; filter: blur(0); }
+[data-reveal-words].rw-in .rw-word > span { transform: translateY(0); opacity: 1; }
 
 /* ============================================================
    REDUCED MOTION — global override (W3C recommended pattern).
