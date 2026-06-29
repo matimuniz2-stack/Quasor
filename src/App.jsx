@@ -10,7 +10,13 @@ import { TweakPanel, applyTweaks } from './components/Tweaks.jsx';
 const App = () => {
   // Hydrate from <html data-theme> set by the inline script in index.html.
   // That script already read localStorage > prefers-color-scheme.
+  // On the server (build-time prerender via renderToStaticMarkup) there's no
+  // document/window, so fall back to the same defaults declared in index.html's
+  // __TWEAKS__ block. The client re-renders over this snapshot on mount.
   const [tweaks, setTweaks] = useState(() => {
+    if (typeof document === 'undefined') {
+      return { accent: 'orange', density: 'compact', theme: 'light' };
+    }
     const initialTheme = document.documentElement.getAttribute('data-theme') || 'light';
     return { ...(window.__TWEAKS__ || { accent: "orange", density: "cozy" }), theme: initialTheme };
   });
@@ -95,23 +101,31 @@ const App = () => {
       });
       const raf = (t) => { lenis.raf(t); rafId = requestAnimationFrame(raf); };
       rafId = requestAnimationFrame(raf);
-      // Smooth anchor scroll
-      smoothAnchorClick = (e) => {
-        const a = e.target.closest('a[href^="#"]');
-        if (!a) return;
-        const id = a.getAttribute("href");
-        if (id && id.length > 1) {
-          const tgt = document.querySelector(id);
-          if (tgt) {
-            e.preventDefault();
-            // Contacto ya tiene padding superior propio: lo alineamos al tope.
-            const offset = id === "#contacto" ? 0 : -80;
-            lenis.scrollTo(tgt, { offset, duration: 1.4 });
-          }
-        }
-      };
-      document.addEventListener("click", smoothAnchorClick);
     }
+    // Anchor clicks: scroll suave vía Lenis cuando está activo. El "#" pelado
+    // del logo vuelve al tope sin dejar el hash colgado en la URL (queda feo).
+    smoothAnchorClick = (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const id = a.getAttribute("href");
+      if (id === "#") {
+        e.preventDefault();
+        if (lenis) lenis.scrollTo(0, { duration: 1.4 });
+        else window.scrollTo({ top: 0 });
+        history.replaceState(null, "", window.location.pathname + window.location.search);
+        return;
+      }
+      if (id && id.length > 1 && lenis) {
+        const tgt = document.querySelector(id);
+        if (tgt) {
+          e.preventDefault();
+          // Contacto ya tiene padding superior propio: lo alineamos al tope.
+          const offset = id === "#contacto" ? 0 : -80;
+          lenis.scrollTo(tgt, { offset, duration: 1.4 });
+        }
+      }
+    };
+    document.addEventListener("click", smoothAnchorClick);
 
     // ============================================================
     // WORD REVEAL on scroll (recursive — preserves <em>, <br/>, etc)
@@ -162,8 +176,8 @@ const App = () => {
       window.removeEventListener("message", onMsg);
       io.disconnect();
       rwIo.disconnect();
+      if (smoothAnchorClick) document.removeEventListener("click", smoothAnchorClick);
       if (lenis) {
-        if (smoothAnchorClick) document.removeEventListener("click", smoothAnchorClick);
         lenis.destroy();
         cancelAnimationFrame(rafId);
       }
