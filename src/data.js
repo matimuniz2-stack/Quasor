@@ -17,7 +17,7 @@ export const SERVICES = [
     k: "AUTO",
     name: "Automatizaciones",
     body: "El trabajo repetitivo corre solo: tu equipo recibe el aviso, no lo ejecuta.",
-    bullets: ["Cada lead entra solo, sin duplicados, y se asigna al vendedor con menos carga", "Aviso por mail si una oportunidad queda demasiado tiempo frenada en una etapa", "Costos de Meta y Google y métricas, actualizados todos los días"],
+    bullets: ["Cada lead entra solo, sin duplicados, y se asigna a un vendedor al instante", "Aviso por mail si una oportunidad queda demasiado tiempo frenada en una etapa", "Costos de Meta y Google y métricas, actualizados todos los días"],
   },
 ];
 

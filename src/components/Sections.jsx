@@ -766,7 +766,7 @@ export const UseCases = () => {
             </div>
             <h3 className="serif text-3xl md:text-5xl leading-[1.02] tracking-tight mb-4">Pipeline inmobiliario, end-to-end.</h3>
             <p className="ink-2 mb-6 max-w-md leading-relaxed">
-              Captura desde Meta Lead Ads, Google Ads, Tokko y WhatsApp. Asigna por zona, mide conversión por vendedor. Reportes automáticos sin Excel.
+              Captura desde Meta Lead Ads, Google Ads, Tokko y WhatsApp. Asigna cada lead automáticamente y mide conversión por vendedor. Reportes automáticos sin Excel.
             </p>
             <div className="flex flex-wrap gap-1.5 mt-auto">
               <span className="mono text-[10px] ink-3 uppercase tracking-wider mr-1 self-center">track:</span>
@@ -989,7 +989,7 @@ export const UseCase = () => {
     {
       label: "02 / Solución",
       title: "Una sola fuente de verdad.",
-      body: "Captura automática desde portales, Meta y WhatsApp. Asignación por zona y disponibilidad. Pipeline visible para todos.",
+      body: "Captura desde portales, Meta y WhatsApp, sin carga manual. Asignación automática al vendedor. Pipeline visible para todos.",
       stat: { v: "3 → 1", k: "plataformas a revisar" },
       visual: "pipeline",
     },
