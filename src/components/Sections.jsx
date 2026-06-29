@@ -1225,7 +1225,7 @@ export const Services = () => (
         <div>
           <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">05 · más allá del CRM</div>
           <h2 className="serif text-5xl md:text-7xl leading-[0.98] mt-4 tracking-tight max-w-3xl">
-            El CRM es el corazón. <em className="italic">Esto lo amplifica.</em>
+            El CRM es el corazón. <em className="italic">Tres pilares lo potencian.</em>
           </h2>
         </div>
         <p className="ink-2 max-w-sm">
@@ -1248,7 +1248,7 @@ export const Services = () => (
                 </div>
               </div>
               <h3 className="serif text-3xl md:text-4xl mt-6 leading-[1] tracking-tight break-words hyphens-auto">{s.name}</h3>
-              <p className="mt-4 ink-2 max-w-sm">{s.body}</p>
+              <p className="mt-4 ink-2 max-w-sm md:min-h-[7.5rem]">{s.body}</p>
               <ul className="mt-6 space-y-2">
                 {s.bullets.map(b => (
                   <li key={b} className="flex items-start gap-2 text-sm ink-2">
@@ -1346,13 +1346,15 @@ export const WhyQuasor = () => {
                 >
                   {isUs ? c.k : <span className="ink-3">{c.k}</span>}
                 </div>
-                <h3 className="serif text-3xl md:text-4xl mt-3 tracking-tight leading-tight">{c.name}</h3>
-                <p
-                  className={`mt-2 text-sm ${isUs ? "" : "ink-2"}`}
-                  style={isUs ? { color: "var(--rec-fg-muted)" } : undefined}
-                >
-                  {c.desc}
-                </p>
+                <div className="mt-3 md:min-h-[7.5rem]">
+                  <h3 className="serif text-3xl md:text-4xl tracking-tight leading-tight">{c.name}</h3>
+                  <p
+                    className={`mt-2 text-sm ${isUs ? "" : "ink-2"}`}
+                    style={isUs ? { color: "var(--rec-fg-muted)" } : undefined}
+                  >
+                    {c.desc}
+                  </p>
+                </div>
                 <div
                   className={`hl-grad my-6 ${isUs ? "" : ""}`}
                   style={isUs ? { background: "linear-gradient(90deg, transparent, var(--rec-divider), transparent)" } : undefined}

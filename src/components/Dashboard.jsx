@@ -1136,10 +1136,6 @@ export const Dashboard = () => {
             </button>
           ))}
         </div>
-        <div className="flex items-center gap-2 shrink-0">
-          <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)] pulse-dot"/>
-          <span className="mono text-[10px] ink-3 uppercase tracking-[0.14em] hidden @[680px]/dash:inline">live demo</span>
-        </div>
       </div>
 
       <div className="grid grid-cols-[56px_1fr] @[540px]/dash:grid-cols-[184px_1fr] h-[620px] transition-[grid-template-columns] duration-300">
