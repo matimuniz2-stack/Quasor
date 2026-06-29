@@ -679,7 +679,10 @@ export const AdTracking = () => (
   </section>
 );
 
-// Pipeline stages per vertical — Real Estate uses "Visita"; Automotive "Test drive".
+// Pipeline stages per vertical. Real Estate: 5-stage funnel keyed on "Visita".
+// Automotive runs longer — the product splits the test drive into scheduled +
+// completed and adds an explicit Reserva, mirroring the AUTOMOTIVE opportunity
+// stages (TEST_DRIVE_SCHEDULED → TEST_DRIVE_COMPLETED → OFFER_MADE → RESERVED).
 const PIPELINE_REAL_ESTATE = [
   { n: "Consulta",   c: 34, w: 22,  delay: 0 },
   { n: "Contactado", c: 22, w: 38,  delay: 120 },
@@ -688,16 +691,18 @@ const PIPELINE_REAL_ESTATE = [
   { n: "Cerrado",    c: 3,  w: 100, delay: 480 },
 ];
 const PIPELINE_AUTOMOTIVE = [
-  { n: "Consulta",   c: 40, w: 22,  delay: 0 },
-  { n: "Contactado", c: 26, w: 38,  delay: 120 },
-  { n: "Test drive", c: 14, w: 55,  delay: 240 },
-  { n: "Oferta",     c: 7,  w: 78,  delay: 360 },
-  { n: "Cerrado",    c: 4,  w: 100, delay: 480 },
+  { n: "Consulta",       c: 44, w: 18,  delay: 0 },
+  { n: "Contactado",     c: 28, w: 30,  delay: 120 },
+  { n: "Test drive agendado",  c: 16, w: 42,  delay: 240 },
+  { n: "Test drive realizado", c: 11, w: 56,  delay: 360 },
+  { n: "Oferta",         c: 7,  w: 72,  delay: 480 },
+  { n: "Reserva",        c: 5,  w: 88,  delay: 600 },
+  { n: "Cerrado",        c: 4,  w: 100, delay: 720 },
 ];
 
 // Animated pipeline preview for the vertical cards.
 // Bars fill on group-hover via CSS — see .pipeline-bar in index.css.
-const PipelinePreview = ({ stages = PIPELINE_REAL_ESTATE }) => (
+const PipelinePreview = ({ stages = PIPELINE_REAL_ESTATE, labelW = "w-16" }) => (
   <div className="absolute inset-0 p-5 md:p-7 flex flex-col gap-2.5">
     <div className="flex items-center justify-between mb-2">
       <div className="mono text-[10px] uppercase tracking-[0.18em] ink-3">pipeline · abril</div>
@@ -708,7 +713,7 @@ const PipelinePreview = ({ stages = PIPELINE_REAL_ESTATE }) => (
     </div>
     {stages.map((s, i) => (
       <div key={i} className="flex items-center gap-3">
-        <div className="mono text-[10px] ink-3 w-16 shrink-0">{s.n}</div>
+        <div className={`mono text-[10px] ink-3 ${labelW} shrink-0 whitespace-nowrap`}>{s.n}</div>
         <div className="flex-1 h-4 md:h-5 rounded bg-surface-2 overflow-hidden relative">
           <div
             className="pipeline-bar absolute inset-y-0 left-0 rounded"
@@ -780,7 +785,7 @@ export const UseCases = () => {
         {/* Secondary case — Concesionarias, ready-to-launch vertical */}
         <Card hover className="overflow-hidden grid md:grid-cols-2 group">
           <div className="relative h-72 md:h-auto md:min-h-[420px] bg-surface-2 border-b md:border-b-0 md:border-r border-line overflow-hidden">
-            <PipelinePreview stages={PIPELINE_AUTOMOTIVE} />
+            <PipelinePreview stages={PIPELINE_AUTOMOTIVE} labelW="w-32" />
             <div className="absolute inset-0 bg-gradient-to-tr from-[var(--bg)]/30 via-transparent to-transparent pointer-events-none" />
           </div>
           <div className="p-7 md:p-10 flex flex-col">
@@ -804,7 +809,7 @@ export const UseCases = () => {
             </p>
             <div className="flex flex-wrap gap-1.5 mt-auto">
               <span className="mono text-[10px] ink-3 uppercase tracking-wider mr-1 self-center">track:</span>
-              {["leads", "test drives", "ofertas", "cierres", "fuente del lead"].map(t => (
+              {["leads", "test drives", "ofertas", "reservas", "cierres", "fuente del lead"].map(t => (
                 <span key={t} className="mono text-[10px] px-2 py-0.5 rounded-full bg-surface-2 border border-line">{t}</span>
               ))}
             </div>
