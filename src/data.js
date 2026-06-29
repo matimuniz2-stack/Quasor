@@ -4,27 +4,27 @@ export const SERVICES = [
   {
     k: "DASH",
     name: "Dashboards",
-    body: "Un tablero configurable que reúne Meta, Google, orgánicos y datos de carga manual en una sola vista.",
-    bullets: ["Leads, conversión, oportunidades y ventas — por vendedor, origen o etapa", "Inversión, impresiones, CTR, CPC y CPL por campaña y plataforma", "Embudo de conversión y KPIs comparados contra períodos anteriores"],
+    body: "Armás tus propios tableros, estilo Looker: combinás métrica, desglose y tipo de gráfico, y se guardan solos. Meta, Google, orgánicos y carga manual en una sola vista.",
+    bullets: ["Leads, conversión, oportunidades y ventas — por vendedor, origen o etapa", "Pivot de Ads: inversión, CTR, CPC y CPL con jerarquía campaña → conjunto → aviso", "KPIs comparados contra el período anterior, con la variación al lado"],
   },
   {
     k: "API",
     name: "Integraciones",
     body: "Cada lead y cada dato entran desde su fuente de forma automática, sin captura manual.",
-    bullets: ["Meta Lead Ads, Google Ads y los formularios de tu web", "Tokko: catálogo y consultas, siempre sincronizados", "¿Usás otra herramienta? La integramos a medida"],
+    bullets: ["Meta Lead Ads, Google Ads y los formularios de tu web (con un solo script)", "Tokko: catálogo y consultas, siempre sincronizados", "Otra herramienta en tu stack: la integramos a medida"],
   },
   {
     k: "AUTO",
     name: "Automatizaciones",
-    body: "El trabajo repetitivo pasa solo. Vos recibís el aviso, no lo ejecutás.",
-    bullets: ["Cada lead entra solo y se asigna a un vendedor", "Aviso por mail si un lead lleva demasiado tiempo en una etapa", "Costos de Meta y métricas, actualizados a diario de forma automática"],
+    body: "El trabajo repetitivo corre solo: tu equipo recibe el aviso, no lo ejecuta.",
+    bullets: ["Cada lead entra solo, sin duplicados, y se asigna al vendedor con menos carga", "Aviso por mail si una oportunidad queda demasiado tiempo frenada en una etapa", "Costos de Meta y Google y métricas, actualizados todos los días"],
   },
 ];
 
 export const PROCESS = [
   {
     n: "01", tag: "CONOCEMOS", name: "Entendemos tu operación",
-    body: "Una reunión corta. Cómo trabajan, qué portales usan, qué está roto.",
+    body: "Una reunión corta. Cómo trabajan, qué portales usan, qué no está funcionando hoy.",
     term: [
       { p: "$", t: "onboarding --cliente", w: 1200 },
       { p: ">", t: "¿Cómo entra un lead hoy?" },
@@ -39,7 +39,7 @@ export const PROCESS = [
     term: [
       { p: "$", t: "setup --cliente", w: 800 },
       { p: "├", t: "Meta Lead Ads + Google Ads ✓" },
-      { p: "├", t: "WhatsApp Business ✓" },
+      { p: "├", t: "WhatsApp (click-to-chat) ✓" },
       { p: "├", t: "Importados: 1.240 contactos" },
       { p: "└", t: "Usuarios: 6 vendedores" },
       { p: "//", t: "listo para operar · 9 días" },
@@ -83,24 +83,24 @@ export const TESTIMONIALS = [
 // Resultados esperados basados en el caso piloto y benchmarks de mercado
 export const EXPECTED_RESULTS = [
   {
-    metric: { v: "-99.9%", k: "Leads perdidos" },
+    metric: { v: "-95%", k: "Leads perdidos" },
     desc: "Consultas que antes caían en chats personales, hoy se capturan y asignan automáticamente.",
-    vertical: "Inmobiliarias",
+    vertical: "Inmobiliarias · piloto",
   },
   {
     metric: { v: "+43%", k: "Cierres mes/mes" },
     desc: "Con pipeline visible y asignación inteligente, el equipo cierra más en menos tiempo.",
-    vertical: "Concesionarias",
+    vertical: "Benchmark del rubro",
   },
   {
     metric: { v: "10h", k: "Ahorradas/semana" },
     desc: "Reportes automáticos, sin armar Excel ni copiar datos entre plataformas.",
-    vertical: "Concesionarias",
+    vertical: "Benchmark del rubro",
   },
   {
     metric: { v: "4 → 1", k: "Plataformas a revisar" },
     desc: "Meta Ads, Google Ads, Tokko y WhatsApp integrados en un solo tablero.",
-    vertical: "Inmobiliarias",
+    vertical: "Inmobiliarias · piloto",
   },
 ];
 

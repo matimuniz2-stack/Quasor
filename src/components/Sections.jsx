@@ -339,7 +339,7 @@ export const Hero = () => {
               className="mt-6 text-base md:text-lg ink-2 max-w-md rise"
               style={{ animationDelay: "160ms" }}
             >
-              CRM y tracking de ads para inmobiliarias y concesionarias de toda la Argentina: pipeline, integraciones con portales y WhatsApp, y la inversión publicitaria atada a cada lead y a cada venta. A la derecha, una demo interactiva del producto, con datos de ejemplo.
+              CRM y atribución de publicidad para inmobiliarias y concesionarias de toda la Argentina. Capturá los leads de Meta, Google, los portales y tu web, hacelos avanzar por un pipeline visual y cerrá con reparto de comisiones — con cada peso invertido en ads atado a cada lead y a cada venta. A la derecha, una demo interactiva con datos de ejemplo.
             </p>
 
             <div
@@ -389,9 +389,9 @@ export const Hero = () => {
         >
           {[
             ["+43%", "cierres mes a mes"],
-            ["−99.9%", "leads perdidos"],
+            ["−95%", "leads perdidos"],
             ["−97%", "tiempo de asignación"],
-            ["99.9%", "leads trazados · ad → cierre"],
+            ["100%", "leads trazados · ad → cierre"],
           ].map(([v, k], i) => (
             <div key={i} className="px-5 py-4 border-r last:border-r-0 border-line">
               <div className="serif text-3xl num">{v}</div>
@@ -609,7 +609,7 @@ const AD_CHAIN = [
   { t: "Lead atribuido",    s: "campaña + aviso atados" },
   { t: "Vendedor asignado", s: "automático, al instante" },
   { t: "Venta cerrada",     s: "trazada de punta a punta" },
-  { t: "ROI por campaña",   s: "costo por venta real", hi: true },
+  { t: "Ganancia por campaña", s: "ingreso y comisión, no solo costo", hi: true },
 ];
 
 export const AdTracking = () => (
@@ -679,9 +679,25 @@ export const AdTracking = () => (
   </section>
 );
 
-// Animated pipeline preview for the inmobiliarias hero card.
+// Pipeline stages per vertical — Real Estate uses "Visita"; Automotive "Test drive".
+const PIPELINE_REAL_ESTATE = [
+  { n: "Consulta",   c: 34, w: 22,  delay: 0 },
+  { n: "Contactado", c: 22, w: 38,  delay: 120 },
+  { n: "Visita",     c: 12, w: 55,  delay: 240 },
+  { n: "Oferta",     c: 6,  w: 78,  delay: 360 },
+  { n: "Cerrado",    c: 3,  w: 100, delay: 480 },
+];
+const PIPELINE_AUTOMOTIVE = [
+  { n: "Consulta",   c: 40, w: 22,  delay: 0 },
+  { n: "Contactado", c: 26, w: 38,  delay: 120 },
+  { n: "Test drive", c: 14, w: 55,  delay: 240 },
+  { n: "Oferta",     c: 7,  w: 78,  delay: 360 },
+  { n: "Cerrado",    c: 4,  w: 100, delay: 480 },
+];
+
+// Animated pipeline preview for the vertical cards.
 // Bars fill on group-hover via CSS — see .pipeline-bar in index.css.
-const PipelinePreview = () => (
+const PipelinePreview = ({ stages = PIPELINE_REAL_ESTATE }) => (
   <div className="absolute inset-0 p-5 md:p-7 flex flex-col gap-2.5">
     <div className="flex items-center justify-between mb-2">
       <div className="mono text-[10px] uppercase tracking-[0.18em] ink-3">pipeline · abril</div>
@@ -690,13 +706,7 @@ const PipelinePreview = () => (
         live
       </div>
     </div>
-    {[
-      { n: "Consulta",   c: 34, w: 22,  delay: 0 },
-      { n: "Contactado", c: 22, w: 38,  delay: 120 },
-      { n: "Visita",     c: 12, w: 55,  delay: 240 },
-      { n: "Oferta",     c: 6,  w: 78,  delay: 360 },
-      { n: "Cerrado",    c: 3,  w: 100, delay: 480 },
-    ].map((s, i) => (
+    {stages.map((s, i) => (
       <div key={i} className="flex items-center gap-3">
         <div className="mono text-[10px] ink-3 w-16 shrink-0">{s.n}</div>
         <div className="flex-1 h-4 md:h-5 rounded bg-surface-2 overflow-hidden relative">
@@ -721,17 +731,18 @@ export const UseCases = () => {
       <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-24 md:py-32">
         <div className="flex items-end justify-between gap-8 flex-wrap mb-14">
           <div>
-            <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">03 · vertical primario</div>
+            <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">03 · verticales</div>
             <h2 data-reveal-words className="serif text-5xl md:text-7xl leading-[0.98] mt-4 tracking-tight max-w-3xl">
               Para empresas que <em className="italic accent">venden todos los días.</em>
             </h2>
           </div>
           <p className="ink-2 max-w-sm">
             Inmobiliarias en producción.<br/>
-            Resto de verticales: bajo consulta.
+            Concesionarias, listas para arrancar.
           </p>
         </div>
 
+        <div className="space-y-6">
         {/* Primary case — Inmobiliarias, in-production deep dive */}
         <Card hover className="overflow-hidden grid md:grid-cols-2 group">
           <div className="relative h-72 md:h-auto md:min-h-[420px] bg-surface-2 border-b md:border-b-0 md:border-r border-line overflow-hidden">
@@ -765,6 +776,41 @@ export const UseCases = () => {
             </div>
           </div>
         </Card>
+
+        {/* Secondary case — Concesionarias, ready-to-launch vertical */}
+        <Card hover className="overflow-hidden grid md:grid-cols-2 group">
+          <div className="relative h-72 md:h-auto md:min-h-[420px] bg-surface-2 border-b md:border-b-0 md:border-r border-line overflow-hidden">
+            <PipelinePreview stages={PIPELINE_AUTOMOTIVE} />
+            <div className="absolute inset-0 bg-gradient-to-tr from-[var(--bg)]/30 via-transparent to-transparent pointer-events-none" />
+          </div>
+          <div className="p-7 md:p-10 flex flex-col">
+            <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+              <div className="mono text-[11px] uppercase tracking-[0.18em] accent-text">Concesionarias</div>
+              <div
+                className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full mono text-[10px] uppercase tracking-wider"
+                style={{
+                  background: "color-mix(in oklab, var(--accent) 12%, var(--bg))",
+                  color: "var(--accent)",
+                  border: "1px solid color-mix(in oklab, var(--accent) 30%, transparent)"
+                }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" aria-hidden="true" />
+                lista para arrancar
+              </div>
+            </div>
+            <h3 className="serif text-3xl md:text-5xl leading-[1.02] tracking-tight mb-4">Pipeline de concesionaria, end-to-end.</h3>
+            <p className="ink-2 mb-6 max-w-md leading-relaxed">
+              Captura desde Meta Lead Ads, Google Ads y tu web. Ficha de vehículo completa —marca, modelo, km, GNC, estado de dominio— y pipeline con test drive, oferta y reserva. Reportes automáticos sin Excel.
+            </p>
+            <div className="flex flex-wrap gap-1.5 mt-auto">
+              <span className="mono text-[10px] ink-3 uppercase tracking-wider mr-1 self-center">track:</span>
+              {["leads", "test drives", "ofertas", "cierres", "fuente del lead"].map(t => (
+                <span key={t} className="mono text-[10px] px-2 py-0.5 rounded-full bg-surface-2 border border-line">{t}</span>
+              ))}
+            </div>
+          </div>
+        </Card>
+        </div>
       </div>
     </section>
   );
@@ -1230,6 +1276,7 @@ export const WhyQuasor = () => {
         { v: "Dashboards y soporte en inglés", good: false, hint: "Tu equipo se capacita en jerga US, no en el lenguaje del rubro AR." },
         { v: "Tokko / Meta Lead Ads / Google: vía Zapier", good: false, hint: "Sin integraciones nativas para el stack de ventas argentino (Tokko, Meta, Google, WhatsApp). Conectores externos en el medio." },
         { v: "Atribución ad → venta: cara y a medias", good: false, hint: "Medir el costo real por venta cerrada exige add-ons caros o trabajo manual." },
+        { v: "Reparto de comisiones: módulo extra o por planilla", good: false, hint: "El reparto entre vendedor, oficina y broker queda por fuera o requiere add-ons." },
       ],
     },
     {
@@ -1240,7 +1287,8 @@ export const WhyQuasor = () => {
       rows: [
         { v: "Precios en AR$ · sin permanencia", good: true, hint: "Factura local. Cancelás cuando quieras." },
         { v: "Tokko · WhatsApp · Meta · Google · nativos", good: true, hint: "Integraciones nativas y automáticas. Sin Zapier en el medio." },
-        { v: "Inversión en ads atada a cada lead y venta", good: true, hint: "Costo real por lead y por venta cerrada — no te quedás en el click." },
+        { v: "Inversión en ads atada a cada lead y venta", good: true, hint: "Del aviso a la comisión: ves qué campaña deja ganancia y cuál pérdida, no solo el costo por click." },
+        { v: "Reparto de comisiones, multi-destinatario y multimoneda", good: true, hint: "Al cerrar repartís entre vendedor, oficina, broker y referido — en % o en meses de alquiler." },
         { v: "Soporte WhatsApp horario AR · < 6h", good: true, hint: "Hablás directo con quien programa. Sin tickets ni account managers." },
       ],
     },
@@ -1254,6 +1302,7 @@ export const WhyQuasor = () => {
         { v: "Pipeline / automatización: limitados", good: false, hint: "Asignación inteligente y alertas requieren soluciones improvisadas." },
         { v: "Cambios custom: cola + ticket", good: false, hint: "Software empaquetado, no a medida de tu operación." },
         { v: "No trackean la inversión publicitaria", good: false, hint: "Son catálogo + CRM. Lo que invertís en Meta/Google y su retorno quedan afuera." },
+        { v: "Comisiones: por fuera, en planilla", good: false, hint: "El reparto del cierre se administra aparte, sin quedar atado a la operación." },
       ],
     },
   ];
@@ -1374,7 +1423,7 @@ export const Process = () => {
           <div>
             <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">08 · proceso</div>
             <h2 className="serif text-5xl md:text-7xl leading-[0.98] mt-4 tracking-tight">
-              Cuatro etapas. <em className="italic">Sin vueltas.</em>
+              Cuatro etapas. <em className="italic">Sin demoras.</em>
             </h2>
           </div>
           <p className="ink-2 max-w-xs">
@@ -1609,9 +1658,10 @@ export const Pricing = () => {
 
   // Lo que NO cambia entre planes — todas las funciones del CRM van en los tres.
   const included = [
-    "WhatsApp Business integrado",
+    "WhatsApp en un click (click-to-chat)",
     "Tokko · catálogo siempre al día",
     "Pipeline + asignación a vendedor",
+    "Reparto de comisiones (venta y alquiler)",
     "Automatizaciones: asignación, alertas y captura de leads",
     "Dashboards multi-fuente",
     "Reportes y exportación",
@@ -1791,7 +1841,7 @@ export const Pricing = () => {
                 30 minutos para evaluar si <em className="italic">podemos ayudarte.</em>
               </h3>
               <p className="opacity-80 text-base mt-4 max-w-md">
-                Te escuchamos, hacemos preguntas y al final te decimos con honestidad si encajamos. Si no, te orientamos hacia algo que sí. Sin compromiso y sin que te vendamos nada.
+                Te escuchamos, hacemos preguntas y al final te decimos con honestidad si encajamos. Si no, te orientamos hacia algo que sí. Sin compromiso.
               </p>
             </div>
             <div className="flex flex-col gap-3 md:items-end">
@@ -1858,7 +1908,7 @@ export const Contact = () => {
       </h2>
       <p className="ink-2 mt-8 text-lg max-w-xl">
         30 minutos por WhatsApp o videollamada. Te contamos qué haríamos, cuánto tarda y cuánto cuesta.
-        Si no te convence, no hay problema.
+        Si no es para vos, te lo decimos de una.
       </p>
 
       <div className="mt-12 flex flex-wrap gap-4 items-center">
