@@ -422,6 +422,13 @@ const TokkoMark = () => (
     <path d="M3.5 4h17v3.4h-6.6V20h-3.8V7.4H3.5z"/>
   </svg>
 );
+// Pixel propio q.js: captura los formularios del sitio web del cliente.
+const WebMark = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="9" />
+    <path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18" />
+  </svg>
+);
 
 const INTEGRATIONS = [
   { n: "Tokko Broker", c: "#ff5a1f", Logo: TokkoMark      },
@@ -429,7 +436,7 @@ const INTEGRATIONS = [
   { n: "Meta Ads",     c: "#0866ff", Logo: SiMeta         },
   { n: "Google Ads",   c: "#4285F4", Logo: SiGoogleads    },
   { n: "Instagram",    c: "#E4405F", Logo: SiInstagram    },
-  { n: "Gmail",        c: "#EA4335", Logo: SiGmail        },
+  { n: "Tu sitio web", c: "#14b8a6", Logo: WebMark        },
 ];
 
 // Triple to give wide viewports enough chip-width to fill seamlessly.
@@ -499,13 +506,13 @@ export const Marquee = () => (
     <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-24">
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-        <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3 mb-4">01 · integraciones · 8</div>
+        <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3 mb-4">01 · integraciones · 6</div>
         <h2 className="serif text-3xl md:text-5xl tracking-tight leading-[1.05]">
           Conectamos con <em className="italic">todo lo que ya usás.</em>
         </h2>
         <p className="mono text-[12px] ink-3 mt-5 flex items-center justify-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)]" aria-hidden="true" />
-          actualización automática · en segundos
+          actualización automática · sin captura manual
         </p>
       </div>
 
@@ -1162,7 +1169,7 @@ const SERVICE_ICONS = {
   CRM:  () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="7" r="2"/><path d="M15 15h6"/></svg>,
   DASH: () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 17 9 11l4 4 8-8"/><path d="M14 4h7v7"/></svg>,
   API:  () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>,
-  IA:   () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3.5"/></svg>,
+  AUTO: () => <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3.5"/></svg>,
 };
 
 export const Services = () => (
@@ -1232,7 +1239,7 @@ export const WhyQuasor = () => {
       desc: "Hecho para inmobiliarias y concesionarias argentinas",
       rows: [
         { v: "Precios en AR$ · sin permanencia", good: true, hint: "Factura local. Cancelás cuando quieras." },
-        { v: "Tokko · WhatsApp · Meta · Google · nativos", good: true, hint: "Integraciones nativas. Se actualiza en segundos. Sin Zapier en el medio." },
+        { v: "Tokko · WhatsApp · Meta · Google · nativos", good: true, hint: "Integraciones nativas y automáticas. Sin Zapier en el medio." },
         { v: "Inversión en ads atada a cada lead y venta", good: true, hint: "Costo real por lead y por venta cerrada — no te quedás en el click." },
         { v: "Soporte WhatsApp horario AR · < 6h", good: true, hint: "Hablás directo con quien programa. Sin tickets ni account managers." },
       ],
@@ -1483,7 +1490,7 @@ export const Testimonials = () => {
           <div>
             <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">07 · voz del cliente</div>
             <h2 className="serif text-5xl md:text-7xl leading-[0.98] mt-4 tracking-tight max-w-3xl">
-              Lo que dicen los <em className="italic">que ya operan</em> con esto.
+              Lo que dicen los que <em className="italic">ya operan con Quasor</em>.
             </h2>
           </div>
           <p className="ink-2 max-w-xs">
@@ -1605,7 +1612,7 @@ export const Pricing = () => {
     "WhatsApp Business integrado",
     "Tokko · catálogo siempre al día",
     "Pipeline + asignación a vendedor",
-    "Automatizaciones: auto-respuesta, alertas y scoring",
+    "Automatizaciones: asignación, alertas y captura de leads",
     "Dashboards multi-fuente",
     "Reportes y exportación",
   ];

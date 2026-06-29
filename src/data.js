@@ -4,20 +4,20 @@ export const SERVICES = [
   {
     k: "DASH",
     name: "Dashboards",
-    body: "Una sola fuente para Meta, Google y tu CRM.",
-    bullets: ["Multi-fuente unificada", "Alertas Slack/WhatsApp", "Reportes PDF automáticos"],
+    body: "Un tablero configurable que reúne Meta, Google, orgánicos y datos de carga manual en una sola vista.",
+    bullets: ["Leads, conversión, oportunidades y ventas — por vendedor, origen o etapa", "Inversión, impresiones, CTR, CPC y CPL por campaña y plataforma", "Embudo de conversión y KPIs comparados contra períodos anteriores"],
   },
   {
     k: "API",
     name: "Integraciones",
-    body: "Conectamos cualquier herramienta. Tus datos, al instante.",
-    bullets: ["Lo que cambia en el portal, en Quasor en segundos", "Si el portal cae, los leads no se pierden", "Conectamos con cualquier sistema"],
+    body: "Cada lead y cada dato entran desde su fuente de forma automática, sin captura manual.",
+    bullets: ["Meta Lead Ads, Google Ads y los formularios de tu web", "Tokko: catálogo y consultas, siempre sincronizados", "¿Usás otra herramienta? La integramos a medida"],
   },
   {
-    k: "IA",
+    k: "AUTO",
     name: "Automatizaciones",
-    body: "Lo que antes hacías a mano, ahora es una notificación.",
-    bullets: ["Alerta: lead respondió 2 veces sin asignar", "Auto-respuesta WhatsApp en < 30s", "Aviso si tu CPL se dispara 3x"],
+    body: "El trabajo repetitivo pasa solo. Vos recibís el aviso, no lo ejecutás.",
+    bullets: ["Cada lead entra solo y se asigna a un vendedor", "Aviso por mail si un lead lleva demasiado tiempo en una etapa", "Costos de Meta y métricas, actualizados a diario de forma automática"],
   },
 ];
 
