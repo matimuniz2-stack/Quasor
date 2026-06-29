@@ -1140,9 +1140,11 @@ export const Dashboard = () => {
 
       <div className="grid grid-cols-[56px_1fr] @[540px]/dash:grid-cols-[184px_1fr] h-[620px] transition-[grid-template-columns] duration-300">
         <aside className="border-r border-line bg-surface p-2 @[540px]/dash:p-3 flex flex-col">
-          <div className="flex items-center gap-2 justify-center @[540px]/dash:justify-start @[540px]/dash:px-2 mb-0.5">
-            <div className="w-7 h-7 rounded-md bg-gradient-to-br from-[var(--accent)] to-[#ffb08a] grid place-items-center text-white font-bold text-[11px] shrink-0">Q</div>
-            <span className="serif text-xl leading-none hidden @[540px]/dash:inline">quasor</span>
+          <div className="flex items-center justify-center @[540px]/dash:justify-start @[540px]/dash:px-2 mb-0.5">
+            <span className="serif text-xl leading-none tracking-tight">
+              <span className="@[540px]/dash:hidden">q<span className="accent">.</span></span>
+              <span className="hidden @[540px]/dash:inline">quasor<span className="accent">.</span></span>
+            </span>
           </div>
           <div className="hidden @[540px]/dash:block px-2 mono text-[10px] ink-3 mb-4">{ic.subtitle}</div>
           <div className="@[540px]/dash:hidden h-4" />
