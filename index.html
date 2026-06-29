@@ -42,6 +42,7 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
+    "@id": "https://quasor.io/#software",
     "name": "Quasor",
     "applicationCategory": "BusinessApplication",
     "applicationSubCategory": "CRM",
@@ -49,8 +50,25 @@
     "description": "CRM y tracking de ads para inmobiliarias y concesionarias argentinas: pipeline, integración con Tokko, Meta Lead Ads, Google Ads y WhatsApp, con atribución de la inversión en ads a cada lead: costo por lead y por venta cerrada.",
     "url": "https://quasor.io/",
     "inLanguage": "es-AR",
+    "featureList": [
+      "Pipeline visual de leads y oportunidades por etapa",
+      "Captura automática de leads de Meta Lead Ads, Google Ads, portales y formularios web",
+      "Integración nativa con Tokko Broker (catálogo y consultas sincronizados)",
+      "Atribución de la inversión publicitaria a cada lead y a cada venta cerrada",
+      "Costo por lead y costo por venta real, más allá del click",
+      "WhatsApp click-to-chat",
+      "Reparto de comisiones multi-destinatario y multimoneda",
+      "Dashboards multi-fuente (Meta, Google, orgánicos y carga manual)",
+      "Automatizaciones: asignación de leads, alertas y captura sin carga manual"
+    ],
+    "audience": {
+      "@type": "BusinessAudience",
+      "audienceType": "Inmobiliarias y concesionarias"
+    },
+    "screenshot": "https://quasor.io/og-image.jpg",
     "provider": {
       "@type": "ProfessionalService",
+      "@id": "https://quasor.io/#organization",
       "name": "Quasor",
       "address": { "@type": "PostalAddress", "addressLocality": "Mar del Plata", "addressRegion": "Buenos Aires", "addressCountry": "AR" },
       "areaServed": "AR",
@@ -61,24 +79,40 @@
   }
   </script>
 
-  <!-- Schema.org: FAQPage (rich snippets) -->
+  <!-- Schema.org: WebSite (fija el "site name" en Google; SIN SearchAction, deprecado en 2024) -->
   <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://quasor.io/#website",
+    "name": "Quasor",
+    "url": "https://quasor.io/",
+    "inLanguage": "es-AR",
+    "publisher": { "@id": "https://quasor.io/#organization" }
+  }
+  </script>
+
+  <!-- Schema.org: FAQPage — generado desde src/data.js en el build (scripts/prerender.mjs).
+       Debe coincidir EXACTO con el FAQ visible. No editar a mano: editá src/data.js. -->
+  <script type="application/ld+json" id="faq-jsonld">
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
       { "@type": "Question", "name": "¿Cuánto tarda en estar funcionando?",
         "acceptedAnswer": { "@type": "Answer", "text": "Implementación inicial: 1-2 semanas. Configuramos integraciones, importamos tus datos si los tenés y capacitamos al equipo. Empezás a usar el sistema desde el día 1 con la configuración base." } },
+      { "@type": "Question", "name": "¿Sirve para mi rubro?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Hoy en producción con inmobiliarias, y el sistema está adaptado para concesionarias y agencias de autos. El motor (cada activo con su ficha y su ciclo de venta, y cada lead con su seguimiento) aplica a más rubros. Lo evaluamos juntos en la llamada." } },
       { "@type": "Question", "name": "¿De quién son mis datos?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Tuyos. 100%. Podés exportarlos en cualquier momento (CSV, JSON o backup completo de la base). Si preferís tener el sistema en tu propio servidor (on-premise), también se puede. Sin ataduras, sin letra chica." } },
+        "acceptedAnswer": { "@type": "Answer", "text": "Tuyos. 100%. Podés exportarlos en cualquier momento (CSV, JSON o backup completo de la base). Tu información vive en la infraestructura de Google Cloud, la misma nube que usan bancos y empresas grandes, con encriptación y backups automáticos. Sin restricciones, con condiciones claras." } },
       { "@type": "Question", "name": "¿Quasor también trackea la inversión en ads?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Sí. No es solo un CRM. Sincronizamos a diario la inversión en Meta Ads y Google Ads, capturamos los leads de cada campaña y los atamos al aviso que los generó. Así ves el costo real por lead y por venta cerrada, no por click, y sabés qué campaña genera ganancia y cuál genera pérdida." } },
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí. Sincronizamos a diario la inversión en Meta Ads y Google Ads, capturamos los leads de cada campaña y los atamos al aviso que los generó. Así ves el costo real de punta a punta: por lead y por venta cerrada, más allá del clic. Y sabés qué campaña genera ganancia y cuál genera pérdida." } },
       { "@type": "Question", "name": "¿Trabajan con empresas fuera de Mar del Plata?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Sí. Trabajamos 100% remoto con reuniones semanales y entregas asincrónicas. La ubicación no es limitante: si tenés buena conexión y decisores disponibles, arrancamos." } },
-      { "@type": "Question", "name": "¿Qué pasa si quiero cortar el servicio?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Cortás cuando quieras, contrato mensual sin permanencia. Te exportamos todos tus datos en formato estándar (CSV, JSON). Sin ataduras." } },
-      { "@type": "Question", "name": "¿El precio incluye nuevas features?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Sí. El CRM se va ampliando mes a mes con mejoras y nuevas integraciones. Además, cada cliente puede pedir features específicas: las que benefician a varios, las incluimos en la hoja de ruta." } }
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí. Trabajamos 100% remoto con reuniones semanales y entregas asincrónicas. La ubicación no es limitante: solo necesitamos buena conexión y que las personas que deciden estén disponibles para coordinar." } },
+      { "@type": "Question", "name": "¿Qué pasa si quiero cancelar el servicio?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Podés cancelar en cualquier momento: contrato mensual, sin permanencia. Te exportamos todos tus datos en formato estándar (CSV, JSON)." } },
+      { "@type": "Question", "name": "¿El precio incluye nuevas funciones?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí. El CRM se va ampliando mes a mes con mejoras y nuevas integraciones. Y escuchamos lo que cada cliente necesita: si pedís una función puntual, la evaluamos y puede sumarse a la hoja de ruta del producto." } }
     ]
   }
   </script>
@@ -88,9 +122,11 @@
   {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": "https://quasor.io/#organization",
     "name": "Quasor",
     "url": "https://quasor.io/",
     "logo": "https://quasor.io/logo.png",
+    "description": "CRM y tracking de inversión publicitaria para inmobiliarias y concesionarias de Argentina. Cada lead queda atado a la campaña que lo generó: costo por lead y por venta cerrada, no por click.",
     "sameAs": [
       "https://www.instagram.com/quasortech/"
     ],
@@ -114,30 +150,45 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap"></noscript>
 
-  <!-- Theme detection — runs before React to avoid flash of wrong theme -->
+  <!-- Tweaks defaults — editable by host. Defined here (before the pre-paint
+       script) so theme/density/accent are applied before first paint. -->
   <script>
-    (function() {
-      try {
-        var saved = localStorage.getItem('quasor-theme');
-        var sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', saved || sys);
-      } catch (e) {
-        document.documentElement.setAttribute('data-theme', 'light');
-      }
-    })();
-  </script>
-</head>
-<body>
-  <div id="root"></div>
-
-  <script>
-    // Tweaks defaults — editable by host
     window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
       "accent": "orange",
       "theme": "light",
       "density": "compact"
     }/*EDITMODE-END*/;
   </script>
+
+  <!-- Pre-paint: apply theme + density + accent before React mounts. With the
+       home prerendered, content is visible before the JS loads, so applying
+       these here (not just in applyTweaks/useEffect) avoids a flash of wrong
+       theme AND a density/accent layout shift (CLS) when React mounts. -->
+  <script>
+    (function() {
+      var d = document.documentElement;
+      var t = window.__TWEAKS__ || {};
+      try {
+        var saved = localStorage.getItem('quasor-theme');
+        var sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        d.setAttribute('data-theme', saved || sys);
+      } catch (e) {
+        d.setAttribute('data-theme', t.theme || 'light');
+      }
+      var density = t.density || 'cozy';
+      d.setAttribute('data-density', density);
+      d.style.setProperty('--density', density === 'compact' ? '0.7' : '1');
+      // Mirrors the ACCENTS map in src/components/Tweaks.jsx.
+      var accents = { orange: ['#ff7a59', '#c04624'], blue: ['#5b8cff', '#2e4fb4'], green: ['#2fb27d', '#197253'] };
+      var a = accents[t.accent] || accents.orange;
+      d.style.setProperty('--accent', a[0]);
+      d.style.setProperty('--accent-ink', a[1]);
+    })();
+  </script>
+</head>
+<body>
+  <div id="root"></div>
+
   <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

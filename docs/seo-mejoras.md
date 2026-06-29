@@ -1,17 +1,31 @@
 # SEO — Diagnóstico y hoja de ruta de mejoras
 
 > Guía para mejorar el SEO de la landing de Quasor (`quasor.io`).
-> Estado relevado: **2026-06-29**. Stack: Vite 6 + React 18 (SPA, sin SSR/SSG), deploy en Vercel.
+> Estado relevado: **2026-06-29**. Stack: Vite 6 + React 18, deploy en Vercel.
+> **Actualización 2026-06-29:** la home ahora se **prerenderiza en el build** (ver "Hecho").
 > Cada ítem marca **impacto** (🟢 alto / 🟡 medio / ⚪ bajo) y **esfuerzo** aproximado.
 
 ---
 
 ## TL;DR
 
-- **Ser "una sola página" NO es malo para SEO.** Lo que conviene cambiar es que hoy el contenido se renderiza **100% en el cliente** (CSR): el `<body>` llega vacío y lo arma React.
-- El `<head>` (title, meta, Open Graph, JSON-LD, sitemap, robots) ya está **bien hecho** → previews sociales y datos estructurados funcionan aunque el body esté vacío.
-- **La mejora de mayor impacto y bajo esfuerzo es prerenderizar/SSG la home**, porque el contenido es estático (sale de `src/data.js` + componentes, sin datos por usuario).
+- **Ser "una sola página" NO es malo para SEO.** El problema real era que el contenido se renderizaba **100% en el cliente** (CSR): el `<body>` llegaba vacío y lo armaba React → **ya resuelto** con prerender en el build.
+- El `<head>` (title, meta, Open Graph, JSON-LD, sitemap, robots) ya estaba **bien hecho** y se reforzó (WebSite + grafo de entidad + FAQ generado de una sola fuente).
 - Una sola URL = un solo clúster de keywords. Para más alcance → páginas dedicadas por vertical (decisión de marketing, no un bug técnico).
+
+---
+
+## Hecho (cambio 2026-06-29)
+
+El motivo de fondo (con evidencia 2025-2026): **los crawlers de IA NO ejecutan JavaScript.** GPTBot, ClaudeBot/Claude-User, OAI-SearchBot, ChatGPT-User y PerplexityBot hacen un GET y leen solo el HTML crudo; si el copy aparece recién tras hidratar React, **ven una página vacía**. Solo Google/Bing/Applebot (y Gemini, que usa la infra de Googlebot) renderizan JS — y Google igual lo hace en una 2ª pasada diferida. Fuentes: [Vercel+Merj](https://vercel.com/blog/the-rise-of-the-ai-crawler), [GSQI](https://www.gsqi.com/marketing-blog/ai-search-javascript-rendering/).
+
+1. **🟢 Prerender de la home en el build.** `scripts/prerender.mjs` renderiza el árbol React a HTML estático (`renderToStaticMarkup` vía el SSR loader de Vite) y lo inyecta dentro de `<div id="root">` en `dist/index.html`. El cliente sigue siendo CSR: como monta con `createRoot().render()` (no `hydrateRoot`), React **reemplaza** el snapshot al montar → cero riesgo de hydration mismatch y cero drift (el snapshot sale del mismo código que la app). No usa Puppeteer/Chromium → build liviano y confiable en Vercel. Único guard necesario: `App.jsx` cae a defaults cuando no hay `document` (build).
+2. **🟢 robots.txt** con allowlist explícita de bots de IA (OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-User/SearchBot, PerplexityBot, GPTBot, Google-Extended, etc.). Técnicamente redundante (RFC 9309: sin `Disallow` ya es "permitido") pero documenta la intención de dejarlos entrar.
+3. **🟡 Datos estructurados.** Se agregó `WebSite` (sin `SearchAction`, deprecado por Google en 2024), se conectó el grafo con `@id` (`#software`, `#website`, `#organization`), y se enriqueció `SoftwareApplication` (`featureList`, `audience`, `screenshot`). El **`FAQPage` se genera desde `src/data.js` en el build** → no puede volver a desincronizarse del FAQ visible (antes tenía 6 ítems viejos vs 7 reales).
+4. **⚪ llms.txt** (`public/llms.txt`) bien formado. Honestidad: su beneficio está **sin confirmar** (estudios muestran que casi ningún motor lo consume hoy); se suma por costo casi nulo, no por expectativa de citas.
+5. **⚪ sitemap** `lastmod` de la home actualizado.
+
+**Build:** `npm run build` = `gen-legal` → `vite build` → `prerender`. Nada nuevo que configurar en Vercel.
 
 ---
 
@@ -50,21 +64,15 @@
 
 ## Hoja de ruta (orden de prioridad)
 
-### 1. 🟢 Prerenderizar / SSG la home — *la mejora clave*
+### 1. ✅ Prerenderizar / SSG la home — *HECHO (2026-06-29)*
 
-Que el HTML salga del build **ya con el contenido**, sin cambiar la UX. El sitio es estático, así que es casi gratis. Opciones (de menor a mayor cambio):
+Resuelto con un paso de build propio (`scripts/prerender.mjs`), sin migrar de stack ni arrastrar Chromium. Ver sección "Hecho" arriba para el detalle. Se descartó:
 
-- **A) Plugin de prerender sobre el Vite actual** — menor fricción.
-  - `vite-plugin-prerender` o `vite-prerender-plugin` (Puppeteer headless rendea las rutas al final del `vite build`).
-  - Pros: cambio mínimo, no se toca la app. Contras: arrastra Chromium al build.
-- **B) Migrar a Astro** — lo más limpio para una landing.
-  - Se pueden reusar los componentes React como **islas** (`client:visible` solo donde haya interactividad real: switcher de demo, dashboard).
-  - Pros: HTML estático por defecto, JS mínimo, muy buen Core Web Vitals. Contras: re-armar el shell de la página.
-- **C) Vike (ex `vite-plugin-ssr`) en modo SSG / pre-rendering** — si se quiere quedar en Vite+React con routing real.
+- **Plugin tipo `vite-prerender-plugin`**: requiere pasar a `hydrateRoot` y hacer la app SSR-safe → reintroduce riesgo de hydration mismatch (typewriter, dashboard animado).
+- **Puppeteer (snapshot con browser real)**: válido, pero arrastra Chromium al build (frágil en Vercel/Amazon Linux) sin ventaja sobre `renderToStaticMarkup` para este caso.
+- **Migrar a Astro/Vike**: over-engineering para 1 página dinámica + legales ya estáticas.
 
-**Criterio de aceptación:** `curl -s https://quasor.io/ | grep -i "<h1"` devuelve el H1 y el copy principal **sin ejecutar JS**. Ver "Cómo verificar" abajo.
-
-> Nota: las legales ya se prerenderizan (`gen-legal.mjs`). La home es la que falta.
+> Nota: las legales ya se prerenderizaban (`gen-legal.mjs`); ahora la home también.
 
 ### 2. 🟡 Páginas dedicadas por vertical / intención (si se busca más alcance)
 
@@ -81,36 +89,46 @@ Que el HTML salga del build **ya con el contenido**, sin cambiar la UX. El sitio
 - Artículos tipo *"cómo medir el costo real por venta en inmobiliarias"*, *"Meta Lead Ads + CRM"*. Capturan búsquedas informativas y alimentan enlaces internos.
 - No arrancar si no hay cadencia de publicación: contenido viejo y abandonado no ayuda.
 
+### 3.5 🟡 Copy "extractable" para citas de IA (mejor palanca on-page con evidencia)
+
+Lo que más correlaciona con ser citado por LLMs (auditorías de Search Engine Land + paper GEO, KDD 2024): **pregunta en un H2 + respuesta autocontenida de ~20-25 palabras justo debajo**, con un dato/cifra concreto, y arriba en la página (el ~44% de las citas salen del primer tercio). El FAQ ya cumple ese patrón y ahora es **texto visible prerenderizado** (las IAs leen texto, no JSON-LD). Próximo paso opcional: aplicar el mismo molde a 1-2 secciones clave (hero/ads) sin romper la voz.
+
 ### 4. ⚪ Higiene y mejoras incrementales
 
+- [x] **JSON-LD sincronizado con el copy** — el `FAQPage` se **genera desde `src/data.js`** en el build (`scripts/prerender.mjs`); ya no se edita a mano en dos lados.
+- [x] **`lastmod` del `sitemap.xml`** actualizado (home: 2026-06-29).
+- [x] **`alt` en imágenes** — N/A: no hay `<img>` de contenido (todo es SVG inline decorativo con `aria-hidden`); el `og-image` ya tiene `og:image:alt`.
 - [ ] **`<title>` y `meta description` por página** una vez que existan rutas (no repetir el de la home).
-- [ ] Mantener **JSON-LD sincronizado con el copy** (el `FAQPage` del `index.html` debe coincidir con el FAQ real de `src/data.js`; hoy hay que actualizarlos a mano en dos lados — considerar generarlo del mismo origen).
-- [ ] **`alt` descriptivo** en todas las imágenes con peso semántico (logos de integraciones, capturas).
-- [ ] **`lastmod` del `sitemap.xml`** actualizado cuando cambia el contenido (hoy es manual: `public/sitemap.xml`).
-- [ ] Revisar **Core Web Vitals** (LCP/CLS/INP) en PageSpeed Insights; el dashboard animado del hero es el principal sospechoso de LCP/CLS.
-- [ ] Confirmar que **no se está cargando contenido importante solo tras interacción** (acordeones, tabs) sin estar en el DOM.
+- [ ] Revisar **Core Web Vitals** (LCP/CLS/INP) en PageSpeed Insights; el dashboard animado del hero es el principal sospechoso de LCP/CLS. (El prerender ayuda al LCP: el copy ya viene en el HTML.)
 - [ ] Dar de alta el sitio en **Google Search Console** y **Bing Webmaster Tools**; mandar el sitemap y mirar "Cobertura" / "Páginas renderizadas".
+- [ ] **Off-page** (probablemente el mayor ROI para citas de IA, fuera del dominio): presencia en comparadores/reviews (G2, Capterra), menciones en medios/blogs de real estate y automotor AR. Los LLMs citan fuentes externas más que el markup propio.
 - [ ] Verificar que el `og-image.jpg` y las URLs absolutas de schema sigan vivas tras cada cambio de dominio/branding.
 
 ---
 
 ## Cómo verificar (tests rápidos)
 
+Tras el prerender, esto se puede correr contra el build local (`npm run build && npx serve dist`) o contra prod:
+
 ```bash
-# 1. ¿El HTML crudo trae el contenido o llega vacío? (hoy: llega vacío salvo el <head>)
-curl -s https://quasor.io/ | grep -ci "<h1"          # esperado tras prerender: >= 1
-curl -s https://quasor.io/ | grep -i "inmobiliarias" # ¿aparece el copy sin JS?
+# 1. El HTML crudo ahora trae el contenido (lo clave para bots de IA, que no ejecutan JS)
+curl -s https://quasor.io/ | grep -ci "<h1"            # esperado: 1
+curl -s https://quasor.io/ | grep -i "Tu empresa funciona"   # copy del hero sin JS
+curl -s https://quasor.io/ | grep -c "<h2"             # esperado: ~11 (jerarquía de headings)
 
-# 2. Ver el <head> y los JSON-LD
-curl -s https://quasor.io/ | grep -iE "og:title|application/ld\+json|canonical"
+# 2. Ver el <head> y los 4 JSON-LD (SoftwareApplication, WebSite, FAQPage, Organization)
+curl -s https://quasor.io/ | grep -ic "application/ld\+json"   # esperado: 4
 
-# 3. Las legales SÍ deberían traer contenido sin JS (control positivo)
+# 3. Las legales (control positivo, ya eran estáticas)
 curl -s https://quasor.io/legal/privacidad.html | grep -ci "privacidad"
 
-# 4. robots + sitemap accesibles
-curl -s https://quasor.io/robots.txt
+# 4. robots + sitemap + llms.txt accesibles
+curl -s https://quasor.io/robots.txt | grep -i "GPTBot\|ClaudeBot\|PerplexityBot"
 curl -s https://quasor.io/sitemap.xml | head
+curl -s https://quasor.io/llms.txt | head -1
 ```
+
+> **Validación local rápida** (sin desplegar): `npm run build` corre el prerender; revisar `dist/index.html`. El `<body>` ya no debe tener `<div id="root"></div>` vacío.
 
 Herramientas:
 - **Google Search Console → Inspección de URL → "Probar URL publicada" → "Ver página renderizada"**: muestra exactamente lo que Google ve después de renderizar el JS. Es la prueba de fuego.
@@ -122,10 +140,11 @@ Herramientas:
 
 ## Decisión de fondo
 
-| Concepto | ¿Problema SEO? | Acción |
+| Concepto | ¿Problema SEO? | Estado |
 |---|---|---|
-| Una sola URL, sin rutas | No es penalización; es techo de alcance | Sumar páginas por vertical **si** hay copy específico (paso 2) |
-| Render 100% en cliente (CSR) | **Sí, riesgo real** | **Prerender / SSG (paso 1)** ← prioridad |
-| `<head>` / schema / sitemap | Ya está bien | Mantener sincronizado con el copy |
+| Render 100% en cliente (CSR) | **Era el riesgo real** (bots de IA no ejecutan JS) | ✅ **Resuelto** — prerender en el build |
+| `<head>` / schema / sitemap | Ya estaba bien | ✅ Reforzado (WebSite + grafo `@id` + FAQ de una sola fuente) |
+| Crawleo por IAs (robots/llms) | Ya permitía a todos | ✅ robots con allowlist explícita + llms.txt |
+| Una sola URL, sin rutas | No es penalización; es techo de alcance | ⏳ Opcional: páginas por vertical **si** hay copy específico (paso 2) |
 
-**Resumen:** lo de "página autocontenida" no perjudica. La palanca real es **prerenderizar la home** (barato, porque es estática); el resto es crecimiento opcional vía más páginas y contenido.
+**Resumen:** la palanca grande (prerender de la home) ya está hecha — ahora el copy, la FAQ y el schema viajan en el HTML inicial, que es lo único que leen GPTBot/ClaudeBot/PerplexityBot y la 1ª pasada de Google. Lo que queda es **crecimiento opcional**: más páginas por vertical, copy "extractable" en más secciones, y sobre todo presencia off-page (reviews, menciones), que pesa más para citas de IA que cualquier markup propio.

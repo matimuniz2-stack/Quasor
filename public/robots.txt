@@ -1,4 +1,54 @@
+# quasor.io — todo permitido.
+# Por RFC 9309 la ausencia de Disallow ya significa "permitido", así que el
+# grupo * de abajo alcanza. Los grupos por bot son documentación explícita de
+# intención: queremos que las IAs nos lean y nos citen, no bloquearlas.
+
 User-agent: *
+Allow: /
+
+# ── Bots de búsqueda / retrieval de IA (los que citan y enlazan) ──
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Meta-WebIndexer
+Allow: /
+
+# ── Bots de entrenamiento (aportan a los modelos; sin cita directa) ──
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# ── Búsqueda tradicional ──
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
 Allow: /
 
 Sitemap: https://quasor.io/sitemap.xml

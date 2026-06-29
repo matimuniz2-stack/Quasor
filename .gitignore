@@ -31,9 +31,10 @@ Nueva Pagina/
 instagram/
 prospectos/
 uploads/
-# Ignore ad-hoc scripts, but keep the build-critical legal page generator
+# Ignore ad-hoc scripts, but keep the build-critical generators
 scripts/*
 !scripts/gen-legal.mjs
+!scripts/prerender.mjs
 
 # Dead landing files
 index-old.html

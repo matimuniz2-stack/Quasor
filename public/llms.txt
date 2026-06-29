@@ -1,0 +1,22 @@
+# Quasor
+
+> CRM + tracking de inversión publicitaria para inmobiliarias y concesionarias de Argentina. Cada lead queda atado a la campaña que lo generó: medís el costo por lead y por venta cerrada, no por click.
+
+Quasor captura los leads de Meta Lead Ads, Google Ads, los portales y tu sitio web, los hace avanzar por un pipeline visual y cierra con reparto de comisiones. Sincroniza a diario la inversión en ads y la ata a cada lead y a cada venta, así sabés qué campaña genera ganancia y cuál genera pérdida. Integra de forma nativa Tokko Broker, WhatsApp, Meta y Google. Puesta en marcha en 1-2 semanas, contrato mensual sin permanencia, datos 100% exportables (CSV/JSON). Hoy en producción con inmobiliarias y adaptado para concesionarias y agencias de autos. Desde Mar del Plata, para toda la Argentina.
+
+## Producto
+- [Quasor — qué hace](https://quasor.io/): pipeline, integraciones (Tokko, WhatsApp, Meta Ads, Google Ads), atribución del ad a la venta, reparto de comisiones y dashboards multi-fuente.
+
+## Legales
+- [Política de privacidad](https://quasor.io/legal/privacidad.html): tratamiento y protección de datos.
+- [Términos y condiciones](https://quasor.io/legal/terminos.html): condiciones del servicio.
+
+## Optional
+- [Eliminar mis datos](https://quasor.io/legal/eliminar-datos.html): cómo solicitar la baja y eliminación de datos.
+- [Privacy policy (EN)](https://quasor.io/legal/en/privacy.html)
+- [Terms (EN)](https://quasor.io/legal/en/terms.html)
+
+## Contacto
+- [Email](mailto:ventas@quasor.io): ventas@quasor.io
+- [WhatsApp](https://wa.me/5492236892809): +54 9 223 689 2809
+- [Instagram](https://www.instagram.com/quasortech/): @quasortech
