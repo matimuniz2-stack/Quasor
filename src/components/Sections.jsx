@@ -537,7 +537,7 @@ const AD_STEPS = [
   },
   {
     n: "03",
-    tag: "Medís",
+    tag: "Medimos",
     title: "Costo real, del click al cierre.",
     body: "Ves cuánto te cuesta realmente un lead y una venta cerrada, más allá del clic. Sabés qué campaña genera ganancia y cuál genera pérdida, y la pausás a tiempo.",
     chip: "CPL + costo por cierre real",
