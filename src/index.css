@@ -20,6 +20,8 @@
   --accent-ink: #b83300;
   --accent-glow: #ff5a1f;
   --accent-text: #b83300;
+  --accent-strong: #c2410c;   /* fondo de CTA — AA con texto blanco (~5.2:1) */
+  --accent-strong-2: #a8380a; /* hover de CTA (~6.5:1) */
   --pos: #00a86b;
   --neg: #e02424;
   --density: 1;
@@ -39,7 +41,7 @@ html[data-theme="dark"] {
   --bg-2: #141416;
   --ink: #f4f1ea;
   --ink-2: #bab5ab;
-  --ink-3: #7a756d;
+  --ink-3: #8a857c;
   --line: #1e1e21;
   --line-2: #2a2a2f;
   --pos: #58c08a;
@@ -68,6 +70,7 @@ body {
 .border-line { border-color: var(--line); }
 .border-line-2 { border-color: var(--line-2); }
 .accent { color: var(--accent); }
+.accent-text { color: var(--accent-text); }
 .bg-accent { background: var(--accent); }
 .bg-accent-soft { background: color-mix(in oklab, var(--accent) 12%, var(--bg)); }
 .ring-accent { box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent) 40%, transparent); }
@@ -86,8 +89,8 @@ html[data-theme="dark"] .grain::before { mix-blend-mode: screen; opacity: .25; }
 }
 .accent-glow { text-shadow: 0 0 24px color-mix(in oklab, var(--accent) 55%, transparent); }
 .bg-accent-grad { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%); }
-.btn-accent { background: var(--accent); color: white; box-shadow: 0 6px 20px -6px color-mix(in oklab, var(--accent) 70%, transparent), inset 0 1px 0 rgba(255,255,255,0.18); }
-.btn-accent:hover { background: var(--accent-2); }
+.btn-accent { background: var(--accent-strong); color: white; box-shadow: 0 6px 20px -6px color-mix(in oklab, var(--accent) 70%, transparent), inset 0 1px 0 rgba(255,255,255,0.18); }
+.btn-accent:hover { background: var(--accent-strong-2); }
 html[data-theme="dark"] .glow {
   background: radial-gradient(1200px 600px at 80% -10%, color-mix(in oklab, var(--accent) 28%, transparent), transparent 60%),
               radial-gradient(900px 500px at 10% 10%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 55%);

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 
 // Quasor CRM — réplica interactiva del producto real, con datos de ejemplo.
 // Refleja la app actual (v1.1.0): Inicio con widgets, Leads, Propiedades,
@@ -14,7 +14,7 @@ const A = {
   PG: "Paula Gómez",
 };
 
-const DEMO = {
+const DEMO_INMO = {
   // ── KPIs (Inicio · período 14–28 jun 2026) ──
   kpis: [
     { key: "leads", value: 128,  label: "Leads nuevos",          delta: 23.4, note: "+24 vs. período anterior" },
@@ -135,9 +135,122 @@ const DEMO = {
   salesTotals: { gross: "US$ 24.540", office: "US$ 11.550" },
 };
 
+// ── Concesionaria (vista AUTOMOTIVE) — datos basados en el seed real del producto ──
+const AUTO_A = {
+  FA: "Fernando Acosta",
+  DR: "Diego Ramírez",
+  CH: "Camila Herrera",
+};
+
+const DEMO_AUTO = {
+  kpis: [
+    { key: "leads", value: 96,   label: "Leads nuevos",          delta: 18.2, note: "+15 vs. período anterior" },
+    { key: "opps",  value: 41,   label: "Oportunidades activas", delta: 9.8,  note: "+4 vs. período anterior" },
+    { key: "conv",  value: 13.3, label: "Tasa de conversión",    delta: 1.4, suffix: "%", decimals: 1, note: "+1,4 pp vs. anterior" },
+  ],
+  stages: [
+    { k: "Interesado",          v: 22, c: "#ff7a59" },
+    { k: "Test drive agendado", v: 12, c: "#3c6df0" },
+    { k: "Realizó test drive",  v: 8,  c: "#9a56d0" },
+    { k: "Hizo una oferta",     v: 5,  c: "#d6a51e" },
+    { k: "Reservó",             v: 4,  c: "#2fb27d" },
+    { k: "Venta concretada",    v: 4,  c: "#1f9d6b" },
+    { k: "Perdido",             v: 7,  c: "#e4576b" },
+  ],
+  origins: [
+    { k: "Meta Ads",   v: 38, c: "#3c6df0" },
+    { k: "Google Ads", v: 27, c: "#ff7a59" },
+    { k: "WhatsApp",   v: 18, c: "#25D366" },
+    { k: "Referido",   v: 9,  c: "#9a56d0" },
+    { k: "Otro",       v: 4,  c: "#9a9689" },
+  ],
+  propStatus: [
+    { k: "Disponible", v: 31, c: "#2fb27d" },
+    { k: "Reservado",  v: 6,  c: "#3c6df0" },
+  ],
+  byDay: [
+    { d: "14/06", leads: 6,  visits: 2 },
+    { d: "15/06", leads: 8,  visits: 3 },
+    { d: "16/06", leads: 5,  visits: 2 },
+    { d: "17/06", leads: 7,  visits: 3 },
+    { d: "18/06", leads: 6,  visits: 2 },
+    { d: "19/06", leads: 9,  visits: 4 },
+    { d: "20/06", leads: 6,  visits: 2 },
+    { d: "21/06", leads: 8,  visits: 3 },
+    { d: "22/06", leads: 7,  visits: 3 },
+    { d: "23/06", leads: 10, visits: 4 },
+    { d: "24/06", leads: 6,  visits: 2 },
+    { d: "25/06", leads: 5,  visits: 2 },
+    { d: "26/06", leads: 8,  visits: 3 },
+    { d: "27/06", leads: 7,  visits: 3 },
+    { d: "28/06", leads: 6,  visits: 2 },
+  ],
+  leads: [
+    { name: "Pablo Suárez",    email: "pablo.suarez@gmail.com", phone: "+54 223 555-0142", src: "Meta Ads",   status: "Calificado", owner: AUTO_A.FA, date: "28/06/2026" },
+    { name: "Julieta Navarro", email: "juli.navarro@gmail.com", phone: "+54 223 555-0188", src: "Google Ads", status: "Nuevo",      owner: AUTO_A.DR, date: "28/06/2026" },
+    { name: "Marcos Quiroga",  email: "mquiroga@gmail.com",     phone: "+54 223 555-0211", src: "WhatsApp",   status: "Nuevo",      owner: AUTO_A.CH, date: "28/06/2026" },
+    { name: "Daniela Sosa",    email: "d.sosa@gmail.com",       phone: "+54 223 555-0309", src: "Meta Ads",   status: "Calificado", owner: AUTO_A.FA, date: "27/06/2026" },
+    { name: "Hernán Vidal",    email: "hvidal@hotmail.com",     phone: "+54 223 555-0421", src: "Referido",   status: "Cliente",    owner: AUTO_A.DR, date: "27/06/2026" },
+    { name: "Rocío Méndez",    email: "rocio.mendez@gmail.com", phone: "+54 223 555-0533", src: "Google Ads", status: "Nuevo",      owner: AUTO_A.CH, date: "27/06/2026" },
+    { name: "Gastón Pérez",    email: "gaston.perez@gmail.com", phone: "+54 223 555-0644", src: "Referido",   status: "Cliente",    owner: AUTO_A.FA, date: "26/06/2026" },
+    { name: "Belén Acosta",    email: "belen.acosta@gmail.com", phone: "+54 223 555-0719", src: "WhatsApp",   status: "Calificado", owner: AUTO_A.DR, date: "26/06/2026" },
+  ],
+  props: [
+    { title: "Toyota Hilux SRV 2.8 TDI 4x4 AT",  price: "US$ 42.000",  zone: "Usados · Mar del Plata", meta: ["Pickup", "2023", "35.000 km", "Diésel"],   op: "Venta", status: "Disponible", bg: "linear-gradient(135deg, #4a5568, #2d3748)" },
+    { title: "Toyota Corolla Cross SEG HEV",     price: "US$ 38.500",  zone: "Usados · Mar del Plata", meta: ["SUV", "2024", "8.000 km", "Híbrido"],      op: "Venta", status: "Disponible", bg: "linear-gradient(135deg, #5b7994, #3d5a72)" },
+    { title: "VW Amarok V6 Extreme 3.0 TDI",     price: "US$ 52.000",  zone: "Usados · Mar del Plata", meta: ["Pickup", "2022", "45.000 km", "Diésel"],   op: "Venta", status: "Reservado",  bg: "linear-gradient(135deg, #3a3e44, #1f2226)" },
+    { title: "Fiat Cronos Drive 1.3 GSE",        price: "US$ 12.500",  zone: "Usados · Mar del Plata", meta: ["Sedán", "2021", "62.000 km", "Nafta"],     op: "Venta", status: "Disponible", bg: "linear-gradient(135deg, #6b5847, #4a3d31)" },
+    { title: "VW Gol Trend 1.6 MSI Comfortline", price: "$ 8.500.000", zone: "Usados · Mar del Plata", meta: ["Hatchback", "2019", "98.000 km", "GNC"],   op: "Venta", status: "Disponible", bg: "linear-gradient(135deg, #4a5a3d, #2f3a27)" },
+    { title: "Peugeot 208 Feline 1.6 Tiptronic", price: "US$ 16.500",  zone: "Usados · Mar del Plata", meta: ["Hatchback", "2022", "29.000 km", "Nafta"], op: "Venta", status: "Disponible", bg: "linear-gradient(135deg, #8a6d8c, #5c3f5e)" },
+  ],
+  pipeline: [
+    { stage: "Interesado", color: "#ff7a59", count: 22, cards: [
+      { who: "Pablo Suárez", src: "Meta Ads",   date: "28/06", owner: AUTO_A.FA, days: "1d" },
+      { who: "Rocío Méndez", src: "Google Ads", date: "27/06", owner: AUTO_A.CH, days: "2d" },
+    ]},
+    { stage: "Test drive agendado", color: "#3c6df0", count: 12, cards: [
+      { who: "Daniela Sosa", src: "Meta Ads", date: "27/06", owner: AUTO_A.FA, days: "2d", prop: "Corolla Cross HEV" },
+    ]},
+    { stage: "Realizó test drive", color: "#9a56d0", count: 8, cards: [
+      { who: "Marcos Quiroga", src: "WhatsApp", date: "26/06", owner: AUTO_A.CH, days: "3d", prop: "Hilux SRV 4x4" },
+    ]},
+    { stage: "Hizo una oferta", color: "#d6a51e", count: 5, cards: [
+      { who: "Julieta Navarro", src: "Google Ads", date: "25/06", owner: AUTO_A.DR, days: "4d", prop: "Amarok V6", price: "US$ 52.000" },
+    ]},
+    { stage: "Reservó", color: "#2fb27d", count: 4, cards: [
+      { who: "Hernán Vidal", src: "Referido", date: "24/06", owner: AUTO_A.DR, days: "5d", prop: "Fiat Cronos", price: "US$ 12.500" },
+    ]},
+    { stage: "Venta concretada", color: "#1f9d6b", count: 4, cards: [
+      { who: "Gastón Pérez", src: "Referido", date: "23/06", owner: AUTO_A.FA, prop: "Peugeot 208 Feline", price: "US$ 16.500" },
+    ]},
+    { stage: "Perdido", color: "#e4576b", count: 7, cards: [
+      { who: "Belén Acosta", src: "WhatsApp", date: "22/06", owner: AUTO_A.DR },
+    ]},
+  ],
+  tasks: [
+    { title: "Llamar a Pablo Suárez · Hilux SRV",      type: "Llamado",     prio: "Alta",  due: "Hoy",   owner: AUTO_A.FA },
+    { title: "Enviar cotización a Julieta Navarro",    type: "Email",       prio: "Media", due: "29/06", owner: AUTO_A.DR },
+    { title: "Coordinar test drive · Corolla Cross",   type: "Visita",      prio: "Alta",  due: "30/06", owner: AUTO_A.CH },
+    { title: "Seguimiento de oferta · Marcos Quiroga", type: "Seguimiento", prio: "Media", due: "01/07", owner: AUTO_A.CH },
+    { title: "Transferencia y patente · Hernán Vidal", type: "Seguimiento", prio: "Alta",  due: "27/06", owner: AUTO_A.DR, overdue: true },
+    { title: "Subir fotos nuevas · Peugeot 208",       type: "Otro",        prio: "Baja",  due: "02/07", owner: AUTO_A.FA, done: true },
+  ],
+  sales: [
+    { date: "27/06/2026", op: "Venta", prop: "Toyota Hilux SRV 4x4", agent: AUTO_A.FA, value: "US$ 42.000", gross: "US$ 1.680", grossNote: "4%", office: "US$ 840" },
+    { date: "25/06/2026", op: "Venta", prop: "Fiat Cronos Drive 1.3", agent: AUTO_A.DR, value: "US$ 12.500", gross: "US$ 500",   grossNote: "4%", office: "US$ 250" },
+    { date: "23/06/2026", op: "Venta", prop: "Peugeot 208 Feline",   agent: AUTO_A.FA, value: "US$ 16.500", gross: "US$ 660",   grossNote: "4%", office: "US$ 330" },
+    { date: "20/06/2026", op: "Venta", prop: "Corolla Cross HEV",    agent: AUTO_A.CH, value: "US$ 38.500", gross: "US$ 1.540", grossNote: "4%", office: "US$ 770" },
+  ],
+  salesTotals: { gross: "US$ 4.380", office: "US$ 2.190" },
+};
+
 const useCountUp = (target, duration = 1200, deps = []) => {
   const [v, setV] = useState(0);
   useEffect(() => {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setV(target);
+      return;
+    }
     let raf, start;
     const step = (t) => {
       if (!start) start = t;
@@ -187,9 +300,60 @@ const Icon = {
   users: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.5 3-6.5 7-6.5s7 3 7 6.5"/></svg>,
   target: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>,
   trend: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M3 17 9 11l4 4 8-8"/><path d="M14 4h7v7"/></svg>,
+  car: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 11l1.6-4.2A2 2 0 0 1 8.5 5.5h7a2 2 0 0 1 1.9 1.3L19 11"/><path d="M3 11h18v5h-2.5M3 11v5h2.5M8.5 16h7"/><circle cx="6.5" cy="16.5" r="1.5"/><circle cx="17.5" cy="16.5" r="1.5"/></svg>,
 };
 
 const kpiIcon = { leads: Icon.users, opps: Icon.target, conv: Icon.trend };
+
+// Config por vertical — espeja useIndustryConfig() de la app real (REAL_ESTATE / AUTOMOTIVE).
+const IC = {
+  inmo: {
+    subtitle: "Inmobiliaria Demo",
+    assetLabel: "Propiedades",
+    assetSingular: "Propiedad",
+    assetIcon: Icon.props,
+    assetTotal: "142",
+    assetCountLabel: "142 propiedades",
+    assetStatusTitle: "Propiedades por estado",
+    assetSearch: "Buscar propiedades...",
+    assetChips: ["Estado: Todos", "Operación: Todas", "Tipo: Todos", "Zona: Todas"],
+    assetNew: "+ Nueva",
+    assetHasSync: true,
+    assetSyncNote: "Tokko actualizado: hace 2h",
+    salesSearch: "Buscar por propiedad o nota...",
+    salesAssetCol: "Propiedad",
+    trendTitle: "Leads nuevos y propiedades visitadas",
+    trendLegend2: "Propiedades visitadas",
+    leadsTotal: "128",
+    headerUser: { name: "Carolina Méndez", initials: "CM" },
+    integConnected: "2 de 4 conectadas",
+    integBadge: "2/4",
+    hasTokko: true,
+  },
+  auto: {
+    subtitle: "Concesionaria Demo",
+    assetLabel: "Automóviles",
+    assetSingular: "Automóvil",
+    assetIcon: Icon.car,
+    assetTotal: "37",
+    assetCountLabel: "37 automóviles",
+    assetStatusTitle: "Vehículos por estado",
+    assetSearch: "Buscar automóviles...",
+    assetChips: ["Estado: Todos", "Marca: Todas", "Combustible: Todos", "Año: Todos"],
+    assetNew: "+ Nuevo",
+    assetHasSync: false,
+    assetSyncNote: null,
+    salesSearch: "Buscar por vehículo o nota...",
+    salesAssetCol: "Vehículo",
+    trendTitle: "Leads nuevos y test drives",
+    trendLegend2: "Test drives",
+    leadsTotal: "96",
+    headerUser: { name: "Fernando Acosta", initials: "FA" },
+    integConnected: "2 de 3 conectadas",
+    integBadge: "2/3",
+    hasTokko: false,
+  },
+};
 
 const KPI = ({ icon, value, label, delta, note, prefix = "", suffix = "", decimals = 0 }) => {
   const v = useCountUp(value, 1400, [value]);
@@ -350,7 +514,7 @@ const Panel = ({ title, subtitle, children, center = false, className = "" }) =>
   </div>
 );
 
-const ViewInicio = ({ playKey }) => (
+const ViewInicio = ({ data, ic, playKey }) => (
   <div className="p-4 @[760px]/dash:p-5 space-y-3.5">
     {/* Toolbar — tabs + ad spend + period + add widget */}
     <div className="flex items-center justify-between gap-2 flex-wrap">
@@ -373,32 +537,32 @@ const ViewInicio = ({ playKey }) => (
 
     {/* KPI row */}
     <div className="grid grid-cols-1 @[540px]/dash:grid-cols-3 gap-3">
-      {DEMO.kpis.map((k) => (
+      {data.kpis.map((k) => (
         <KPI key={k.key} icon={kpiIcon[k.key]} value={k.value} label={k.label} delta={k.delta} note={k.note} suffix={k.suffix} decimals={k.decimals} />
       ))}
     </div>
 
     {/* Charts row 1 — trend + origin donut */}
     <div className="grid @[540px]/dash:grid-cols-[1.45fr_1fr] gap-3">
-      <Panel title="Leads nuevos y propiedades visitadas" subtitle="Últimos 14 días">
-        <TrendChart data={DEMO.byDay} playKey={playKey} />
+      <Panel title={ic.trendTitle} subtitle="Últimos 14 días">
+        <TrendChart data={data.byDay} playKey={playKey} />
         <div className="flex items-center justify-center gap-4 text-[11px] ink-2 mt-1">
           <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-accent"/> Leads nuevos</span>
-          <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-[#3c6df0]"/> Propiedades visitadas</span>
+          <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-[#3c6df0]"/> {ic.trendLegend2}</span>
         </div>
       </Panel>
       <Panel title="Leads por origen" subtitle="Atribución de cada lead" center>
-        <Donut segments={DEMO.origins} centerValue="128" centerLabel="Leads" />
+        <Donut segments={data.origins} centerValue={ic.leadsTotal} centerLabel="Leads" />
       </Panel>
     </div>
 
     {/* Charts row 2 — pipeline bars + property status donut */}
     <div className="grid @[540px]/dash:grid-cols-[1.45fr_1fr] gap-3">
       <Panel title="Pipeline de oportunidades" subtitle="Distribución por etapa">
-        <StageBars data={DEMO.stages} playKey={playKey} />
+        <StageBars data={data.stages} playKey={playKey} />
       </Panel>
-      <Panel title="Propiedades por estado" subtitle="Inventario activo" center>
-        <Donut segments={DEMO.propStatus} centerValue="142" centerLabel="Activos" />
+      <Panel title={ic.assetStatusTitle} subtitle="Inventario activo" center>
+        <Donut segments={data.propStatus} centerValue={ic.assetTotal} centerLabel="Activos" />
       </Panel>
     </div>
   </div>
@@ -449,12 +613,12 @@ const FilterChips = ({ search, chips }) => (
   </div>
 );
 
-const ViewLeads = () => (
+const ViewLeads = ({ data, ic }) => (
   <div className="p-4 @[760px]/dash:p-5">
     {/* Top bar: stats + actions */}
     <div className="flex items-center justify-between gap-2 mb-4 flex-wrap">
       <div className="flex items-center gap-2 text-xs ink-3">
-        <span className="mono">128 leads · período actual</span>
+        <span className="mono">{ic.leadsTotal} leads · período actual</span>
         <span className="w-1 h-1 rounded-full bg-[var(--ink-3)]" />
         <span className="mono">8 nuevos hoy</span>
       </div>
@@ -475,7 +639,7 @@ const ViewLeads = () => (
         <span className="hidden @[600px]/dash:block">Asignado</span>
         <span className="text-right">Fecha</span>
       </div>
-      {DEMO.leads.map((l, i) => {
+      {data.leads.map((l, i) => {
         const ow = avatarFromName(l.owner);
         const st = statusPill(l.status);
         return (
@@ -518,7 +682,7 @@ const ViewLeads = () => (
         );
       })}
       <div className="flex items-center justify-between px-4 py-2.5 mono text-[10px] ink-3">
-        <span>1-{DEMO.leads.length} de 128 leads · página 1 de 7</span>
+        <span>1-{data.leads.length} de {ic.leadsTotal} leads · página 1 de 7</span>
         <span>Por página 20 ▾</span>
       </div>
     </div>
@@ -526,17 +690,19 @@ const ViewLeads = () => (
   </div>
 );
 
-const PropMeta = ({ p }) => (
-  <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 mono text-[10px] ink-2">
-    <span>{p.type}</span>
-    <span className="ink-3">·</span>
-    <span>{p.amb}</span>
-    <span className="ink-3">·</span>
-    <span>{p.m2}</span>
-    <span className="ink-3">·</span>
-    <span>{p.op}</span>
-  </div>
-);
+const PropMeta = ({ p }) => {
+  const chips = p.meta || [p.type, p.amb, p.m2, p.op];
+  return (
+    <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 mono text-[10px] ink-2">
+      {chips.map((c, i) => (
+        <Fragment key={i}>
+          {i > 0 && <span className="ink-3">·</span>}
+          <span>{c}</span>
+        </Fragment>
+      ))}
+    </div>
+  );
+};
 
 const PropCard = ({ p, i }) => {
   const reserved = p.status === "Reservado";
@@ -570,35 +736,41 @@ const PropCard = ({ p, i }) => {
   );
 };
 
-const ViewProps = () => (
+const ViewProps = ({ data, ic }) => (
   <div className="p-4 @[760px]/dash:p-5">
     <div className="flex items-center justify-between gap-2 mb-4 flex-wrap">
       <div className="flex items-center gap-2 text-xs ink-3">
-        <span className="mono">142 propiedades</span>
-        <span className="w-1 h-1 rounded-full bg-[var(--ink-3)]" />
-        <span className="mono">Tokko actualizado: hace 2h</span>
+        <span className="mono">{ic.assetCountLabel}</span>
+        {ic.assetSyncNote && (
+          <>
+            <span className="w-1 h-1 rounded-full bg-[var(--ink-3)]" />
+            <span className="mono">{ic.assetSyncNote}</span>
+          </>
+        )}
       </div>
       <div className="flex items-center gap-2">
         <button aria-label="Refrescar datos" title="Refrescar" className="w-7 h-7 rounded-md grid place-items-center ink-3 hover:bg-surface-2 hover:ink-2 transition-colors"><span className="w-3.5 h-3.5">{Icon.refresh}</span></button>
-        <button className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-line text-xs hover:bg-surface-2"><span className="w-3.5 h-3.5">{Icon.refresh}</span> Sincronizar con Tokko</button>
-        <button className="px-3 py-1.5 rounded-md bg-accent text-white text-xs font-medium">+ Nueva</button>
+        {ic.assetHasSync && (
+          <button className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-line text-xs hover:bg-surface-2"><span className="w-3.5 h-3.5">{Icon.refresh}</span> Sincronizar con Tokko</button>
+        )}
+        <button className="px-3 py-1.5 rounded-md bg-accent text-white text-xs font-medium">{ic.assetNew}</button>
       </div>
     </div>
 
-    <FilterChips search="Buscar propiedades..." chips={["Estado: Todos", "Operación: Todas", "Tipo: Todos", "Zona: Todas"]} />
+    <FilterChips search={ic.assetSearch} chips={ic.assetChips} />
 
     <div className="grid grid-cols-[repeat(auto-fill,minmax(190px,1fr))] gap-3">
-      {DEMO.props.map((p, i) => <PropCard key={i} p={p} i={i} />)}
+      {data.props.map((p, i) => <PropCard key={i} p={p} i={i} />)}
     </div>
     <div className="flex items-center justify-between mt-4 text-[11px] ink-3">
-      <span>1-6 de 142 propiedades</span>
+      <span>1-{data.props.length} de {ic.assetCountLabel}</span>
       <div className="flex items-center gap-2"><span>Por página 10 ▾</span><span>Página 1 de 24</span></div>
     </div>
   </div>
 );
 
-const ViewPipeline = () => {
-  const totalDeals = DEMO.pipeline.reduce((sum, col) => sum + col.count, 0);
+const ViewPipeline = ({ data }) => {
+  const totalDeals = data.pipeline.reduce((sum, col) => sum + col.count, 0);
   return (
     <div className="p-4 @[760px]/dash:p-5">
       {/* Top bar */}
@@ -618,7 +790,7 @@ const ViewPipeline = () => {
 
       {/* Kanban columns */}
       <div className="flex gap-3 overflow-x-auto pb-2">
-        {DEMO.pipeline.map((col, ci) => (
+        {data.pipeline.map((col, ci) => (
           <div key={col.stage} className="min-w-[196px] flex-1">
             {/* Column header */}
             <div className="flex items-center gap-2 px-2 py-2 border-b-2 mb-2" style={{ borderColor: col.color }}>
@@ -693,7 +865,7 @@ const prioPill = (p) => {
   return map[p] || map["Media"];
 };
 
-const ViewTasks = () => (
+const ViewTasks = ({ data }) => (
   <div className="p-4 @[760px]/dash:p-5">
     {/* Top bar: view toggle + stats + action */}
     <div className="flex items-center justify-between gap-2 mb-4 flex-wrap">
@@ -713,7 +885,7 @@ const ViewTasks = () => (
 
     {/* Task list */}
     <div className="bg-surface border border-line rounded-xl overflow-hidden">
-      {DEMO.tasks.map((t, i) => {
+      {data.tasks.map((t, i) => {
         const pr = prioPill(t.prio);
         const ow = avatarFromName(t.owner);
         return (
@@ -753,30 +925,30 @@ const ViewTasks = () => (
   </div>
 );
 
-const ViewSales = () => (
+const ViewSales = ({ data, ic }) => (
   <div className="p-4 @[760px]/dash:p-5">
     {/* Top bar */}
     <div className="flex items-center justify-between gap-2 mb-4 flex-wrap">
       <div className="flex items-center gap-2 text-xs ink-3">
         <span className="mono">4 operaciones cerradas</span>
         <span className="w-1 h-1 rounded-full bg-[var(--ink-3)]" />
-        <span className="mono text-[var(--pos)]">{DEMO.salesTotals.gross} en comisiones</span>
+        <span className="mono text-[var(--pos)]">{data.salesTotals.gross} en comisiones</span>
       </div>
       <button aria-label="Refrescar datos" title="Refrescar" className="w-7 h-7 rounded-md grid place-items-center ink-3 hover:bg-surface-2 hover:ink-2 transition-colors"><span className="w-3.5 h-3.5">{Icon.refresh}</span></button>
     </div>
 
-    <FilterChips search="Buscar por propiedad o nota..." chips={["Operación: Todas", "Moneda: USD", "Agente: Todos"]} />
+    <FilterChips search={ic.salesSearch} chips={["Operación: Todas", "Moneda: USD", "Agente: Todos"]} />
 
     {/* Sales table */}
     <div className="bg-surface border border-line rounded-xl overflow-hidden">
       <div className="grid grid-cols-[.8fr_.7fr_1.6fr_1fr_.9fr_.9fr] gap-3 px-4 py-2.5 mono text-[10px] uppercase tracking-wider ink-3 border-b border-line bg-surface-2">
         <span>Fecha</span><span>Op.</span>
-        <span>Propiedad</span>
+        <span>{ic.salesAssetCol}</span>
         <span className="hidden @[680px]/dash:block">Agente</span><span className="@[680px]/dash:hidden" />
         <span className="text-right">Com. bruta</span>
         <span className="text-right">Com. oficina</span>
       </div>
-      {DEMO.sales.map((s, i) => {
+      {data.sales.map((s, i) => {
         const isRent = s.op === "Alquiler";
         return (
           <div
@@ -802,8 +974,8 @@ const ViewSales = () => (
       {/* Totals */}
       <div className="grid grid-cols-[.8fr_.7fr_1.6fr_1fr_.9fr_.9fr] gap-3 px-4 py-2.5 items-center bg-surface-2 mono text-[11px]">
         <span className="uppercase tracking-wider ink-3 text-[10px] col-span-4">Totales (USD)</span>
-        <span className="tabular-nums text-right ink font-semibold">{DEMO.salesTotals.gross}</span>
-        <span className="tabular-nums text-right text-[var(--pos)] font-semibold">{DEMO.salesTotals.office}</span>
+        <span className="tabular-nums text-right ink font-semibold">{data.salesTotals.gross}</span>
+        <span className="tabular-nums text-right text-[var(--pos)] font-semibold">{data.salesTotals.office}</span>
       </div>
     </div>
     <style>{`@keyframes rowIn { from { opacity: 0; transform: translateY(4px); } }`}</style>
@@ -885,12 +1057,12 @@ const IntegRow = ({ logo, name, desc, status, badge, account, sub, cta }) => {
   );
 };
 
-const ViewIntegr = () => (
+const ViewIntegr = ({ ic }) => (
   <div className="p-4 @[760px]/dash:p-5 space-y-5">
     {/* Header */}
     <div className="flex items-center justify-between gap-2 flex-wrap">
       <div className="flex items-center gap-2 text-xs ink-3">
-        <span className="mono">2 de 4 conectadas</span>
+        <span className="mono">{ic.integConnected}</span>
         <span className="w-1 h-1 rounded-full bg-[var(--ink-3)]" />
         <span className="mono">última actualización: hace 2h</span>
       </div>
@@ -907,14 +1079,16 @@ const ViewIntegr = () => (
       </div>
     </div>
 
-    {/* Integraciones de terceros */}
-    <div>
-      <div className="mb-1 font-medium text-sm">Integraciones de terceros</div>
-      <div className="mono text-[10px] ink-3 mb-3">Conectá servicios externos para sincronizar datos.</div>
-      <div className="grid grid-cols-1 @[600px]/dash:grid-cols-2 gap-3">
-        <IntegRow logo={<TokkoLogo/>} name="Tokko Broker" desc="Sincroniza tus propiedades desde Tokko Broker." status="connected" account="API conectada" sub="última sincronización: hace 2h" cta="Actualizar clave" />
+    {/* Integraciones de terceros — solo inmobiliaria (Tokko es de real estate) */}
+    {ic.hasTokko && (
+      <div>
+        <div className="mb-1 font-medium text-sm">Integraciones de terceros</div>
+        <div className="mono text-[10px] ink-3 mb-3">Conectá servicios externos para sincronizar datos.</div>
+        <div className="grid grid-cols-1 @[600px]/dash:grid-cols-2 gap-3">
+          <IntegRow logo={<TokkoLogo/>} name="Tokko Broker" desc="Sincroniza tus propiedades desde Tokko Broker." status="connected" account="API conectada" sub="última sincronización: hace 2h" cta="Actualizar clave" />
+        </div>
       </div>
-    </div>
+    )}
 
     {/* Rastreo web */}
     <div>
@@ -929,24 +1103,42 @@ const ViewIntegr = () => (
 
 export const Dashboard = () => {
   const [view, setView] = useState("inicio");
+  const [vertical, setVertical] = useState("inmo");
   const [playKey, setPlayKey] = useState(0);
 
-  useEffect(() => { setPlayKey(k => k + 1); }, [view]);
+  useEffect(() => { setPlayKey(k => k + 1); }, [view, vertical]);
 
-  const titles = { inicio: "Inicio", leads: "Leads", props: "Propiedades", pipe: "Pipeline", tareas: "Tareas", ventas: "Ventas", plug: "Integraciones" };
+  const data = vertical === "inmo" ? DEMO_INMO : DEMO_AUTO;
+  const ic = IC[vertical];
+  const titles = { inicio: "Inicio", leads: "Leads", props: ic.assetLabel, pipe: "Pipeline", tareas: "Tareas", ventas: "Ventas", plug: "Integraciones" };
 
   return (
     <div className="card overflow-hidden shadow-[0_40px_100px_-40px_rgba(0,0,0,0.25)] @container/dash">
-      <div className="flex items-center justify-between px-4 py-2.5 border-b border-line bg-surface-2">
-        <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between gap-2 px-4 py-2.5 border-b border-line bg-surface-2">
+        <div className="flex items-center gap-2 min-w-0">
           <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"/>
           <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"/>
           <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]"/>
-          <span className="mono text-[11px] ink-3 ml-3">quasor.app/{view}</span>
+          <span className="mono text-[11px] ink-3 ml-3 hidden @[680px]/dash:inline truncate">quasor.app/{view}</span>
         </div>
-        <div className="flex items-center gap-2">
+        {/* Vertical switcher — prueba viva del multivertical (espeja la app real) */}
+        <div className="flex items-center gap-0.5 p-0.5 rounded-md bg-surface border border-line shrink-0" role="group" aria-label="Cambiar rubro del demo">
+          {[["inmo", "Inmobiliaria"], ["auto", "Concesionaria"]].map(([k, lbl]) => (
+            <button
+              key={k}
+              type="button"
+              onClick={() => setVertical(k)}
+              aria-pressed={vertical === k}
+              className={`mono text-[10px] px-2 py-0.5 rounded transition-colors ${vertical === k ? "text-white" : "ink-3 hover:ink-2"}`}
+              style={vertical === k ? { background: "var(--accent-strong)" } : undefined}
+            >
+              {lbl}
+            </button>
+          ))}
+        </div>
+        <div className="flex items-center gap-2 shrink-0">
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--pos)] pulse-dot"/>
-          <span className="mono text-[10px] ink-3 uppercase tracking-[0.14em]">live demo</span>
+          <span className="mono text-[10px] ink-3 uppercase tracking-[0.14em] hidden @[680px]/dash:inline">live demo</span>
         </div>
       </div>
 
@@ -956,12 +1148,12 @@ export const Dashboard = () => {
             <div className="w-7 h-7 rounded-md bg-gradient-to-br from-[var(--accent)] to-[#ffb08a] grid place-items-center text-white font-bold text-[11px] shrink-0">Q</div>
             <span className="serif text-xl leading-none hidden @[540px]/dash:inline">quasor</span>
           </div>
-          <div className="hidden @[540px]/dash:block px-2 mono text-[10px] ink-3 mb-4">Inmobiliaria Demo</div>
+          <div className="hidden @[540px]/dash:block px-2 mono text-[10px] ink-3 mb-4">{ic.subtitle}</div>
           <div className="@[540px]/dash:hidden h-4" />
           <nav className="space-y-0.5">
             <NavItem icon={Icon.home}  label="Inicio"      active={view === "inicio"} onClick={() => setView("inicio")}/>
             <NavItem icon={Icon.leads} label="Leads"       active={view === "leads"}  onClick={() => setView("leads")}/>
-            <NavItem icon={Icon.props} label="Propiedades" active={view === "props"}  onClick={() => setView("props")}/>
+            <NavItem icon={ic.assetIcon} label={ic.assetLabel} active={view === "props"}  onClick={() => setView("props")}/>
             <NavItem icon={Icon.pipe}  label="Pipeline"    active={view === "pipe"}   onClick={() => setView("pipe")}/>
             <NavItem icon={Icon.tasks} label="Tareas"      active={view === "tareas"} onClick={() => setView("tareas")}/>
             <NavItem icon={Icon.sales} label="Ventas"      active={view === "ventas"} onClick={() => setView("ventas")}/>
@@ -969,7 +1161,7 @@ export const Dashboard = () => {
           <div className="hidden @[540px]/dash:block px-2 mt-4 mb-2 mono text-[9px] uppercase tracking-[0.18em] ink-3">Configuración</div>
           <div className="@[540px]/dash:hidden my-2 mx-2 border-t border-line" />
           <nav className="space-y-0.5">
-            <NavItem icon={Icon.plug} label="Integraciones" badge="2/4" active={view === "plug"} onClick={() => setView("plug")}/>
+            <NavItem icon={Icon.plug} label="Integraciones" badge={ic.integBadge} active={view === "plug"} onClick={() => setView("plug")}/>
           </nav>
           <div className="mt-auto hidden @[540px]/dash:block px-2 pt-3 mono text-[9px] ink-3">Quasor · v1.1.0</div>
         </aside>
@@ -984,18 +1176,18 @@ export const Dashboard = () => {
               <span className="w-4 h-4 ink-3 hidden @[600px]/dash:inline">{Icon.sun}</span>
               <span className="w-4 h-4 ink-3 hidden @[600px]/dash:inline">{Icon.bell}</span>
               <span className="mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-[color-mix(in_oklab,#9a56d0_15%,var(--bg))] text-[#9a56d0]">Admin</span>
-              <span className="text-xs ink-2 hidden sm:inline">Carolina Méndez</span>
-              <span className="w-7 h-7 rounded-full bg-accent text-white grid place-items-center mono text-[10px] font-bold">CM</span>
+              <span className="text-xs ink-2 hidden sm:inline">{ic.headerUser.name}</span>
+              <span className="w-7 h-7 rounded-full bg-accent text-white grid place-items-center mono text-[10px] font-bold">{ic.headerUser.initials}</span>
             </div>
           </header>
           <div key={playKey} className="flex-1 min-h-0 overflow-y-auto dash-scroll animate-[fadeIn_.4s_ease-out]">
-            {view === "inicio" && <ViewInicio playKey={playKey}/>}
-            {view === "leads"  && <ViewLeads/>}
-            {view === "props"  && <ViewProps/>}
-            {view === "pipe"   && <ViewPipeline/>}
-            {view === "tareas" && <ViewTasks/>}
-            {view === "ventas" && <ViewSales/>}
-            {view === "plug"   && <ViewIntegr/>}
+            {view === "inicio" && <ViewInicio data={data} ic={ic} playKey={playKey}/>}
+            {view === "leads"  && <ViewLeads data={data} ic={ic}/>}
+            {view === "props"  && <ViewProps data={data} ic={ic}/>}
+            {view === "pipe"   && <ViewPipeline data={data}/>}
+            {view === "tareas" && <ViewTasks data={data}/>}
+            {view === "ventas" && <ViewSales data={data} ic={ic}/>}
+            {view === "plug"   && <ViewIntegr ic={ic}/>}
           </div>
         </main>
       </div>

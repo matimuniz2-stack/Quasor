@@ -64,6 +64,10 @@ const Terminal = ({ lines, playKey }) => {
   }, [playKey]);
 
   useEffect(() => {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setShown(lines); setCursorLine(lines.length); setCursorChar(0);
+      return;
+    }
     if (cursorLine >= lines.length) return;
     const line = lines[cursorLine];
     const speed = line.p === "$" ? 32 : line.p === ">" ? 24 : 18;
@@ -152,7 +156,7 @@ const ThemeToggle = ({ theme, onToggle }) => {
       onClick={onToggle}
       aria-label={isDark ? "Cambiar a tema claro" : "Cambiar a tema oscuro"}
       title={isDark ? "Tema claro" : "Tema oscuro"}
-      className="w-8 h-8 rounded-full border border-line hover:border-[var(--accent)] hover:text-[var(--accent)] grid place-items-center transition ink-2"
+      className="w-8 h-8 rounded-full border border-line hover:border-[var(--accent)] hover:text-[var(--accent)] grid place-items-center transition ink-2 relative before:absolute before:content-[''] before:-inset-1.5"
     >
       {isDark ? <SunIcon /> : <MoonIcon />}
     </button>
@@ -161,6 +165,7 @@ const ThemeToggle = ({ theme, onToggle }) => {
 
 const NAV_LINKS = [
   ["#producto", "Producto"],
+  ["#ads", "Tracking de ads"],
   ["#casos", "Casos"],
   ["#servicios", "Servicios"],
   ["#por-que", "Por qué"],
@@ -206,10 +211,10 @@ export const Nav = ({ theme, onToggleTheme }) => {
             <span>Disponible · respondemos hoy</span>
           </Badge>
           <ThemeToggle theme={theme} onToggle={onToggleTheme} />
-          <Button href="#contacto" className="max-sm:hidden text-sm px-3.5 py-1.5 font-medium">Agendar demo →</Button>
+          <Button href="#contacto" className="max-sm:hidden text-sm px-3.5 py-1.5 font-medium">Hablemos 30 min →</Button>
           <button
             type="button"
-            className="md:hidden w-8 h-8 rounded-full border border-line grid place-items-center ink-2"
+            className="md:hidden w-8 h-8 rounded-full border border-line grid place-items-center ink-2 relative before:absolute before:content-[''] before:-inset-1.5"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={menuOpen}
@@ -245,7 +250,7 @@ export const Nav = ({ theme, onToggleTheme }) => {
             onClick={() => setMenuOpen(false)}
             className="sm:hidden w-full mt-1 text-sm px-3.5 py-3 font-medium"
           >
-            Agendar demo →
+            Hablemos 30 min →
           </Button>
         </nav>
       </div>
@@ -314,15 +319,10 @@ export const Hero = () => {
       </div>
       <div className="absolute inset-0 dotted-grid pointer-events-none" aria-hidden="true" />
       <div className="absolute inset-0 grain pointer-events-none" />
-      <div className="relative max-w-[1280px] mx-auto px-6 md:px-10 pt-10 md:pt-16 pb-12 md:pb-20">
-        {/* Eyebrow row */}
-        <div className="flex items-center gap-2 mono text-[11px] ink-3 uppercase tracking-[0.18em] rise">
-          <span>Quasor</span><span>·</span><span>Mar del Plata, AR</span>
-        </div>
-
+      <div className="relative max-w-[1280px] mx-auto px-6 md:px-10 pt-12 md:pt-20 pb-12 md:pb-20">
         {/* Two-column hero: text left, live dashboard right (kicks in at lg+ for laptop visibility) */}
         {/* items-start: title is anchored to the top so dashboard view-switching doesn't push it up/down */}
-        <div className="mt-8 md:mt-10 grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           <div className="lg:col-span-5 xl:col-span-4">
             <h1
               className="serif text-[44px] md:text-[56px] lg:text-[60px] leading-[1] tracking-[-0.035em] rise"
@@ -339,7 +339,7 @@ export const Hero = () => {
               className="mt-6 text-base md:text-lg ink-2 max-w-md rise"
               style={{ animationDelay: "160ms" }}
             >
-              CRM y tracking de ads para inmobiliarias argentinas: pipeline, integraciones con portales y WhatsApp, y la inversión en tus ads atada a cada lead. A la derecha, una demo interactiva del producto, con datos de ejemplo.
+              CRM y tracking de ads para inmobiliarias y concesionarias de toda la Argentina: pipeline, integraciones con portales y WhatsApp, y la inversión publicitaria atada a cada lead y a cada venta. A la derecha, una demo interactiva del producto, con datos de ejemplo.
             </p>
 
             <div
@@ -349,7 +349,7 @@ export const Hero = () => {
               <Button href="#contacto" className="text-[15px] px-5 py-3 font-medium">
                 Hablemos 30 min <span>→</span>
               </Button>
-              <Button href="#casos" variant="secondary" className="text-[15px] px-5 py-3">
+              <Button href="#caso" variant="secondary" className="text-[15px] px-5 py-3">
                 Ver caso real
               </Button>
             </div>
@@ -365,6 +365,7 @@ export const Hero = () => {
 
           {/* Dashboard — right column on lg+, full-width below text on md- */}
           <div
+            id="producto"
             className="lg:col-span-7 xl:col-span-8 lg:-mr-2 rise"
             style={{ animationDelay: "320ms" }}
           >
@@ -380,9 +381,9 @@ export const Hero = () => {
           </div>
         </div>
 
-        {/* Stats bar — anchor for #producto */}
+        {/* Stats bar — anchor for #resultados */}
         <div
-          id="producto"
+          id="resultados"
           className="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-0 border border-line rounded-xl overflow-hidden bg-surface rise"
           style={{ animationDelay: "400ms" }}
         >
@@ -398,6 +399,7 @@ export const Hero = () => {
             </div>
           ))}
         </div>
+        <p className="mt-3 mono text-[10px] ink-3">Piloto real · 6 semanas · 6 vendedores · datos de ejemplo</p>
       </div>
     </section>
   );
@@ -624,7 +626,7 @@ export const AdTracking = () => (
         {AD_STEPS.map((s) => (
           <div key={s.n} className="bg-surface p-7 md:p-9 flex flex-col">
             <div className="flex items-center justify-between mb-5">
-              <span className="mono text-[11px] uppercase tracking-[0.18em] accent">{s.tag}</span>
+              <span className="mono text-[11px] uppercase tracking-[0.18em] accent-text">{s.tag}</span>
               <span className="mono text-[11px] ink-3">{s.n}/03</span>
             </div>
             <h3 className="serif text-2xl md:text-3xl leading-tight tracking-tight mb-3 md:min-h-[2.5em]">{s.title}</h3>
@@ -731,7 +733,7 @@ export const UseCases = () => {
           </div>
           <div className="p-7 md:p-10 flex flex-col">
             <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-              <div className="mono text-[11px] uppercase tracking-[0.18em] accent">Inmobiliarias</div>
+              <div className="mono text-[11px] uppercase tracking-[0.18em] accent-text">Inmobiliarias</div>
               <div
                 className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full mono text-[10px] uppercase tracking-wider"
                 style={{
@@ -951,7 +953,7 @@ export const UseCase = () => {
   const animatedLost = useCountUp(data.lostPct);
 
   return (
-    <section className="relative max-w-[1280px] mx-auto px-6 md:px-10 py-24 md:py-32">
+    <section id="caso" className="relative max-w-[1280px] mx-auto px-6 md:px-10 py-24 md:py-32">
       {/* Section header */}
       <div className="mb-16 md:mb-20 max-w-3xl">
         <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">04 · caso real</div>
@@ -993,7 +995,7 @@ export const UseCase = () => {
                 </div>
 
                 {/* Phase label */}
-                <div className="flex items-center gap-2 mono text-[11px] uppercase tracking-[0.18em] accent mb-3">
+                <div className="flex items-center gap-2 mono text-[11px] uppercase tracking-[0.18em] accent-text mb-3">
                   <span>{p.label}</span>
                   <span className="h-px flex-1 max-w-[60px]" style={{ background: "color-mix(in oklab, var(--accent) 50%, transparent)" }} aria-hidden="true" />
                 </div>
@@ -1219,18 +1221,20 @@ export const WhyQuasor = () => {
       rows: [
         { v: "Precios en USD · sin factura local", good: false, hint: "Planes complejos. Cambio de divisa y reconciliación con AFIP a tu cargo." },
         { v: "Dashboards y soporte en inglés", good: false, hint: "Tu equipo se capacita en jerga US, no en el lenguaje del rubro AR." },
-        { v: "Tokko / Meta Lead Ads / Google: vía Zapier", good: false, hint: "Sin integraciones nativas para el stack inmobiliario AR. Conectores externos en el medio." },
+        { v: "Tokko / Meta Lead Ads / Google: vía Zapier", good: false, hint: "Sin integraciones nativas para el stack de ventas argentino (Tokko, Meta, Google, WhatsApp). Conectores externos en el medio." },
+        { v: "Atribución ad → venta: cara y a medias", good: false, hint: "Medir el costo real por venta cerrada exige add-ons caros o trabajo manual." },
       ],
     },
     {
       k: "quasor",
       name: "Quasor",
       tone: "accent",
-      desc: "Hecho para inmobiliarias argentinas",
+      desc: "Hecho para inmobiliarias y concesionarias argentinas",
       rows: [
         { v: "Precios en AR$ · sin permanencia", good: true, hint: "Factura local. Cancelás cuando quieras." },
         { v: "Tokko · WhatsApp · Meta · Google · nativos", good: true, hint: "Integraciones nativas. Se actualiza en segundos. Sin Zapier en el medio." },
-        { v: "Soporte WhatsApp horario AR · < 2h", good: true, hint: "Hablás directo con quien programa. Sin tickets ni account managers." },
+        { v: "Inversión en ads atada a cada lead y venta", good: true, hint: "Costo real por lead y por venta cerrada — no te quedás en el click." },
+        { v: "Soporte WhatsApp horario AR · < 6h", good: true, hint: "Hablás directo con quien programa. Sin tickets ni account managers." },
       ],
     },
     {
@@ -1242,6 +1246,7 @@ export const WhyQuasor = () => {
         { v: "Foco: catálogo y administración", good: false, hint: "El CRM es un módulo, no el foco. La gestión de propiedades primero; el pipeline de ventas, después." },
         { v: "Pipeline / automatización: limitados", good: false, hint: "Asignación inteligente y alertas requieren soluciones improvisadas." },
         { v: "Cambios custom: cola + ticket", good: false, hint: "Software empaquetado, no a medida de tu operación." },
+        { v: "No trackean la inversión publicitaria", good: false, hint: "Son catálogo + CRM. Lo que invertís en Meta/Google y su retorno quedan afuera." },
       ],
     },
   ];
@@ -1530,7 +1535,7 @@ export const Testimonials = () => {
           <div className="flex items-end justify-between gap-4 flex-wrap mb-6">
             <div>
               <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">resultados por vertical</div>
-              <h3 className="serif text-3xl md:text-4xl mt-2 tracking-tight">El piso, no la promesa.</h3>
+              <h3 className="serif text-3xl md:text-4xl mt-2 tracking-tight">El objetivo, no la promesa.</h3>
             </div>
             <p className="mono text-[11px] ink-3 max-w-xs">
               Inmobiliarias: validado en piloto.<br/>
@@ -1541,7 +1546,7 @@ export const Testimonials = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[var(--line)] border border-line rounded-xl overflow-hidden">
             {EXPECTED_RESULTS.map((r, i) => (
               <div key={i} className="bg-surface p-5 md:p-6">
-                <div className="mono text-[10px] uppercase tracking-wider accent mb-3">{r.vertical}</div>
+                <div className="mono text-[10px] uppercase tracking-wider accent-text mb-3">{r.vertical}</div>
                 <div className="serif text-4xl md:text-5xl num leading-none mb-2">{r.metric.v}</div>
                 <div className="mono text-[10px] uppercase tracking-wider ink-3">{r.metric.k}</div>
               </div>
@@ -1565,7 +1570,7 @@ export const Pricing = () => {
       features: [
         "Hasta 4 usuarios",
         "Meta o Google Ads — el canal que más usás",
-        "Soporte WhatsApp en horario AR",
+        "Soporte WhatsApp en horario AR · < 6h",
       ],
       recommended: false,
     },
@@ -1576,7 +1581,7 @@ export const Pricing = () => {
       features: [
         "Hasta 8 usuarios",
         "Meta y Google Ads — todo en un solo lugar",
-        "Soporte prioritario · < 8h",
+        "Soporte prioritario",
       ],
       recommended: true,
     },
@@ -1787,7 +1792,7 @@ export const Pricing = () => {
                 Reservar 30 min →
               </Button>
               <Badge className="mono text-[10px] opacity-70">
-                <span>respondemos en 2h hábiles</span>
+                <span>respondemos en menos de 6h hábiles</span>
               </Badge>
             </div>
           </div>
@@ -1824,7 +1829,7 @@ export const Faq = () => (
           <h2 className="serif text-5xl md:text-6xl leading-[0.98] mt-4 tracking-tight">
             Preguntas <em className="italic">frecuentes.</em>
           </h2>
-          <p className="ink-2 mt-5">¿No está la tuya? <a href="#contacto" className="underline decoration-dotted underline-offset-4">Escribinos</a> y respondemos en 2h hábiles.</p>
+          <p className="ink-2 mt-5">¿No está la tuya? <a href="#contacto" className="underline decoration-dotted underline-offset-4">Escribinos</a> y respondemos en menos de 6h hábiles.</p>
         </div>
         <div>
           {FAQ.map((f, i) => <FaqItem key={i} item={f} i={i} />)}
@@ -1863,7 +1868,7 @@ export const Contact = () => {
       <div className="mt-16 grid md:grid-cols-3 gap-6 border-t border-line pt-10">
         <div>
           <div className="mono text-[11px] uppercase tracking-[0.18em] ink-3">respuesta</div>
-          <div className="serif text-3xl mt-2">&lt; 2h</div>
+          <div className="serif text-3xl mt-2">&lt; 6h</div>
           <div className="text-sm ink-2">hábiles · 09–19 ART</div>
         </div>
         <div>
@@ -1948,7 +1953,7 @@ export const Footer = () => {
         <div>
           <div className="serif text-5xl">quasor<span className="accent">.</span></div>
           <p className="ink-2 text-sm mt-4 max-w-xs">
-            CRM + tracking de ads para inmobiliarias argentinas. Desde Mar del Plata, para todo el país.
+            CRM + tracking de ads para inmobiliarias y concesionarias. Desde Mar del Plata, para toda la Argentina.
           </p>
           <div className="mono text-[11px] ink-3 mt-5">
             <div>ventas@quasor.io</div>
