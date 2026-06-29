@@ -1378,7 +1378,7 @@ export const Process = () => {
             </h2>
           </div>
           <p className="ink-2 max-w-xs">
-            Cada una con un entregable concreto. Sin reuniones que podrían haber sido un email.
+            Cada una con un entregable concreto. En semanas, no en meses.
           </p>
         </div>
 
