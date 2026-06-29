@@ -102,7 +102,12 @@ const App = () => {
         const id = a.getAttribute("href");
         if (id && id.length > 1) {
           const tgt = document.querySelector(id);
-          if (tgt) { e.preventDefault(); lenis.scrollTo(tgt, { offset: -80, duration: 1.4 }); }
+          if (tgt) {
+            e.preventDefault();
+            // Contacto ya tiene padding superior propio: lo alineamos al tope.
+            const offset = id === "#contacto" ? 0 : -80;
+            lenis.scrollTo(tgt, { offset, duration: 1.4 });
+          }
         }
       };
       document.addEventListener("click", smoothAnchorClick);
