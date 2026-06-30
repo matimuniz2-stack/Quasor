@@ -83,7 +83,7 @@ export const TESTIMONIALS = [
 // Resultados: los medidos en el cliente en producción + benchmarks del rubro
 export const EXPECTED_RESULTS = [
   {
-    metric: { v: "-95%", k: "Leads perdidos" },
+    metric: { v: "-99.9%", k: "Leads perdidos" },
     desc: "Consultas que antes caían en chats personales, hoy se capturan y asignan automáticamente.",
     vertical: "Inmobiliaria · en producción",
   },
