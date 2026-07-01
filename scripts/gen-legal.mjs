@@ -56,7 +56,7 @@ const SHARED_CSS = `
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
     body {
-      font-family: "Inter", sans-serif;
+      font-family: "Schibsted Grotesk", sans-serif;
       background: var(--bg);
       color: var(--ink);
       font-size: 16px;
@@ -148,7 +148,7 @@ const SHARED_CSS = `
       vertical-align: middle;
     }
     h3 {
-      font-family: "Inter", sans-serif;
+      font-family: "Schibsted Grotesk", sans-serif;
       font-weight: 600;
       font-size: 17px;
       margin: 28px 0 8px;
@@ -185,7 +185,7 @@ const SHARED_CSS = `
 
 const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">`;
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">`;
 
 // Runs before paint so there's no flash of the wrong theme. Same key as the SPA.
 const THEME_DETECT = `<script>
@@ -206,7 +206,7 @@ const first = (re, html, fallback = "") => {
   return m ? m[1] : fallback;
 };
 
-function transform(html) {
+function transform(html, canonical) {
   const lang = first(/<html lang="([^"]+)"/, html, "es");
   const title = first(/<title>([\s\S]*?)<\/title>/, html);
   const description = first(/<meta name="description" content="([^"]*)"/, html);
@@ -227,6 +227,7 @@ function transform(html) {
   <title>${title}</title>
   <meta name="description" content="${description}" />
   <meta name="robots" content="${robots}" />
+  <link rel="canonical" href="${canonical}" />
   ${hreflang}
   ${FONTS}
   ${THEME_DETECT}
@@ -258,7 +259,10 @@ let count = 0;
 for (const rel of FILES) {
   const path = join(ROOT, rel);
   const src = await readFile(path, "utf8");
-  const out = transform(src);
+  // Self-referencing canonical to the clean (extension-less) URL Vercel serves
+  // under cleanUrls, so the .html source path never competes as a duplicate.
+  const canonical = `https://quasor.io/${rel.replace(/\.html$/, "")}`;
+  const out = transform(src, canonical);
   await writeFile(path, out, "utf8");
   count++;
   console.log(`  ✓ ${rel}`);
