@@ -161,7 +161,7 @@ export const Nav = ({ theme, onToggleTheme }) => {
       <ScrollProgress />
       <div className="max-w-[1280px] mx-auto px-6 md:px-10 h-14 flex items-center justify-between">
         <div className="flex items-center gap-8">
-          <a href="#" className="serif text-xl tracking-tight">quasor<span className="accent">.</span></a>
+          <a href="#" aria-label="Quasor CRM" className="serif text-xl tracking-tight">quasor<span className="accent">.</span></a>
           <nav className="hidden md:flex items-center gap-6 text-sm ink-2" aria-label="Navegación principal">
             {NAV_LINKS.map(([href, label]) => (
               <a key={href} href={href} className="hover:ink">{label}</a>
@@ -1277,7 +1277,7 @@ export const WhyQuasor = () => {
       <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-24 md:py-32">
         <div className="flex items-end justify-between gap-8 flex-wrap mb-14">
           <div>
-            <div className="text-[11px] font-medium uppercase tracking-[0.18em] ink-3">Por qué Quasor</div>
+            <div className="text-[11px] font-medium uppercase tracking-[0.18em] ink-3">Por qué Quasor CRM</div>
             <h2 className="serif text-5xl md:text-7xl leading-[0.98] mt-4 tracking-tight max-w-3xl">
               ¿Y por qué nosotros?
             </h2>
@@ -1955,7 +1955,7 @@ export const Footer = () => {
         <div>
           <div className="serif text-5xl">quasor<span className="accent">.</span></div>
           <p className="ink-2 text-sm mt-4 max-w-xs">
-            CRM + tracking de ads para inmobiliarias y concesionarias. Desde Mar del Plata, para toda la Argentina.
+            Quasor CRM: pipeline de ventas y tracking de ads para inmobiliarias y concesionarias. Desde Mar del Plata, para toda la Argentina.
           </p>
           <div className="mono text-[11px] ink-3 mt-5">
             <div>ventas@quasor.io</div>
