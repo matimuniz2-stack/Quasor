@@ -294,7 +294,7 @@ export const Hero = () => {
               <em className="italic accent accent-glow">
                 <TypeRotator words={["Excel y WhatsApp.", "chats personales.", "sistemas que no hablan."]} />
               </em><br/>
-              Nosotros lo resolvemos.
+              Quasor lo resuelve.
             </h1>
 
             <p
