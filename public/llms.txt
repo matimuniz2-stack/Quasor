@@ -8,13 +8,13 @@ Quasor captura los leads de Meta Lead Ads, Google Ads, los portales y tu sitio w
 - [Quasor — qué hace](https://quasor.io/): pipeline, integraciones (Tokko, WhatsApp, Meta Ads, Google Ads), atribución del ad a la venta, reparto de comisiones y dashboards multi-fuente.
 
 ## Legales
-- [Política de privacidad](https://quasor.io/legal/privacidad.html): tratamiento y protección de datos.
-- [Términos y condiciones](https://quasor.io/legal/terminos.html): condiciones del servicio.
+- [Política de privacidad](https://quasor.io/legal/privacidad): tratamiento y protección de datos.
+- [Términos y condiciones](https://quasor.io/legal/terminos): condiciones del servicio.
 
 ## Optional
-- [Eliminar mis datos](https://quasor.io/legal/eliminar-datos.html): cómo solicitar la baja y eliminación de datos.
-- [Privacy policy (EN)](https://quasor.io/legal/en/privacy.html)
-- [Terms (EN)](https://quasor.io/legal/en/terms.html)
+- [Eliminar mis datos](https://quasor.io/legal/eliminar-datos): cómo solicitar la baja y eliminación de datos.
+- [Privacy policy (EN)](https://quasor.io/legal/en/privacy)
+- [Terms (EN)](https://quasor.io/legal/en/terms)
 
 ## Contacto
 - [Email](mailto:ventas@quasor.io): ventas@quasor.io

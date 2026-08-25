@@ -24,7 +24,7 @@ const DEMO_INMO = {
 
   // ── Etapas del pipeline (también alimenta las barras de Inicio) ──
   stages: [
-    { k: "Interesado",          v: 28, c: "#ff7a59" },
+    { k: "Interesado",          v: 28, c: "#ff9100" },
     { k: "Visita agendada",     v: 16, c: "#3c6df0" },
     { k: "Visitó la propiedad", v: 11, c: "#9a56d0" },
     { k: "Reservó",             v: 6,  c: "#d6a51e" },
@@ -36,7 +36,7 @@ const DEMO_INMO = {
   // ── Donut: leads por origen (suma 128) ──
   origins: [
     { k: "Meta Ads",     v: 52, c: "#3c6df0" },
-    { k: "Tokko Broker", v: 34, c: "#ff7a59" },
+    { k: "Tokko Broker", v: 34, c: "#ff9100" },
     { k: "WhatsApp",     v: 22, c: "#25D366" },
     { k: "Referido",     v: 14, c: "#9a56d0" },
     { k: "Otro",         v: 6,  c: "#9a9689" },
@@ -91,7 +91,7 @@ const DEMO_INMO = {
 
   // ── Pipeline (vista Pipeline · kanban de 7 columnas) ──
   pipeline: [
-    { stage: "Interesado", color: "#ff7a59", count: 28, cards: [
+    { stage: "Interesado", color: "#ff9100", count: 28, cards: [
       { who: "Diego Herrera", src: "Meta Ads",     date: "28/06", owner: A.LF, days: "1d" },
       { who: "Mariana Ávila", src: "Tokko Broker", date: "27/06", owner: A.PG, days: "2d" },
     ]},
@@ -149,7 +149,7 @@ const DEMO_AUTO = {
     { key: "conv",  value: 13.3, label: "Tasa de conversión",    delta: 1.4, suffix: "%", decimals: 1, note: "+1,4 pp vs. anterior" },
   ],
   stages: [
-    { k: "Interesado",          v: 22, c: "#ff7a59" },
+    { k: "Interesado",          v: 22, c: "#ff9100" },
     { k: "Test drive agendado", v: 12, c: "#3c6df0" },
     { k: "Realizó test drive",  v: 8,  c: "#9a56d0" },
     { k: "Hizo una oferta",     v: 5,  c: "#d6a51e" },
@@ -159,7 +159,7 @@ const DEMO_AUTO = {
   ],
   origins: [
     { k: "Meta Ads",   v: 38, c: "#3c6df0" },
-    { k: "Google Ads", v: 27, c: "#ff7a59" },
+    { k: "Google Ads", v: 27, c: "#ff9100" },
     { k: "WhatsApp",   v: 18, c: "#25D366" },
     { k: "Referido",   v: 9,  c: "#9a56d0" },
     { k: "Otro",       v: 4,  c: "#9a9689" },
@@ -204,7 +204,7 @@ const DEMO_AUTO = {
     { title: "Peugeot 208 Feline 1.6 Tiptronic", price: "US$ 16.500",  zone: "Usados · Mar del Plata", meta: ["Hatchback", "2022", "29.000 km", "Nafta"], op: "Venta", status: "Disponible", bg: "linear-gradient(135deg, #8a6d8c, #5c3f5e)" },
   ],
   pipeline: [
-    { stage: "Interesado", color: "#ff7a59", count: 22, cards: [
+    { stage: "Interesado", color: "#ff9100", count: 22, cards: [
       { who: "Pablo Suárez", src: "Meta Ads",   date: "28/06", owner: AUTO_A.FA, days: "1d" },
       { who: "Rocío Méndez", src: "Google Ads", date: "27/06", owner: AUTO_A.CH, days: "2d" },
     ]},
@@ -272,12 +272,12 @@ const NavItem = ({ icon, label, active, badge, onClick }) => (
     onClick={onClick}
     title={label}
     aria-label={label}
-    className={`w-full flex items-center gap-2.5 justify-center @[540px]/dash:justify-start px-2 @[540px]/dash:px-3 py-2 rounded-md text-sm transition ${active ? "bg-[color-mix(in_oklab,var(--accent)_14%,var(--bg))] accent font-medium" : "ink-2 hover:bg-surface-2"}`}
+    className={`w-full flex items-center gap-2.5 justify-center @[540px]/dash:justify-start px-2 @[540px]/dash:px-3 py-2 rounded-md text-sm transition ${active ? "bg-[color-mix(in_oklab,var(--accent)_14%,var(--bg))] accent-text font-medium" : "ink-2 hover:bg-surface-2"}`}
   >
     <span className="w-4 h-4 shrink-0">{icon}</span>
     <span className="hidden @[540px]/dash:inline">{label}</span>
     {badge && (
-      <span className="hidden @[540px]/dash:inline ml-auto mono text-[9px] px-1.5 py-0.5 rounded-full" style={{ background: "color-mix(in oklab, var(--accent) 16%, var(--bg))", color: "var(--accent)" }}>
+      <span className="hidden @[540px]/dash:inline ml-auto mono text-[9px] px-1.5 py-0.5 rounded-full" style={{ background: "color-mix(in oklab, var(--accent) 16%, var(--bg))", color: "var(--accent-text-on-tint)" }}>
         {badge}
       </span>
     )}
@@ -361,7 +361,7 @@ const KPI = ({ icon, value, label, delta, note, prefix = "", suffix = "", decima
   return (
     <div className="bg-surface border border-line rounded-xl p-3 @[760px]/dash:p-4 hover:border-[var(--accent)] transition-colors min-w-0">
       <div className="flex items-center justify-between mb-2 @[760px]/dash:mb-3">
-        <div className="w-7 h-7 @[760px]/dash:w-9 @[760px]/dash:h-9 rounded-lg grid place-items-center shrink-0" style={{ background: "color-mix(in oklab, var(--accent) 12%, var(--bg))", color: "var(--accent)" }}>
+        <div className="w-7 h-7 @[760px]/dash:w-9 @[760px]/dash:h-9 rounded-lg grid place-items-center shrink-0" style={{ background: "color-mix(in oklab, var(--accent) 12%, var(--bg))", color: "var(--accent-text)" }}>
           {icon}
         </div>
         <span className={`mono text-[10px] @[760px]/dash:text-[11px] tabular-nums ${positive ? "text-[var(--pos)]" : "text-[var(--neg)]"}`}>
@@ -520,7 +520,7 @@ const ViewInicio = ({ data, ic, playKey }) => (
     <div className="flex items-center justify-between gap-2 flex-wrap">
       <div className="flex items-center gap-2">
         <div className="flex items-center gap-0.5 p-0.5 rounded-lg bg-surface-2 border border-line">
-          <span className="px-2.5 py-1 rounded-md text-xs font-medium bg-surface accent">General</span>
+          <span className="px-2.5 py-1 rounded-md text-xs font-medium bg-surface accent-text">General</span>
           <span className="px-2.5 py-1 rounded-md text-xs ink-3">Ads</span>
         </div>
         <span className="mono text-[10px] px-2 py-1 rounded-md tabular-nums" style={{ background: "color-mix(in oklab, var(--pos) 12%, var(--bg))", color: "var(--pos)" }}>$ USD 1.500</span>
@@ -530,7 +530,7 @@ const ViewInicio = ({ data, ic, playKey }) => (
           <span className="w-3.5 h-3.5">{Icon.cal}</span>
           <span>14 – 28 jun 2026</span>
         </div>
-        <span className="hidden @[760px]/dash:inline px-2.5 py-1.5 rounded-md text-xs font-medium bg-accent text-white">+ Agregar widget</span>
+        <span className="hidden @[760px]/dash:inline px-2.5 py-1.5 rounded-md text-xs font-medium bg-[var(--accent)] text-[var(--accent-on)]">+ Agregar widget</span>
         <button aria-label="Refrescar datos" title="Refrescar" className="w-7 h-7 rounded-md grid place-items-center ink-3 hover:bg-surface-2 hover:ink-2 transition-colors"><span className="w-3.5 h-3.5">{Icon.refresh}</span></button>
       </div>
     </div>
@@ -547,7 +547,7 @@ const ViewInicio = ({ data, ic, playKey }) => (
       <Panel title={ic.trendTitle} subtitle="Últimos 14 días">
         <TrendChart data={data.byDay} playKey={playKey} />
         <div className="flex items-center justify-center gap-4 text-[11px] ink-2 mt-1">
-          <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-accent"/> Leads nuevos</span>
+          <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-[var(--accent)]"/> Leads nuevos</span>
           <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-[#3c6df0]"/> {ic.trendLegend2}</span>
         </div>
       </Panel>
@@ -571,9 +571,9 @@ const ViewInicio = ({ data, ic, playKey }) => (
 const srcPill = (s) => {
   const map = {
     "Meta Ads":     "bg-[color-mix(in_oklab,#3c6df0_15%,var(--bg))] text-[#3c6df0]",
-    "Google Ads":   "bg-[color-mix(in_oklab,#ff7a59_14%,var(--bg))] accent",
-    "Tokko Broker": "bg-[color-mix(in_oklab,#ff7a59_14%,var(--bg))] accent",
-    "WhatsApp":     "bg-[color-mix(in_oklab,#25D366_16%,var(--bg))] text-[#1f9d54]",
+    "Google Ads":   "bg-[color-mix(in_oklab,#ff9100_14%,var(--bg))] accent-text",
+    "Tokko Broker": "bg-[color-mix(in_oklab,#ff9100_14%,var(--bg))] accent-text",
+    "WhatsApp":     "bg-[color-mix(in_oklab,#25D366_16%,var(--bg))] text-[color-mix(in_oklab,#2fb27d_72%,var(--ink))]",
     "Referido":     "bg-[color-mix(in_oklab,#9a56d0_16%,var(--bg))] text-[#9a56d0]",
   };
   return map[s] || "bg-surface-2 ink-2";
@@ -583,8 +583,8 @@ const srcPill = (s) => {
 const statusPill = (s) => {
   const map = {
     "Nuevo":      { dot: "#9a9689", className: "bg-surface-2 ink-2" },
-    "Calificado": { dot: "#d6a51e", className: "bg-[color-mix(in_oklab,#d6a51e_16%,var(--bg))] text-[#b88a1b]" },
-    "Cliente":    { dot: "#2fb27d", className: "bg-[color-mix(in_oklab,#2fb27d_15%,var(--bg))] text-[#2fb27d]" },
+    "Calificado": { dot: "#d6a51e", className: "bg-[color-mix(in_oklab,#d6a51e_16%,var(--bg))] text-[color-mix(in_oklab,#d6a51e_72%,var(--ink))]" },
+    "Cliente":    { dot: "#2fb27d", className: "bg-[color-mix(in_oklab,#2fb27d_15%,var(--bg))] text-[color-mix(in_oklab,#2fb27d_72%,var(--ink))]" },
   };
   return map[s] || map["Nuevo"];
 };
@@ -593,7 +593,7 @@ const statusPill = (s) => {
 const avatarFromName = (name) => {
   const parts = name.split(" ").filter(Boolean);
   const initials = (parts[0]?.[0] || "?") + (parts[1]?.[0] || "");
-  const palette = ["#3c6df0", "#9a56d0", "#2fb27d", "#d6a51e", "#ff7a59", "#e4405f"];
+  const palette = ["#3c6df0", "#9a56d0", "#2fb27d", "#d6a51e", "#ff9100", "#e4405f"];
   let hash = 0;
   for (let i = 0; i < name.length; i++) hash = (hash * 31 + name.charCodeAt(i)) | 0;
   const color = palette[Math.abs(hash) % palette.length];
@@ -624,7 +624,7 @@ const ViewLeads = ({ data, ic }) => (
       </div>
       <div className="flex items-center gap-2">
         <button aria-label="Refrescar datos" title="Refrescar" className="w-7 h-7 rounded-md grid place-items-center ink-3 hover:bg-surface-2 hover:ink-2 transition-colors"><span className="w-3.5 h-3.5">{Icon.refresh}</span></button>
-        <button className="px-3 py-1.5 rounded-md bg-accent text-white text-xs font-medium">+ Nuevo Lead</button>
+        <button className="px-3 py-1.5 rounded-md bg-[var(--accent)] text-[var(--accent-on)] text-xs font-medium">+ Nuevo Lead</button>
       </div>
     </div>
 
@@ -658,7 +658,7 @@ const ViewLeads = ({ data, ic }) => (
 
             {/* Phone + WhatsApp */}
             <div className="hidden @[680px]/dash:flex items-center gap-1.5 mono text-[11px] ink-2 min-w-0">
-              <span className="w-4 h-4 rounded-full bg-[color-mix(in_oklab,#25D366_18%,var(--bg))] text-[#1f9d54] grid place-items-center text-[9px] shrink-0">✆</span>
+              <span className="w-4 h-4 rounded-full bg-[color-mix(in_oklab,#25D366_18%,var(--bg))] text-[color-mix(in_oklab,#2fb27d_72%,var(--ink))] grid place-items-center text-[9px] shrink-0">✆</span>
               <span className="truncate">{l.phone}</span>
             </div>
 
@@ -725,7 +725,7 @@ const PropCard = ({ p, i }) => {
       {/* Body */}
       <div className="px-3.5 py-3">
         <div className="text-sm font-medium leading-tight truncate">{p.title}</div>
-        <div className="serif text-lg leading-none mt-1.5 mb-2 accent tabular-nums">{p.price}</div>
+        <div className="text-lg font-semibold tracking-[-0.03em] leading-none mt-1.5 mb-2 accent-text tabular-nums">{p.price}</div>
         <div className="flex items-center gap-1.5 text-[11px] ink-3 mb-2 min-w-0">
           <span className="w-3.5 h-3.5 shrink-0">{Icon.pin}</span>
           <span className="truncate">{p.zone}</span>
@@ -753,7 +753,7 @@ const ViewProps = ({ data, ic }) => (
         {ic.assetHasSync && (
           <button className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-line text-xs hover:bg-surface-2"><span className="w-3.5 h-3.5">{Icon.refresh}</span> Sincronizar con Tokko</button>
         )}
-        <button className="px-3 py-1.5 rounded-md bg-accent text-white text-xs font-medium">{ic.assetNew}</button>
+        <button className="px-3 py-1.5 rounded-md bg-[var(--accent)] text-[var(--accent-on)] text-xs font-medium">{ic.assetNew}</button>
       </div>
     </div>
 
@@ -782,7 +782,7 @@ const ViewPipeline = ({ data }) => {
         </div>
         <div className="flex items-center gap-2">
           <button aria-label="Refrescar datos" title="Refrescar" className="w-7 h-7 rounded-md grid place-items-center ink-3 hover:bg-surface-2 hover:ink-2 transition-colors"><span className="w-3.5 h-3.5">{Icon.refresh}</span></button>
-          <button className="px-3 py-1.5 rounded-md bg-accent text-white text-xs font-medium">+ Nueva Oportunidad</button>
+          <button className="px-3 py-1.5 rounded-md bg-[var(--accent)] text-[var(--accent-on)] text-xs font-medium">+ Nueva Oportunidad</button>
         </div>
       </div>
 
@@ -798,7 +798,7 @@ const ViewPipeline = ({ data }) => {
               <span className="text-xs font-semibold truncate">{col.stage}</span>
               <span
                 className="mono text-[10px] ml-auto px-1.5 py-0.5 rounded font-semibold shrink-0"
-                style={{ background: `color-mix(in oklab, ${col.color} 18%, transparent)`, color: col.color }}
+                style={{ background: `color-mix(in oklab, ${col.color} 18%, transparent)`, color: `color-mix(in oklab, ${col.color} 55%, var(--ink))` }}
               >
                 {col.count}
               </span>
@@ -837,7 +837,7 @@ const ViewPipeline = ({ data }) => {
                     )}
 
                     {/* Price */}
-                    {c.price && <div className="serif text-sm accent tabular-nums mb-2">{c.price}</div>}
+                    {c.price && <div className="text-sm font-semibold tracking-[-0.03em] accent-text tabular-nums mb-2">{c.price}</div>}
 
                     {/* Footer: source + owner */}
                     <div className="flex items-center justify-between gap-2">
@@ -859,7 +859,7 @@ const ViewPipeline = ({ data }) => {
 const prioPill = (p) => {
   const map = {
     "Alta":  { dot: "#e4576b", className: "bg-[color-mix(in_oklab,#e4576b_15%,var(--bg))] text-[#e4576b]" },
-    "Media": { dot: "#d6a51e", className: "bg-[color-mix(in_oklab,#d6a51e_16%,var(--bg))] text-[#b88a1b]" },
+    "Media": { dot: "#d6a51e", className: "bg-[color-mix(in_oklab,#d6a51e_16%,var(--bg))] text-[color-mix(in_oklab,#d6a51e_72%,var(--ink))]" },
     "Baja":  { dot: "#9a9689", className: "bg-surface-2 ink-3" },
   };
   return map[p] || map["Media"];
@@ -872,14 +872,14 @@ const ViewTasks = ({ data }) => (
       <div className="flex items-center gap-2">
         <div className="flex items-center gap-0.5 p-0.5 rounded-lg bg-surface-2 border border-line">
           <span className="px-2.5 py-1 rounded-md text-xs ink-3">Kanban</span>
-          <span className="px-2.5 py-1 rounded-md text-xs font-medium bg-surface accent">Lista</span>
+          <span className="px-2.5 py-1 rounded-md text-xs font-medium bg-surface accent-text">Lista</span>
         </div>
         <span className="text-xs ink-3 mono hidden @[600px]/dash:inline">6 tareas · 2 para hoy</span>
       </div>
       <div className="flex items-center gap-2">
         <button className="px-3 py-1.5 rounded-full border border-line text-xs ink-2 hover:bg-surface-2 mono hidden @[680px]/dash:inline">Mis tareas</button>
         <button className="px-3 py-1.5 rounded-full border border-line text-xs text-[#e4576b] hover:bg-surface-2 mono">Vencidas · 1</button>
-        <button className="px-3 py-1.5 rounded-md bg-accent text-white text-xs font-medium">+ Nueva tarea</button>
+        <button className="px-3 py-1.5 rounded-md bg-[var(--accent)] text-[var(--accent-on)] text-xs font-medium">+ Nueva tarea</button>
       </div>
     </div>
 
@@ -895,7 +895,7 @@ const ViewTasks = ({ data }) => (
             style={{ animation: `rowIn .4s ${i * 45}ms both` }}
           >
             {/* Checkbox */}
-            <span className={`w-4 h-4 rounded border grid place-items-center shrink-0 ${t.done ? "bg-[var(--pos)] border-[var(--pos)] text-white" : "border-line"}`}>
+            <span className={`w-4 h-4 rounded border grid place-items-center shrink-0 ${t.done ? "bg-[var(--pos)] border-[var(--pos)] text-[var(--bg)]" : "border-line"}`}>
               {t.done && <span className="text-[10px] leading-none">✓</span>}
             </span>
 
@@ -957,7 +957,7 @@ const ViewSales = ({ data, ic }) => (
             style={{ animation: `rowIn .4s ${i * 50}ms both` }}
           >
             <span className="mono text-[11px] ink-2 tabular-nums">{s.date}</span>
-            <span className={`mono text-[10px] px-2 py-0.5 rounded justify-self-start ${isRent ? "bg-[color-mix(in_oklab,#d6a51e_16%,var(--bg))] text-[#b88a1b]" : "bg-[color-mix(in_oklab,#2fb27d_15%,var(--bg))] text-[#2fb27d]"}`}>{s.op}</span>
+            <span className={`mono text-[10px] px-2 py-0.5 rounded justify-self-start ${isRent ? "bg-[color-mix(in_oklab,#d6a51e_16%,var(--bg))] text-[color-mix(in_oklab,#d6a51e_72%,var(--ink))]" : "bg-[color-mix(in_oklab,#2fb27d_15%,var(--bg))] text-[color-mix(in_oklab,#2fb27d_72%,var(--ink))]"}`}>{s.op}</span>
             <div className="min-w-0">
               <div className="ink font-medium truncate text-[11px]">{s.prop}</div>
               <div className="mono text-[10px] ink-3 truncate @[680px]/dash:hidden">{s.agent}</div>
@@ -1004,8 +1004,8 @@ const GoogleLogo = () => (
   </LogoTile>
 );
 const TokkoLogo = () => (
-  <LogoTile bg="linear-gradient(135deg, #ff5a1f, #e0492f)">
-    <span className="text-white font-bold text-sm leading-none">t</span>
+  <LogoTile bg="linear-gradient(135deg, #ff9100, #e07600)">
+    <span className="text-[#14171c] font-bold text-sm leading-none">t</span>
   </LogoTile>
 );
 const WebLogo = () => (
@@ -1030,11 +1030,11 @@ const IntegRow = ({ logo, name, desc, status, badge, account, sub, cta }) => {
         <div className="flex-1 min-w-0">
           <div className="flex items-center flex-wrap gap-2 mb-1">
             <span className="font-semibold text-sm truncate">{name}</span>
-            <span className="flex items-center gap-1 mono text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded shrink-0" style={{ background: `color-mix(in oklab, ${statusStyle.dot} 15%, var(--bg))`, color: statusStyle.dot }}>
+            <span className="flex items-center gap-1 mono text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded shrink-0" style={{ background: `color-mix(in oklab, ${statusStyle.dot} 15%, var(--bg))`, color: `color-mix(in oklab, ${statusStyle.dot} 55%, var(--ink))` }}>
               <span className="w-1.5 h-1.5 rounded-full" style={{ background: statusStyle.dot }} />
               {statusStyle.text}
             </span>
-            {badge && <span className="mono text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-[color-mix(in_oklab,#3c6df0_14%,var(--bg))] text-[#3c6df0] shrink-0">{badge}</span>}
+            {badge && <span className="mono text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-[color-mix(in_oklab,#3c6df0_14%,var(--bg))] text-[color-mix(in_oklab,#3c6df0_55%,var(--ink))] shrink-0">{badge}</span>}
           </div>
           <div className="text-[11px] ink-3 leading-snug">{desc}</div>
         </div>
@@ -1046,7 +1046,7 @@ const IntegRow = ({ logo, name, desc, status, badge, account, sub, cta }) => {
             <div className="text-[11px] font-medium truncate">{account}</div>
             {sub && <div className="mono text-[9px] ink-3 mt-0.5 truncate">{sub}</div>}
           </div>
-          <span className="mono text-[10px] ink-3 hover:accent shrink-0 whitespace-nowrap">{cta || "⚙"}</span>
+          <span className="mono text-[10px] ink-3 hover:accent-text shrink-0 whitespace-nowrap">{cta || "⚙"}</span>
         </div>
       ) : (
         <button className="mt-3 w-full py-2 rounded-md bg-[var(--ink)] text-[var(--bg)] text-xs font-medium hover:opacity-90 transition">
@@ -1113,7 +1113,7 @@ export const Dashboard = () => {
   const titles = { inicio: "Inicio", leads: "Leads", props: ic.assetLabel, pipe: "Pipeline", tareas: "Tareas", ventas: "Ventas", plug: "Integraciones" };
 
   return (
-    <div className="card overflow-hidden shadow-[0_40px_100px_-40px_rgba(0,0,0,0.25)] @container/dash">
+    <div className="panel overflow-hidden shadow-[0_40px_100px_-40px_rgba(0,0,0,0.25)] @container/dash">
       <div className="flex items-center justify-between gap-2 px-4 py-2.5 border-b border-line bg-surface-2">
         <div className="flex items-center gap-2 min-w-0">
           <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"/>
@@ -1129,8 +1129,8 @@ export const Dashboard = () => {
               type="button"
               onClick={() => setVertical(k)}
               aria-pressed={vertical === k}
-              className={`mono text-[10px] px-2 py-0.5 rounded transition-colors ${vertical === k ? "text-white" : "ink-3 hover:ink-2"}`}
-              style={vertical === k ? { background: "var(--accent-strong)" } : undefined}
+              className={`mono text-[10px] px-2 py-0.5 rounded transition-colors ${vertical === k ? "text-[var(--accent-on)]" : "ink-3 hover:ink-2"}`}
+              style={vertical === k ? { background: "var(--accent)" } : undefined}
             >
               {lbl}
             </button>
@@ -1141,9 +1141,9 @@ export const Dashboard = () => {
       <div className="grid grid-cols-[56px_1fr] @[540px]/dash:grid-cols-[184px_1fr] h-[620px] transition-[grid-template-columns] duration-300">
         <aside className="border-r border-line bg-surface p-2 @[540px]/dash:p-3 flex flex-col">
           <div className="flex items-center justify-center @[540px]/dash:justify-start @[540px]/dash:px-2 mb-0.5">
-            <span className="serif text-xl leading-none tracking-tight">
-              <span className="@[540px]/dash:hidden">q<span className="accent">.</span></span>
-              <span className="hidden @[540px]/dash:inline">quasor<span className="accent">.</span></span>
+            <span className="text-xl font-semibold leading-none tracking-[-0.035em]">
+              <span className="@[540px]/dash:hidden">q<span className="accent-text">.</span></span>
+              <span className="hidden @[540px]/dash:inline">quasor<span className="accent-text">.</span></span>
             </span>
           </div>
           <div className="hidden @[540px]/dash:block px-2 mono text-[10px] ink-3 mb-4">{ic.subtitle}</div>
@@ -1175,7 +1175,7 @@ export const Dashboard = () => {
               <span className="w-4 h-4 ink-3 hidden @[600px]/dash:inline">{Icon.bell}</span>
               <span className="mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-[color-mix(in_oklab,#9a56d0_15%,var(--bg))] text-[#9a56d0]">Admin</span>
               <span className="text-xs ink-2 hidden sm:inline">{ic.headerUser.name}</span>
-              <span className="w-7 h-7 rounded-full bg-accent text-white grid place-items-center mono text-[10px] font-bold">{ic.headerUser.initials}</span>
+              <span className="w-7 h-7 rounded-full bg-[var(--accent)] text-[var(--accent-on)] grid place-items-center mono text-[10px] font-bold">{ic.headerUser.initials}</span>
             </div>
           </header>
           <div key={playKey} className="flex-1 min-h-0 overflow-y-auto dash-scroll animate-[fadeIn_.4s_ease-out]">

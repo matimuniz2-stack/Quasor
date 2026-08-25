@@ -7,8 +7,8 @@
   <meta name="description" content="Quasor CRM: pipeline de ventas y tracking de ads para inmobiliarias y concesionarias de toda la Argentina. Conectás Tokko, WhatsApp, Meta y Google Ads: cada lead queda atado a la inversión de su campaña. Puesta en marcha en días, sin permanencia." />
   <meta name="author" content="Quasor" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
-  <meta name="theme-color" content="#ff5a1f" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#0b0b0c" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#ff9100" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0b0c0f" media="(prefers-color-scheme: dark)" />
   <link rel="canonical" href="https://quasor.io/" />
 
   <!-- Open Graph -->
@@ -149,8 +149,8 @@
   <!-- Plausible analytics — cookie-less, GDPR-friendly. Coincide con lo declarado en privacidad.html sección 13. -->
   <script defer data-domain="quasor.io" src="https://plausible.io/js/script.js"></script>
   <!-- Non-blocking font load: rel=preload swaps to stylesheet via onload -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap"></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
 
   <!-- Tweaks defaults — editable by host. Defined here (before the pre-paint
        script) so theme/density/accent are applied before first paint. -->
@@ -170,6 +170,10 @@
     (function() {
       var d = document.documentElement;
       var t = window.__TWEAKS__ || {};
+      // Las animaciones de entrada arrancan en opacity 0 y sólo el JS las
+      // revela. Esta clase es la que habilita ese estado inicial, así que sin
+      // JS el HTML prerenderizado se ve entero (crawlers incluidos).
+      d.classList.add('js');
       try {
         var saved = localStorage.getItem('quasor-theme');
         var sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -180,11 +184,24 @@
       var density = t.density || 'cozy';
       d.setAttribute('data-density', density);
       d.style.setProperty('--density', density === 'compact' ? '0.7' : '1');
-      // Mirrors the ACCENTS map in src/components/Tweaks.jsx.
-      var accents = { orange: ['#ff7a59', '#c04624'], blue: ['#5b8cff', '#2e4fb4'], green: ['#2fb27d', '#197253'] };
-      var a = accents[t.accent] || accents.orange;
-      d.style.setProperty('--accent', a[0]);
-      d.style.setProperty('--accent-ink', a[1]);
+      // Mirrors the ACCENTS map in src/components/Tweaks.jsx. The brand amber
+      // already has its light/dark pair in src/index.css, so it only clears any
+      // inline override; the alternates carry a theme-aware text colour.
+      var dark = d.getAttribute('data-theme') === 'dark';
+      var accents = {
+        blue:  ['#5b8cff', '#7ea4ff', '#2e4fb4', '#8fb0ff'],
+        green: ['#2fb27d', '#4ecb98', '#0f7a4a', '#3ecf8e']
+      };
+      var a = accents[t.accent];
+      if (a) {
+        d.style.setProperty('--accent', a[0]);
+        d.style.setProperty('--accent-2', a[1]);
+        d.style.setProperty('--accent-text', dark ? a[3] : a[2]);
+      } else {
+        d.style.removeProperty('--accent');
+        d.style.removeProperty('--accent-2');
+        d.style.removeProperty('--accent-text');
+      }
     })();
   </script>
 </head>

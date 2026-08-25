@@ -1,6 +1,5 @@
-// Status pill / indicator: an optional colored dot + label.
-// `pill` adds the bordered surface chrome; without it you get a bare dot+label
-// (the mono "Disponible · …" style). Typography stays per-call via className.
+// Status indicator: a colored dot plus a label. `pill` adds the bordered
+// surface; without it you get the bare dot + mono label used in section metas.
 export const Badge = ({
   dot = true,
   dotColor = "var(--pos)",
@@ -11,7 +10,7 @@ export const Badge = ({
   ...rest
 }) => {
   const base = pill
-    ? "inline-flex items-center gap-2 px-2.5 py-1.5 rounded-full border border-line bg-surface"
+    ? "inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-line bg-surface-2"
     : "inline-flex items-center gap-2";
   return (
     <span className={`${base} ${className}`.replace(/\s+/g, " ").trim()} {...rest}>
