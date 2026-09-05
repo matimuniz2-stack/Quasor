@@ -1,8 +1,11 @@
 import { Lines } from "../motion.jsx";
 
 // Every section opens the same way, so it lives in one place: a mono label on
-// the left, an optional meta note on the right, a hairline, then the headline
-// (rising out of its mask) beside a short lead paragraph.
+// the left, an optional meta note on the right, then the headline (rising out
+// of its mask) beside a short lead paragraph.
+//
+// Sin filete bajo la etiqueta: el borde superior de la sección ya separa, y
+// dos líneas a 40px de distancia leían como ruido repetido en cada sección.
 //
 //   <SectionHead
 //     label="Atribución"
@@ -19,8 +22,7 @@ export const SectionHead = ({ label, meta, title = [], lead, className = "", tit
       <span className="label accent-text">{label}</span>
       {meta && <span className="label ink-3">{meta}</span>}
     </div>
-    <div className="hairline mt-3" />
-    <div className="mt-8 flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-16">
+    <div className="mt-7 flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-16">
       <Lines
         as="h2"
         lines={title}

@@ -11,8 +11,11 @@ export const Hero = () => {
   const plateRef = useParallax(0.05, 26);
 
   return (
-    <section className="relative">
-      <div className="max-w-[1280px] mx-auto px-6 md:px-10 pt-10 md:pt-16 pb-16 md:pb-24">
+    // El aire de abajo va en la <section>, no en el div interno: así lo gobierna
+    // la misma regla de densidad que el resto de las secciones y el salto al
+    // bloque siguiente mide igual que todos los demás.
+    <section className="relative pb-20 md:pb-28">
+      <div className="max-w-[1280px] mx-auto px-6 md:px-10 pt-10 md:pt-16">
         <div className="text-center">
           {/* inline-block: `rise` traslada, y transform no aplica a un inline puro. */}
           <span className="rise inline-block label accent-text" style={{ "--d": "0ms" }}>

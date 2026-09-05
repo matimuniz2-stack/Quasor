@@ -67,7 +67,7 @@ const Link = () => (
 );
 
 export const AdTracking = () => (
-  <section id="ads" className="border-t border-line py-20 md:py-28">
+  <section id="ads" className="py-20 md:py-28">
     <div className="max-w-[1280px] mx-auto px-6 md:px-10">
       <SectionHead
         label="Atribución"
@@ -108,7 +108,7 @@ export const AdTracking = () => (
               className={
                 i === 0
                   ? "md:pr-7"
-                  : `md:border-l border-[var(--stage-hair)] md:pl-7 ${i === 1 ? "md:pr-7" : "lg:pr-7"}`
+                  : `md:pl-7 ${i === 1 ? "md:pr-7" : "lg:pr-7"}`
               }
             >
               <span className="label accent-text">{step.n}</span>
@@ -117,7 +117,7 @@ export const AdTracking = () => (
             </div>
           ))}
 
-          <div className="md:col-span-3 md:mt-8 md:border-t border-[var(--stage-hair)] md:pt-8 lg:col-span-1 lg:mt-0 lg:border-t-0 lg:border-l lg:pl-7 lg:pt-0">
+          <div className="md:col-span-3 md:mt-10 lg:col-span-1 lg:mt-0 lg:pl-7">
             <span className="label ink-3">Ficha de campaña</span>
             <div className="mt-3 rounded-[var(--r-md)] border border-[var(--stage-line)] overflow-hidden">
               <div className="px-4 py-3 text-[14.5px] font-medium">Depto 2 amb · Centro</div>

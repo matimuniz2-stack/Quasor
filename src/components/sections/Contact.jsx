@@ -12,7 +12,7 @@ const FACTS = [
 ];
 
 export const Contact = () => (
-  <section id="contacto" className="border-t border-line">
+  <section id="contacto">
     <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-20 md:py-28">
       <Stage tone="amber" className="p-8 md:p-14" data-reveal>
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
@@ -56,8 +56,8 @@ export const Contact = () => (
 
           <div className="lg:w-[300px] lg:shrink-0">
             {FACTS.map((f, i) => (
-              <div key={f.k}>
-                {i > 0 && <div className="stage-rule h-px my-6" aria-hidden="true" />}
+              // Sin filete entre datos: los separa el aire.
+              <div key={f.k} className={i > 0 ? "mt-7" : ""}>
                 <span className="label ink-3 block">{f.k}</span>
                 <p className="text-[24px] md:text-[27px] font-semibold tracking-[-0.03em] mt-1.5">
                   {f.v}

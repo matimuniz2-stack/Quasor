@@ -13,15 +13,15 @@ const DELIVERABLES = [
 // Divisores: horizontales al apilarse en mobile, verticales entre columnas en md+.
 const edges = (i, last) =>
   [
-    i > 0 &&
-      "border-t border-line pt-8 mt-8 md:border-t-0 md:mt-0 md:pt-0 md:border-l md:pl-7",
+    "md:grid md:grid-rows-subgrid md:row-span-4",
+    i > 0 && "pt-10 mt-10 md:mt-0 md:pt-0 md:pl-7",
     i < last && "md:pr-7",
   ]
     .filter(Boolean)
     .join(" ");
 
 export const Process = () => (
-  <section id="proceso" className="border-t border-line py-20 md:py-28">
+  <section id="proceso" className="py-20 md:py-28">
     <div className="max-w-[1280px] mx-auto px-6 md:px-10">
       <SectionHead
         label="Puesta en marcha"
@@ -40,7 +40,14 @@ export const Process = () => (
         </div>
       </div>
 
-      <div data-reveal-group className="grid md:grid-cols-4 mt-12 md:mt-9">
+      {/* Las cuatro bandas son filas de la grilla exterior y cada etapa las
+          hereda con subgrid: la bajada se estira (1fr) y el pie del entregable
+          arranca a la misma altura en las cuatro, sin importar cuántas líneas
+          ocupe cada texto. */}
+      <div
+        data-reveal-group
+        className="grid md:grid-cols-4 md:[grid-template-rows:auto_auto_1fr_auto] mt-12 md:mt-9"
+      >
         {PROCESS.map((p, i) => (
           <div key={p.n} className={`flex flex-col ${edges(i, PROCESS.length - 1)}`}>
             <span className="label accent-text">
@@ -49,9 +56,8 @@ export const Process = () => (
             <h3 className="mt-3 text-[16.5px] md:text-[17.5px] font-semibold tracking-[-0.01em]">
               {p.name}
             </h3>
-            {/* Crece para que los hairlines del pie queden a la misma altura. */}
-            <p className="ink-2 text-[14px] leading-relaxed mt-2.5 md:grow">{p.body}</p>
-            <div className="hairline mt-6 pt-4">
+            <p className="ink-2 text-[14px] leading-relaxed mt-2.5">{p.body}</p>
+            <div className="mt-6">
               <span className="label ink-3">{DELIVERABLES[i]}</span>
             </div>
           </div>

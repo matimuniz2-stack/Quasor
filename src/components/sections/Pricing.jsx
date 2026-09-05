@@ -89,7 +89,7 @@ const Check = () => (
 );
 
 export const Pricing = () => (
-  <section id="precios" className="border-t border-line py-20 md:py-28">
+  <section id="precios" className="py-20 md:py-28">
     <div className="max-w-[1280px] mx-auto px-6 md:px-10">
       <SectionHead
         label="Planes"
@@ -98,20 +98,20 @@ export const Pricing = () => (
       />
 
       {/* --- Los tres planes ------------------------------------------------ */}
-      <div data-reveal-group className="mt-12 grid md:grid-cols-3 border-t border-line-2">
+      <div data-reveal-group className="mt-12 grid md:grid-cols-3">
         {PLANS.map((plan, i) => (
           <div
             key={plan.name}
             style={plan.featured ? { borderTopColor: "var(--accent)" } : undefined}
             className={[
-              "flex flex-col border-line pt-7 pb-8 md:pt-8 md:pb-0",
-              // La primera columna hereda el filete del contenedor; las otras
-              // dos traen el suyo (horizontal apiladas, vertical en md+).
+              "flex flex-col pt-7 pb-8 md:pt-8 md:pb-0",
+              // El único filete que sobrevive es el naranja del plan destacado:
+              // sin la regla gris al lado ya no separa columnas, marca una.
               plan.featured
-                ? "border-t-2 md:-mt-px md:border-l md:px-8"
+                ? "border-t-2 md:px-8"
                 : i === 0
                   ? "md:pr-8"
-                  : "border-t md:border-t-0 md:border-l md:pl-8",
+                  : "md:pl-8",
             ].join(" ")}
           >
             <div className="flex items-center justify-between gap-3">
@@ -157,7 +157,7 @@ export const Pricing = () => (
       </div>
 
       {/* --- Lo que va en los tres ------------------------------------------ */}
-      <div data-reveal className="mt-12 hairline pt-7">
+      <div data-reveal className="mt-14">
         <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-2">
           <span className="label ink">En los tres planes, sin recortes</span>
           <span className="label ink-3">
@@ -176,7 +176,7 @@ export const Pricing = () => (
       </div>
 
       {/* --- Encajamos / no encajamos ---------------------------------------- */}
-      <div data-reveal className="mt-12 hairline pt-7 grid md:grid-cols-2">
+      <div data-reveal className="mt-14 grid md:grid-cols-2">
         <div className="md:pr-10">
           <span className="label ink">Encajamos si</span>
           <ul className="mt-6 space-y-5">
@@ -189,7 +189,7 @@ export const Pricing = () => (
           </ul>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-line md:mt-0 md:pt-0 md:border-t-0 md:border-l md:pl-10">
+        <div className="mt-10 md:mt-0 md:pl-10">
           <span className="label ink-3">No encajamos si</span>
           <ul className="mt-6 space-y-5">
             {NO_FIT.map((title, i) => (

@@ -126,9 +126,9 @@ export const Nav = ({ theme, onToggleTheme }) => {
             </a>
             {/* El descriptor entra recién en xl. El contenedor tope de 1280px deja
                 1200px útiles y los ocho enlaces con su interlineado ya se llevan
-                549: en lg el descriptor los pisaba. */}
-            <span aria-hidden="true" className="hidden xl:block w-px h-4 shrink-0" style={{ background: "var(--line-2)" }} />
-            <span className="hidden xl:inline label ink-3 whitespace-nowrap">CRM + Atribución de ads</span>
+                549: en lg el descriptor los pisaba. Separa del wordmark por
+                espacio, no por filete. */}
+            <span className="hidden xl:inline label ink-3 whitespace-nowrap ml-1">CRM + Atribución de ads</span>
           </div>
 
           <nav aria-label="Secciones" className="hidden lg:flex items-center gap-x-5 xl:gap-x-6 min-w-0">
@@ -184,7 +184,7 @@ export const Nav = ({ theme, onToggleTheme }) => {
             ))}
           </nav>
 
-          <div className="hairline mt-4 pt-5">
+          <div className="mt-5">
             <Button href="#contacto" onClick={close} className="w-full text-[13px] px-4 py-3">
               Coordinar 30 min<span className="arrow" aria-hidden="true">→</span>
             </Button>

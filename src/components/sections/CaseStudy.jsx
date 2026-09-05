@@ -14,22 +14,12 @@ const BEFORE_AFTER = [
   { k: "Plataformas a revisar", a: "4", b: "1", d: "−3" },
 ];
 
-// El filete vertical solo va donde la celda NO abre fila, y eso cambia con el
-// breakpoint: 2 columnas en sm, 4 en lg. Por índice sale más barato que con
-// variantes nth-child encadenadas.
-const CELL_RULE = [
-  "",
-  "sm:border-l sm:pl-6",
-  "lg:border-l lg:pl-6",
-  "sm:border-l sm:pl-6",
-];
-
 const BIG = "block leading-none text-[34px] md:text-[44px] font-semibold";
 const TH = "label ink-3 pb-3 align-bottom";
 const TD = "label label-lc num py-3.5 whitespace-nowrap";
 
 export const CaseStudy = () => (
-  <section id="caso" className="border-t border-line py-20 md:py-28">
+  <section id="caso" className="py-20 md:py-28">
     <div className="max-w-[1280px] mx-auto px-6 md:px-10">
       <SectionHead
         label="Caso medido"
@@ -49,10 +39,7 @@ export const CaseStudy = () => (
             <span className="label label-lc ink-3 block mt-3">Leads perdidos</span>
           </div>
 
-          <div
-            className="py-6 md:py-0 md:px-8 border-t md:border-t-0 md:border-l"
-            style={{ borderColor: "var(--stage-hair)" }}
-          >
+          <div className="py-6 md:py-0 md:px-8">
             <CountUp
               to={43}
               format={(n) => `+${Math.round(n)} %`}
@@ -61,18 +48,14 @@ export const CaseStudy = () => (
             <span className="label label-lc ink-3 block mt-3">Cierres por mes</span>
           </div>
 
-          <div
-            className="pt-6 md:pt-0 md:pl-8 border-t md:border-t-0 md:border-l"
-            style={{ borderColor: "var(--stage-hair)" }}
-          >
+          <div className="pt-6 md:pt-0 md:pl-8">
             <span className={`num ${BIG} ink`}>4 → 1</span>
             <span className="label label-lc ink-3 block mt-3">Plataformas a revisar</span>
           </div>
         </div>
 
-        <div className="stage-rule h-px my-8 md:my-10" aria-hidden="true" />
-
-        <blockquote>
+        {/* Sin filete: la cita se separa de los KPI por aire, no por línea. */}
+        <blockquote className="mt-10 md:mt-12">
           <p className="ink text-[17px] md:text-[19px] leading-relaxed max-w-[62ch]">
             {T.quote}
           </p>
@@ -103,10 +86,7 @@ export const CaseStudy = () => (
                 <th scope="col" className={`${TH} text-left pr-4`}>Métrica</th>
                 <th scope="col" className={`${TH} text-right px-4`}>Antes</th>
                 <th scope="col" className={`${TH} text-right px-4`}>Después</th>
-                <th scope="col" className={`${TH} text-right pl-4`}>
-                  <span aria-hidden="true">Δ</span>
-                  <span className="sr-only">Variación</span>
-                </th>
+                <th scope="col" className={`${TH} text-right pl-4`}>Variación</th>
               </tr>
             </thead>
             <tbody>

@@ -13,7 +13,7 @@ export const Faq = () => {
   const [open, setOpen] = useState(0);
 
   return (
-    <section id="faq" className="border-t border-line py-20 md:py-28">
+    <section id="faq" className="py-20 md:py-28">
       <div className="max-w-[1280px] mx-auto px-6 md:px-10">
         <div className="grid gap-10 lg:gap-20 lg:grid-cols-[360px_minmax(0,1fr)]">
           <div>

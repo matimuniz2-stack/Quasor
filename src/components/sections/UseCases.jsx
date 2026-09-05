@@ -35,7 +35,7 @@ const VERTICALS = [
 ];
 
 export const UseCases = () => (
-  <section id="casos" className="border-t border-line py-20 md:py-28">
+  <section id="casos" className="py-20 md:py-28">
     <div className="max-w-[1280px] mx-auto px-6 md:px-10">
       <SectionHead
         label="Verticales"

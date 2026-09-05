@@ -88,7 +88,7 @@ const Column = ({ id, title, links, arrow = false }) => (
 );
 
 export const Footer = () => (
-  <footer className="border-t border-line bg-surface-2 theme-tx">
+  <footer className="bg-surface-2 theme-tx">
     <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-14 md:py-16 pb-28 md:pb-16">
       <div
         data-reveal-group
@@ -126,7 +126,7 @@ export const Footer = () => (
       <div
         data-reveal
         style={{ "--d": "120ms" }}
-        className="hairline mt-12 md:mt-14 pt-6 flex flex-wrap items-center justify-between gap-x-8 gap-y-2"
+        className="mt-12 md:mt-14 flex flex-wrap items-center justify-between gap-x-8 gap-y-2"
       >
         <span className="label ink-3">
           © {new Date().getFullYear()} Quasor · Mar del Plata, AR
