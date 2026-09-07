@@ -1,21 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/index.js";
+import { NAV_LINKS, DESCRIPTOR, CTA, t } from "../../site.js";
 
-// Los ocho anclas de la página. La fila de enlaces aparece recién en lg: medido
-// sobre la tipografía real, los ocho suman 381px de texto y con el interlineado
-// mínimo no entran junto al wordmark, el toggle y el CTA en un viewport de
-// 768px. Abajo de lg la navegación completa vive en el menú desplegable, así
-// ninguna sección queda sin entrada en ningún ancho.
-const LINKS = [
-  { href: "#producto", label: "Producto" },
-  { href: "#ads", label: "Atribución" },
-  { href: "#casos", label: "Casos" },
-  { href: "#servicios", label: "Servicios" },
-  { href: "#por-que", label: "Por qué" },
-  { href: "#proceso", label: "Proceso" },
-  { href: "#precios", label: "Planes" },
-  { href: "#faq", label: "FAQ" },
-];
+// Los ocho anclas viven en src/site.js: las comparten esta barra, el footer y
+// el cromado de las páginas legales (HTML estático, fuera de React).
+//
+// La fila de enlaces aparece recién en lg: medido sobre la tipografía real, los
+// ocho suman 381px de texto y con el interlineado mínimo no entran junto al
+// wordmark, el toggle y el CTA en un viewport de 768px. Abajo de lg la
+// navegación completa vive en el menú desplegable, así ninguna sección queda
+// sin entrada en ningún ancho.
 
 /* Barra de progreso de lectura, pegada al filo superior del header.
    Anima transform y no width, para no forzar layout en cada frame; el listener
@@ -128,13 +122,13 @@ export const Nav = ({ theme, onToggleTheme }) => {
                 1200px útiles y los ocho enlaces con su interlineado ya se llevan
                 549: en lg el descriptor los pisaba. Separa del wordmark por
                 espacio, no por filete. */}
-            <span className="hidden xl:inline label ink-3 whitespace-nowrap ml-1">CRM + Atribución de ads</span>
+            <span className="hidden xl:inline label ink-3 whitespace-nowrap ml-1">{t(DESCRIPTOR)}</span>
           </div>
 
           <nav aria-label="Secciones" className="hidden lg:flex items-center gap-x-5 xl:gap-x-6 min-w-0">
-            {LINKS.map((l) => (
+            {NAV_LINKS.map((l) => (
               <a key={l.href} href={l.href} className="nav-link text-[13.5px] ink-2 whitespace-nowrap">
-                {l.label}
+                {t(l)}
               </a>
             ))}
           </nav>
@@ -143,7 +137,7 @@ export const Nav = ({ theme, onToggleTheme }) => {
             <ThemeToggle theme={theme} onToggle={onToggleTheme} />
 
             <Button href="#contacto" className="max-sm:hidden text-[13px] px-4 py-2">
-              Coordinar 30 min<span className="arrow" aria-hidden="true">→</span>
+              {t(CTA)}<span className="arrow" aria-hidden="true">→</span>
             </Button>
 
             <button
@@ -172,21 +166,21 @@ export const Nav = ({ theme, onToggleTheme }) => {
       >
         <div className="max-w-[1280px] mx-auto px-6 md:px-10 pt-2 pb-6">
           <nav aria-label="Menú de secciones" className="flex flex-col">
-            {LINKS.map((l) => (
+            {NAV_LINKS.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={close}
                 className="nav-link flex items-center min-h-[44px] py-3 text-[15px] ink-2"
               >
-                {l.label}
+                {t(l)}
               </a>
             ))}
           </nav>
 
           <div className="mt-5">
             <Button href="#contacto" onClick={close} className="w-full text-[13px] px-4 py-3">
-              Coordinar 30 min<span className="arrow" aria-hidden="true">→</span>
+              {t(CTA)}<span className="arrow" aria-hidden="true">→</span>
             </Button>
           </div>
         </div>

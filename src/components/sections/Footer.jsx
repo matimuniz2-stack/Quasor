@@ -1,44 +1,25 @@
-// Cierre de página y mapa de anclas. Los IDs (#producto, #ads, …) son los mismos
-// que usan la nav y el sitemap: se referencian, no se inventan.
+import {
+  FOOTER_PRODUCTO,
+  FOOTER_EMPRESA,
+  legalLinks,
+  FOOTER_REDES,
+  FOOTER_TITLES,
+  BLURB,
+  CONTACT,
+  t,
+} from "../../site.js";
 
-const PRODUCTO = [
-  { label: "Sistema", href: "#producto" },
-  { label: "Atribución de ads", href: "#ads" },
-  { label: "Casos de uso", href: "#casos" },
-  { label: "Servicios", href: "#servicios" },
-  { label: "Planes", href: "#precios" },
-  { label: "FAQ", href: "#faq" },
-];
+// Cierre de página y mapa de anclas. Los IDs (#producto, #ads, …) son los
+// mismos que usan la nav y el sitemap: se referencian, no se inventan.
+//
+// Las cuatro columnas y los legales viven en src/site.js porque el pie de las
+// páginas legales — HTML estático generado por scripts/gen-legal.mjs, fuera de
+// React — arma el mismo footer con los mismos arrays.
 
-// Los legales viven una sola vez: la columna Empresa y la barra final los comparten.
-const LEGAL = [
-  { label: "Privacidad", href: "/legal/privacidad" },
-  { label: "Términos", href: "/legal/terminos" },
-  { label: "Eliminar mis datos", href: "/legal/eliminar-datos" },
-];
-
-const EMPRESA = [
-  { label: "Por qué Quasor", href: "#por-que" },
-  { label: "Puesta en marcha", href: "#proceso" },
-  { label: "Contacto", href: "#contacto" },
-  ...LEGAL,
-];
-
-const REDES = [
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/quasortech/",
-    external: true,
-    aria: "Instagram de Quasor — abre en una pestaña nueva",
-  },
-  {
-    label: "WhatsApp",
-    href: "https://wa.me/5492236892809",
-    external: true,
-    aria: "WhatsApp de Quasor — abre en una pestaña nueva",
-  },
-  { label: "Email", href: "mailto:ventas@quasor.io", aria: "Escribir a ventas@quasor.io" },
-];
+// Los legales aparecen dos veces en el pie (en la columna Empresa y en la barra
+// final), y una sola vez en el archivo de datos.
+const LEGAL = legalLinks();
+const EMPRESA = [...FOOTER_EMPRESA, ...LEGAL];
 
 // El área táctil de 44px solo hace falta en mobile; en desktop la lista se
 // compacta para que la columna no quede desarmada.
@@ -63,18 +44,18 @@ const LEGAL_LINK =
 const Column = ({ id, title, links, arrow = false }) => (
   <nav aria-labelledby={id}>
     <span id={id} className="label ink">
-      {title}
+      {t(title)}
     </span>
     <ul className="mt-3 md:mt-4 flex flex-col">
-      {links.map(({ label, href, external, aria }) => (
-        <li key={href}>
+      {links.map((item) => (
+        <li key={item.href}>
           <a
-            href={href}
+            href={item.href}
             className={LINK}
-            {...(external ? { target: "_blank", rel: "noopener noreferrer" } : null)}
-            {...(aria ? { "aria-label": aria } : null)}
+            {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : null)}
+            {...(item.aria ? { "aria-label": t(item.aria) } : null)}
           >
-            {label}
+            {t(item)}
             {arrow && (
               <span aria-hidden="true" className="text-[11px] leading-none">
                 ↗
@@ -105,22 +86,21 @@ export const Footer = () => (
             quasor<span className="accent-text">.</span>
           </a>
           <p className="ink-3 text-[13.5px] leading-relaxed mt-4 max-w-[300px]">
-            Quasor CRM: pipeline de ventas y atribución publicitaria para inmobiliarias y
-            concesionarias. Desde Mar del Plata, para toda la Argentina.
+            {t(BLURB)}
           </p>
           <div className="mt-5 md:mt-6 flex flex-col">
-            <a href="mailto:ventas@quasor.io" className={MICRO_LINK}>
-              ventas@quasor.io
+            <a href={`mailto:${CONTACT.email}`} className={MICRO_LINK}>
+              {CONTACT.email}
             </a>
-            <a href="tel:+5492236892809" className={MICRO_LINK}>
-              +54 9 223 689 2809
+            <a href={CONTACT.tel} className={MICRO_LINK}>
+              {CONTACT.phone}
             </a>
           </div>
         </div>
 
-        <Column id="footer-producto" title="Producto" links={PRODUCTO} />
-        <Column id="footer-empresa" title="Empresa" links={EMPRESA} />
-        <Column id="footer-redes" title="Redes" links={REDES} arrow />
+        <Column id="footer-producto" title={FOOTER_TITLES.producto} links={FOOTER_PRODUCTO} />
+        <Column id="footer-empresa" title={FOOTER_TITLES.empresa} links={EMPRESA} />
+        <Column id="footer-redes" title={FOOTER_TITLES.redes} links={FOOTER_REDES} arrow />
       </div>
 
       <div
@@ -129,16 +109,16 @@ export const Footer = () => (
         className="mt-12 md:mt-14 flex flex-wrap items-center justify-between gap-x-8 gap-y-2"
       >
         <span className="label ink-3">
-          © {new Date().getFullYear()} Quasor · Mar del Plata, AR
+          © {new Date().getFullYear()} Quasor · {t(CONTACT.city)}
         </span>
         {/* El punto medio va DETRÁS de cada enlace, no delante del siguiente:
             si la fila se parte a 390px, el separador queda cerrando la línea
             en vez de abrir la siguiente. */}
         <ul className="flex flex-wrap items-center gap-x-2">
-          {LEGAL.map(({ label, href }, i) => (
-            <li key={href} className="flex items-center gap-2">
-              <a href={href} className={LEGAL_LINK}>
-                {label}
+          {LEGAL.map((item, i) => (
+            <li key={item.href} className="flex items-center gap-2">
+              <a href={item.href} className={LEGAL_LINK}>
+                {t(item)}
               </a>
               {i < LEGAL.length - 1 && (
                 <span aria-hidden="true" className="label text-[var(--ink-3)]">
