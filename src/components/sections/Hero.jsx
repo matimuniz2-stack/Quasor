@@ -26,7 +26,7 @@ export const Hero = () => {
             as="h1"
             delay={160}
             className="display text-[33px] min-[400px]:text-[38px] md:text-[54px] xl:text-[62px] max-w-[880px] mx-auto mt-6"
-            lines={["Quasor ata cada venta", "al aviso que la pagó."]}
+            lines={["Del clic a la venta cerrada,", "sin perder el hilo."]}
           />
 
           <p

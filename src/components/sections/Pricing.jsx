@@ -98,20 +98,21 @@ export const Pricing = () => (
       />
 
       {/* --- Los tres planes ------------------------------------------------ */}
-      <div data-reveal-group className="mt-12 grid md:grid-cols-3">
+      {/* Regla arriba y abajo del bloque, y filete vertical entre columnas: los
+          tres planes se leen como una tabla. El naranja del plan destacado se
+          superpone a la regla superior (-mt-px) para marcar su columna. */}
+      <div data-reveal-group className="mt-12 grid md:grid-cols-3 border-y border-line">
         {PLANS.map((plan, i) => (
           <div
             key={plan.name}
             style={plan.featured ? { borderTopColor: "var(--accent)" } : undefined}
             className={[
-              "flex flex-col pt-7 pb-8 md:pt-8 md:pb-0",
-              // El único filete que sobrevive es el naranja del plan destacado:
-              // sin la regla gris al lado ya no separa columnas, marca una.
+              "flex flex-col pt-7 pb-8 md:py-8 border-line",
               plan.featured
-                ? "border-t-2 md:px-8"
+                ? "border-t-2 -mt-px md:border-l md:px-8"
                 : i === 0
                   ? "md:pr-8"
-                  : "md:pl-8",
+                  : "border-t md:border-t-0 md:border-l md:pl-8",
             ].join(" ")}
           >
             <div className="flex items-center justify-between gap-3">

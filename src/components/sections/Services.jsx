@@ -21,18 +21,21 @@ export const Services = () => (
       {/* Las cuatro bandas (etiqueta, titular, bajada, viñetas) son filas de la
           grilla exterior y cada pilar las hereda con subgrid: así el titular de
           dos líneas del primero no empuja sus viñetas por debajo de las de los
-          otros dos. El divisor es el borde izquierdo del pilar, no un hijo
-          aparte, para que la grilla siga teniendo tres columnas limpias. */}
+          otros dos. Los tres pilares se leen como una tabla: regla arriba y
+          abajo del bloque, y un filete vertical entre columnas que es el borde
+          izquierdo del pilar (no un hijo aparte, para que la grilla siga
+          teniendo tres columnas limpias). En mobile el mismo filete pasa a ser
+          horizontal, entre pilar y pilar. */}
       <div
         data-reveal-group
-        className="mt-12 md:mt-16 md:grid md:grid-cols-3 md:[grid-template-rows:auto_auto_auto_auto]"
+        className="mt-12 md:mt-16 border-y border-line md:grid md:grid-cols-3 md:[grid-template-rows:auto_auto_auto_auto]"
       >
         {SERVICES.map((s, i) => (
           <div
             key={s.k}
             className={[
-              "md:grid md:grid-rows-subgrid md:row-span-4 md:min-w-0",
-              i > 0 ? "pt-10 mt-10 md:mt-0 md:pt-0 md:pl-8 lg:pl-10" : "",
+              "py-8 md:py-10 md:grid md:grid-rows-subgrid md:row-span-4 md:min-w-0 border-line",
+              i > 0 ? "border-t md:border-t-0 md:border-l md:pl-8 lg:pl-10" : "",
               i < SERVICES.length - 1 ? "md:pr-8 lg:pr-10" : "",
             ]
               .filter(Boolean)
