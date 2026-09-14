@@ -35,7 +35,7 @@ export const PROCESS = [
   },
   {
     n: "02", tag: "CONFIGURAMOS", name: "Dejamos todo funcionando",
-    body: "Portales, WhatsApp, mail, contactos, alertas. Una o dos semanas. Sin meses.",
+    body: "Portales, WhatsApp, mail, contactos, alertas. Listo en una o dos semanas.",
     term: [
       { p: "$", t: "setup --cliente", w: 800 },
       { p: "├", t: "Meta Lead Ads + Google Ads ✓" },
@@ -47,22 +47,22 @@ export const PROCESS = [
   },
   {
     n: "03", tag: "CAPACITAMOS", name: "Tu equipo usando el sistema",
-    body: "Capacitación en vivo. Videos cortos. Operativos desde el día 1.",
+    body: "Capacitación presencial o por videollamada, según te convenga. Tu equipo opera desde el día 1.",
     term: [
       { p: "$", t: "onboarding --users=6", w: 800 },
-      { p: ">", t: "Sesión grupal: 45 min" },
+      { p: ">", t: "Sesión presencial o por Meet" },
       { p: ">", t: "Videos tutoriales: 12" },
       { p: ">", t: "Manual PDF + FAQ interno" },
       { p: "//", t: "equipo operativo ✓" },
     ],
   },
   {
-    n: "04", tag: "ACOMPAÑAMOS", name: "Mejoras cada mes",
-    body: "Updates mensuales. Nuevas features e integraciones. Soporte por WhatsApp y mail.",
+    n: "04", tag: "ACOMPAÑAMOS", name: "Mejoras cada semana",
+    body: "Updates semanales con nuevas features e integraciones. Soporte por WhatsApp y mail.",
     term: [
       { p: "$", t: "status --all", w: 800 },
       { p: ">", t: "Uptime 99.98%" },
-      { p: ">", t: "Updates mensuales" },
+      { p: ">", t: "Updates semanales" },
       { p: ">", t: "Soporte < 6h" },
       { p: "//", t: "tu CRM evoluciona ✓" },
     ],

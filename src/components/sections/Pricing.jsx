@@ -69,14 +69,14 @@ const NO_FIT_NOTES = [
   "Las primeras dos semanas requieren tu participación.",
 ];
 
-const Check = () => (
+const Check = ({ className = "shrink-0 mt-[5px]" }) => (
   <svg
     width="13"
     height="13"
     viewBox="0 0 16 16"
     fill="none"
     aria-hidden="true"
-    className="shrink-0 mt-[5px]"
+    className={className}
   >
     <path
       d="M2.8 8.4 6.2 11.7 13.2 4.3"
@@ -84,6 +84,24 @@ const Check = () => (
       strokeWidth="1.75"
       strokeLinecap="round"
       strokeLinejoin="round"
+    />
+  </svg>
+);
+
+const Cross = ({ className = "shrink-0 mt-[5px]" }) => (
+  <svg
+    width="13"
+    height="13"
+    viewBox="0 0 16 16"
+    fill="none"
+    aria-hidden="true"
+    className={className}
+  >
+    <path
+      d="M4 4 12 12M12 4 4 12"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
     />
   </svg>
 );
@@ -182,9 +200,12 @@ export const Pricing = () => (
           <span className="label ink">Encajamos si</span>
           <ul className="mt-6 space-y-5">
             {FIT.map((title, i) => (
-              <li key={title}>
-                <p className="text-[15px] font-medium ink leading-snug">{title}</p>
-                <span className="label label-lc ink-3 block mt-1">{FIT_NOTES[i]}</span>
+              <li key={title} className="flex gap-3">
+                <Check className="shrink-0 mt-[4px]" />
+                <div>
+                  <p className="text-[15px] font-medium ink leading-snug">{title}</p>
+                  <span className="label label-lc ink-3 block mt-1">{FIT_NOTES[i]}</span>
+                </div>
               </li>
             ))}
           </ul>
@@ -194,9 +215,12 @@ export const Pricing = () => (
           <span className="label ink-3">No encajamos si</span>
           <ul className="mt-6 space-y-5">
             {NO_FIT.map((title, i) => (
-              <li key={title}>
-                <p className="text-[15px] ink-3 leading-snug">{title}</p>
-                <span className="label label-lc ink-3 block mt-1">{NO_FIT_NOTES[i]}</span>
+              <li key={title} className="flex gap-3">
+                <Cross className="shrink-0 mt-[4px] ink-3" />
+                <div>
+                  <p className="text-[15px] ink-3 leading-snug">{title}</p>
+                  <span className="label label-lc ink-3 block mt-1">{NO_FIT_NOTES[i]}</span>
+                </div>
               </li>
             ))}
           </ul>
