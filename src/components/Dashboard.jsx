@@ -1,4 +1,5 @@
 import { useState, useEffect, Fragment } from 'react';
+import mercadoLibreLogo from '../assets/logos/mercadolibre.svg';
 
 // Quasor CRM — réplica interactiva del producto real, con datos de ejemplo.
 // Refleja la app actual (v1.1.0): Inicio con widgets, Leads, Propiedades,
@@ -35,11 +36,12 @@ const DEMO_INMO = {
 
   // ── Donut: leads por origen (suma 128) ──
   origins: [
-    { k: "Meta Ads",     v: 52, c: "#3c6df0" },
-    { k: "Tokko Broker", v: 34, c: "#ff9100" },
-    { k: "WhatsApp",     v: 22, c: "#25D366" },
-    { k: "Referido",     v: 14, c: "#9a56d0" },
-    { k: "Otro",         v: 6,  c: "#9a9689" },
+    { k: "Meta Ads",      v: 48, c: "#3c6df0" },
+    { k: "Tokko Broker",  v: 28, c: "#ff9100" },
+    { k: "WhatsApp",      v: 20, c: "#25D366" },
+    { k: "Mercado Libre", v: 14, c: "#f2cf00" },
+    { k: "Referido",      v: 12, c: "#9a56d0" },
+    { k: "Otro",          v: 6,  c: "#9a9689" },
   ],
 
   // ── Donut: propiedades por estado (suma 142) ──
@@ -74,7 +76,7 @@ const DEMO_INMO = {
     { name: "Santiago López",  email: "slopez@gmail.com",        phone: "+54 223 555-0211", src: "WhatsApp",     status: "Nuevo",      owner: A.SV, date: "28/06/2026" },
     { name: "Carla Benítez",   email: "c.benitez@gmail.com",     phone: "+54 223 555-0309", src: "Meta Ads",     status: "Calificado", owner: A.LF, date: "27/06/2026" },
     { name: "Pablo Iriarte",   email: "piriarte@hotmail.com",    phone: "+54 223 555-0421", src: "Referido",     status: "Cliente",    owner: A.DT, date: "27/06/2026" },
-    { name: "Mariana Ávila",   email: "mavila@gmail.com",        phone: "+54 223 555-0533", src: "Tokko Broker", status: "Nuevo",      owner: A.PG, date: "27/06/2026" },
+    { name: "Mariana Ávila",   email: "mavila@gmail.com",        phone: "+54 223 555-0533", src: "Mercado Libre", status: "Nuevo",     owner: A.PG, date: "27/06/2026", mlPending: true },
     { name: "Lucas Romano",    email: "lromano@gmail.com",       phone: "+54 223 555-0644", src: "Referido",     status: "Cliente",    owner: A.MR, date: "26/06/2026" },
     { name: "Florencia Díaz",  email: "flor.diaz@gmail.com",     phone: "+54 223 555-0719", src: "WhatsApp",     status: "Calificado", owner: A.SV, date: "26/06/2026" },
   ],
@@ -93,7 +95,7 @@ const DEMO_INMO = {
   pipeline: [
     { stage: "Interesado", color: "#ff9100", count: 28, cards: [
       { who: "Diego Herrera", src: "Meta Ads",     date: "28/06", owner: A.LF, days: "1d" },
-      { who: "Mariana Ávila", src: "Tokko Broker", date: "27/06", owner: A.PG, days: "2d" },
+      { who: "Mariana Ávila", src: "Mercado Libre", date: "27/06", owner: A.PG, days: "2d" },
     ]},
     { stage: "Visita agendada", color: "#3c6df0", count: 16, cards: [
       { who: "Carla Benítez", src: "Meta Ads", date: "27/06", owner: A.LF, days: "2d", prop: "Depto · Plaza Colón" },
@@ -158,11 +160,12 @@ const DEMO_AUTO = {
     { k: "Perdido",             v: 7,  c: "#e4576b" },
   ],
   origins: [
-    { k: "Meta Ads",   v: 38, c: "#3c6df0" },
-    { k: "Google Ads", v: 27, c: "#ff9100" },
-    { k: "WhatsApp",   v: 18, c: "#25D366" },
-    { k: "Referido",   v: 9,  c: "#9a56d0" },
-    { k: "Otro",       v: 4,  c: "#9a9689" },
+    { k: "Meta Ads",      v: 32, c: "#3c6df0" },
+    { k: "Mercado Libre", v: 22, c: "#f2cf00" },
+    { k: "Google Ads",    v: 20, c: "#ff9100" },
+    { k: "WhatsApp",      v: 12, c: "#25D366" },
+    { k: "Referido",      v: 7,  c: "#9a56d0" },
+    { k: "Otro",          v: 3,  c: "#9a9689" },
   ],
   propStatus: [
     { k: "Disponible", v: 31, c: "#2fb27d" },
@@ -191,9 +194,9 @@ const DEMO_AUTO = {
     { name: "Marcos Quiroga",  email: "mquiroga@gmail.com",     phone: "+54 223 555-0211", src: "WhatsApp",   status: "Nuevo",      owner: AUTO_A.CH, date: "28/06/2026" },
     { name: "Daniela Sosa",    email: "d.sosa@gmail.com",       phone: "+54 223 555-0309", src: "Meta Ads",   status: "Calificado", owner: AUTO_A.FA, date: "27/06/2026" },
     { name: "Hernán Vidal",    email: "hvidal@hotmail.com",     phone: "+54 223 555-0421", src: "Referido",   status: "Cliente",    owner: AUTO_A.DR, date: "27/06/2026" },
-    { name: "Rocío Méndez",    email: "rocio.mendez@gmail.com", phone: "+54 223 555-0533", src: "Google Ads", status: "Nuevo",      owner: AUTO_A.CH, date: "27/06/2026" },
+    { name: "Rocío Méndez",    email: "rocio.mendez@gmail.com", phone: "+54 223 555-0533", src: "Mercado Libre", status: "Nuevo",   owner: AUTO_A.CH, date: "27/06/2026", mlPending: true },
     { name: "Gastón Pérez",    email: "gaston.perez@gmail.com", phone: "+54 223 555-0644", src: "Referido",   status: "Cliente",    owner: AUTO_A.FA, date: "26/06/2026" },
-    { name: "Belén Acosta",    email: "belen.acosta@gmail.com", phone: "+54 223 555-0719", src: "WhatsApp",   status: "Calificado", owner: AUTO_A.DR, date: "26/06/2026" },
+    { name: "Belén Acosta",    email: "belen.acosta@gmail.com", phone: "+54 223 555-0719", src: "Mercado Libre", status: "Calificado", owner: AUTO_A.DR, date: "26/06/2026" },
   ],
   props: [
     { title: "Toyota Hilux SRV 2.8 TDI 4x4 AT",  price: "US$ 42.000",  zone: "Usados · Mar del Plata", meta: ["Pickup", "2023", "35.000 km", "Diésel"],   op: "Venta", status: "Disponible", bg: "linear-gradient(135deg, #4a5568, #2d3748)" },
@@ -206,7 +209,7 @@ const DEMO_AUTO = {
   pipeline: [
     { stage: "Interesado", color: "#ff9100", count: 22, cards: [
       { who: "Pablo Suárez", src: "Meta Ads",   date: "28/06", owner: AUTO_A.FA, days: "1d" },
-      { who: "Rocío Méndez", src: "Google Ads", date: "27/06", owner: AUTO_A.CH, days: "2d" },
+      { who: "Rocío Méndez", src: "Mercado Libre", date: "27/06", owner: AUTO_A.CH, days: "2d" },
     ]},
     { stage: "Test drive agendado", color: "#3c6df0", count: 12, cards: [
       { who: "Daniela Sosa", src: "Meta Ads", date: "27/06", owner: AUTO_A.FA, days: "2d", prop: "Corolla Cross HEV" },
@@ -224,7 +227,7 @@ const DEMO_AUTO = {
       { who: "Gastón Pérez", src: "Referido", date: "23/06", owner: AUTO_A.FA, prop: "Peugeot 208 Feline", price: "US$ 16.500" },
     ]},
     { stage: "Perdido", color: "#e4576b", count: 7, cards: [
-      { who: "Belén Acosta", src: "WhatsApp", date: "22/06", owner: AUTO_A.DR },
+      { who: "Belén Acosta", src: "Mercado Libre", date: "22/06", owner: AUTO_A.DR },
     ]},
   ],
   tasks: [
@@ -326,9 +329,10 @@ const IC = {
     trendLegend2: "Propiedades visitadas",
     leadsTotal: "128",
     headerUser: { name: "Carolina Méndez", initials: "CM" },
-    integConnected: "2 de 4 conectadas",
-    integBadge: "2/4",
+    integConnected: "3 de 5 conectadas",
+    integBadge: "3/5",
     hasTokko: true,
+    mlAccount: "INMOBILIARIADEMO",
   },
   auto: {
     subtitle: "Concesionaria Demo",
@@ -349,9 +353,10 @@ const IC = {
     trendLegend2: "Test drives",
     leadsTotal: "96",
     headerUser: { name: "Fernando Acosta", initials: "FA" },
-    integConnected: "2 de 3 conectadas",
-    integBadge: "2/3",
+    integConnected: "3 de 4 conectadas",
+    integBadge: "3/4",
     hasTokko: false,
+    mlAccount: "CONCESIONARIADEMO",
   },
 };
 
@@ -573,6 +578,7 @@ const srcPill = (s) => {
     "Meta Ads":     "bg-[color-mix(in_oklab,#3c6df0_15%,var(--bg))] text-[#3c6df0]",
     "Google Ads":   "bg-[color-mix(in_oklab,#ff9100_14%,var(--bg))] accent-text",
     "Tokko Broker": "bg-[color-mix(in_oklab,#ff9100_14%,var(--bg))] accent-text",
+    "Mercado Libre": "bg-[color-mix(in_oklab,#ffe600_22%,var(--bg))] text-[color-mix(in_oklab,#b39500_70%,var(--ink))]",
     "WhatsApp":     "bg-[color-mix(in_oklab,#25D366_16%,var(--bg))] text-[color-mix(in_oklab,#2fb27d_72%,var(--ink))]",
     "Referido":     "bg-[color-mix(in_oklab,#9a56d0_16%,var(--bg))] text-[#9a56d0]",
   };
@@ -652,7 +658,15 @@ const ViewLeads = ({ data, ic }) => (
 
             {/* Lead: name + email (no avatar) */}
             <div className="min-w-0">
-              <div className="font-medium ink truncate">{l.name}</div>
+              <div className="flex items-center gap-1.5 min-w-0">
+                <span className="font-medium ink truncate">{l.name}</span>
+                {/* Igual que PendingQuestionDot de la app: consulta de ML sin responder. */}
+                {l.mlPending && (
+                  <span title="Tenés una consulta de Mercado Libre pendiente" className="w-1.5 h-1.5 rounded-full shrink-0 bg-[#f2cf00]">
+                    <span className="sr-only">Tenés una consulta de Mercado Libre pendiente</span>
+                  </span>
+                )}
+              </div>
               <div className="mono text-[10px] ink-3 truncate">{l.email}</div>
             </div>
 
@@ -1008,6 +1022,12 @@ const TokkoLogo = () => (
     <span className="text-[#14171c] font-bold text-sm leading-none">t</span>
   </LogoTile>
 );
+// Logo oficial: el mismo SVG que usa la app (frontend/src/assets/logos/mercadolibre.svg).
+const MercadoLibreLogo = () => (
+  <LogoTile bg="color-mix(in oklab, #ffe600 18%, var(--bg))">
+    <img src={mercadoLibreLogo} alt="" className="w-5 h-5 object-contain" />
+  </LogoTile>
+);
 const WebLogo = () => (
   <LogoTile bg="color-mix(in oklab, #9a56d0 16%, var(--bg))">
     <span className="text-[#9a56d0] font-bold text-[11px] mono leading-none">&lt;/&gt;</span>
@@ -1076,6 +1096,15 @@ const ViewIntegr = ({ ic }) => (
       <div className="grid grid-cols-1 @[600px]/dash:grid-cols-2 gap-3">
         <IntegRow logo={<MetaLogo/>} name="Meta Ads" badge="OAuth" desc="Facebook e Instagram: campañas e inversión publicitaria." status="connected" account="Publicidad Demo" sub="ID 345810498" cta="Conectar otra" />
         <IntegRow logo={<GoogleLogo/>} name="Google Ads" desc="Búsqueda, Display y YouTube: campañas e inversión." status="available" cta="Conectar →" />
+      </div>
+    </div>
+
+    {/* Portales — en la app va en las dos verticales, entre ads y Tokko */}
+    <div>
+      <div className="mb-1 font-medium text-sm">Portales</div>
+      <div className="mono text-[10px] ink-3 mb-3">Recibí las consultas de tus publicaciones directo en el CRM.</div>
+      <div className="grid grid-cols-1 @[600px]/dash:grid-cols-2 gap-3">
+        <IntegRow logo={<MercadoLibreLogo/>} name="Mercado Libre" desc="Las consultas de tus publicaciones entran solas al CRM, con nombre y teléfono." status="connected" account={ic.mlAccount} sub="última sincronización: hace 40 min" cta="Conectar otra" />
       </div>
     </div>
 
