@@ -26,7 +26,7 @@ const ROWS = [
     k: "Integraciones del stack argentino",
     cells: [
       { t: "Vía Zapier, no nativas", ok: false },
-      { t: "Tokko, WhatsApp, Meta y Google nativos", ok: true },
+      { t: "Tokko, Mercado Libre, WhatsApp, Meta y Google nativos", ok: true },
       { t: "Parciales", ok: null },
     ],
   },

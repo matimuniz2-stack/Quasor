@@ -38,6 +38,7 @@ const PLANS = [
 const INCLUDED = [
   "WhatsApp en un clic",
   "Tokko: catálogo siempre al día",
+  "Mercado Libre: consultas y publicaciones",
   "Pipeline y asignación a vendedor",
   "Reparto de comisiones (venta y alquiler)",
   "Automatizaciones: asignación, alertas y captura",

@@ -1,19 +1,22 @@
 import { SectionHead } from "../ui/index.js";
 
 // El motivo gráfico sale del propio logo: trazas en ángulo recto con nodos
-// cuadrados. En desktop la idea es topológica (seis fuentes → un núcleo → tres
+// cuadrados. En desktop la idea es topológica (siete fuentes → un núcleo → tres
 // salidas) y por eso es un circuito; en mobile ese dibujo sería ilegible, así
 // que la misma información se sirve como lista de integraciones con su estado.
 
-// Geometría del circuito (viewBox 1248×292). Cada fuente tiene su propio codo
-// para que las seis trazas no se pisen antes de entrar al bus de y=146.
+// Geometría del circuito (viewBox 1248×292). Los codos van anidados: cuanto más
+// lejos del bus de y=146 está la fuente, más a la derecha baja, así ninguna
+// vertical corta la horizontal de su vecina. Arriba y abajo quedan desfasados
+// para que dos verticales no coincidan sobre el bus. La del medio entra recta.
 const SOURCES = [
-  { name: "Meta Lead Ads", y: 26, elbow: 262, status: "Nativa" },
-  { name: "Google Ads", y: 74, elbow: 302, status: "Nativa" },
-  { name: "Tokko Broker", y: 122, elbow: 342, status: "Sincronizando", live: true },
-  { name: "WhatsApp", y: 170, elbow: 382, status: "Click-to-chat" },
-  { name: "Portales", y: 218, elbow: 422, status: "Nativa" },
-  { name: "Tu sitio web", y: 266, elbow: 462, status: "Un script" },
+  { name: "Meta Lead Ads", y: 20, elbow: 452, status: "Nativa" },
+  { name: "Google Ads", y: 62, elbow: 382, status: "Nativa" },
+  { name: "Tokko Broker", y: 104, elbow: 312, status: "Sincronizando", live: true },
+  { name: "Mercado Libre", y: 146, elbow: 346, status: "Consultas y avisos" },
+  { name: "WhatsApp", y: 188, elbow: 347, status: "Click-to-chat" },
+  { name: "Portales", y: 230, elbow: 417, status: "Nativa" },
+  { name: "Tu sitio web", y: 272, elbow: 487, status: "Un script" },
 ];
 
 const OUTPUTS = [
@@ -34,7 +37,7 @@ const outPath = (o) => (o.elbow ? `M692 146H${o.elbow}V${o.y}H1000` : "M692 146H
 
 // Los pulsos no llevan todas las trazas: tres de entrada y dos de salida, con
 // los retardos escalonados para que se lea el relevo fuente → núcleo → salida.
-const IN_PULSES = [0, 2, 4];
+const IN_PULSES = [0, 3, 5];
 const OUT_PULSES = [0, 2];
 
 export const Integrations = () => (
@@ -42,9 +45,9 @@ export const Integrations = () => (
     <div className="max-w-[1280px] mx-auto px-6 md:px-10">
       <SectionHead
         label="Entrada de datos"
-        meta="6 integraciones"
+        meta="7 integraciones"
         title={["Los leads entran solos,", "desde donde ya trabajás."]}
-        lead="Meta Lead Ads, Google Ads, Tokko Broker, WhatsApp, los portales y los formularios de tu sitio. Se configura una vez; después la sincronización corre sola, todos los días."
+        lead="Meta Lead Ads, Google Ads, Tokko Broker, Mercado Libre, WhatsApp, los portales y los formularios de tu sitio. Se configura una vez; después la sincronización corre sola, todos los días."
       />
 
       <div data-reveal style={{ "--d": "120ms" }} className="hidden md:block mt-14 lg:mt-16">
@@ -53,7 +56,7 @@ export const Integrations = () => (
           width="100%"
           className="block w-full h-auto"
           role="img"
-          aria-label="Diagrama: Meta Lead Ads, Google Ads, Tokko Broker, WhatsApp, los portales y tu sitio web entran a Quasor por una sola vía, y de ahí salen a pipeline, atribución y reportes."
+          aria-label="Diagrama: Meta Lead Ads, Google Ads, Tokko Broker, Mercado Libre, WhatsApp, los portales y tu sitio web entran a Quasor por una sola vía, y de ahí salen a pipeline, atribución y reportes."
         >
           {/* Las trazas van primero: los nodos y el núcleo se pintan encima y
               tapan los extremos, que es lo que da el remate limpio del circuito. */}

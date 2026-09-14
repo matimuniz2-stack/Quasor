@@ -33,8 +33,8 @@ export const Hero = () => {
             className="rise mx-auto max-w-[620px] mt-6 ink-2 text-[15px] md:text-[17px] leading-relaxed"
             style={{ "--d": "300ms" }}
           >
-            Quasor captura los leads de Meta, Google, los portales y tu sitio, los hace avanzar por
-            un pipeline visual y cierra con reparto de comisiones. La inversión publicitaria entra
+            Quasor captura los leads de Meta, Google, Mercado Libre, los portales y tu sitio, los hace
+            avanzar por un pipeline visual y cierra con reparto de comisiones. La inversión publicitaria entra
             sincronizada todos los días: ves el costo por lead y por venta cerrada, no solo por clic.
           </p>
 

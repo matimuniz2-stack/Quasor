@@ -11,7 +11,7 @@ export const SERVICES = [
     k: "API",
     name: "Integraciones",
     body: "Cada lead y cada dato entran desde su fuente de forma automática, sin captura manual.",
-    bullets: ["Meta Lead Ads, Google Ads y los formularios de tu web (con un solo script)", "Tokko: catálogo y consultas, siempre sincronizados", "Otra herramienta en tu stack: la integramos a medida"],
+    bullets: ["Meta Lead Ads, Google Ads y los formularios de tu web (con un solo script)", "Tokko y Mercado Libre: publicaciones y consultas, siempre sincronizadas", "Las preguntas de Mercado Libre se responden desde Quasor, sin salir del lead"],
   },
   {
     k: "AUTO",

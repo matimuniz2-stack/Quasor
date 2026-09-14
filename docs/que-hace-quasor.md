@@ -212,7 +212,9 @@ del formulario entra al CRM. **Funcional, real.** Lo interesante:
 - **WhatsApp click-to-chat.** Botón que abre `wa.me` con el teléfono normalizado (formato argentino),
   en leads, oportunidades y contactos. Es contacto en un click (no un inbox compartido de 2 vías), así
   que *"contactá por WhatsApp al toque"* sí; *"inbox / CRM de WhatsApp"* todavía no.
-- **Integraciones que existen:** Tokko Broker (inventario + consultas, solo inmobiliarias), Meta Ads,
+- **Integraciones que existen:** Tokko Broker (inventario + consultas, solo inmobiliarias), **Mercado Libre**
+  (ambas industrias: las consultas entran como lead + oportunidad con la unidad vinculada y se
+  responden desde Quasor; las publicaciones se importan cada 6 h y se vinculan a propiedad/vehículo), Meta Ads,
   Google Ads, y el pixel web. Más, por detrás: **MailerSend** (emails), **Cloudflare R2**
   (almacenamiento de fotos y documentos), **Nominatim/OpenStreetMap** (geolocalización de direcciones,
   solo Argentina), **DolarAPI** (cotización del dólar blue).

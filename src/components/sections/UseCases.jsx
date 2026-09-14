@@ -8,7 +8,7 @@ const VERTICALS = [
     name: "Inmobiliarias",
     status: "En producción",
     accent: false,
-    body: "Captura desde Meta Lead Ads, Google Ads, Tokko y WhatsApp. Asignación automática al vendedor y conversión medida por vendedor.",
+    body: "Captura desde Meta Lead Ads, Google Ads, Tokko, Mercado Libre y WhatsApp. Asignación automática al vendedor y conversión medida por vendedor.",
     stages: [
       { stage: "Consulta", count: 34, pct: 22 },
       { stage: "Contactado", count: 22, pct: 38 },
@@ -21,7 +21,7 @@ const VERTICALS = [
     name: "Concesionarias",
     status: "Lista para arrancar",
     accent: true,
-    body: "Ficha de vehículo completa (marca, modelo, km, GNC, estado de dominio) y un pipeline con test drive, oferta y reserva.",
+    body: "Ficha de vehículo completa (marca, modelo, km, GNC, estado de dominio), las consultas de Mercado Libre atadas a cada unidad y un pipeline con test drive, oferta y reserva.",
     stages: [
       { stage: "Consulta", count: 44, pct: 18 },
       { stage: "Contactado", count: 28, pct: 30 },
