@@ -1,5 +1,6 @@
 import { CountUp } from "../motion.jsx";
 import { SectionHead, Stage } from "../ui/index.js";
+import { CplScrub } from "./CplScrub.jsx";
 
 // El formato del peso vive en un solo lugar: mientras el contador corre, las
 // cinco filas tienen que compartir exactamente el mismo separador de miles.
@@ -139,6 +140,10 @@ export const AdTracking = () => (
             <span className="label ink-3 mt-3 block">Datos de ejemplo</span>
           </div>
         </div>
+
+        <div aria-hidden="true" className="mt-8 md:mt-10 h-px bg-[var(--stage-hair)]" />
+
+        <CplScrub className="mt-8 md:mt-10" />
       </Stage>
     </div>
   </section>
