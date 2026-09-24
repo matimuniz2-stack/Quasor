@@ -14,6 +14,52 @@ import { NAV_LINKS, DESCRIPTOR, CTA, t } from "../../site.js";
 /* Barra de progreso de lectura, pegada al filo superior del header.
    Anima transform y no width, para no forzar layout en cada frame; el listener
    se coalesce con rAF porque Lenis dispara scroll en todos los frames. */
+/* Qué sección estás mirando, para marcarla en el nav.
+   Con nueve secciones y un nav pegado arriba, nada te decía dónde estabas.
+   Es orientación, no adorno: además de la marca visual, pone aria-current,
+   que es lo que anuncia un lector de pantalla.
+
+   Banda de lectura en el 45-50% del alto: se observa una franja fina, no la
+   pantalla entera, así nunca hay dos secciones "actuales" a la vez. Sin rAF
+   ni listener de scroll — el observer avisa solo. */
+const useActiveSection = (links) => {
+  const [active, setActive] = useState(null);
+
+  useEffect(() => {
+    const ids = links.map((l) => l.href.slice(1));
+    const nodes = ids.map((id) => document.getElementById(id)).filter(Boolean);
+    if (!nodes.length) return undefined;
+
+    const cruzando = new Set();
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) cruzando.add(e.target.id);
+          else cruzando.delete(e.target.id);
+        });
+
+        // La más abajo de las que cruzan: al bajar, la que entra manda.
+        for (let i = ids.length - 1; i >= 0; i--) {
+          if (cruzando.has(ids[i])) {
+            setActive(ids[i]);
+            return;
+          }
+        }
+        // Ninguna cruza. Arriba de todo es el hero, que no tiene link:
+        // se apaga. En un hueco entre secciones mantenemos la última, que
+        // parpadear en cada separador es peor que quedarse un toque atrás.
+        if (window.scrollY < window.innerHeight * 0.5) setActive(null);
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+
+    nodes.forEach((n) => io.observe(n));
+    return () => io.disconnect();
+  }, [links]);
+
+  return active;
+};
+
 const ScrollProgress = () => {
   const ref = useRef(null);
 
@@ -83,6 +129,7 @@ const ThemeToggle = ({ theme, onToggle }) => {
 
 export const Nav = ({ theme, onToggleTheme }) => {
   const [open, setOpen] = useState(false);
+  const activa = useActiveSection(NAV_LINKS);
   const burgerRef = useRef(null);
 
   // Escape cierra y devuelve el foco al disparador: si no, el foco queda
@@ -127,7 +174,14 @@ export const Nav = ({ theme, onToggleTheme }) => {
 
           <nav aria-label="Secciones" className="hidden lg:flex items-center gap-x-5 xl:gap-x-6 min-w-0">
             {NAV_LINKS.map((l) => (
-              <a key={l.href} href={l.href} className="nav-link text-[13.5px] ink-2 whitespace-nowrap">
+              <a
+                key={l.href}
+                href={l.href}
+                aria-current={l.href === "#" + activa ? "true" : undefined}
+                className={`nav-link text-[13.5px] whitespace-nowrap ${
+                  l.href === "#" + activa ? "ink" : "ink-2 hover:ink"
+                }`}
+              >
                 {t(l)}
               </a>
             ))}
@@ -171,7 +225,10 @@ export const Nav = ({ theme, onToggleTheme }) => {
                 key={l.href}
                 href={l.href}
                 onClick={close}
-                className="nav-link flex items-center min-h-[44px] py-3 text-[15px] ink-2"
+                aria-current={l.href === "#" + activa ? "true" : undefined}
+                className={`nav-link flex items-center min-h-[44px] py-3 text-[15px] ${
+                  l.href === "#" + activa ? "ink" : "ink-2 hover:ink"
+                }`}
               >
                 {t(l)}
               </a>

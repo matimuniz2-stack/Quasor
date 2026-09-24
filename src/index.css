@@ -490,6 +490,16 @@ html.js .fill.in {
 .nav-link:hover::after {
   transform: scaleX(1);
 }
+/* Sección activa: el mismo subrayado del hover, pero fijo. No inventamos un
+   segundo vocabulario para decir lo mismo. El selector es [aria-current] y no
+   una clase: la marca visual y la semántica salen del mismo atributo, así no
+   se pueden desincronizar. */
+/* El color NO se pone acá: `ink-2` es un @utility y le gana a cualquier regla
+   de @layer components, así que el Nav intercambia la utilidad (ink / ink-2)
+   según la sección activa. Acá queda solo el subrayado, que no compite. */
+.nav-link[aria-current]::after {
+  transform: scaleX(1);
+}
 
 /* Placa del producto: sombra + leve paralaje (el offset lo escribe el JS). */
 .plate {
