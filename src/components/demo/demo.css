@@ -1,0 +1,198 @@
+/* ============================================================================
+   Demo del CRM — tokens del producto real (quasor-crm/frontend/src/app.css)
+   ----------------------------------------------------------------------------
+   La demo NO usa los tokens de la landing: tiene que verse como la app, que
+   usa Inter, naranja #f97316 y el canvas gris con el panel de contenido
+   flotando. Todo queda encapsulado bajo .qx para no filtrar hacia la página.
+   Sigue el tema de la landing (html[data-theme]) salvo que el visitante lo
+   cambie desde el toggle de la propia demo (.qx-dark / .qx-light).
+   ============================================================================ */
+
+.qx {
+  --q-bg: #ffffff;
+  --q-canvas: #f3f3f4;
+  --q-card: #ffffff;
+  --q-pop: #ffffff;
+  --q-fg: #09090b;
+  --q-fg-2: #3f3f46;
+  --q-muted: #f4f4f5;
+  --q-muted-fg: #71717a;
+  --q-border: #e4e4e7;
+  --q-primary: #f97316;
+  --q-primary-fg: #ffffff;
+  --q-active: #ffffff;
+  --q-active-fg: #cf6017;
+  --q-success: #16a34a;
+  --q-warning: #f59e0b;
+  --q-danger: #ef4444;
+  --q-info: #0ea5e9;
+  --q-shadow: 0 4px 12px -4px rgba(9, 9, 11, 0.12), 0 1px 3px rgba(9, 9, 11, 0.06);
+  --q-shadow-lg: 0 24px 48px -16px rgba(9, 9, 11, 0.28);
+  --q-mix: #09090b; /* base para teñir el texto de los badges */
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  letter-spacing: -0.011em;
+  color: var(--q-fg);
+  background: var(--q-canvas);
+  color-scheme: light;
+}
+
+html[data-theme='dark'] .qx:not(.qx-light),
+.qx.qx-dark {
+  --q-bg: #09090b;
+  --q-canvas: #070709;
+  --q-card: #131316;
+  --q-pop: #18181b;
+  --q-fg: #fafafa;
+  --q-fg-2: #e4e4e7;
+  --q-muted: #27272a;
+  --q-muted-fg: #a1a1aa;
+  --q-border: #27272a;
+  --q-active: #34200f;
+  --q-active-fg: #f3a571;
+  --q-success: #22c55e;
+  --q-warning: #f5a524;
+  --q-danger: #f87171;
+  --q-info: #38bdf8;
+  --q-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.6);
+  --q-shadow-lg: 0 24px 60px -16px rgba(0, 0, 0, 0.85);
+  --q-mix: #ffffff;
+  color-scheme: dark;
+}
+
+.qx *,
+.qx *::before,
+.qx *::after {
+  border-color: var(--q-border);
+}
+
+/* Todo lo de abajo va en la capa "components" de Tailwind: así una utilidad
+   puntual (hidden, pl-8, h-7) le gana a la clase base, como en la app. */
+@layer components {
+/* ---- helpers de color ---------------------------------------------------- */
+.qx .q-fg { color: var(--q-fg); }
+.qx .q-fg2 { color: var(--q-fg-2); }
+.qx .q-mut { color: var(--q-muted-fg); }
+.qx .q-pri { color: var(--q-primary); }
+.qx .q-bg-card { background: var(--q-card); }
+.qx .q-bg-muted { background: var(--q-muted); }
+.qx .q-bg-canvas { background: var(--q-canvas); }
+.qx .q-bg-pop { background: var(--q-pop); }
+.qx .q-num { font-variant-numeric: tabular-nums; }
+
+/* Card de dashboard: rounded-2xl border-border/40 shadow-md */
+.qx .q-card {
+  background: var(--q-card);
+  border: 1px solid color-mix(in oklab, var(--q-border) 70%, transparent);
+  border-radius: 14px;
+  box-shadow: var(--q-shadow);
+}
+.qx .q-card-hover {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.qx .q-card-hover:hover {
+  border-color: color-mix(in oklab, var(--q-primary) 40%, var(--q-border));
+}
+
+/* Botones (shadcn) */
+.qx .q-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, opacity 0.15s;
+}
+.qx .q-btn-pri { background: var(--q-primary); color: var(--q-primary-fg); }
+.qx .q-btn-pri:hover { background: color-mix(in oklab, var(--q-primary) 88%, black); }
+.qx .q-btn-out { border: 1px solid var(--q-border); background: var(--q-card); color: var(--q-fg); }
+.qx .q-btn-out:hover { background: var(--q-muted); }
+.qx .q-btn-ghost { color: var(--q-fg-2); }
+.qx .q-btn-ghost:hover { background: var(--q-muted); }
+.qx .q-btn-icon { width: 32px; padding: 0; }
+
+.qx .q-input {
+  height: 32px;
+  border: 1px solid var(--q-border);
+  background: var(--q-card);
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 12.5px;
+  color: var(--q-fg);
+  outline: none;
+}
+.qx .q-input:focus { border-color: color-mix(in oklab, var(--q-primary) 60%, var(--q-border)); box-shadow: 0 0 0 3px color-mix(in oklab, var(--q-primary) 18%, transparent); }
+.qx .q-input::placeholder { color: var(--q-muted-fg); }
+
+/* Badge secundario con tinte de color: se alimenta con --c */
+.qx .q-tint {
+  background: color-mix(in oklab, var(--c) 14%, var(--q-card));
+  color: color-mix(in oklab, var(--c) 72%, var(--q-mix));
+}
+.qx .q-tint-strong {
+  background: color-mix(in oklab, var(--c) 20%, var(--q-card));
+  color: color-mix(in oklab, var(--c) 62%, var(--q-mix));
+}
+
+/* Tabla */
+.qx .q-th {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--q-muted-fg);
+}
+.qx .q-row { transition: background-color 0.12s ease; }
+.qx .q-row:hover { background: color-mix(in oklab, var(--q-muted) 60%, transparent); }
+
+/* Pill activa del sidebar */
+.qx .q-nav-active {
+  background: var(--q-active);
+  color: var(--q-active-fg);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 0 0 1px color-mix(in oklab, var(--q-border) 80%, transparent);
+  font-weight: 500;
+}
+
+/* Scroll fino */
+.qx .q-scroll { scrollbar-width: thin; scrollbar-color: var(--q-border) transparent; }
+.qx .q-scroll::-webkit-scrollbar { width: 7px; height: 7px; }
+.qx .q-scroll::-webkit-scrollbar-thumb { background: var(--q-border); border-radius: 99px; }
+.qx .q-scroll::-webkit-scrollbar-track { background: transparent; }
+
+/* Segmented control */
+.qx .q-seg { display: inline-flex; padding: 3px; gap: 2px; border-radius: 9px; background: var(--q-muted); }
+.qx .q-seg > button { height: 26px; padding: 0 10px; border-radius: 7px; font-size: 12px; color: var(--q-muted-fg); font-weight: 500; display: inline-flex; align-items: center; gap: 6px; }
+.qx .q-seg > button[aria-pressed='true'] { background: var(--q-card); color: var(--q-fg); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08); }
+
+/* ---- animaciones -------------------------------------------------------- */
+@keyframes qIn { from { opacity: 0; transform: translateY(4px); } }
+@keyframes qFade { from { opacity: 0; } }
+@keyframes qPop { from { opacity: 0; transform: translateY(6px) scale(0.98); } }
+@keyframes qGrowX { from { transform: scaleX(0); } }
+@keyframes qDraw { to { stroke-dashoffset: 0; } }
+@keyframes qPing { 75%, 100% { transform: scale(1.7); opacity: 0; } }
+@keyframes qBlink { 50% { opacity: 0; } }
+@keyframes qSpin { to { transform: rotate(360deg); } }
+@keyframes qFlash {
+  0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--q-primary) 55%, transparent); }
+  100% { box-shadow: 0 0 0 10px transparent; }
+}
+.qx .q-in { animation: qIn 0.35s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+.qx .q-fade { animation: qFade 0.25s ease backwards; }
+.qx .q-pop { animation: qPop 0.22s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+.qx .q-ping { animation: qPing 1.8s cubic-bezier(0, 0, 0.2, 1) infinite; }
+.qx .q-caret { animation: qBlink 1s steps(1) infinite; }
+.qx .q-spin { animation: qSpin 0.8s linear infinite; }
+.qx .q-flash { animation: qFlash 1.2s ease-out 2; }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qx *, .qx *::before, .qx *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

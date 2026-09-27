@@ -61,7 +61,7 @@ export const Hero = () => {
             <Badge dot pulse dotColor="var(--pos)" className="label ink-3">
               Demo en vivo · datos de ejemplo
             </Badge>
-            <span className="label ink-3 max-md:hidden">quasor.app/inicio</span>
+            <span className="label ink-3 max-md:hidden">Todo es clickeable · arrastrá una card del pipeline</span>
           </div>
 
           {/* #producto es ancla de la nav y del footer: no se mueve de acá. */}
