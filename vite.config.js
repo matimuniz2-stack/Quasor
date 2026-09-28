@@ -11,6 +11,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: 'index.html',
+        webs: 'webs.html',
         privacidad: 'legal/privacidad.html',
         terminos: 'legal/terminos.html',
         eliminar: 'legal/eliminar-datos.html',
