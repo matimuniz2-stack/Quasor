@@ -12,6 +12,7 @@ export default defineConfig({
       input: {
         main: 'index.html',
         webs: 'webs.html',
+        ig: 'ig.html',
         privacidad: 'legal/privacidad.html',
         terminos: 'legal/terminos.html',
         eliminar: 'legal/eliminar-datos.html',
