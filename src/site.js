@@ -53,9 +53,9 @@ export const NAV_LINKS = [
 
 export const CONTACT = {
   email: "ventas@quasor.io",
-  phone: "+54 9 223 689 2809",
-  tel: "tel:+5492236892809",
-  whatsapp: "https://wa.me/5492236892809",
+  phone: "+54 9 223 551 5498",
+  tel: "tel:+5492235515498",
+  whatsapp: "https://wa.me/5492235515498",
   instagram: "https://www.instagram.com/quasortech/",
   city: { es: "Mar del Plata, AR", en: "Mar del Plata, AR" },
 };

@@ -55,7 +55,7 @@ export const StickyMobileCTA = () => {
     >
       <div className="flex gap-2 p-1.5 rounded-full border border-line bg-[color-mix(in_oklab,var(--bg)_92%,transparent)] backdrop-blur-md shadow-[0_10px_30px_-14px_rgba(0,0,0,0.45)]">
         <a
-          href="https://wa.me/5492236892809"
+          href="https://wa.me/5492235515498"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chatear por WhatsApp"

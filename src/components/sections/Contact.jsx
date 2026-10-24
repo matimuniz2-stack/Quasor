@@ -33,14 +33,14 @@ export const Contact = () => (
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Button
-                href="https://wa.me/5492236892809"
+                href="https://wa.me/5492235515498"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Chatear por WhatsApp (abre en una pestaña nueva)"
                 className="px-5 py-3.5 text-[15px]"
               >
                 <SiWhatsapp aria-hidden="true" size={17} />
-                +54 9 223 689 2809
+                +54 9 223 551 5498
               </Button>
 
               <Button
