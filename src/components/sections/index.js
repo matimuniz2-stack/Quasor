@@ -1,5 +1,6 @@
 export { Nav } from "./Nav.jsx";
 export { Hero } from "./Hero.jsx";
+export { Clients } from "./Clients.jsx";
 export { Integrations } from "./Integrations.jsx";
 export { AdTracking } from "./AdTracking.jsx";
 export { UseCases } from "./UseCases.jsx";

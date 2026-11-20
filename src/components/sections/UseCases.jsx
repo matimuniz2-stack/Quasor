@@ -19,8 +19,8 @@ const VERTICALS = [
   },
   {
     name: "Concesionarias",
-    status: "Lista para arrancar",
-    accent: true,
+    status: "En producción",
+    accent: false,
     body: "Ficha de vehículo completa (marca, modelo, km, GNC, estado de dominio), las consultas de Mercado Libre atadas a cada unidad y un pipeline con test drive, oferta y reserva.",
     stages: [
       { stage: "Consulta", count: 44, pct: 18 },
@@ -40,7 +40,7 @@ export const UseCases = () => (
       <SectionHead
         label="Verticales"
         title={["Un pipeline por vertical.", "Las etapas que usás de verdad."]}
-        lead="Las etapas no son genéricas: cada vertical tiene el recorrido real. Inmobiliarias en producción; concesionarias, lista para arrancar."
+        lead="Las etapas no son genéricas: cada vertical tiene el recorrido real. Las dos, en producción: inmobiliarias y concesionarias."
       />
 
       {VERTICALS.map((v) => (

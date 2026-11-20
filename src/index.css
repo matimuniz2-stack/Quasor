@@ -594,3 +594,131 @@ html.lenis body { height: auto; }
   .pulse-dot::after { animation: none !important; opacity: 0 !important; }
   .plate { transform: none !important; }
 }
+
+/* ============================================================================
+   CLIENTES — Zamboni a la izquierda, el Grupo Giama como árbol a la derecha.
+   Las líneas se dibujan y un pulso ámbar baja a cada punto de venta, una sola
+   vez, cuando el tablero recibe .in (data-reveal). Con movimiento reducido
+   todo llega dibujado y quieto (la regla global apaga las transiciones).
+   ============================================================================ */
+.cl-board { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 1024px) { .cl-board { grid-template-columns: 4fr 8fr; } }
+
+.cl-card {
+  position: relative; display: flex; flex-direction: column;
+  padding: 22px 22px 24px; background: var(--bg-2); border: 1px solid var(--line);
+  border-radius: var(--r-lg); overflow: hidden;
+  transition: border-color .3s ease, box-shadow .3s ease;
+}
+@media (min-width: 768px) { .cl-card { padding: 24px 28px 26px; } }
+@media (min-width: 1024px) { .cl-card { min-height: 340px; } }
+.cl-card::before { /* grilla de puntos que se apaga hacia abajo */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(color-mix(in oklab, var(--ink) 9%, transparent) 1px, transparent 1.2px);
+  background-size: 20px 20px; background-position: 10px 10px;
+  -webkit-mask-image: linear-gradient(180deg, #000 0, transparent 75%);
+  mask-image: linear-gradient(180deg, #000 0, transparent 75%);
+}
+.cl-card:hover { border-color: var(--line-2); box-shadow: var(--shadow-plate); }
+.cl-card > * { position: relative; }
+.cl-tag { display: inline-flex; align-items: center; gap: 8px; }
+.cl-tag i { width: 6px; height: 6px; border-radius: 50%; background: var(--ink); }
+.cl-group .cl-tag i { background: var(--accent); }
+
+/* Los logos son negros (Zamboni, negro y rojo): en oscuro pasan a la tinta. */
+html[data-theme="dark"] .cl-logo { filter: brightness(0) invert(0.92); }
+
+/* inmobiliaria */
+.cl-zam { flex: 1; display: grid; place-items: center; padding: 36px 0 32px; }
+@media (min-width: 1024px) { .cl-zam { padding: 28px 0; } }
+.cl-zam img { width: min(100%, 250px); height: auto; transition: transform .5s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.cl-inmo:hover .cl-zam img { transform: scale(1.03); }
+.cl-foot { display: flex; flex-direction: column; gap: 2px; padding-top: 16px; border-top: 1px solid var(--line); }
+.cl-foot b { font-size: 15px; font-weight: 600; letter-spacing: -0.015em; }
+.cl-foot span { font-size: 13.5px; }
+
+/* grupo: Giama arriba y una línea a cada punto de venta */
+.cl-tree { flex: 1; display: flex; flex-direction: column; align-items: center; padding-top: 20px; }
+.cl-root {
+  position: relative; display: grid; place-items: center; padding: 14px 26px;
+  background: var(--bg); border: 1px solid var(--line); border-radius: 12px;
+  box-shadow: 0 10px 24px -18px rgba(20, 23, 28, .3);
+}
+.cl-root img { width: 120px; height: auto; }
+.cl-node {
+  position: absolute; left: 50%; bottom: -5px; width: 9px; height: 9px; margin-left: -4.5px;
+  border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px var(--bg-2);
+}
+.cl-rails { display: none; width: calc(75% + 2px); height: 72px; overflow: visible; }
+.cl-rails path { fill: none; stroke-width: 1; stroke-linecap: round; }
+.cl-r { stroke: var(--line-2); stroke-dasharray: 100; stroke-dashoffset: 0; transition: stroke .25s ease; }
+.cl-p { stroke: var(--accent); stroke-width: 2; stroke-dasharray: 8 100; stroke-dashoffset: 8; opacity: 0; }
+
+.cl-brands { width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; margin-top: 22px; }
+.cl-brands li {
+  position: relative; display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: 4px; padding: 16px 6px 10px; border-radius: 12px; transition: background-color .25s ease;
+}
+.cl-lb { height: 64px; display: grid; place-items: center; margin-bottom: 6px; }
+.cl-brands .cl-lb img { width: auto; transition: transform .5s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.cl-b-mg { height: 54px; }
+.cl-b-chery { height: 32px; }
+.cl-b-fiat { height: 44px; }
+.cl-brands b { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; letter-spacing: -0.015em; }
+.cl-new {
+  font-family: 'JetBrains Mono', ui-monospace, monospace; font-style: normal; font-weight: 500;
+  font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; padding: 2px 6px; border-radius: var(--r-pill);
+  color: var(--accent-text-on-tint); background: var(--accent-soft);
+}
+.cl-sub { font-size: 12px; line-height: 1.35; }
+.cl-brands li:hover { background: var(--bg); }
+.cl-brands li:hover .cl-lb img { transform: translateY(-2px); }
+
+/* Senderos: el local multimarca se dibuja con las marcas que vende */
+.cl-multi { display: flex; align-items: center; }
+.cl-coin {
+  position: relative; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%;
+  background: var(--bg); border: 1px solid var(--line-2); box-shadow: 0 0 0 3px var(--bg-2);
+  transition: transform .4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.cl-coin + .cl-coin { margin-left: -6px; }
+/* La primera queda arriba: cada moneda tapa el borde de la siguiente, no su centro. */
+.cl-coin:nth-child(1) { z-index: 4; } .cl-coin:nth-child(2) { z-index: 3; }
+.cl-coin:nth-child(3) { z-index: 2; } .cl-coin:nth-child(4) { z-index: 1; }
+.cl-coin img { max-width: 20px; max-height: 15px; width: auto; height: auto; }
+.cl-coin-txt { font-size: 10px; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); }
+.cl-brands li:hover .cl-coin { transform: translateY(-2px); }
+.cl-brands li:hover .cl-coin:nth-child(2) { transition-delay: 40ms; }
+.cl-brands li:hover .cl-coin:nth-child(3) { transition-delay: 80ms; }
+.cl-brands li:hover .cl-coin:nth-child(4) { transition-delay: 120ms; }
+
+/* Desde sm entran las cuatro en fila y aparecen las líneas del árbol. */
+@media (min-width: 640px) {
+  .cl-rails { display: block; }
+  .cl-brands { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 0; }
+  .cl-brands li { padding-top: 18px; }
+  .cl-brands li::before {
+    content: ""; position: absolute; top: -4px; left: 50%; width: 7px; height: 7px; margin-left: -3.5px;
+    border-radius: 50%; background: var(--bg-2); border: 1px solid var(--line-2);
+    transition: border-color .25s ease, background-color .25s ease;
+  }
+  .cl-brands li:hover::before { border-color: var(--accent); background: var(--accent); }
+  .cl-tree:has(li:nth-child(1):hover) .cl-r1,
+  .cl-tree:has(li:nth-child(2):hover) .cl-r2,
+  .cl-tree:has(li:nth-child(3):hover) .cl-r3,
+  .cl-tree:has(li:nth-child(4):hover) .cl-r4 { stroke: var(--accent); }
+}
+
+/* Al entrar en pantalla, una sola vez. */
+html.js .cl-board:not(.in) .cl-r { stroke-dashoffset: 100; }
+html.js .cl-board:not(.in) .cl-brands li { opacity: 0; transform: translateY(8px); }
+.cl-board.in .cl-r { transition: stroke-dashoffset .9s cubic-bezier(0.22, 0.68, 0.28, 1) .15s, stroke .25s ease; }
+.cl-board.in .cl-brands li {
+  transition: opacity .5s ease var(--d, 0ms), transform .5s cubic-bezier(0.22, 0.68, 0.28, 1) var(--d, 0ms), background-color .25s ease;
+}
+.cl-board.in .cl-p { animation: cl-pulse 1.1s cubic-bezier(0.22, 0.68, 0.28, 1) var(--d, 0ms) forwards; }
+@keyframes cl-pulse {
+  0% { stroke-dashoffset: 8; opacity: 1; }
+  85% { opacity: 1; }
+  100% { stroke-dashoffset: -100; opacity: 0; }
+}

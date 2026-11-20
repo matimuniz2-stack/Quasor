@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Lenis from 'lenis';
 import {
-  Nav, Hero, Integrations, AdTracking, UseCases, CaseStudy,
+  Nav, Hero, Clients, Integrations, AdTracking, UseCases, CaseStudy,
   Services, WhyQuasor, Process, Pricing, Faq, Contact, Footer,
   StickyMobileCTA,
 } from './components/sections/index.js';
@@ -162,6 +162,7 @@ const App = () => {
       <Nav theme={tweaks.theme} onToggleTheme={toggleTheme} />
       <main id="main" className="pb-20 md:pb-0">
         <Hero />
+        <Clients />
         <Integrations />
         <AdTracking />
         <UseCases />
