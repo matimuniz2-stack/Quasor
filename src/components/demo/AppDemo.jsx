@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import "./demo.css";
+import quasorTopbar from "./quasor-topbar.png";
 import { Ic, Avatar, Kbd, Tint, PortalCtx } from "./ui.jsx";
 import { slaSeconds } from "./domain.jsx";
 import { DEMO_INMO, DEMO_AUTO, STAGE_META, UPDATES } from "./data.js";
@@ -21,16 +22,21 @@ const NAV = {
   inicio:       { label: "Inicio", icon: "home", path: "" },
   leads:        { label: "Leads", icon: "users", path: "leads" },
   assets:       { label: null, icon: null, path: "assets" },
-  pipeline:     { label: "Pipeline", icon: "kanban", path: "pipeline" },
+  pipeline:     { label: "Oportunidades", icon: "kanban", path: "pipeline" },
   pedidos:      { label: "Pedidos", icon: "search", path: "pedidos" },
   tasaciones:   { label: "Tasaciones", icon: "calculator", path: "tasaciones" },
   presupuestos: { label: "Presupuestos", icon: "file", path: "presupuestos" },
+  eventos:      { label: "Eventos", icon: "caldays", path: "eventos", fuera: true },
+  modoevento:   { label: "Modo evento", icon: "tablet", path: "modo-evento", fuera: true },
+  formqr:       { label: "Formularios QR", icon: "qr", path: "formularios-qr", fuera: true },
   tareas:       { label: "Tareas", icon: "listtodo", path: "tasks" },
   llaves:       { label: "Llaves", icon: "key", path: "llaves" },
   permutas:     { label: "Permutas", icon: "repeat", path: "permutas" },
   ventas:       { label: "Ventas", icon: "handshake", path: "sales" },
   objetivos:    { label: "Objetivos", icon: "target", path: "objetivos" },
+  config:       { label: "Configuración", icon: "settings", path: "configuracion", fuera: true },
   integ:        { label: "Integraciones", icon: "plug", path: "integrations" },
+  manual:       { label: "Manual", icon: "book", path: "manual", fuera: true },
   updates:      { label: "Actualizaciones", icon: "rocket", path: "updates" },
 };
 
@@ -87,7 +93,7 @@ export const AppDemo = () => {
   const rootRef = useRef(null);
   const mainRef = useRef(null);
   const [width, setWidth] = useState(1200);
-  const [vertical, setVertical] = useState("inmo");
+  const [vertical, setVertical] = useState("auto"); // arranca en Concesionaria (Mati, 2026-11-20)
   const [states, setStates] = useState(() => ({ inmo: initState(DEMO_INMO), auto: initState(DEMO_AUTO) }));
   const [view, setView] = useState("inicio");
   const [playKey, setPlayKey] = useState(0);
@@ -133,11 +139,16 @@ export const AppDemo = () => {
   const notify = useCallback((n) => setS((s) => ({ ...s, notifs: [{ id: Math.random().toString(36).slice(2), unread: true, when: "recién", ...n }, ...s.notifs] })), [setS]);
 
   const go = useCallback((v) => {
+    if (NAV[v]?.fuera) {
+      toast(`${NAV[v].label} no está en esta demo: te lo mostramos en la llamada.`, "info");
+      setMobileNav(false);
+      return;
+    }
     setView(v);
     setPlayKey((k) => k + 1);
     setMobileNav(false);
     mainRef.current?.scrollTo?.({ top: 0 });
-  }, []);
+  }, [toast]);
 
   // ── API que usan las vistas ───────────────────────────────────────────
 
@@ -313,9 +324,11 @@ export const AppDemo = () => {
           {D.nav.map((k) => <NavBtn key={k} k={k} />)}
         </Group>
         <Group label="Administración">
+          <NavBtn k="config" />
           <NavBtn k="integ" badge={<span className="ml-auto inline-flex items-center gap-1 text-[10.5px] q-mut q-num"><span className="w-1.5 h-1.5 rounded-full bg-[var(--q-warning)]" />{D.integ.connected}/{D.integ.total}</span>} />
         </Group>
         <Group label="Recursos">
+          <NavBtn k="manual" />
           <NavBtn k="updates" dot={UPDATES.some((u) => u.unread)} />
         </Group>
       </nav>
@@ -366,9 +379,16 @@ export const AppDemo = () => {
           {phone ? (
             <button className="q-btn q-btn-ghost q-btn-icon" onClick={() => setMobileNav(true)} aria-label="Abrir menú"><Ic n="panel" /></button>
           ) : null}
-          <div className={`flex items-center ${phone ? "" : isCollapsed ? "w-[40px] justify-center" : "w-[196px] pl-2"} shrink-0`}>
-            <span className="text-[19px] font-bold tracking-[-0.04em] leading-none" style={{ color: "var(--q-primary)" }}>{isCollapsed && !phone ? "q." : "quasor"}</span>
-          </div>
+          {/* En el celu la app no muestra el logo arriba (topbar.tsx: hidden md:flex). */}
+          {!phone && <div className={`flex items-center h-10 overflow-hidden ${isCollapsed ? "w-[40px] justify-center" : "w-[196px] justify-center"} shrink-0`}>
+            {isCollapsed ? (
+              <span className="text-[19px] font-bold tracking-[-0.04em] leading-none" style={{ color: "var(--q-primary)" }}>q.</span>
+            ) : (
+              // El logo del topbar de la app (frontend/src/assets/logos/QuasorPNG-topbar.png), con el
+              // mismo encuadre: el PNG trae aire alrededor y va a 260% del alto de la caja.
+              <img src={quasorTopbar} alt="Quasor" width="312" height="208" className="h-[260%] w-auto max-w-none translate-y-[3%]" />
+            )}
+          </div>}
           <div className="flex-1 flex justify-center min-w-0">
             <button onClick={() => setPalette(true)} className="h-9 w-full max-w-md rounded-lg border px-3 flex items-center gap-2 text-[12.5px] q-mut transition-colors hover:text-[var(--q-fg)]" style={{ background: "color-mix(in oklab, var(--q-card) 60%, transparent)" }}>
               <Ic n="search" className="w-4 h-4" />
@@ -489,8 +509,8 @@ export const AppDemo = () => {
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-[60] flex flex-col items-center gap-2 pointer-events-none w-[min(440px,calc(100%-32px))]">
           {toasts.map((t) => (
             <div key={t.id} className="q-pop q-bg-pop border rounded-xl px-3.5 py-2.5 text-[12.5px] flex items-center gap-2.5 w-full" style={{ boxShadow: "var(--q-shadow-lg)" }}>
-              <span style={{ color: t.kind === "error" ? "var(--q-danger)" : t.kind === "lead" ? "var(--q-primary)" : "var(--q-success)" }}>
-                <Ic n={t.kind === "error" ? "circlex" : t.kind === "lead" ? "inbox" : t.kind === "sale" ? "trophy" : "circlecheck"} className="w-4 h-4" />
+              <span style={{ color: t.kind === "error" ? "var(--q-danger)" : t.kind === "info" ? "var(--q-fg-2)" : t.kind === "lead" ? "var(--q-primary)" : "var(--q-success)" }}>
+                <Ic n={t.kind === "error" ? "circlex" : t.kind === "info" ? "eye" : t.kind === "lead" ? "inbox" : t.kind === "sale" ? "trophy" : "circlecheck"} className="w-4 h-4" />
               </span>
               <span className="leading-snug">{t.msg}</span>
             </div>
@@ -507,7 +527,7 @@ const Palette = ({ D, S, onClose, go, openLead, navLabel, navIcon }) => {
   const [q, setQ] = useState("");
   const [idx, setIdx] = useState(0);
   const low = q.toLowerCase();
-  const pages = [...D.nav, "integ", "updates"].filter((k) => navLabel(k).toLowerCase().includes(low)).map((k) => ({ kind: "page", k, label: navLabel(k), icon: navIcon(k) }));
+  const pages = [...D.nav, "config", "integ", "manual", "updates"].filter((k) => navLabel(k).toLowerCase().includes(low)).map((k) => ({ kind: "page", k, label: navLabel(k), icon: navIcon(k) }));
   const leads = S.leads.filter((l) => q && l.name.toLowerCase().includes(low)).slice(0, 5).map((l) => ({ kind: "lead", id: l.id, label: l.name, sub: l.src, icon: "user" }));
   const assets = S.assets.filter((a) => q && a.title.toLowerCase().includes(low)).slice(0, 4).map((a) => ({ kind: "asset", label: a.title, sub: a.status, icon: D.asset.icon }));
   const items = [...pages, ...leads, ...assets];

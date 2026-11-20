@@ -44,7 +44,7 @@ const OppCard = ({ o, D, S, api, onDragStart, onMoveMenu, isTerminal }) => {
       {a && (
         <div className="mt-2 pt-2 border-t flex items-center gap-2 min-w-0">
           <AssetThumb a={a} className="w-8 h-6 rounded shrink-0" icon={D.asset.icon} />
-          <span className="text-[11.5px] q-fg2 truncate">{a.short}</span>
+          <span className="text-[12px] font-medium truncate">{a.title}</span>
         </div>
       )}
       {o.visit && (
@@ -56,24 +56,14 @@ const OppCard = ({ o, D, S, api, onDragStart, onMoveMenu, isTerminal }) => {
       <div className="mt-2 flex items-center gap-1.5 text-[10.5px] q-mut">
         <Ic n="cal" className="w-3 h-3" />{o.created}
         {o.docs ? <span className="inline-flex items-center gap-0.5 ml-1"><Ic n="file" className="w-3 h-3" />{o.docs}</span> : null}
-        <span className="ml-auto flex items-center gap-1">
+        <span className="ml-1 flex items-center gap-1">
           {o.stage === "INTERESTED" && <SlaBadge sla={l.sla} contacted={o.contacted || l.status !== "NEW"} />}
           {!isTerminal && <StagnantBadge days={o.days} />}
-          <TempChip t={l.temp} compact />
-          {o.stage === "INTERESTED" && (
-            <button
-              onClick={(e) => { e.stopPropagation(); api.markContacted(l.id, o.id); }}
-              title="Marcar como contactado"
-              className="rounded-full"
-              style={{ color: o.contacted || l.status !== "NEW" ? "var(--q-success)" : "var(--q-muted-fg)" }}
-            >
-              <Ic n="circlecheck" className="w-3.5 h-3.5" />
-            </button>
-          )}
         </span>
       </div>
-      <div className="mt-2 flex items-center justify-between">
-        <span className="flex items-center gap-1.5 text-[10.5px] q-mut"><Avatar name={l.owner} size={18} />{l.owner.split(" ")[0]}</span>
+      {/* Fila de abajo como en la app: responsable, temperatura y el tilde de contactado. */}
+      <div className="mt-2 flex items-center gap-1.5">
+        <span className="flex-1 min-w-0 flex items-center gap-1.5 text-[10.5px] q-mut"><Avatar name={l.owner} size={18} /><span className="truncate">{l.owner.split(" ")[0]}</span></span>
         <div className="relative" onClick={(e) => e.stopPropagation()}>
           <button onClick={() => setMenu((m) => !m)} className="q-btn q-btn-ghost !h-6 !px-1.5 !text-[10.5px] opacity-100 @[900px]/app:opacity-0 group-hover:opacity-100" title="Mover a otra etapa">
             <Ic n="swap" className="w-3 h-3" />Mover
@@ -91,6 +81,17 @@ const OppCard = ({ o, D, S, api, onDragStart, onMoveMenu, isTerminal }) => {
             </>
           )}
         </div>
+        <TempChip t={l.temp} compact />
+        {o.stage === "INTERESTED" && (
+            <button
+              onClick={(e) => { e.stopPropagation(); api.markContacted(l.id, o.id); }}
+              title="Marcar como contactado"
+              className="rounded-full"
+              style={{ color: o.contacted || l.status !== "NEW" ? "var(--q-success)" : "var(--q-muted-fg)" }}
+            >
+              <Ic n="circlecheck" className="w-4 h-4" />
+            </button>
+          )}
       </div>
     </div>
   );
@@ -272,7 +273,7 @@ export const Pipeline = ({ D, S, api }) => {
 
   return (
     <div className="flex flex-col h-full min-h-0">
-      <PageHeader title="Pipeline" meta={`${S.opps.filter((o) => !["SALE_COMPLETED", "LOST"].includes(o.stage)).length} oportunidades abiertas · arrastrá una card para moverla`}>
+      <PageHeader title="Oportunidades" meta={`${S.opps.filter((o) => !["SALE_COMPLETED", "LOST"].includes(o.stage)).length} oportunidades abiertas · arrastrá una card para moverla`}>
         <RefreshBtn />
         <button className="q-btn q-btn-pri" onClick={() => api.go("leads")}><Ic n="plus" className="w-3.5 h-3.5" />Nueva Oportunidad</button>
       </PageHeader>

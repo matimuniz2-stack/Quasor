@@ -141,7 +141,7 @@ export const Sales = ({ D, S, api }) => {
           <button className="q-btn q-btn-out"><Ic n="download" className="w-3.5 h-3.5" />Descargar Excel</button>
           <button className="q-btn q-btn-pri"><Ic n="plus" className="w-3.5 h-3.5" />Nueva venta</button>
         </PageHeader>
-        <Table min={860} head={<><Th>Fecha</Th><Th>Automóvil</Th><Th>Vendedor</Th><Th right>Precio de venta</Th><Th>Permuta</Th><Th right>Margen</Th><Th right>Comisión</Th><Th>Estado</Th></>}>
+        <Table min={860} head={<><Th>Fecha</Th><Th>Vehículo</Th><Th>Vendedor</Th><Th right>Precio de venta</Th><Th>Permuta</Th><Th right>Margen</Th><Th right>Comisión</Th><Th>Estado</Th></>}>
           {S.sales.map((s) => {
             const a = D.assets.find((x) => x.id === s.asset);
             const off = ((s.list - s.value) / s.list) * 100;

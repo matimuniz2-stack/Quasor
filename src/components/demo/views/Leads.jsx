@@ -29,7 +29,7 @@ export const Leads = ({ D, S, api }) => {
       <PageHeader title="Leads" meta={`${S.leads.length} en el período · ${waiting} sin contactar`}>
         <button className="q-btn q-btn-ghost q-btn-icon" title="Configurar tiempo hasta el primer contacto" aria-label="Configurar tiempo hasta el primer contacto"><Ic n="timer" className="w-3.5 h-3.5" /></button>
         <RefreshBtn />
-        <button className="q-btn q-btn-out hidden @[640px]/app:inline-flex"><Ic n="download" className="w-3.5 h-3.5 rotate-180" />Importar CSV</button>
+        <button className="q-btn q-btn-out hidden @[640px]/app:inline-flex"><Ic n="download" className="w-3.5 h-3.5" />Exportar CSV</button>
         <button className="q-btn q-btn-pri" onClick={() => setCreating(true)}><Ic n="plus" className="w-3.5 h-3.5" />Nuevo Lead</button>
       </PageHeader>
 

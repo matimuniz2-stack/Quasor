@@ -67,6 +67,11 @@ html[data-theme='dark'] .qx:not(.qx-light),
 
 /* Todo lo de abajo va en la capa "components" de Tailwind: así una utilidad
    puntual (hidden, pl-8, h-7) le gana a la clase base, como en la app. */
+/* El orden de capas va primero: este CSS entra al bundle antes que el de Tailwind, y
+   si «components» aparece antes que «base», la base (preflight) le gana y los botones,
+   campos y chips de la demo pierden fondo, relleno y tamaño de letra. */
+@layer theme, base, components, utilities;
+
 @layer components {
 /* ---- helpers de color ---------------------------------------------------- */
 .qx .q-fg { color: var(--q-fg); }

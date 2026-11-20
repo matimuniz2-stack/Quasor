@@ -47,7 +47,7 @@ const WIDGET_TYPES = [
   { t: "line", label: "Líneas", icon: "trending", d: "Evolución de hasta 4 métricas, o de una métrica por categoría" },
   { t: "bars", label: "Barras", icon: "kanban", d: "Comparación por período o por categoría" },
   { t: "pie", label: "Torta", icon: "circle", d: "Distribución de una métrica por categoría" },
-  { t: "funnel", label: "Embudo", icon: "filter", d: "Pipeline de oportunidades por etapa" },
+  { t: "funnel", label: "Embudo", icon: "filter", d: "Oportunidades por etapa" },
   { t: "table", label: "Tabla", icon: "list", d: "Ranking por categoría con hasta 8 métricas como columnas" },
   { t: "pivot", label: "Pivot de Ads", icon: "megaphone", d: "Campaña → Ad set → Ad con inversión, clicks y leads atribuidos" },
   { t: "goal", label: "Objetivo del mes", icon: "target", d: "Vendido contra el objetivo mensual, por vendedor, sucursal o empresa" },
@@ -118,7 +118,7 @@ const ExtraWidget = ({ t, D, playKey }) => {
     return <Widget title="Leads nuevos por Usuario asignado" className="@[900px]/app:col-span-4" center><Donut rows={rows} center={rows.reduce((s, r) => s + r.v, 0)} centerLabel="Leads" /></Widget>;
   }
   if (t === "funnel") {
-    return <Widget title="Pipeline de oportunidades" className="@[900px]/app:col-span-5"><Funnel rows={D.funnel.map(([k, v]) => ({ k, v, label: STAGE_META[k].label, c: STAGE_META[k].c }))} playKey={playKey} /></Widget>;
+    return <Widget title="Oportunidades por etapa" className="@[900px]/app:col-span-5"><Funnel rows={D.funnel.map(([k, v]) => ({ k, v, label: STAGE_META[k].label, c: STAGE_META[k].c }))} playKey={playKey} /></Widget>;
   }
   if (t === "pivot") return <Widget title="Rendimiento por campaña, ad set y ad" className="@[900px]/app:col-span-12"><Pivot rows={D.ads.pivot} cur="USD" /></Widget>;
   // line / bars → evolución de leads de ads
@@ -205,7 +205,7 @@ const Pivot = ({ rows, cur }) => {
 const General = ({ D, playKey, extras, go }) => (
   <div className="grid grid-cols-1 @[640px]/app:grid-cols-6 @[900px]/app:grid-cols-12 gap-3 @[900px]/app:gap-4">
     {D.kpis.map((k, i) => (
-      <div key={k.id} className="@[640px]/app:col-span-2 @[900px]/app:col-span-4">
+      <div key={k.id} className={D.kpis.length === 4 ? "@[640px]/app:col-span-3 @[900px]/app:col-span-3" : "@[640px]/app:col-span-2 @[900px]/app:col-span-4"}>
         <KPI {...k} playKey={playKey} delay={i * 60} />
       </div>
     ))}
@@ -223,7 +223,7 @@ const General = ({ D, playKey, extras, go }) => (
         <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full" style={{ background: CHART[1] }} />{D.keyStage}</span>
       </div>
     </Widget>
-    <Widget title="Pipeline de oportunidades" className="@[640px]/app:col-span-6 @[900px]/app:col-span-5" delay={240} center>
+    <Widget title="Oportunidades por etapa" className="@[640px]/app:col-span-6 @[900px]/app:col-span-5" delay={240} center>
       <Funnel rows={D.funnel.map(([k, v]) => ({ k, v, label: STAGE_META[k].label, c: STAGE_META[k].c }))} playKey={playKey} onPick={() => go("pipeline")} />
     </Widget>
     <Widget title="Leads nuevos por Origen del lead" className="@[640px]/app:col-span-3 @[900px]/app:col-span-4" delay={300} center>

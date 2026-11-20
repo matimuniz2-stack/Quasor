@@ -12,10 +12,11 @@ import {
   LuDollarSign, LuMegaphone, LuCode, LuSend, LuLink2, LuDownload, LuCopy, LuTriangleAlert, LuClock,
   LuCircle, LuPlay, LuUserRoundCheck, LuBanknote, LuPercent, LuMousePointerClick, LuShieldCheck,
   LuChevronRight, LuImage, LuSquareCheck, LuTrendingUp, LuFilter, LuTag, LuRuler, LuBedDouble, LuHouse,
-  LuRadio, LuUser, LuMessageCircle, LuFileDown, LuPencil, LuChevronLeft, LuPanelLeftClose, LuHistory,
+  LuRadio, LuUser, LuMessageCircle, LuBookOpen, LuQrCode, LuTablet, LuFootprints, LuFileDown, LuPencil, LuChevronLeft, LuPanelLeftClose, LuHistory,
 } from "react-icons/lu";
 
 export const I = {
+  book: LuBookOpen, qr: LuQrCode, tablet: LuTablet, steps: LuFootprints,
   home: LuLayoutDashboard, users: LuUsers, building: LuBuilding2, car: LuCar, kanban: LuKanban,
   search: LuSearch, calculator: LuCalculator, file: LuFileText, listtodo: LuListTodo, key: LuKeyRound,
   repeat: LuRepeat2, handshake: LuHandshake, target: LuTarget, settings: LuSettings, plug: LuPlug,
