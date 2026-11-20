@@ -1,9 +1,13 @@
 import { SectionHead } from "../ui/index.js";
-import zamboni from "../../assets/clientes/cl-zamboni.png";
-import giama from "../../assets/clientes/cl-giama.png";
-import mg from "../../assets/clientes/cl-mg.png";
-import chery from "../../assets/clientes/cl-chery.png";
-import fiat from "../../assets/clientes/cl-fiat.svg";
+
+// Los logos van en public/ y no como import: el prerender (vite.ssrLoadModule) resuelve un
+// import de imagen a /src/assets/…, que en producción no existe, y el HTML servido quedaba
+// con 404 hasta que hidrataba React.
+const zamboni = "/clientes/cl-zamboni.png";
+const giama = "/clientes/cl-giama.png";
+const mg = "/clientes/cl-mg.png";
+const chery = "/clientes/cl-chery.png";
+const fiat = "/clientes/cl-fiat.svg";
 
 // Quién usa Quasor, con permiso: Zamboni, MG y Chery desde el 2026-09-27;
 // Fiat Giama y Senderos los sumó Mati el 2026-11-20. Senderos es el local

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import "./demo.css";
-import quasorTopbar from "./quasor-topbar.png";
+// En public/ y no como import, por el mismo motivo que los logos de Clientes (prerender).
+const quasorTopbar = "/demo/quasor-topbar.png";
 import { Ic, Avatar, Kbd, Tint, PortalCtx } from "./ui.jsx";
 import { slaSeconds } from "./domain.jsx";
 import { DEMO_INMO, DEMO_AUTO, STAGE_META, UPDATES } from "./data.js";
